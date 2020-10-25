@@ -32,5 +32,10 @@ int main(void) {
     load_countries(&db);
     print_countries(&db);
 
+    import_jobs(&db);
+    export_jobs(&db);
+    load_jobs(&db);
+    print_jobs(&db);
+
 	return 0;
 }

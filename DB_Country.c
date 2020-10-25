@@ -12,11 +12,11 @@
 * Imports csv file to dat file
 ****************************************************************************************/
 void import_countries(dbc *db) {
-    int n_countries = 0;            // number of countries imported
+    int n = 0;                      // number of record imported
     char line[BUF_LEN];             // csv line
     char tmp_field[BUF_LEN];        // temporary field used for conversion to integer
     char *tok, *next_tok;           // line's tokens separated by strtok
-	country_entity country;         // country entity to write in the dat file
+	country_entity entity;          // new entity to write in the dat file
 	FILE *csv_file, *dat_file, *log_file;   // file pointers
 
     /* Open files */
@@ -38,46 +38,46 @@ void import_countries(dbc *db) {
 
     fseek(dat_file, db->header.off_ctr, SEEK_SET);
     while (fgets(line, BUF_LEN, csv_file) != NULL) {
-        // Init country to 0
-        memset(&country, 0, sizeof(country_entity));
+        // Init the new entity to 0
+        memset(&entity, 0, sizeof(country_entity));
 
         // Set type
-        strcpy(country.type, "CTR");
+        strcpy(entity.type, "CTR");
 
         // Set id
         tok = strtok(line,";");
         next_tok = strtok(NULL,";");
         memset(tmp_field, 0, BUF_LEN);
         strncpy(tmp_field, tok, next_tok-tok-1);
-        country.id = atoi(tmp_field);
+        entity.id = atoi(tmp_field);
 
         // Set name
         tok = next_tok;
         next_tok = strtok(NULL,";");
-        strncpy(country.name, tok, next_tok-tok-1);
+        strncpy(entity.name, tok, next_tok-tok-1);
 
         // Set zone
         tok = next_tok;
         next_tok = strtok(NULL,";");
-        strncpy(country.zone, tok, next_tok-tok-1);
+        strncpy(entity.zone, tok, next_tok-tok-1);
 
         // Set ISO code
         tok = next_tok;
-        strncpy(country.iso, tok, strlen(tok)-1);
+        strncpy(entity.iso, tok, strlen(tok)-1);
 
-        // Write country to dat file
-        fwrite(&country, 1, sizeof(country_entity), dat_file);
+        // Write the new entity into the dat file
+        fwrite(&entity, 1, sizeof(country_entity), dat_file);
 
-        n_countries++;
+        n++;
     }
 
-    fprintf(log_file, "Country table import: %d records imported.\n", n_countries);
-    printf("\n%d records imported.\n\n", n_countries);
+    fprintf(log_file, "Country table import: %d records imported.\n", n);
+    printf("\n%d records imported.\n\n", n);
 
     /* Update the number of countries in the DB header */
     fseek(dat_file, 0, SEEK_SET);
     fread(&db->header, sizeof(db_header), 1, dat_file);
-    db->header.n_ctr = n_countries;
+    db->header.n_ctr = n;
     fseek(dat_file, 0, SEEK_SET);
     fwrite(&db->header, sizeof(db_header), 1, dat_file);
 
@@ -91,8 +91,8 @@ void import_countries(dbc *db) {
 * Exports table from dat file to csv file (test function)
 ****************************************************************************************/
 void export_countries(dbc *db) {
-    int i;
-	country_entity country;
+    uint i;
+	country_entity entity;
 	FILE *csv_file, *dat_file, *log_file;
 
     /* Open files */
@@ -111,15 +111,15 @@ void export_countries(dbc *db) {
     fseek(dat_file, db->header.off_ctr, SEEK_SET);
 
     for (i = 0; i < db->header.n_ctr; i++) {
-        memset(&country, 0, sizeof(country_entity));
-        fread(&country, 1, sizeof(country_entity), dat_file);
+        memset(&entity, 0, sizeof(country_entity));
+        fread(&entity, 1, sizeof(country_entity), dat_file);
 
         fprintf(csv_file, "%d;%s;%s;%s\n",
-                country.id, country.name, country.zone, country.iso);
+                entity.id, entity.name, entity.zone, entity.iso);
     }
 
-    fprintf(log_file, "Country table export: %d record exported.\n", db->header.n_ctr);
-    printf("\n%d record exported.\n\n", db->header.n_ctr);
+    fprintf(log_file, "Country table export: %d records exported.\n", db->header.n_ctr);
+    printf("\n%d records exported.\n\n", db->header.n_ctr);
 
     /* Close files */
     fclose(dat_file);
@@ -131,8 +131,8 @@ void export_countries(dbc *db) {
 * Loads the table into the database buffer
 ****************************************************************************************/
 void load_countries(dbc *db) {
-    int i;
-	country_entity country;
+    uint i;
+	country_entity entity;
 	FILE *dat_file, *log_file;
 
     /* Open files */
@@ -149,10 +149,10 @@ void load_countries(dbc *db) {
 
     /* Read the country table */
     fseek(dat_file, db->header.off_ctr, SEEK_SET);
-    for (i = 1; i <= db->header.n_ctr; i++) {
-        memset(&country, 0, sizeof(country_entity));
-        fread(&country, 1, sizeof(country_entity), dat_file);
-        db->countries[i] = country;
+    for (i = 0; i < db->header.n_ctr; i++) {
+        memset(&entity, 0, sizeof(country_entity));
+        fread(&entity, 1, sizeof(country_entity), dat_file);
+        db->countries[i] = entity;
     }
 
     fprintf(log_file, "Country table load: %d records loaded.\n", db->header.n_ctr);
@@ -167,14 +167,14 @@ void load_countries(dbc *db) {
 * Prints the table
 ****************************************************************************************/
 void print_countries(dbc *db) {
-    int i;
-    for (i = 1; i <= db->header.n_ctr; i++) print_country(db, i);
+    uint i;
+    for (i = 0; i < db->header.n_ctr; i++) print_country(db, i);
 }
 
 /****************************************************************************************
 * Prints a record from the buffer
 ****************************************************************************************/
-void print_country(dbc *db, int id) {
-    printf("%3d %-20s %-20s %2s \n", db->countries[id].id, db->countries[id].name,
+void print_country(dbc *db, uint id) {
+    printf("%4d %-26s %-26s %-3s \n", db->countries[id].id, db->countries[id].name,
            db->countries[id].zone, db->countries[id].iso);
 }

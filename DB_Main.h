@@ -51,10 +51,10 @@ typedef struct {
 * Country entity
 ****************************************************************************************/
 typedef struct {
-    char type[8];       // "CTR"
+    char type[4];       // "CTR"
     uint id;            // primary key
-    char name[28];      // country name
-    char zone[20];      // zone
+    char name[26];      // country name
+    char zone[26];      // zone
     char iso[4];        // ISO code
 } country_entity;
 
@@ -62,18 +62,18 @@ typedef struct {
 * Job entity
 ****************************************************************************************/
 typedef struct {
-    char type[8];       // "JOB"
+    char type[4];       // "JOB"
     uint id;            // primary key
-    char level[20];
-    char department[20];
-    char name[20];
+    char level[30];
+    char department[30];
+    char name[60];
 } job_entity;
 
 /***************************************************************************************
 * Industry entity
 ****************************************************************************************/
 typedef struct {
-    char type[8];       // "IND"
+    char type[4];       // "IND"
     uint id;            // primary key
     char sector[20];
     char name[20];
@@ -83,7 +83,7 @@ typedef struct {
 * Group entity
 ****************************************************************************************/
 typedef struct {
-    char type[8];       // "GRP"
+    char type[4];       // "GRP"
     uint id;            // primary key
     char name[20];
     char country_iso[4];
@@ -96,6 +96,7 @@ typedef struct {
 typedef struct {
     db_header header;
     country_entity countries[N_RES_CTR];   // Buffer of coutries
+    job_entity jobs[N_RES_JOB];            // Buffer of jobs
 } dbc;
 
 /****************************************************************************************
@@ -103,8 +104,16 @@ typedef struct {
 ****************************************************************************************/
 void create_db(dbc *db);                // Create an empty database file
 
-void import_countries(dbc *db);         // imports country csv file to dat file
-void export_countries(dbc *db);         // exports country table from dat file to csv file
+// Country table
+void import_countries(dbc *db);         // imports the country csv file to dat file
+void export_countries(dbc *db);         // exports the country table from dat file to csv file
 void load_countries(dbc *db);           // loads the country table from the dat file to the buffer
 void print_countries(dbc *db);          // prints the country table
-void print_country(dbc *db, int id);    // prints a single country from thedatabase buffer
+void print_country(dbc *db, uint id);   // prints a single country from the database buffer
+
+// Job table
+void import_jobs(dbc *db);          // imports the job csv file to dat file
+void export_jobs(dbc *db);          // exports the job table from dat file to csv file
+void load_jobs(dbc *db);            // loads the job table from the dat file to the buffer
+void print_jobs(dbc *db);           // prints the job table
+void print_job(dbc *db, uint id);   // prints a single job from the database buffer
