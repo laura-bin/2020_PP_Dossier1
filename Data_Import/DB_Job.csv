@@ -1,0 +1,178 @@
+Id;Nm_Lev;Nm_Dep;Nm_Job
+1;Senior Managers;Academic;Governors, Ambassadors
+2;Senior Managers;Finance;Finance Directors
+3;Senior Managers;Finance;Accounting Directors
+4;Senior Managers;Finance;Administration Director
+5;Senior Managers;General Management;Business Unit Director
+6;Senior Managers;General Management;Country Director
+7;Senior Managers;General Management;Directors (Function Unknown)
+8;Senior Managers;General Management;Planning Directors
+9;Senior Managers;General Management;Project Directors
+10;Senior Managers;Human Resource;Personnel Directors
+11;Senior Managers;Human Resource;Trng & Mgt Devel Directors
+12;Senior Managers;Insurance;Insurance/Pension Fund Director
+13;Senior Managers;Information Technology;Information Systems Directors
+14;Senior Managers;Legal Affairs;Corporate Legal Affairs Director
+15;Senior Managers;Manufacturing;Manufacturing/Production Dirs
+16;Senior Managers;Manufacturing;Purchasing & Procurement Director
+17;Senior Managers;Manufacturing;Technical Director
+18;Senior Managers;Manufacturing;Quality Control & Assurance Director
+19;Senior Managers;Manufacturing;Distribution/Transport Director
+20;Senior Managers;Manufacturing;Materials & Supplies Director
+21;Senior Managers;Manufacturing;Maintenance Director
+22;Senior Managers;Manufacturing;Inventory & Inv.Control Director
+23;Senior Managers;Marketing;Marketing Directors
+24;Senior Managers;Marketing;Commercial Directors, Retail
+25;Senior Managers;Marketing;Product/Brand Director
+26;Senior Managers;Marketing;Marketing & Sales Directors
+27;Senior Managers;Marketing;Pub Relations Directors
+28;Senior Managers;Marketing;Communication, Event Dir
+29;Senior Managers;Marketing;Database Director
+30;Senior Managers;Pharma;Medical Director
+31;Senior Managers;Pharma;Clinical Director
+32;Senior Managers;Sales;Sales Directors, Exp, VP, Rep
+33;Senior Managers;Sales;Sales Promotion Director
+34;Senior Managers;Sales;Export Sales Director
+35;Senior Managers;Sales;Business Dev Directors M&A
+36;Junior Managers;Academic;Librarians & Documentalists
+37;Junior Managers;Academic;Press Contacts
+38;Junior Managers;Finance;Finance Asst, Coordinator
+39;Junior Managers;Finance;Admin Asst, Coordinator
+40;Junior Managers;General Management;Assistant Mgr, Coordinator
+41;Junior Managers;General Management;Planning Asst, Coordinator
+42;Junior Managers;General Management;Project Asst, Coordinator
+43;Junior Managers;Human Resource;HR Assistant, Coordinator
+44;Junior Managers;Human Resource;Training Asst, Coordinator
+45;Junior Managers;Manufacturing;Man/Prod Asst, Coordinator
+46;Junior Managers;Manufacturing;Technical Management
+47;Junior Managers;Manufacturing;Quality Control & Assurance
+48;Junior Managers;Manufacturing;Distribution / Transport Etc.
+49;Junior Managers;Manufacturing;Materials & Supplies Managemt
+50;Junior Managers;Manufacturing;Maintenance Management
+51;Junior Managers;Manufacturing;Inventory & Inv. Control Mgt
+52;Junior Managers;Manufacturing;Purchasing & Procurement Mgt
+53;Junior Managers;Manufacturing;Purch/Proc Asst, Coordinator
+54;Junior Managers;Marketing;Marketing Planning
+55;Junior Managers;Marketing;Advertising / Promotion
+56;Junior Managers;Marketing;Mktg Asst, Coordinator
+57;Junior Managers;Marketing;PR Assistant, Coordinator
+58;Junior Managers;Marketing;Communication, Event Asst
+59;Junior Managers;Marketing;Database Assistant
+60;Junior Managers;Pharma;Pharmaceutical Managers
+61;Junior Managers;Sales;After Sales Service
+62;Junior Managers;Sales;Sales Trainers
+63;Junior Managers;Sales;Sales Representative
+64;Junior Managers;Sales;Bus Dvpt Asst, Coordinator
+65;Junior Managers;Sales;Sales Asst, Coordinator
+66;Middle Managers;Academic;Editors
+67;Middle Managers;Academic;Professors, Academics, Science
+68;Middle Managers;Finance;Mergers & Acquisitions Mgr
+69;Middle Managers;Finance;Finance Managers
+70;Middle Managers;Finance;Foreign Exchange Managers
+71;Middle Managers;Finance;Treasurers
+72;Middle Managers;Finance;Cash Managers
+73;Middle Managers;Finance;Accounting Managers
+74;Middle Managers;Finance;Financial Analyst / Cost Acct
+75;Middle Managers;Finance;Credit Managers
+76;Middle Managers;Finance;Investment / Portfolio Manager
+77;Middle Managers;Finance;Finance (Miscellaneous)
+78;Middle Managers;Finance;Tax & Fiscal Managers
+79;Middle Managers;Finance;Administration Managers
+80;Middle Managers;Finance;Security Manager
+81;Middle Managers;General Management;Operations Mgrs, Foreign Mgrs
+82;Middle Managers;General Management;Business Unit Manager
+83;Middle Managers;General Management;Managers, Div Mgrs, Asst Mgrs
+84;Middle Managers;General Management;Planning Managers
+85;Middle Managers;General Management;Project Managers
+86;Middle Managers;Human Resource;Personnel Managers / Officers
+87;Middle Managers;Human Resource;Compensation Managers
+88;Middle Managers;Human Resource;Industrial / Labour Relations
+89;Middle Managers;Human Resource;Trng & Mgt Devel Mgr
+90;Middle Managers;Insurance;Insurance / Pension Fund Mgrs
+91;Middle Managers;Information Technology;Systems Development/BI Manager
+92;Middle Managers;Information Technology;Telecommunications Manager
+93;Middle Managers;Information Technology;Edp Manager
+94;Middle Managers;Information Technology;Information Centre Managers
+95;Middle Managers;Legal Affairs;Company Secretaries
+96;Middle Managers;Legal Affairs;Corporate Legal Affairs Mgrs
+97;Middle Managers;Manufacturing;Manufacturing/Production Mgrs
+98;Middle Managers;Manufacturing;Warehouse Manager
+99;Middle Managers;Manufacturing;Research / R. & D. Manager
+100;Middle Managers;Manufacturing;Purchasing & Procurement Manager
+101;Middle Managers;Manufacturing;Technical Manager
+102;Middle Managers;Manufacturing;Quality Control & Assurance Manager
+103;Middle Managers;Manufacturing;Distribution/Transport Manager
+104;Middle Managers;Manufacturing;Materials & Supplies Manager
+105;Middle Managers;Manufacturing;Maintenance Manager
+106;Middle Managers;Manufacturing;Inventory & Inv.Control Manager
+107;Middle Managers;Manufacturing;Chemical Managers
+108;Middle Managers;Marketing;Marketing Managers
+109;Middle Managers;Marketing;Commercial Manager
+110;Middle Managers;Marketing;Product / Brand Managers
+111;Middle Managers;Marketing;Marketing & Sales Managers
+112;Middle Managers;Marketing;Cust, Field Service Mgr, CRM
+113;Middle Managers;Marketing;Pub Relations Manager
+114;Middle Managers;Marketing;Communication, Event Mgr
+115;Middle Managers;Marketing;E-Manager
+116;Middle Managers;Marketing;Database Manager
+117;Middle Managers;Pharma;Medical Manager
+118;Middle Managers;Pharma;Clinical Manager
+119;Middle Managers;Sales;Sales Mgr, KAM, Area Mgr
+120;Middle Managers;Sales;Sales Promotion Manager
+121;Middle Managers;Sales;Export Sales Manager
+122;Middle Managers;Sales;Business Dev Mgr M&A
+123;Management Assistants;Finance;Asst To Finance Management
+124;Management Assistants;Finance;Asst To Administration Directr
+125;Management Assistants;Finance;Finance Secretaries
+126;Management Assistants;General Management;Asst To Md, Gm, Ceo
+127;Management Assistants;General Management;Asst To Public Relations/Affrs
+128;Management Assistants;General Management;Secretary To Ceo
+129;Management Assistants;General Management;Executive Secretaries & Assts
+130;Management Assistants;General Management;Asst To Planning Director/Mgr
+131;Management Assistants;Human Resource;Personnel & Trning Secretaries
+132;Management Assistants;Human Resource;Asst To Personnel Director/Mgr
+133;Management Assistants;Human Resource;Asst To Training Director/Mgr
+134;Management Assistants;Manufacturing;Asst To Manufact/Prod Director
+135;Management Assistants;Manufacturing;Asst To Purch / Procuremt Mgt
+136;Management Assistants;Marketing;Asst To Mktg/Sales Director
+137;Management Assistants;Marketing;Marketing & Sales Secretaries
+138;Management Assistants;Sales;Asst To Bus Devel M&A
+139;Specialists;Consultant;Marketing Consultant
+140;Specialists;Consultant;Sales Consultants
+141;Specialists;Consultant;Communication, Event Cons
+142;Specialists;Consultant;Pub Relations Consult
+143;Specialists;Consultant;Business Devel Consultants
+144;Specialists;Consultant;Manuf. & Productn Consultants
+145;Specialists;Consultant;Finance Consultant
+146;Specialists;Consultant;Tax & Fiscal Consultants
+147;Specialists;Consultant;Insurance Consultants
+148;Specialists;Consultant;Administration Consultants
+149;Specialists;Consultant;Legal Consultants / Advisors
+150;Specialists;Consultant;Planning Consultants
+151;Specialists;Consultant;Training & Pers Consultants
+152;Specialists;Consultant;Edp Consultant
+153;Specialists;Consultant;Consultants
+154;Specialists;Finance;Financial Controller
+155;Specialists;Finance;Internal Auditors / Audit Mgrs
+156;Specialists;Finance;Finance Specialists
+157;Specialists;Information Technology;Systems Analysts / Programmers
+158;Specialists;Information Technology;Systems Engineers
+159;Specialists;Manufacturing;Engineer
+160;Specialists;Sales;Market Research
+161;CEO/Top Managers;General Management;Owner, Partner, Associate
+162;CEO/Top Managers;General Management;Chairman, Member Of Board
+163;CEO/Top Managers;General Management;President, Managing Director
+164;CEO/Top Managers;General Management;General Managers, Vice Pres
+165;CEO/Top Managers;General Management;COO
+166;Undefined;Finance;Dept Finance
+167;Undefined;General Management;Dept Gen Management
+168;Undefined;Human Resource;Dept HR
+169;Undefined;Information Technology;Dept IT
+170;Undefined;Legal Affairs;Dept Legal Affairs
+171;Undefined;Manufacturing;Dept Manufacturing
+172;Undefined;Marketing;Dept Marketing
+173;Undefined;Undefined;Not Allocated
+174;Undefined;Undefined;Need New Code
+175;Undefined;Undefined;Miscellaneous
+176;Undefined;Undefined;Non-Identified
+177;Undefined;Sales;Dept Sales

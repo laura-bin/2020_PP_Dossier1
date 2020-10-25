@@ -1,0 +1,2246 @@
+Id;Nm_Grp;Cd_Cty;Id_Cty
+1;3 Com;Int;1
+2;3I;Int;15
+3;3M;Int;9
+4;4P Isea Spa;Int;30
+5;Automobile Association;Int;15
+6;A Ahlstrom;Int;14
+7;Aalborg Portland;Int;10
+8;Asea Brown Boveri;SWI;29
+9;Abbey National Plc;Int;30
+10;Abbotsford Brewery;Int;30
+11;Abbott;FRA;9
+12;Abdul Latif Jameel Company Ltd;Int;29
+13;Abeille Assurances;Int;9
+14;Alk-Abello;DEN;6
+15;Abertis;Int;30
+16;Abg Agricultural Bank Of Greec;GRE;11
+17;Abi;Int;20
+18;Abloy Oy;Int;15
+19;Abn Amro Bank;NET;20
+20;Abp Pensioenen;Int;10
+21;Abresch Werbeagentur;Int;1
+22;Abris;Int;9
+23;Abx Logistics;BEL;2
+24;Accbank;Int;10
+25;Acca;Int;9
+26;Accel Group Llc;Int;9
+27;Accenture;GER;10
+28;Access Graphics Bv;Int;30
+29;Acciona;Int;10
+30;Acco;UK;30
+31;Accor;FRA;9
+32;Acerol Lda;Int;9
+33;Acea;Int;1
+34;Ace Insurance Limited;Int;1
+35;Acg Europe;Int;10
+36;Achmea;Int;15
+37;Aci;Int;15
+38;Ac Nielsen;Int;15
+39;Acordis;NET;20
+40;Acr Logistics;Int;15
+41;Acraf A C R Angelini Francesco;Int;9
+42;Acs Aff. Computer Services;Int;20
+43;Actavis;ICE;13
+44;Actelion;SWI;29
+45;Adco Abu Dhabi Co For Onshore;Int;10
+46;Addax;Int;10
+47;Adecco;SWI;29
+48;Adgas Abu Dhabi Gas Liquefacti;Int;2
+49;Adia;Int;15
+50;Adidas;GER;10
+51;Adin Ag;Int;29
+52;Adis Int'L Ltd;Int;30
+53;Adisseo;FRA;9
+54;Adma-Opco Abu Dhabi Marine Ope;Int;15
+55;Adme Bioanalyses;Int;10
+56;Adnoc;Int;30
+57;Adobe Systems Uk Ltd;Int;20
+58;A/S Adresseavisen;Int;30
+59;Adtranz Group;Int;30
+60;Advanta;Int;15
+61;Advantest;Int;9
+62;Adventa;Int;10
+63;Adv Group;RUS;9
+64;Aea Technology;Int;30
+65;Aegon Insurance Group;NET;20
+66;Aer Lingus;Int;9
+67;Aero Groundservices Ag;Int;29
+68;Aeroporti Di Roma;Int;30
+69;Aerrianta;Int;30
+70;Advanced Elastomers Systems;Int;30
+71;Afb;Int;17
+72;Afes Russian Insurance Company;Int;10
+73;Affarsvarlden;Int;9
+74;Afnor - Assoc Francaise De Nor;Int;10
+75;Afrc Inst Of Food Research;Int;30
+76;Aftenposten;Int;1
+77;Afton;UK;30
+78;Aga;Int;10
+79;Agc Consultants Ltd;Int;9
+80;Agc Automotive;Int;20
+81;Asahi Glass Corporation;BEL;2
+82;Agco;Int;2
+83;Agere Systems;UK;30
+84;Agfa;BEL;2
+85;Agf/Allianz;Int;1
+86;Agf-Iart;Int;30
+87;Agiba Petroleum Company;Int;10
+88;Agie;Int;10
+89;Agilent Technologies;NET;20
+90;Agim;Int;15
+91;Agip Eni;Int;20
+92;Agiv Ag;Int;30
+93;Agora;Int;20
+94;Agrevo;Int;14
+95;Agrokor;Int;9
+96;Agrolimen Sa;Int;29
+97;Agros;POL;22
+98;Ao Agrotorg;Int;10
+99;Ahlstom;Int;10
+100;Ahlstrom Usa Inc;FIN;8
+101;Royal Ahold N V;NET;20
+102;American Home Products;Int;30
+103;Athens Int'L Airport;GRE;11
+104;Aib;IRE;14
+105;American International Group;FRA;9
+106;Aiglon College;Int;29
+107;Aim European Association Of In;Int;9
+108;Aims;AUS;1
+109;Airboss Ground Engagement;Int;15
+110;Air Bp Ltd;Int;10
+111;Air France;Int;20
+112;Air France - Klm;Int;15
+113;Air Liquide;FRA;9
+114;Air Malta Co Ltd;Int;15
+115;Air Miles Travel Promotions Lt;Int;10
+116;Air Products;UK;30
+117;Airtours;Int;9
+118;Aisanbitron;Int;9
+119;Ait Group;Int;10
+120;Ajinomoto;Int;30
+121;Aker;Int;15
+122;Akerlund And Rausing;Int;30
+123;Akzo Nobel;NET;20
+124;Alarko Group Of Companies;Int;29
+125;Aluminium Bahrain ;Int;10
+126;Albacom;Int;9
+127;Al Bank Al Saudi;Int;20
+128;Albany;Int;14
+129;Albemarle;Int;2
+130;Alcan;Int;20
+131;Alcatel;FRA;9
+132;Alcoa;SWI;29
+133;Alcon;Int;14
+134;Ald Automotive;Int;9
+135;Alfa Romeo;Int;30
+136;Alfa Laval;SWE;28
+137;Algol;Int;9
+138;Algorithm Sal ;Int;30
+139;Aliaxis;Int;20
+140;Alkaloid;Int;10
+141;Al Khafji Joint Operations;Int;10
+142;Alko;Int;9
+143;Allen Bradley;Int;30
+144;Allendale;Int;20
+145;Allergan;UK;30
+146;Allianz;GER;10
+147;Allied Domecq;UK;30
+148;Allied Signal;Int;9
+149;Al Mansoori ;Int;30
+150;Almatis;GER;10
+151;Almiral Prodesfarma;SPA;27
+152;Abdul Kadir Al-Muhaidib & Sons;Int;30
+153;Alpha Credit Bank;GRE;11
+154;Alpharma;Int;15
+155;Alps Electric Ireland Ltd;Int;9
+156;Al Rajhi Investment Corporatio;Int;9
+157;Also Holding Ag;Int;30
+158;Alstom;FRA;9
+159;Altadis Group;Int;14
+160;Altana;GER;10
+161;Alter Domus;Int;9
+162;Altia;FIN;8
+163;Alusuisse-Lonza;Int;14
+164;Ama;BEL;2
+165;Amadeus;SPA;27
+166;Amadeus Fire;Int;20
+167;Amazon;Int;10
+168;Amc;SWI;29
+169;American Chamber Of Commerce;Int;10
+170;Amcor;GER;10
+171;Amd;Int;15
+172;Amdahl;Int;20
+173;Amerada Hess;Int;29
+174;American Medical Systems;Int;20
+175;American Express;UK;30
+176;American Standard;BEL;2
+177;Amer Sports;FIN;8
+178;Amgen;NET;20
+179;Amo Germany Gmbh;GER;10
+180;Amt;Int;14
+181;Amway;Int;9
+182;Amylum;Int;10
+183;Ana Portugese Airport;Int;30
+184;Analog Devices;Int;2
+185;Andre & Cie. Sa;Int;15
+186;Andritz;AUS;1
+187;Angela Mortimer;Int;20
+188;Anglican Water;Int;10
+189;Anixter;Int;9
+190;Anritsu;UK;30
+191;Ansaldo;Int;30
+192;Ansell;BEL;2
+193;Antenna Tv;GRE;11
+194;Anthos Consult;NET;20
+195;Aol;UK;30
+196;Aon;UK;30
+197;A-Player;Int;30
+198;Ap Moller;DEN;6
+199;Apple;FRA;9
+200;Applera;NET;20
+201;Applied Materials;Int;15
+202;Aptar;FRA;9
+203;Apv;Int;10
+204;Aqualon France Bv;Int;14
+205;Arabian Cement Co Ltd  ;Int;10
+206;Arab National Bank;Int;30
+207;Saudi Aramco Shell Refinery Co;Int;10
+208;Arbed;Int;10
+209;Arcandor;GER;10
+210;Arcelik As;Int;10
+211;Arcelor Mittal;LUX;17
+212;Arch Chemicals;Int;30
+213;Arco Chimie France Snc;Int;10
+214;Arc Transistance;BEL;2
+215;Ardagh Group;Int;20
+216;Areva;FRA;9
+217;Industrias Quimicas Argos Sa;Int;15
+218;Argyle Diamonds Nv;Int;9
+219;Arinso;BEL;2
+220;Arizona;Int;29
+221;Arjo Wiggins;Int;30
+222;Arkwright;Int;10
+223;Arm Group;Int;14
+224;Armentel;Int;30
+225;Saudi Methanol Co Ar-Razi;Int;1
+226;Arthur D Little;Int;30
+227;Arvin Meritor;UK;30
+228;Ascom;SWI;29
+229;Ashland;NET;20
+230;Ashridge Management College;Int;15
+231;Aspis Pronia;Int;2
+232;Asseco;Int;15
+233;Assidoman;Int;9
+234;Asta;Int;30
+235;Astellas;GER;10
+236;Astorg;Int;17
+237;Astra Zeneca;UK;30
+238;Athenian Brewery;Int;20
+239;Athens Paper;Int;9
+240;At Kearney;Int;30
+241;Atkins Global;Int;9
+242;Atlas Copco;SWE;28
+243;Aton;Int;9
+244;Atos Origin;FRA;9
+245;Atradius;Int;29
+246;Att;Int;10
+247;Attiko;Int;30
+248;Auchan;Int;10
+249;Audi;Int;10
+250;Austria Microsystems;AUS;1
+251;Austrian Industries Ag;Int;9
+252;Autodesk;SWI;29
+253;Autogrill;Int;20
+254;Auto Suture;Int;30
+255;Avax;Int;20
+256;Avaya;UK;30
+257;Avery Dennison;NET;20
+258;Avis Rent-A-Car Italy;Int;15
+259;Aviva Assurances;Int;29
+260;Avnet;Int;9
+261;Avon;GER;10
+262;Axa;FRA;9
+263;Axalto Sa;Int;9
+264;Azienda Agricola;Int;1
+265;Azoty;Int;2
+266;British Airways;UK;30
+267;British Airports Authority;Int;30
+268;Baan;Int;30
+269;British American Business;UK;30
+270;Bacardi;Int;9
+271;Bahlsen;Int;9
+272;Baker;Int;15
+273;Balkanpharma;Int;1
+274;Ball Packaging;GER;10
+275;Baloise;SWI;29
+276;Baltcap;Int;9
+277;Baltimore Technologies;Int;10
+278;Banawi;Int;29
+279;Banca D'Italia;ITA;15
+280;Banco De Portugal;Int;20
+281;Banco Espirito Santo;Int;15
+282;Banco Popular;Int;9
+283;Banco Santander;SPA;27
+284;Bandag;BEL;2
+285;Bank Austria;AUS;1
+286;Bankgesellschaft Berlin;Int;10
+287;Bank Handlowy;Int;9
+288;Bank Hapoalim;Int;20
+289;Bank Int Settlements;SWI;29
+290;Bank Of America;Int;10
+291;Bank Of Bermuda;Int;10
+292;Bank Of Crete;Int;9
+293;Bank Of Cyprus;Int;15
+294;Bankoffin;Int;15
+295;Bank Of Greece;Int;17
+296;Bank Of Ireland;IRE;14
+297;Bank Of Kuwait;Int;9
+298;Bank Of Scotland;Int;14
+299;Bank Of Uganda;Int;30
+300;Bank Of Valletta;MAL;18
+301;Banksys;Int;20
+302;Banque Indosuez;Int;30
+303;Barclays;UK;30
+304;Barco;BEL;2
+305;Bard;Int;9
+306;Barilla;Int;10
+307;Barry Callebaut;SWI;29
+308;Basamh Trading Co.;Int;9
+309;Basell;NET;20
+310;Basf;GER;10
+311;Bass;Int;30
+312;British American Tobacco;UK;30
+313;Batelco Bahrein Telecommunicat;Int;10
+314;Batenboch;Int;30
+315;Bausch & Lomb Ltd;UK;30
+316;Baxter;SWI;29
+317;Bayer;GER;10
+318;Bayerische Hypo & Vereinsbank;Int;9
+319;Bba;Int;17
+320;Bbc;Int;9
+321;Bbl;Int;10
+322;B Braun;Int;30
+323;Bbv;Int;2
+324;Bch;Int;30
+325;Bci;Int;10
+326;Bearingpoint;Int;9
+327;Beaufour Ipsen;Int;29
+328;Beckman Instruments Int'L Sa;SWI;29
+329;Bd;BEL;2
+330;Beiersdorf;GER;10
+331;Bekaert;BEL;2
+332;Beldem;Int;10
+333;Belgacom;BEL;2
+334;Bell Helicopter Supply Centre;Int;9
+335;Bemis;BEL;2
+336;Benckiser;UK;30
+337;Benetton;Int;17
+338;Benteler;GER;10
+339;Berenschot;Int;15
+340;Berg;Int;10
+341;Roland Berger   Partner Jmc;Int;10
+342;Bertelsmann;GER;10
+343;Bestfoods;Int;15
+344;Bfg Bank Ag;Int;17
+345;Bf Goodrich;ITA;15
+346;British Gas Plc;UK;30
+347;Biacore;Int;30
+348;Bicakcilar;Int;30
+349;Bilim Pharmaceuticals Company;Int;17
+350;Billerud;Int;20
+351;Billiton Refractories Bv;Int;15
+352;Biogen;SWI;29
+353;Biomerrieux;FRA;9
+354;Biomet;GER;10
+355;Biotie;Int;10
+356;Bioton;Int;9
+357;Biotronik;Int;20
+358;Biovitrum;Int;15
+359;Bipop Carire;Int;30
+360;Bisnode;SWE;28
+361;Blueprint Partners;Int;9
+362;Bmc Software Inc;Int;9
+363;Bms;UK;30
+364;Bmw;GER;10
+365;British Nuclear Fuels Plc -Bnf;Int;15
+366;Bnl Banca Naz'L Del Lavoro;Int;20
+367;Bnp Parisbas;Int;15
+368;Boc;UK;30
+369;Boehringer Ingelheim;GER;10
+370;Boliden;Int;10
+371;Baars Italia;Int;14
+372;Bombardier;Int;9
+373;Bongrain;Int;29
+374;Bonnier;Int;17
+375;Bookit;Int;17
+376;Boots The Chemist;UK;30
+377;Booz Allen;Int;20
+378;Bord Gais Eireann;Int;30
+379;Borealis;Int;9
+380;Borg Automotive;Int;15
+381;Bosal;Int;30
+382;Bosch;GER;10
+383;Bosig;Int;30
+384;Bosnalijek D D;BOS;17
+385;Boston Consulting;Int;20
+386;Boston Scientific;FRA;9
+387;Bouygues;Int;2
+388;Bovis Lend Lease;Int;20
+389;Bowater Ltd;Int;30
+390;Bp Amoco;UK;30
+391;Bpb;Int;10
+392;Bpgf Banque Privee De Gestion;Int;15
+393;Bpi Service Gmbh;Int;10
+394;Bracco;ITA;15
+395;Brambles;UK;30
+396;Francaise De Brasserie;Int;9
+397;Braun;Int;9
+398;Bre Bank Sa;Int;30
+399;Bridge Information System;Int;30
+400;Bridgestone;BEL;2
+401;Britannic Group Plc;Int;29
+402;British Car;Int;9
+403;British Waterways;Int;10
+404;Broadvision;Int;9
+405;Brown-Forman Corporation;Int;9
+406;Bruker Corporation;Int;20
+407;Brunel Holdings;Int;30
+408;British Steel Strip Products;UK;30
+409;Bsi;Int;15
+410;British Sugar Plc;Int;10
+411;British Telecom;UK;30
+412;Buhrs-Zaandam;Int;10
+413;Bull;Int;10
+414;Bupa;Int;10
+415;Nc;Int;14
+416;Business Objects;FRA;9
+417;Business Week;Int;9
+418;Bzw;Int;10
+419;C&A;BEL;2
+420;Cable & Wireless;Int;20
+421;Cabot;Int;10
+422;Cadbury;Int;30
+423;Caixa Galicia;Int;30
+424;Caja Madrid;Int;30
+425;Calgary;Int;20
+426;Caliber;Int;10
+427;Calleo;Int;30
+428;Calmar;Int;9
+429;Campari;ITA;15
+430;Campbell;Int;2
+431;Campina;Int;29
+432;Campine;Int;15
+433;Cannon Avent Group Plc;UK;30
+434;Canon;NET;20
+435;Capco;Int;15
+436;Cap Gemini;FRA;9
+437;Capital Int'L;Int;30
+438;Cardinal Health;Int;9
+439;Cargill;SWI;29
+440;Cargotec;FIN;8
+441;Carlo Tassara;Int;30
+442;Carlsberg Group;DEN;6
+443;Carl Zeiss;Int;20
+444;Carnaudmetalbox;Int;10
+445;Carnet Hrvatska;CRO;4
+446;Carrefour;FRA;9
+447;Carrier;FRA;9
+448;Cartier;FRA;9
+449;Case;Int;9
+450;Castrol;Int;14
+451;Cat;Int;9
+452;Caterpillar;SWI;29
+453;Cd Group;Int;10
+454;Cedel International;Int;30
+455;Cegedim;FRA;9
+456;Cegelec;Int;15
+457;Cegetel;Int;20
+458;Cegos Sa;Int;9
+459;Celebrity Food Factories;Int;14
+460;Celtel;Int;10
+461;Ceo Circle;UK;30
+462;Ceres Hellenic Shipping Enterp;Int;14
+463;Cerestar;Int;29
+464;Cern European Organization For;Int;14
+465;Ceskapolec;Int;10
+466;Ceska Rafinerska;Int;20
+467;Cesky Telecom;Int;15
+468;Cetrel Sc Centre De Transferts;LUX;17
+469;Cez;CZE;5
+470;Cgi;UK;30
+471;Cgnu;Int;15
+472;Chancellerie D'Etat Du Canton;Int;10
+473;Chanel;Int;1
+474;Sarl Les Charmilles;Int;20
+475;Chase;Int;9
+476;Chauvin;Int;17
+477;Check Point;Int;30
+478;Chemco Leasing;Int;14
+479;Chemetall;Int;29
+480;Chemi Hub;Int;14
+481;Cheming;Int;10
+482;Chemo Petrol;Int;29
+483;Chemviron;BEL;2
+484;Chep;Int;15
+485;Chiesi;ITA;15
+486;Chiltern;Int;10
+487;Chiron;Int;30
+488;Chiron Werke;GER;10
+489;Ch Katselis;GRE;11
+490;Chr;DEN;6
+491;Christian Salvesen;Int;17
+492;Chupa Chups;SPA;27
+493;Church Dwight;Int;9
+494;Church Of Jesus Christ;Int;10
+495;Ciba Specialty Chemicals;SWI;29
+496;Cicor Technologies;Int;9
+497;Ciech;Int;29
+498;Cie Francaise De Raffinage;Int;30
+499;Cimpor;Int;17
+500;Cincom;Int;1
+501;Cisco Systems;UK;30
+502;Citibank;UK;30
+503;Citrix Systems;Int;10
+504;Claranet;Int;2
+505;Clariant;SWI;29
+506;Clipper Group;Int;17
+507;Coca Cola;FRA;9
+508;Cofinoga;Int;9
+509;Cognis Deutschland Gmbh & Co K;GER;10
+510;Coherent Sa;GER;10
+511;Coldstream;Int;30
+512;Colgate-Palmolive;SWI;29
+513;Colliers;Int;30
+514;Colorcon Ltd;UK;30
+515;Colt;Int;15
+516;Commercial Bank Of Greece;Int;20
+517;Commerzbank Group;Int;30
+518;Compaq;Int;1
+519;Compass Group;UK;30
+520;Compressor;Int;9
+521;Computer Associates;UK;30
+522;Conoco;Int;20
+523;Consignia;Int;17
+524;Conteyor;BEL;2
+525;Continental;GER;10
+526;Contur;GER;10
+527;Cookson Group;UK;30
+528;Copeland;Int;9
+529;Corporate Leadership Council;UK;30
+530;Costco;Int;2
+531;Courage Ltd;Int;9
+532;Groupe Courtaud;Int;17
+533;Courtaulds;Int;10
+534;Coutts Group;UK;30
+535;Covidien;UK;30
+536;Cpc Italia Spa;Int;10
+537;Credit Agricole;Int;10
+538;Credit Libanais;Int;20
+539;Credit Lyonnais;Int;30
+540;Credit Suisse;SWI;29
+541;Crestron;Int;30
+542;Croatian Employers Association;Int;15
+543;Croatian Managers & Entreprene;CRO;4
+544;Crompton;UK;30
+545;Crown Cork & Seal;FRA;9
+546;Crown Plaza;Int;17
+547;Crucell;Int;29
+548;Csem;Int;30
+549;Csfb;Int;9
+550;Csl;SWI;29
+551;Ceskoslovenska Obchodni Banka;Int;17
+552;Ceska Spolecnost Pro Rozvoj Li;Int;10
+553;Ctt;Int;9
+554;Cultor Food Science Gmbh;Int;9
+555;Cummins;Int;30
+556;Curacao Tourism;Int;2
+557;Curasan;Int;10
+558;Cybernet Ag;Int;15
+559;Cytek;UK;30
+560;Dachser;GER;10
+561;Dade;Int;10
+562;Daewoo;Int;15
+563;Daf;Int;9
+564;Daiichi Sankyo;GER;10
+565;Daily Mail Publishing;Int;10
+566;Daimler-Chrysler;GER;10
+567;Dairygold;Int;9
+568;Dako;DEN;6
+569;Danapak R   D Center A/S;Int;30
+570;Dandy;Int;9
+571;Dandy Textiles Ltd;Int;10
+572;Danfoss;FRA;9
+573;Danica;Int;29
+574;Danisco;DEN;6
+575;Danish Management Forum;Int;30
+576;Danone;FRA;9
+577;Dansk Industri;Int;29
+578;Datalogic Spa;ITA;15
+579;Datawell;Int;29
+580;Ddb;Int;17
+581;Dearler.Com;Int;10
+582;Debiopharm;Int;30
+583;Degussa;Int;9
+584;Delft Sensor;Int;30
+585;Delhaize;BEL;2
+586;Dell Computers;Int;9
+587;Deloitte Touche Tohmatsu Inter;BEL;2
+588;Delphi;FRA;9
+589;Delta Dairy Sa;GRE;11
+590;Deminex Suez Petroleum Gmbh;Int;9
+591;Demirbank Tas;Int;15
+592;Denso;Int;30
+593;Dentsply International;Int;2
+594;Depa;GRE;11
+595;Detesystem Gmbh;Int;9
+596;Deutsche Telekom;GER;10
+597;Deutsche Boerse;GER;10
+598;Deutsche Bank;GER;10
+599;Deutsche Post;GER;10
+600;Administrative Development Age;Int;15
+601;Devro;Int;10
+602;Dexia Bank;FRA;9
+603;Dhb Bank;NET;20
+604;Diageo;UK;30
+605;Digital Equipment Spa;Int;9
+606;Dnv;NOR;21
+607;Domeo;Int;9
+608;Domnick Hunter Ltd;Int;30
+609;Administracao Do Porto;Int;9
+610;Dorint;Int;9
+611;Dover Corporation;Int;9
+612;The Dow Chemical Company;SWI;29
+613;Draeger;GER;10
+614;Draka;Int;30
+615;Drake Holding Group;Int;9
+616;Sperry-Sun Drilling Services;Int;2
+617;Dr Mach;Int;2
+618;Dr Reddy'S;Int;10
+619;Dr Schumacher;Int;30
+620;Drukker;Int;10
+621;Dsm;SWI;29
+622;Dti Danish Institute;Int;10
+623;Dubai Duty Free ;Int;30
+624;Dun & Bradstreet;Int;30
+625;Dupont-Howson;UK;30
+626;Durr;Int;15
+627;Dynea;FIN;8
+628;Dyno;Int;30
+629;Eads;FRA;9
+630;Easa;Int;20
+631;Eastman Chemical;NET;20
+632;Easynet;Int;10
+633;Eaton Services Ltd;Int;9
+634;E-Bay International;Int;1
+635;Ebi;Int;15
+636;Ebn;Int;30
+637;Ebram Investment  ;Int;10
+638;Ebrd European Bank Reconstruct;Int;9
+639;Mondial Int'L;Int;15
+640;Ebs Dealing;UK;30
+641;Ebu;SWI;29
+642;Ecb / Bce;GER;10
+643;Ecco Travail Temporaire;Int;9
+644;Eco;Int;20
+645;Ecolab;GER;10
+646;Ect;Int;30
+647;Electricite De France;FRA;9
+648;Edf - Gdf;Int;10
+649;Edgecom;UK;30
+650;Edp Electricidade De Portugal;Int;30
+651;Eds;UK;30
+652;Edward Lifesciences;SWI;29
+653;Effem Foods;Int;1
+654;Efg Eurobank;Int;30
+655;Efqm European Foundation Quali;Int;15
+656;Etfa;Int;29
+657;Egis;Int;15
+658;Egmont;DEN;6
+659;Egyptian General Petroleum Cor;Int;9
+660;Ehpt;Int;9
+661;Eib-Bei European Investment Ba;LUX;17
+662;Eimskip-The Iceland Steamship;Int;10
+663;Eisai;Int;1
+664;Elais Oleaginous;Int;10
+665;Elan;UK;30
+666;Elbrewery Co;Int;9
+667;Electrolux;SWE;28
+668;Elektrim;Int;20
+669;Elisa;FIN;8
+670;Elsevier;FRA;9
+671;Emaar;Int;30
+672;Emap;Int;2
+673;Emarat 0 Emirates General Petr;Int;30
+674;Emc;GER;10
+675;Ementor;NOR;21
+676;Emerson;SWI;29
+677;Emirates Airlines;Int;20
+678;Emirates Bank;Int;20
+679;Encorium;Int;30
+680;Endesa;Int;15
+681;Eneco;Int;20
+682;Enel;Int;9
+683;Energizer;UK;30
+684;Engineering Contractors;Int;20
+685;Eni;Int;20
+686;Enichem Uk Ltd;Int;29
+687;Enite Technologie Spa;Int;2
+688;Enka;Int;30
+689;Ensto;Int;20
+690;Enterprise Ireland;IRE;14
+691;Eommex;Int;20
+692;E-On Energie;Int;9
+693;Epa /Epo;GER;10
+694;Epicor;Int;15
+695;Epson;NET;20
+696;Eri Group;SWI;29
+697;Ericsson;SWE;28
+698;Eridania;Int;30
+699;Ernst   Young;UK;30
+700;Essab;Int;2
+701;Esade;Int;10
+702;Esaote;Int;9
+703;Esb;IRE;14
+704;Esf Cost Office;BEL;2
+705;Eskom;Int;30
+706;Eso;GER;10
+707;Esselte;Int;17
+708;Essex Chemie;Int;10
+709;Estec / Esa / European Space A;FRA;9
+710;Estee Lauder;FRA;9
+711;Laboratorios Dr Esteve Sa;Int;30
+712;Etam;Int;10
+713;Beronit;Int;20
+714;Ethniki;Int;9
+715;Etisalat Emirates Telecommunic;Int;9
+716;Etsi;FRA;9
+717;Europaeische Reiseversicherung;Int;9
+718;Eureka;Int;15
+719;Eurest;Int;30
+720;Euroclear Bank Sa/Nv;Int;9
+721;Eurocontrol;BEL;2
+722;Europa Inter-Continental;Int;30
+723;Eurojust;NET;20
+724;Euronet;Int;10
+725;Europa Impmex International Lt;Int;9
+726;European Parliament;Int;29
+727;Europay Int'L;Int;9
+728;Ec European Commission;BEL;2
+729;Europol;Int;30
+730;Euro Rscg;Int;29
+731;Eutelsat;FRA;9
+732;Evc Int'L Coordination Centre;Int;30
+733;Evca;BEL;2
+734;Everon;Int;9
+735;Evonik;GER;10
+736;Ewopharma;Int;10
+737;Exel Logistics;Int;1
+738;Expedia;Int;29
+739;Experian;UK;30
+740;Exxonmobil;UK;30
+741;Fabra;Int;9
+742;Famar;GRE;11
+743;Fao;ITA;15
+744;Fasson Nederland Bv;Int;10
+745;Fastlink ;Int;10
+746;Khalil Fattal & Fils & Fattal;Int;30
+747;Faulding;Int;2
+748;Faurecia;FRA;9
+749;Oy Karl Fazer Ab;FIN;8
+750;Fci Framatone Connectors Inter;FRA;9
+751;Fde;Int;9
+752;Fedex European Services;Int;9
+753;Gilde Fellesslakteriet;Int;9
+754;Fnestra;Int;9
+755;Fennia;Int;17
+756;Ferranti;Int;30
+757;Ferrari;Int;30
+758;Ferrero;ITA;15
+759;Ferring;SWI;29
+760;Ferro;NET;20
+761;Ferrosan;Int;9
+762;Ferrovial;Int;29
+763;Ferry Freighting;Int;20
+764;Festo;GER;10
+765;Ffio;Int;20
+766;Fg Naxos;Int;30
+767;Fiat;Int;10
+768;Fidea;Int;30
+769;Fidelity;Int;20
+770;Fides;Int;9
+771;Fideuram;Int;17
+772;Fidi;BEL;2
+773;Field Fisher Waterhouse;Int;15
+774;Filippou Investments;Int;10
+775;Finacor;Int;30
+776;Finland Post;Int;15
+777;Finnair;Int;15
+778;Metsa-Serla Sales;Int;15
+779;Firmenich;SWI;29
+780;Fiscambi;Int;9
+781;Fischer And Porter;Int;10
+782;Fischer Scientific;Int;10
+783;Fisher Controls;Int;2
+784;Fisher Price;Int;29
+785;Fisher-Rosemount Ag;Int;9
+786;Fiskars;Int;9
+787;Fitch;UK;30
+788;Fleetguard;Int;10
+789;Flir Systems;Int;15
+790;Fm Logistics;FRA;9
+791;Fmc Process Additives Division;Int;9
+792;Fm Insurance;Int;9
+793;Fnac;Int;9
+794;Fokker;Int;20
+795;Forbo-Giubiasco Sa;Int;10
+796;Force Computers;Int;15
+797;Ford;GER;10
+798;Forrester Research Inc;Int;20
+799;Forte Uk Ltd;Int;10
+800;Fortis;BEL;2
+801;Fortum;Int;20
+802;Fournier;Int;10
+803;France Energie Bail;Int;30
+804;La Francaise Des Jeux;Int;15
+805;France Telecom;UK;30
+806;Freixenet;Int;9
+807;Fresenius;GER;10
+808;Freudenberg;GER;10
+809;Friesland Bank;NET;20
+810;Royal Friesland;NET;20
+811;Frigoglass;GRE;11
+812;F.Stephan;Int;30
+813;Fujitsu;Int;30
+814;Fujitsu Siemens;GER;10
+815;Ha Fuller Company;Int;10
+816;Future Corporation;Int;30
+817;Galena As;Int;9
+818;Gallaher Group Plc;UK;30
+819;Gallina Blanca Sa;SPA;27
+820;Gambro;SWE;28
+821;Games Workshop;Int;30
+822;Groupama-Gan International;Int;15
+823;Garanti Bank;Int;10
+824;Gasan Group Of Companies;Int;17
+825;Gasco Abu Dhabi Gas Industries;Int;20
+826;Gas Natural;Int;2
+827;Gate Gourmet;SWI;29
+828;Gates Europe;BEL;2
+829;General Electric;UK;30
+830;Gea Tuchenhagen;Int;10
+831;Gedeon Richter;Int;9
+832;Ge Healthcare;UK;30
+833;Gemalto;FRA;9
+834;Gemplus;Int;10
+835;General Accident;Int;30
+836;General Biscuits;Int;20
+837;Generale Des Eaux;FRA;9
+838;Generali Insurance;Int;20
+839;General Partners;Int;30
+840;General Physics;Int;10
+841;General Reinsurance;GER;10
+842;General Semiconductor;Int;10
+843;Genzyme Corporation;NET;20
+844;Geoff Howe Group;Int;30
+845;Geopost;FRA;9
+846;Georg Fischer;Int;10
+847;General Electric Plastics;Int;10
+848;Geratherm;Int;15
+849;Gerber Technology  (Gerber Sci;Int;10
+850;Germanos Group;Int;20
+851;Gerolymatos;GRE;11
+852;Getemed;Int;29
+853;Getin Holding;Int;20
+854;Getinge;Int;20
+855;Gevaert;Int;9
+856;Ghana Commercial Bank;Int;9
+857;Gilead;Int;10
+858;Gillette;Int;20
+859;Global Integrated Supply;Int;30
+860;Gist-Brocades France Sa;Int;10
+861;Givaudan-Roure Spa;SWI;29
+862;Gjensidige;Int;15
+863;Gkn Automotive;UK;30
+864;Galeries Lafayette;Int;9
+865;Glaverbel;Int;30
+866;Glaxo Smithkline;UK;30
+867;Germanischer Lloyd;Int;9
+868;Global Refund;SWI;29
+869;Gl Trade;Int;15
+870;General Motors;SWI;29
+871;Gn Resound;Int;20
+872;Godiva;Int;10
+873;Goedecke;Int;20
+874;Golden Telecom Inc;Int;9
+875;Goldman Sachs;Int;9
+876;Goodyear;BEL;2
+877;Goodys Sa;GRE;11
+878;Gore;Int;9
+879;Gorenje;Int;1
+880;Gosi General Organization Fo;Int;10
+881;Gpc Biotech;GER;10
+882;Gpic 0 Gulf Petrochemical Indu;Int;10
+883;Gpo;Int;20
+884;W R Grace Ltd;Int;9
+885;Graco;Int;10
+886;Granada Plc;Int;2
+887;Haagen-Dazs Uk Ltd;Int;20
+888;Graninge;Int;20
+889;Greek Pharma Association;Int;9
+890;Griffin Marechal;Int;20
+891;Grosvenor;UK;30
+892;Gruenenthal;GER;10
+893;Grundfos;DEN;6
+894;Gtech;BEL;2
+895;Guerlain;Int;17
+896;Guidant;Int;20
+897;Guinness;Int;15
+898;The Gulf Bank Ksc;Int;9
+899;Gulf Air;Int;15
+900;Gpic - Gulf Petrochemical Indu;Int;2
+901;Gus Holland;Int;30
+902;H&M Hennes & Mauritz;Int;10
+903;Habasit Italiana Spa;SWI;29
+904;Haldor Topsoe;Int;30
+905;Halliburton Company;Int;20
+906;Hammond Suddards;Int;15
+907;Hamon Thermal Europe;Int;20
+908;Handelsbanken Group;Int;20
+909;Hands-On ;Int;10
+910;Hansa Bank;EST;7
+911;Hart Wall;Int;10
+912;Haymarket Business Publication;Int;2
+913;Hays;Int;30
+914;Hayward;Int;9
+915;Hbos;UK;30
+916;Hughes Christensen;Int;2
+917;Heidelberg;GER;10
+918;Heidelberger;GER;10
+919;Heidricks & Struggle;Int;10
+920;Heine Optotechnik;Int;29
+921;Heineken;NET;20
+922;Hellenic Aerospace Industry;Int;9
+923;Hellenic American Union;Int;10
+924;Hellenic Brewery Of Atalanti;GRE;11
+925;Hellenic Center For Investment;Int;14
+926;Hellenic Culture Organisation;Int;1
+927;Hellenic Defence Industry;Int;10
+928;Helen;Int;14
+929;Hellenic Export Promotion Orga;Int;15
+930;Hellenic Food Industries;Int;29
+931;Hella;GER;10
+932;Hellenic Business Development;Int;10
+933;Hellenic;Int;10
+934;Hellenic Bank Ltd;Int;30
+935;Hellenic Fabrics;Int;30
+936;Hellenic Petroleum Corporation;Int;17
+937;Hellenic Management Associatio;Int;30
+938;Hellenic Institute For Occupat;Int;2
+939;Hellenic Purchasing Institute;Int;15
+940;Hellenic Shipyards;Int;30
+941;Helsinki Chamber Of Commerce;Int;10
+942;Helsinn;SWI;29
+943;Hellenic Steel;Int;10
+944;Hellenic Sugar Industry;Int;10
+945;Hellenic Technodomiki;Int;1
+946;Hellenic Institute Of Environm;Int;17
+947;Hempel Paint;Int;10
+948;Henkel;GER;10
+949;Henley Management College;Int;1
+950;Jas Hennessy & Co;Int;2
+951;Hep Hrvatska Elektroprivreda;Int;10
+952;Heraeus Sensor Gmbh;Int;30
+953;Hercules;FRA;9
+954;Hermes Softlab;Int;30
+955;Hertz;Int;10
+956;Hexion;Int;20
+957;Heyer Medical;Int;17
+958;Hfc Bank Plc;Int;30
+959;Hiab;Int;30
+960;Hikma Pharmaceuticals;Int;15
+961;Hillesden Securities Ltd;Int;15
+962;Hill And Knowlton;Int;9
+963;Hill-Rom;Int;29
+964;Hill Samuel;Int;10
+965;Hillsdown;Int;15
+966;Hill'S Pet Nutrition;Int;15
+967;Hilti;LIE;16
+968;Hilton;UK;30
+969;Hitachi;Int;15
+970;Hoffmann Consulting;Int;30
+971;Hoftiech;Int;20
+972;Hoganas;SWE;28
+973;Hogeschool Utrecht;Int;10
+974;Holcim;SWI;29
+975;Holiday Inns Of Belgium Nv;Int;1
+976;Hollandse Signaalapparaten Bv;Int;9
+977;Holland Colours;HUN;12
+978;Holmen Iggesund;SWE;28
+979;Honda;GER;10
+980;Honeywell/Allied;BEL;2
+981;Hoogovens Technical Services;Int;10
+982;Hospira;Int;9
+983;Hoyer;Int;29
+984;Hp;SWI;29
+985;Hr Factory;Int;10
+986;Hri;Int;30
+987;Hrvatski Telecom;CRO;4
+988;Hsa Hospital Saving Associatio;UK;30
+989;Hsbc Bank;UK;30
+990;Hudson Highland;FRA;9
+991;Hugo Boss;Int;9
+992;Huhtamaki;FIN;8
+993;Hungarian Post;Int;20
+994;Huntsman;SWI;29
+995;Husky Injection Molding System;LUX;17
+996;Hvb;Int;17
+997;Hydro Coatings Ltd;Int;30
+998;Hyundai;Int;9
+999;I2 Group;Int;15
+1000;I2 Technologies;Int;30
+1001;Iaea;AUS;1
+1002;Iams;Int;29
+1003;Ibah;Int;30
+1004;Ibec Irish Bus & Empl Confeder;Int;9
+1005;Iberdrola Group;Int;30
+1006;Iberia Airlines;Int;29
+1007;Ibm;FRA;9
+1008;Ibn Al-Baytar Safco;Int;30
+1009;Ibo;NET;20
+1010;Icc;Int;30
+1011;Iceland Telecom Ltd;ICE;13
+1012;Ici;UK;30
+1013;Icl Sorbus Europe;Int;30
+1014;Icts;Int;17
+1015;Ida Ireland;IRE;14
+1016;Idc;Int;9
+1017;Idv Operations Ireland Ltd;Int;17
+1018;Ifad;ITA;15
+1019;Int Finance Corporation;Int;9
+1020;International Flavours & Fragr;Int;9
+1021;Ifm Electronic;Int;20
+1022;Igt Europe Bv;NET;20
+1023;Int Herald Tribune;Int;29
+1024;Institute For International Re;Int;9
+1025;Ikano;Int;20
+1026;Ikea;SWE;28
+1027;Ilo;SWI;29
+1028;International Institute For Ma;SWI;29
+1029;Imec;NET;20
+1030;Imerys;FRA;9
+1031;Imo;Int;14
+1032;Ideal Medical Products;Int;9
+1033;Imperial Tobacco;GER;10
+1034;Ims;Int;30
+1035;Ina Group;CRO;4
+1036;Institutio Nacional De Admin;Int;30
+1037;Inbev;CRO;4
+1038;Incyte Genomics Inc;Int;9
+1039;Indevco;Int;10
+1040;Inditex;Int;15
+1041;Industries Qatar;Int;14
+1042;Ineos;Int;29
+1043;Inergy Automotive Systems;Int;9
+1044;Infocus;NET;20
+1045;Infogroup;Int;20
+1046;Infonet;NET;20
+1047;Info Products Belgie Bv;Int;30
+1048;Infors;Int;1
+1049;Infosys;Int;20
+1050;Ing Group;NET;20
+1051;Ingersoll-Rand;Int;20
+1052;Ingram;GER;10
+1053;Innogenetics;Int;9
+1054;Innova;Int;9
+1055;Insead;FRA;9
+1056;Institute Of Public Administra;Int;10
+1057;Intel;GER;10
+1058;Interamerican;Int;20
+1059;Inter-Continental Hotels;Int;30
+1060;Interel Public Relations;Int;15
+1061;Interpay;NET;20
+1062;Interpharm;Int;10
+1063;Interpol;FRA;9
+1064;Interpublic Group;Int;29
+1065;Interroll;Int;9
+1066;Intersurgical;Int;17
+1067;Interxion;Int;9
+1068;Intesa;Int;9
+1069;Int'L Idea;SWE;28
+1070;Int'L Investment Group;Int;30
+1071;The Int'L Investor;Int;10
+1072;Int'L Paper;Int;1
+1073;Intracom;GRE;11
+1074;Intralox;Int;29
+1075;Invacare;Int;9
+1076;Invensys;UK;30
+1077;Inventa;CZE;5
+1078;Invest France;FRA;9
+1079;Invest Germany;GER;10
+1080;Iom Int'L Organization For Mig;SWI;29
+1081;Iomega;SWI;29
+1082;Ipsen;FRA;9
+1083;Iri;Int;2
+1084;Irish Ferries;Int;1
+1085;Isk;Int;10
+1086;Islandsbanki Isb;ICE;13
+1087;Isoft;Int;20
+1088;Isotis Nv;SWI;29
+1089;Isp;GER;10
+1090;Iss;Int;10
+1091;Ista;GER;10
+1092;Ita;Int;10
+1093;Itelligence;Int;10
+1094;Itt;Int;9
+1095;Itt Sheraton;Int;15
+1096;Itu;Int;20
+1097;Itw;DEN;6
+1098;Iveco;Int;10
+1099;Jaakko Poyry;FIN;8
+1100;Jabil;Int;20
+1101;Jakob Mueller;Int;30
+1102;Janoschka;Int;15
+1103;Jeronimo Martins;Int;15
+1104;J G Martin And Partners;Int;2
+1105;Jones Lang Lasalle;Int;10
+1106;John Deere;GER;10
+1107;Johnson And Johnson;BEL;2
+1108;Johnson Controls;GER;10
+1109;Johnson Matthey;Int;9
+1110;Jomed;Int;10
+1111;Jotun;Int;30
+1112;Jrc Joint Research Centre;Int;14
+1113;J Sainsbury;Int;9
+1114;Jsp;FRA;9
+1115;Japan Tobacco International;SWI;29
+1116;Julius Baer;Int;15
+1117;Jungbunzlauer Int'L Ag;Int;20
+1118;Jvc;Int;29
+1119;Karstadt Quelle;Int;30
+1120;Kbc;SLV;30
+1121;Kellogg'S;Int;10
+1122;Kemfine;Int;30
+1123;Kemira;FIN;8
+1124;Kendle;Int;20
+1125;Kerr Mc Gee;Int;29
+1126;Kesko Oy;FIN;8
+1127;Kghm Polska Miedz;Int;30
+1128;Kimberly-Clark Ltd;Int;29
+1129;Kingfisher Plc;Int;30
+1130;King Ict;Int;30
+1131;Kion;Int;30
+1132;Kisr Kuwait Institut For Scien;Int;15
+1133;Kiwa;Int;10
+1134;Kleinwort Benson Ltd;Int;9
+1135;Klm;NET;20
+1136;Klonatex;Int;10
+1137;Klosterfrau;Int;30
+1138;Kls Martin;Int;10
+1139;Knorr-Naehrmittel Ag;Int;9
+1140;Knpc Kuwait Nat'L Petroleum Co;Int;1
+1141;Eastman Kodak;Int;20
+1142;Gebr Koemmerling Kunststoffwer;Int;29
+1143;Koerber Ag;GER;10
+1144;Kohler;Int;2
+1145;Kolbenschmidt Pierburg;Int;9
+1146;Komatsu;Int;10
+1147;Kommunedata I/S;Int;20
+1148;Kone;FIN;8
+1149;Konkat Ate;Int;30
+1150;Kontron;Int;9
+1151;Korsnas;Int;9
+1152;Kosicesteel;SLO;26
+1153;Kovako Materials Handling;Int;2
+1154;Kovobrasiv;Int;10
+1155;Kovohute;Int;1
+1156;Kpmg;NET;20
+1157;Kpn Telecom;NET;20
+1158;Kraeber;Int;30
+1159;Kraft Foods;Int;20
+1160;Kras;Int;2
+1161;Kraton Polymers;GER;10
+1162;Krauthammer International;Int;30
+1163;Krizik;Int;17
+1164;Krka;SLV;10
+1165;Krone;Int;1
+1166;Kronleins;Int;9
+1167;Kudelski Group;SWI;29
+1168;Kuehne And Nagel;SWI;29
+1169;Kulczyk Investment House;Int;10
+1170;Kungliga Tekniska Hogskolan;Int;20
+1171;Kuntarahoitus;FIN;8
+1172;Kuoni;Int;29
+1173;Kuwait Finance House;Int;1
+1174;Kuwait Petroleum;UK;30
+1175;Kvaser;Int;30
+1176;Kwh Pipe;Int;9
+1177;Kylemore;Int;17
+1178;Kyphon;Int;15
+1179;Labozeta;Int;30
+1180;Ladbroke;Int;10
+1181;Lafarge;FRA;9
+1182;Laiki;Int;9
+1183;Lalux;Int;10
+1184;Lancyr;Int;29
+1185;Landesbank;Int;10
+1186;Landis   Gyr Technology Innova;Int;14
+1187;Landsecurities;Int;15
+1188;Landstinget;Int;9
+1189;Lanxess;GER;10
+1190;La Poste;Int;30
+1191;Larive;Int;29
+1192;Lattelekom;Int;9
+1193;Latvian Mobile Telephone Ltd;Int;10
+1194;Lavipharm;Int;20
+1195;London Business School;Int;30
+1196;Lcp;Int;29
+1197;Leading Edge;Int;20
+1198;Leciva;Int;17
+1199;Lectra;Int;30
+1200;Lederne;Int;20
+1201;Lego;Int;10
+1202;Lei;Int;15
+1203;Leica;GER;10
+1204;Leiden University;Int;10
+1205;Leiras;Int;15
+1206;Lek;Int;20
+1207;Lekkerland;Int;9
+1208;Lemminkainen;Int;15
+1209;Lenz & Staehelin;Int;14
+1210;Leo Burnett;UK;30
+1211;Leo Impact;Int;30
+1212;Leonidas;Int;20
+1213;Leo Pharmaceutical Products Sa;Int;29
+1214;Leroy Merlin;Int;17
+1215;Unilever Home   Personal Care;Int;10
+1216;Levis Strauss;BEL;2
+1217;Lexmark;FRA;9
+1218;Lg Electronics;Int;29
+1219;Lhoist;BEL;2
+1220;Liberty Global;NET;20
+1221;Liebert Hiross;Int;29
+1222;Eli Lilly;UK;30
+1223;Linde;GER;10
+1224;Lindt & Spruengli;SWI;29
+1225;Linette;Int;30
+1226;Lingsoft;Int;9
+1227;Linkage Incorporated;Int;17
+1228;Linklaters;Int;30
+1229;Linpac;Int;15
+1230;Lisboa Congressos;Int;30
+1231;Littlewoods Home Shopping Grp;Int;14
+1232;Ljubljanske Mlekarne;Int;14
+1233;Lloyds Tsb Group;Int;10
+1234;Lms Lenz Management Services;GER;10
+1235;Lms International;Int;30
+1236;Lockheed Martin;Int;30
+1237;Loders Croklaan;Int;9
+1238;Logica Consulting;UK;30
+1239;Logitech Europe Sa;SWI;29
+1240;Lombard International Assuranc;Int;9
+1241;London Transport;Int;9
+1242;Lonza;Int;20
+1243;L'Oreal;Int;30
+1244;Lostr As;Int;17
+1245;Lot - Polish Airlines;Int;2
+1246;Grupa Lotos Sa;Int;20
+1247;Lsi Logic;Int;2
+1248;Lubri;Int;15
+1249;Lucas Varity Plc;Int;15
+1250;Lucent;NET;20
+1251;Lufthansa;GER;10
+1252;Lukoil;RUS;10
+1253;Lundbeck;DEN;6
+1254;Lux Development;Int;2
+1255;Louis Vuitton Moet Hennessy;FRA;9
+1256;Tetley Int'L;Int;30
+1257;M&A Group;Int;9
+1258;M A Abudawood & Partners For I;Int;15
+1259;Maaf;Int;2
+1260;Machinefabriek;Int;9
+1261;Mach Multinational;Int;20
+1262;Maersk Med;Int;10
+1263;Magnesium Electron;UK;30
+1264;Magotteaux;Int;10
+1265;Mahou - San Miguel;Int;20
+1266;Maitland;LUX;17
+1267;Makedontele;Int;10
+1268;Makers;UK;30
+1269;Mallinckrodt;Int;10
+1270;Mandarin Oriental Group;Int;9
+1271;Manpower;UK;30
+1272;Mansour;Int;20
+1273;Manx Telecom;Int;9
+1274;Marconi Sgps Comunicacoes Lda;Int;14
+1275;Marel Hf;Int;14
+1276;Marionnaud Parfumeries;Int;30
+1277;Marken;Int;10
+1278;Marks & Spencer Plc;Int;1
+1279;Marquard & Bahls;Int;10
+1280;Marriott;Int;10
+1281;Mars;UK;30
+1282;Martell   Cie Sa;FRA;9
+1283;Martin'S;Int;9
+1284;Martir And Partners;Int;30
+1285;Maspex;Int;20
+1286;Mastercard;BEL;2
+1287;Matav;Int;30
+1288;Matheson Ormsby;Int;20
+1289;Mathys Medical Ltd;SWI;29
+1290;Matthew Clark;Int;20
+1291;Maxxium;Int;15
+1292;Mazda;Int;20
+1293;Mcafee;UK;30
+1294;Mcbride;Int;20
+1295;Mcc;Int;30
+1296;Mccann Ericson;Int;10
+1297;Mcdonald'S;Int;10
+1298;Mce;Int;9
+1299;Mch Haaglanden;Int;30
+1300;Mckinsey   Company Inc;Int;30
+1301;Mcvities;Int;10
+1302;Mds Nordion Europe Sa;Int;9
+1303;Meaney Mcconnell;Int;30
+1304;Tillots Pharma;Int;29
+1305;Medi;Int;2
+1306;Media Total;Int;10
+1307;Mediglobe;Int;30
+1308;Mediolanum;Int;2
+1309;Medisize;Int;9
+1310;Medivir;Int;9
+1311;Medtronic;SWI;29
+1312;Megafon;RUS;9
+1313;Mellon Group;Int;15
+1314;Menarini Group;ITA;15
+1315;Menlo Worldwide;NET;20
+1316;Mepha Ag;SWI;29
+1317;Marion Merrell Dow Ltd;Int;9
+1318;Mera Nn;Int;17
+1319;Mercantile;Int;15
+1320;Mercer;Int;20
+1321;Merck;SWI;29
+1322;Mercuri Urval;Int;20
+1323;Mercury;Int;30
+1324;Merial;UK;30
+1325;Merivaara;Int;20
+1326;Merkur;Int;10
+1327;Merz Pharma;Int;30
+1328;Messer Cutting & Welding;Int;10
+1329;Messer Uk Ltd;Int;30
+1330;Metalogenia;SPA;27
+1331;Metaux Precieux Sa Metalor;Int;29
+1332;Metro;GER;10
+1333;Metropolitano De Lisboa Ep;Int;9
+1334;Metropolitan Express Train;Int;9
+1335;Metso;FIN;8
+1336;Mettler-Toledo Ag Process;Int;10
+1337;Mexx;Int;9
+1338;Mgb Endoskopische;Int;15
+1339;Michelin;Int;9
+1340;Michelman Int'L;Int;30
+1341;Michels Gmbh;Int;9
+1342;Microcomponents;Int;10
+1343;Microgen;Int;10
+1344;Micromet;Int;9
+1345;Micron Holding;Int;9
+1346;Microsoft;GER;10
+1347;Microtec Gmbh;Int;2
+1348;Middle Sea House;Int;29
+1349;Millennium Investment;Int;29
+1350;Miller Distributors;Int;30
+1351;Millicom International Cellula;Int;1
+1352;Milliken & Company;Int;10
+1353;Millipore Sa;FRA;9
+1354;Mima;Int;10
+1355;Irdeto Access;NET;20
+1356;Minerva Sa Edible Oils;GRE;11
+1357;Mitsubishi;Int;30
+1358;Mmc;Int;10
+1359;Mmm Business Media;Int;14
+1360;Mobifon;ROM;24
+1361;Mobile Telecommunications Co;Int;29
+1362;Mobilkom Austria Group;CRO;4
+1363;Mobiltel;Int;9
+1364;Mobimak A D;MCD;15
+1365;Mobistar;Int;9
+1366;Mobitel;SLV;30
+1367;Mol;NET;20
+1368;Mol Europe;Int;30
+1369;Molex;Int;30
+1370;Mol Hungary;Int;2
+1371;Msf Moniz Da Maia;Int;14
+1372;Monsanto;BEL;2
+1373;Morgan Crucible;FRA;9
+1374;Morphosys Ag;Int;17
+1375;Mobiltel Ead;Int;29
+1376;Motley Fool;Int;29
+1377;Motorola;GER;10
+1378;Motorpal As;Int;9
+1379;Mowe;Int;30
+1380;M-Real;FIN;8
+1381;Merck Msd;Int;29
+1382;Msf;Int;9
+1383;Mtc;UKR;15
+1384;Mtn;Int;2
+1385;Mundi Pharma;Int;15
+1386;Mundial Confianca;Int;29
+1387;Munichre;GER;10
+1388;Music Choice Ltd;Int;20
+1389;Mv;Int;1
+1390;Nalco;Int;20
+1391;Nam Ned'L Aardolie Mij Bv;Int;15
+1392;Nam National Agency For Medici;Int;30
+1393;Nammo;NOR;21
+1394;Nat'L Bank Of Abu Dhabi;Int;30
+1395;National Bank Belarus;Int;29
+1396;Nat'L Bank Of Egypt;Int;10
+1397;Nat'L Bank Of Kuwait;Int;10
+1398;Nat'L Bank Of Oman;Int;14
+1399;Nat'L Bank Of Serbia;Int;2
+1400;Nateus Assurance;Int;20
+1401;Natexis Banques;Int;1
+1402;National Water Council;Int;29
+1403;Nationwide Building Society;Int;29
+1404;The Nat'L Grid Company Plc;Int;9
+1405;Nat'L Power Plc;Int;9
+1406;Nat'L Semiconductor;Int;2
+1407;Nato;GER;10
+1408;The National Shipping Company ;Int;20
+1409;Nat'L University Of Ireland;Int;2
+1410;Natwest;Int;10
+1411; Nav  Portugal;Int;20
+1412;Navision;Int;29
+1413;Ncc;SWE;28
+1414;Ncci;Int;10
+1415;Ncm;Int;30
+1416;Ncr;Int;17
+1417;Nec;GER;10
+1418;Neckelmann;Int;10
+1419;De Nederlansche Bank;NET;20
+1420;Nedlloyd;Int;14
+1421;Neoventa Medical;Int;30
+1422;Neste Chemicals;Int;9
+1423;Nestle;SWI;29
+1424;Netas;Int;9
+1425;Neth Govt;Int;9
+1426;Netqos;Int;9
+1427;Network Associates Inc.;Int;30
+1428;Neumayer Tekfor;GER;10
+1429;New Medic;Int;10
+1430;News Outdoor;RUS;10
+1431;Newtoninno;Int;30
+1432;Nexstar;Int;2
+1433;Nexter;FRA;9
+1434;Netherlands Finance Authority;Int;30
+1435;Exel Logistics;Int;9
+1436;Norwegian Gas Carriers;Int;30
+1437;Nibc;Int;9
+1438;Nicols;Int;9
+1439;Nidek Medical Products;Int;9
+1440;Nigeria Lng Ltd;Int;9
+1441;Nike;NET;20
+1442;Nissan;Int;30
+1443;Nitto Euopr;Int;30
+1444;Nizo Food Research;Int;30
+1445;Nokia;FIN;8
+1446;Nokian Tyres;Int;30
+1447;Nomura;UK;30
+1448;Norasia Services Sa;Int;15
+1449;Norauto;Int;2
+1450;Nordea Bank;Int;9
+1451;Maxemballsa;Int;9
+1452;Nordkalk;Int;10
+1453;Nordson European Distribution;Int;10
+1454;Norfolkline;Int;9
+1455;Norgine;Int;30
+1456;Norkom;Int;17
+1457;Den Norske Bank;Int;15
+1458;Norske Skog;NOR;21
+1459;Norsk Hydro;NOR;21
+1460;Nortel;Int;30
+1461;Northumbrian Water;Int;15
+1462;Northwest Water;Int;20
+1463;Norton S A;Int;30
+1464;Norwich Union;Int;30
+1465;News Outdoor Marketing Russia;Int;30
+1466;Nova Bank;Int;30
+1467;Nova Chemicals;Int;9
+1468;Nova Ljubljanska Bank;Int;10
+1469;Novartis;GER;10
+1470;Novell Nederland Bv;NET;20
+1471;Novo Nordisk;FRA;9
+1472;Nuclear Electric Plc;Int;10
+1473;Nucletron;NET;20
+1474;Numico Cee;Int;9
+1475;Nuon Nv;Int;30
+1476;Nur Media Solutions;Int;29
+1477;Nutreco;Int;20
+1478;Nutricia Research;NET;20
+1479;Nxp Semiconductors;NET;20
+1480;National Youth Agency;Int;2
+1481;Nycomed;DEN;6
+1482;Nykredit;Int;20
+1483;Nynas;SWE;28
+1484;Oami;SPA;27
+1485;Oce;NET;20
+1486;Octapharma Ag;SWI;29
+1487;Odyssey;Int;30
+1488;Olavthon;Int;20
+1489;Oldmutual;Int;30
+1490;Olivetti Group;Int;9
+1491;Olympus;GER;10
+1492;Oman Lng;Int;20
+1493;Oman Telecommunications Cy;Int;10
+1494;Omega Pharma;Int;20
+1495;Omnia Holding;Int;30
+1496;Omnicare Chemicals;UK;30
+1497;Omnichem;Int;30
+1498;Omron;Int;2
+1499;Odette Benelux;Int;29
+1500;Omv;AUS;1
+1501;Omx Group;Int;10
+1502;On Air;Int;1
+1503;Onduline;Int;9
+1504;Onex Corporation;Int;10
+1505;On Semiconductors;Int;9
+1506;Onvest;Int;30
+1507;Opec;AUS;1
+1508;Open Mind Technologies;Int;14
+1509;Opentext;Int;9
+1510;Oracle;GER;10
+1511;Orange;Int;29
+1512;Orascom;Int;30
+1513;Orbis;Int;9
+1514;Orbotech;BEL;2
+1515;Oresundskonsortiet;Int;2
+1516;Organon;Int;29
+1517;Oriflame;Int;9
+1518;Origin;Int;15
+1519;Orion Farmos Pharmaceuticals;FIN;8
+1520;Orkla Group;Int;30
+1521;Orlen;Int;30
+1522;Ormazabal;Int;10
+1523;Ormit International Management;Int;15
+1524;Orrick;Int;30
+1525;Osce;AUS;1
+1526;Oskar;CZE;5
+1527;Ossur;ICE;13
+1528;Ote Group;GRE;11
+1529;Oticon;Int;30
+1530;Zardoya Otis Sa;SPA;27
+1531;Otsuka Pharma;Int;20
+1532;Otto Bock;GER;10
+1533;Ottoman Bank;Int;9
+1534;Outokumpu;FIN;8
+1535;Ovita;Int;30
+1536;Oxford Instruments;Int;10
+1537;Pa Consulting Group;Int;10
+1538;Pajunk;Int;2
+1539;Pall Corporation;Int;15
+1540;Panalpina;Int;10
+1541;Panasonic;Int;9
+1542;Pannon;Int;10
+1543;Pantex;Int;30
+1544;Parexel International Corporat;Int;9
+1545;Paroc Group;FIN;8
+1546;Partners In Lighting;Int;30
+1547;Pasteur Merieux Msd;Int;9
+1548;Paul Hartmann;Int;30
+1549;Oy Gustav Paulig Ab;Int;30
+1550;Petroleum Development Omar;Int;10
+1551;Pdv;Int;9
+1552;Pearle;Int;17
+1553;Pearson;Int;15
+1554;Pechiney;Int;17
+1555;Pedigree Petfoods Ltd;Int;10
+1556;Pentax;Int;1
+1557;Pepperl & Fuchs;Int;30
+1558;Dr Pepper Snapple Group;UK;30
+1559;Pepsico;UK;30
+1560;Perkin-Elmer Nederland Bv;ITA;15
+1561;Perkins Technology Ltd;Int;9
+1562;Perlos;FIN;8
+1563;Pernod Ricard;FRA;9
+1564;Perstop;SWE;28
+1565;Petercam;Int;9
+1566;Petroleos De Portugal Sa Petro;Int;10
+1567;Petrol Ljubljana;Int;20
+1568;Petrorabigh;Int;15
+1569;Petzetakis;GRE;11
+1570;Peugeot Citroen;Int;30
+1571;Pfizer;GER;10
+1572;Polska Grupa Farmaceutyczna;Int;15
+1573;Pgi;Int;29
+1574;Phadia;Int;10
+1575;Pharmapartners;Int;30
+1576;Philip Morris;SWI;29
+1577;Philips;NET;20
+1578;Phillips Petroleum Company;Int;20
+1579;Phillips Pet;Int;9
+1580;Phonak;Int;15
+1581;Photo Me;UK;30
+1582;Pias;Int;1
+1583;Picanol;Int;1
+1584;Pierre Fabre;Int;29
+1585;Pilkington;Int;10
+1586;Pilsner Urquell;Int;30
+1587;Pingo Doce Distribuic Aliment;Int;10
+1588;Pioneer;Int;29
+1589;Piraeus Bank;Int;2
+1590;Pki Ag Philips Kommunikations;Int;17
+1591;Pkn Orlen;POL;22
+1592;Planeta;Int;1
+1593;Plan International;Int;20
+1594;Planmeca;Int;30
+1595;Planon;Int;14
+1596;Plansee;AUS;1
+1597;Playtex;Int;20
+1598;Pliva;CRO;4
+1599;P&O;Int;9
+1600;Podravka;CRO;4
+1601;Pohjola;Int;30
+1602;Point Carbon;Int;20
+1603;Ceska Pojistovna;Int;15
+1604;Polimoon;Int;9
+1605;Polski Koncern Nafwyczn;Int;30
+1606;Polkomtel;POL;22
+1607;Polpharma Warszawa Sp Z O O;POL;22
+1608;Telewizja Polsat;Int;10
+1609;Poly-Clip System;Int;29
+1610;Polymer Group Inc;Int;10
+1611;Polynorm;Int;1
+1612;Polytec;Int;14
+1613;Porsche;GER;10
+1614;Portugal Telecom;POR;23
+1615;Portucel Industrial;Int;17
+1616;Post Danmark;Int;10
+1617;Post Office;Int;10
+1618;Powergen Plc;Int;1
+1619;Ppc;Int;10
+1620;Ppg Industries;FRA;9
+1621;Pinault Printemps Redoute;Int;15
+1622;Pra;Int;30
+1623;Praxair;Int;10
+1624;Preh;Int;30
+1625;Premier Farnell;Int;10
+1626;Premier Paper;Int;15
+1627;Press Clipping;Int;1
+1628;Pricewater House Coopers;UK;30
+1629;Ab Pripps Bryggerier;Int;30
+1630;Pristop;SLV;30
+1631;Probanka;Int;10
+1632;Prochazka Randl Kubr & Partner;Int;20
+1633;Procon Solutions;Int;10
+1634;Procter And Gamble;SWI;29
+1635;Produca Bv;Int;15
+1636;Profirst Intl;Int;14
+1637;Progress Software;Int;15
+1638;Project2 Nv;BEL;2
+1639;Projek Styrning;Int;2
+1640;Prologis;Int;10
+1641;Promedia;Int;9
+1642;Progressive Recruitment Specia;Int;30
+1643;Alexander Proudfoot Internatio;Int;30
+1644;Provimi;Int;30
+1645;Proxiserve;Int;15
+1646;The Prudential Assurance Co;Int;15
+1647;Polskie Sieci Elektroenergetyc;Int;9
+1648;Psi Electronics;Int;10
+1649;Publicis;Int;10
+1650;Public Petroleum Corp;Int;14
+1651;Punch;BEL;2
+1652;Purator;Int;9
+1653;Sa Puratos Nv;BEL;2
+1654;Pz Cussons Polska Sa;Int;30
+1655;Polski Zaklad Ubezpieczen;Int;10
+1656;Qad;Int;29
+1657;Qafco Qatar Fertiliser Co;Int;30
+1658;Qatar General Electricity & Wa;Int;15
+1659;Qatar Pertochemical;Int;9
+1660;Qatar Steel Company;Int;10
+1661;Qbe Intl;Int;15
+1662;Qgpc Qatar General Petroleum C;Int;30
+1663;Qatar Telecom (Q0Tel);Int;9
+1664;Quaker Chiari   Forti;Int;10
+1665;Quantum Chemical;Int;20
+1666;Quantum Peripheral;Int;30
+1667;Quelle;Int;9
+1668;Quest;Int;9
+1669;Quintiles;Int;10
+1670;Raab Karcher Energy Service;Int;30
+1671;Raba;Int;15
+1672;Rabobank;NET;20
+1673;Rackspace;Int;1
+1674;Radio Korasidis;Int;30
+1675;Radisson Sas;Int;2
+1676;Raffinerie Tirlemontoise Sa;Int;17
+1677;Raision Plc;FIN;8
+1678;Ralston;Int;9
+1679;Ram;Int;9
+1680;Ramboll;Int;9
+1681;Ranbaxy;Int;9
+1682;Randstad;Int;14
+1683;Rayovac;Int;30
+1684;Raytheon Training Int'L Gmbh;GER;10
+1685;Rci;Int;2
+1686;Read;Int;9
+1687;Real Software;Int;10
+1688;Recordati;Int;10
+1689;Recticel;Int;15
+1690;Red Bull;Int;14
+1691;Red Cross;SWI;29
+1692;Redevco;Int;10
+1693;Reebok;Int;30
+1694;Reed Business;Int;15
+1695;Reed Elsevier;Int;10
+1696;Refresco Holding;Int;14
+1697;Reichhold;Int;10
+1698;Remondis;Int;30
+1699;Remu;Int;15
+1700;Remy Cointreau;Int;30
+1701;Renault;FRA;9
+1702;Repsol;Int;29
+1703;Respironics;Int;30
+1704;Rettig;FIN;8
+1705;Reuters;UK;30
+1706;Rewe Group;Int;15
+1707;Rexam;UK;30
+1708;Reykjavik University;ICE;13
+1709;Rezidor;BEL;2
+1710;Rferl;CZE;5
+1711;Rhodia;FRA;9
+1712;Richmond Events;UK;30
+1713;Ricoh;Int;30
+1714;Rieter;SWI;29
+1715;Rio Tinto;UK;30
+1716;Rjr Nabisco;Int;10
+1717;Robeco;Int;30
+1718;Robert Bosch;Int;9
+1719;Robert Half Int Inc;Int;30
+1720;Hoffmann La Roche;SWI;29
+1721;Rockwell;BEL;2
+1722;Rockwool International;Int;20
+1723;Rohde & Schwarz;GER;10
+1724;Rohm & Haas;FRA;9
+1725;Roland Berger;Int;9
+1726;Rolls Royce;Int;29
+1727;Rom Telecom;Int;14
+1728;Rover;Int;9
+1729;Roxar;Int;1
+1730;Royal Bank Of Scotland;UK;30
+1731;Royal Bank Of Canada;Int;2
+1732;Royal Doulton;Int;10
+1733;Royal Insurance;Int;30
+1734;Royal Sun Alliance;Int;9
+1735;Rr Donnelley;Int;1
+1736;Rsc;Int;9
+1737;Rubbermaid;Int;30
+1738;Rusal Group;RUS;29
+1739;Ruuki;FIN;8
+1740;Rwe;GER;10
+1741;Memphis Hotel Amsterdam;Int;29
+1742;Rzb Raiffeisen Zentralbank;Int;20
+1743;Saudi Arabian Airlines;Int;10
+1744;Saab;Int;29
+1745;Saudi Arabian Monetary Agency;Int;30
+1746;Banco De Sabadell;Int;30
+1747;Sabic Services Ltd;SAU;9
+1748;Safcor Panalpina;Int;14
+1749;Safeway Plc;Int;1
+1750;Saga Petroleum;Int;9
+1751;Sage Group;Int;2
+1752;Saint Gobain;Int;10
+1753;Sales Academy;Int;20
+1754;Salomon;Int;10
+1755;Sampo Group;Int;9
+1756;Samskip;Int;10
+1757;Samsonite;Int;9
+1758;Samsung Group;Int;29
+1759;Sandvik;Int;9
+1760;Sanitas;Int;2
+1761;Sanofi Pasteur Msd;Int;15
+1762;Sanofi Aventis;FRA;9
+1763;Sanoma;Int;10
+1764;Sanpaolo;Int;30
+1765;Saudiarabian Oil Company;Int;9
+1766;Sap;GER;10
+1767;Saphad-Saudi Pharm Distributio;Int;30
+1768;Sappi;BEL;2
+1769;Sara Lee Corporation;UK;30
+1770;Saratoga;Int;9
+1771;Sarna;Int;1
+1772;Sarnafil Int'L;Int;9
+1773;Sas Scandinavian Airlines Syst;Int;30
+1774;Sas Institute;GER;10
+1775;Sat Gmbh;Int;9
+1776;Scientific Atlanta;BEL;2
+1777;Saudi American Bank;Int;15
+1778;Saudi Hollandi Bank;Int;10
+1779;Saudi Industrial Development F;Int;15
+1780;Saudi Methanol Co Ar0Razi;Int;20
+1781;Saudi Telecom;Int;30
+1782;Savola Company;Int;30
+1783;S&B Industrial;GRE;11
+1784;Sbm Single Buoy Moorings Inc;MON;19
+1785;Sca;SWE;28
+1786;Scania;Int;30
+1787;Scansource;Int;9
+1788;Scandinavian Tobacco;Int;9
+1789;Bankhaus Schelhammer & Schatt;Int;15
+1790;Schenk;Int;30
+1791;Schenker;Int;30
+1792;Schering Ag;Int;9
+1793;Schering Plough;SWI;29
+1794;Schindler;SWI;29
+1795;Schlumberger;FRA;9
+1796;Schneider;FRA;9
+1797;Schoellerarca;SWE;28
+1798;Scholle;Int;30
+1799;Schott;GER;10
+1800;Schwarz;Int;30
+1801;Schwarz Group;Int;10
+1802;Scitex;Int;15
+1803;Sc Johnson;UK;30
+1804;Scottish Enterprise;Int;20
+1805;Scottish & Newcastle;Int;10
+1806;Scottish Power Plc;Int;10
+1807;Sct Supreme Commission For T;Int;30
+1808;Seagate Technology Int'L;Int;30
+1809;Seagram;Int;20
+1810;Seaquist;Int;15
+1811;Seat Sa;Int;10
+1812;Skandinaviska Enskilda Banken;Int;9
+1813;Secil Cia De Cal E Cimento Sa;POR;23
+1814;Securitas;Int;9
+1815;Seda;Int;15
+1816;Sedgwick;Int;14
+1817;Seeda;UK;30
+1818;Seguros Imperio;Int;10
+1819;Selecta;Int;9
+1820;Sengenwald;Int;14
+1821;Sensormatic;Int;20
+1822;Sepi;SPA;27
+1823;Serco;Int;30
+1824;Servier;Int;20
+1825;Severomoraska Energetica;CZE;5
+1826;Sevgap;Int;30
+1827;Sfr;Int;9
+1828;Sgl;Int;15
+1829;Societe Generale De Surveillan;SWI;29
+1830;Sharp;Int;9
+1831;Shell;UK;30
+1832;Shelman Sa Swiss Hellenic;Int;30
+1833;Shire;Int;14
+1834;Shook;Int;10
+1835;Short Brothers Plc;Int;15
+1836;Showcase;Int;15
+1837;Sicpa;SWI;29
+1838;Siegfried Ltd;SWI;29
+1839;Siemens;GER;10
+1840;Sifco;Int;10
+1841;Sigma Aldrich;Int;10
+1842;Sigma Coatings;NET;20
+1843;Sigma Tau;ITA;15
+1844;Silf Competence;Int;9
+1845;Silicon Graphics;Int;10
+1846;Singapore Air;Int;9
+1847;Sipchem;Int;30
+1848;Sisu Defence Oy;Int;20
+1849;Sita;SWI;29
+1850;Sj;Int;30
+1851;Sjova;ICE;13
+1852;Skandia;Int;20
+1853;Skb;Int;20
+1854;Skc Europe Gmbh;Int;10
+1855;Skf;SWE;28
+1856;Skoda;Int;29
+1857;Slovak;Int;2
+1858;Slovakofarma;Int;20
+1859;Smith & Nephew;BEL;2
+1860;Smiths;Int;30
+1861;Smurfit Kappa Group;Int;10
+1862;Sn Air Holding;BEL;2
+1863;Sn Brussels Airlines;Int;2
+1864;Snecma;Int;14
+1865;Snell And Willcox;Int;1
+1866;Den Sociale Ankestyrelse;Int;30
+1867;The Social Development Office;Int;17
+1868;Social Fund For Development;Int;15
+1869;Soc Generale;FRA;9
+1870;Sodexho;FRA;9
+1871;Sokos;Int;15
+1872;Sola;Int;15
+1873;Solon Management Consulting Gm;GER;10
+1874;Solutia;BEL;2
+1875;Solvay;GER;10
+1876;Somera;Int;29
+1877;Somincor;Int;20
+1878;Sonae Sgps Sa;POR;23
+1879;Sonat;Int;20
+1880;Sonneveld;Int;29
+1881;Sonoco;BEL;2
+1882;Sonotron;Int;30
+1883;Sony;GER;10
+1884;Sony Ericsson;UK;30
+1885;Sorefi;Int;9
+1886;Sorin Biomedica Cardio Srl;ITA;15
+1887;Southco;Int;10
+1888;Spadel;BEL;2
+1889;Spar;Int;29
+1890;Spectro Analytical Instruments;Int;1
+1891;Spectrum Brands;Int;10
+1892;Spencer Stuart;Int;2
+1893;Spimaco;Int;14
+1894;Spirent;UK;30
+1895;Ceska Sporitelna;Int;9
+1896;Springer;GER;10
+1897;Spring Messe Management;Int;2
+1898;Spx;Int;9
+1899;Squire, Sanders & Dempsey;Int;30
+1900;Sram;NET;20
+1901;Ssc;Int;14
+1902;Stafoord Miller;Int;17
+1903;Stallergenes;Int;9
+1904;Standard;UK;30
+1905;Standard Chartered Bank;SWI;29
+1906;Stanley;Int;10
+1907;Starwood Hotels And Resorts Wo;BEL;2
+1908;State Street;Int;30
+1909;Statnett/The Norwegian Power G;Int;30
+1910;Statoil;NOR;21
+1911;Stedim Sa;FRA;9
+1912;Steelcase;Int;10
+1913;Stelmar Shipping Ltd;Int;9
+1914;Sterling Health;Int;10
+1915;St Gobain;GER;10
+1916;St Jude;BEL;2
+1917;Stmicro;SWI;29
+1918;Stolt-Nielsen;NET;20
+1919;Stora;Int;2
+1920;Storagetek;UK;30
+1921;Storck;Int;30
+1922;Storebrand;Int;9
+1923;Stork;Int;2
+1924;Stratagene;Int;9
+1925;Straumann Ag;Int;10
+1926;Stryker;SWI;29
+1927;Studio Moderna;Int;29
+1928;Styrochem;Int;20
+1929;Sudler;Int;9
+1930;Suez;FRA;9
+1931;Sulzer;SWI;29
+1932;Sun Microsystems;IRE;14
+1933;Sunrise Medical;Int;9
+1934;Supresta-Phosphorus;Int;9
+1935;Suzuki;Int;9
+1936;Daniel Swarovski Corporation A;Int;15
+1937;Swatch;Int;9
+1938;Swedish Match;Int;17
+1939;Swedwood;Int;9
+1940;Swedish N.A. For Higher Educ;Int;10
+1941;Swep;SWE;28
+1942;Swift;BEL;2
+1943;Swiss;SWI;29
+1944;Sbc Warburg;Int;29
+1945;Swisscom;SWI;29
+1946;Swisscontrol;Int;10
+1947;Swisslife;SWI;29
+1948;Swiss Re;SWI;29
+1949;Swiss Telecom;Int;2
+1950;Sybase;Int;10
+1951;Sydkraft;Int;20
+1952;Sygnity;Int;30
+1953;Symantech;Int;15
+1954;Symbol Techno;UK;30
+1955;Syngenta;SWI;29
+1956;Synstar;Int;30
+1957;Synthes;Int;9
+1958;Sysopen;Int;29
+1959;Syvox Corporation;Int;30
+1960;Tac;Int;17
+1961;Takeda;Int;17
+1962;Talgentra;Int;15
+1963;Tamoil;Int;15
+1964;Tenabe Seiyaku;Int;9
+1965;Tandem Computers Nv;Int;30
+1966;Tap Air Portugal;Int;9
+1967;Tate & Lyle;Int;2
+1968;Taylor Woordrow;Int;9
+1969;Tchibo;GER;10
+1970;Tdc;DEN;6
+1971;Tdc Switzerland Ag;Int;9
+1972;Tdk;Int;10
+1973;Team Training;Int;29
+1974;Teboil;Int;10
+1975;Tech Data;Int;30
+1976;Techmar;BEL;2
+1977;Technip;Int;10
+1978;Teijin Group;Int;20
+1979;Teijin Twaron;NET;20
+1980;Teknia;Int;9
+1981;Tektronix;Int;2
+1982;Tele Atlas;BEL;2
+1983;Telecom Eireann;Int;15
+1984;Telecom Invest;Int;10
+1985;Telecom Italia;SER;25
+1986;Telefonica;UK;30
+1987;Telemedia;Int;10
+1988;Telenet;BEL;2
+1989;Telenor;NOR;21
+1990;Telenordia;Int;20
+1991;Telerex;Int;30
+1992;Telesoft;Int;9
+1993;Telfort;Int;30
+1994;Telia Sonera;SWE;28
+1995;Ten Cate;Int;10
+1996;Tenneco;Int;30
+1997;Teo Lt Ab;Int;20
+1998;Teradyne;UK;30
+1999;Sc Terapia;ROM;24
+2000;Ter Beke;Int;9
+2001;Terex;Int;10
+2002;Terumo;Int;10
+2003;Tesa;GER;10
+2004;Tesco Stores;Int;15
+2005;Test Achats;Int;10
+2006;Tetra Laval;SWI;29
+2007;Teva;NET;20
+2008;Texaco;UK;30
+2009;Texas Instruments;Int;9
+2010;Thames;Int;9
+2011;Thermo Fisher Scientific;Int;9
+2012;Thermo King;BEL;2
+2013;Thomas & Betts European Centre;Int;20
+2014;Thomas Cook;Int;30
+2015;Thomas Group;Int;20
+2016;Thomas Howell;Int;30
+2017;Thomas'S;Int;1
+2018;Thomassen Int'L Bv;Int;14
+2019;Thomson;UK;30
+2020;Thyssen;GER;10
+2021;Thyssen-Krupp;Int;15
+2022;Tibco;Int;30
+2023;Time Magazine;Int;10
+2024;Tim Hellas;Int;15
+2025;Timken;FRA;9
+2026;Tinfos;Int;29
+2027;Tioxide;Int;30
+2028;Tiscali;ITA;15
+2029;Titan Cement Company;GRE;11
+2030;Tno;NET;20
+2031;Tnt;NET;20
+2032;Tokheim Corporation;Int;30
+2033;Torsan;Int;30
+2034;Toshiba;NET;20
+2035;Tosoh;NET;20
+2036;Total;FRA;9
+2037;Toyota;BEL;2
+2038;Trade Arbed;Int;15
+2039;Trainers House Oy;Int;10
+2040;Tramedico;Int;29
+2041;Trane;UK;30
+2042;Transamerica;Int;9
+2043;Tredegar Film Products;Int;15
+2044;Trelleborg;Int;20
+2045;Trespa;Int;10
+2046;Trierenberg Holding Ag;AUS;1
+2047;Troostwijk;Int;30
+2048;Tropicana;Int;9
+2049;Trumpf;Int;10
+2050;Trustmedia;Int;1
+2051;Trw;GER;10
+2052;Tryg;Int;20
+2053;Tsb;Int;9
+2054;Tools Technic System;Int;9
+2055;Tuev;GER;10
+2056;Tulip Inn;Int;9
+2057;Tupperware;SWI;29
+2058;Turkcell Iletisim Hizmetleri A;Int;9
+2059;Turku;FIN;8
+2060;Turku Bio Valley;Int;30
+2061;Turku Chamber Of Commerce;Int;29
+2062;Int'L Turnkey Systems;Int;2
+2063;Tvx;Int;14
+2064;Twijnstra;Int;2
+2065;Tyco;Int;30
+2066;Tyrolit;Int;9
+2067;Uap Union Des Assurances De Pa;Int;15
+2068;Union Bank Of Switzerland;SWI;29
+2069;Ucb;GER;10
+2070;Ucl;Int;30
+2071;Ul Int;Int;15
+2072;Ulticom;FRA;9
+2073;Umc;Int;30
+2074;Umicore;BEL;2
+2075;United Nations;AUS;1
+2076;Unaxis Management Inc;SWI;29
+2077;Undp;Int;10
+2078;Unesco;Int;10
+2079;Unhcr;Int;10
+2080;Unibank;Int;20
+2081;Unicef;Int;30
+2082;Unicible;Int;30
+2083;Unicom Bols;Int;10
+2084;Unicredit Group;GER;10
+2085;Unicredito;Int;1
+2086;United Nations International D;Int;17
+2087;Unilever;UK;30
+2088;Union Carbide;Int;2
+2089;Unipart;Int;20
+2090;Unisabi;Int;10
+2091;Unisource;Int;30
+2092;Uni Storebrand Life;Int;15
+2093;Unisys;Int;9
+2094;United Airlines;Int;10
+2095;United Biscuits;Int;10
+2096;United Distillers Plc;Int;17
+2097;Univar Europe Ltd;UK;30
+2098;Intermec Label Products;Int;30
+2099;Pharmacia Upjohn;Int;1
+2100;Upm;FIN;8
+2101;Ups Parcel Service;BEL;2
+2102;Uralita;Int;9
+2103;Urban Science;Int;10
+2104;Uria;Int;10
+2105;Usinor Group;Int;10
+2106;Us Pharmacia;Int;30
+2107;Uta;Int;30
+2108;Utc;Int;10
+2109;Utrecht Unif;Int;9
+2110;Vacon;FIN;8
+2111;Vaisala;Int;15
+2112;Valeo;Int;10
+2113;Vall;Int;30
+2114;Valmet;Int;10
+2115;Vandemoortele;Int;10
+2116;Van Den Bergh;Int;10
+2117;Van Leer;Int;10
+2118;Van Melle;SWI;29
+2119;Vantico;Int;15
+2120;Vantis;Int;30
+2121;Varian;SWI;29
+2122;Varta Geraetebatterie Gmbh;GER;10
+2123;Vasco;Int;10
+2124;Vattenfall;GER;10
+2125;Vdab;Int;10
+2126;Veba;Int;30
+2127;Vekoma;Int;14
+2128;Velux;DEN;6
+2129;Ventana Medical Systems Sa;FRA;9
+2130;Veolia;Int;10
+2131;Veritas;Int;15
+2132;Verizon Business;UK;30
+2133;Vermeer;Int;29
+2134;Versatel Telecom Int'L;NET;20
+2135;Vestel;Int;9
+2136;Vf;Int;9
+2137;Viag;Int;9
+2138;Vickers;Int;9
+2139;Vifor;Int;10
+2140;Villeworth;Int;14
+2141;Vimpelcom;RUS;17
+2142;Viohalco Holdings;Int;10
+2143;Vipnet D O O;Int;9
+2144;Vips;Int;17
+2145;Virgin;Int;9
+2146;Visa International;UK;30
+2147;Vishay;GER;10
+2148;Vision Networks;Int;10
+2149;Viskase;Int;30
+2150;Visteon;Int;10
+2151;Vitatron;Int;30
+2152;Vivendi Universal;FRA;9
+2153;Vivo;Int;9
+2154;Vnu;BEL;2
+2155;Vodafone;UK;30
+2156;Voest Alpine;AUS;1
+2157;Volkswagen;GER;10
+2158;Volvo;SWE;28
+2159;Vonage;Int;9
+2160;Koninklijke Vopak;Int;15
+2161;Vorwerk;GER;10
+2162;Vredestein;Int;9
+2163;Vroom;Int;1
+2164;Vsea Varian;Int;15
+2165;Vtt;Int;29
+2166;Wacker;Int;9
+2167;Wacker Group;Int;30
+2168;Wagon;Int;10
+2169;The Wall Street Journal;Int;30
+2170;Walsh;Int;15
+2171;Walt Disney;Int;9
+2172;Wartsila Nsd;FIN;8
+2173;Waters;Int;10
+2174;Industrial Relations Europe;Int;14
+2175;Wavin;NET;20
+2176;World Customs Organization;Int;10
+2177;Weber Shandwick;Int;10
+2178;Weidmueller;Int;29
+2179;Welch Allyn Inc;Int;30
+2180;Weleda;Int;10
+2181;Wella;GER;10
+2182;Wessex Water;Int;10
+2183;Westel;Int;20
+2184;Western Atlas;Int;20
+2185;Western Nis;Int;9
+2186;Western Union;AUS;1
+2187;Westinghouse;Int;9
+2188;Westlb;Int;29
+2189;Westvaco;Int;30
+2190;Weyerheauser;Int;17
+2191;Wfp World Food Programme;ITA;15
+2192;Australian Wheat Board;Int;10
+2193;Whirlpool Int'L;ITA;15
+2194;Whitbread Plc;Int;14
+2195;White   Case;Int;9
+2196;Whitestein Tech;Int;10
+2197;Who;DEN;6
+2198;Wihuri;FIN;8
+2199;William Grant;Int;9
+2200;Willis;Int;10
+2201;Wilson Color;Int;30
+2202;Wipo;SWI;29
+2203;Wolters Kluwer;Int;9
+2204;The Worldbank Group;Int;10
+2205;World Directories;Int;9
+2206;Wpp;Int;10
+2207;Wr Grace;Int;9
+2208;The Wrigley Company;UK;30
+2209;Wto;SWI;29
+2210;Wunderman Cato Johnson;Int;10
+2211;Wwf World Wildlife Fund For Na;Int;9
+2212;Wyeth Lederle;UK;30
+2213;Xansa;Int;9
+2214;Xerox;UK;30
+2215;Xiosbank;Int;10
+2216;Xircom;BEL;2
+2217;Xyrofin;Int;2
+2218;Yageo;Int;14
+2219;Yahoo;UK;30
+2220;Yakult;Int;30
+2221;Yamaha;Int;30
+2222;Yellow Pages;Int;10
+2223;Yemen Lng  ;Int;30
+2224;Yit;Int;9
+2225;Yokogawa;NET;20
+2226;Yoplait;Int;14
+2227;Yorkshire Electricity Group Pl;Int;14
+2228;Yorkshire Water;Int;20
+2229;Yukos Rm;Int;9
+2230;Zambon;ITA;15
+2231;Zamil Group Holding Company  ;Int;30
+2232;Zander;Int;10
+2233;Zanussi;Int;10
+2234;Zara;Int;30
+2235;Zdb;Int;30
+2236;Zellweger;Int;17
+2237;Zemeus;Int;29
+2238;Zentiva;CZE;5
+2239;Zivnostenska;Int;1
+2240;Zsnp;Int;9
+2241;Zumtobel;Int;10
+2242;Zurich Re;SWI;29
+2243;Zwack;Int;30
+2244;Zweifel;Int;30
+2245;Zyma Spa;Int;15
