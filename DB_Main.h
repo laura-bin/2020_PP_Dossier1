@@ -85,8 +85,7 @@ typedef struct {
 typedef struct {
     char type[8];       // "GRP"
     uint id;            // primary key
-    char name[20];
-    char country_iso[4];
+    char name[48];
     uint country_id;    // foreign key
 } group_entity;
 
@@ -126,3 +125,8 @@ void export_industries(dbc *db);         // exports the industry table from dat 
 void load_industries(dbc *db);           // loads the industry table from the dat file to the buffer
 void print_industries(dbc *db);          // prints the industry table
 void print_industry(dbc *db, uint id);   // prints a single industry from the database buffer
+
+// Group table
+void import_groups(dbc *db);        // imports the group csv file to dat file
+void export_groups(dbc *db);        // exports the group table from dat file to csv file
+void print_groups(dbc *db);         // prints the group table from the database file

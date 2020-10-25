@@ -1,4 +1,4 @@
-Id;Nm_Grp;Cd_Cty;Id_Cty
+Id;Name;Country_iso;Country_id
 1;3 Com;Int;1
 2;3I;Int;15
 3;3M;Int;9
@@ -7,7 +7,7 @@ Id;Nm_Grp;Cd_Cty;Id_Cty
 6;A Ahlstrom;Int;14
 7;Aalborg Portland;Int;10
 8;Asea Brown Boveri;SWI;29
-9;Abbey National Plc;Int;30
+9;Abbey National Plc;I  nt;30
 10;Abbotsford Brewery;Int;30
 11;Abbott;FRA;9
 12;Abdul Latif Jameel Company Ltd;Int;29

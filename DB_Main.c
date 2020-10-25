@@ -42,5 +42,9 @@ int main(void) {
     load_industries(&db);
     print_industries(&db);
 
+    import_groups(&db);
+    export_groups(&db);
+    print_groups(&db);
+
 	return 0;
 }

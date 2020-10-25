@@ -12,7 +12,7 @@ CFLAGS = -g #debug
 
 all: main
 
-main: DB_Main.c DB_Main.h DB_File.o DB_Country.o DB_Job.o DB_Industry.o
+main: DB_Main.c DB_Main.h DB_File.o DB_Country.o DB_Job.o DB_Industry.o DB_Group.o
 	gcc $(CFLAGS) -o main $^
 
 %.o: %.c DB_Main.h
