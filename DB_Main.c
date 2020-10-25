@@ -37,5 +37,10 @@ int main(void) {
     load_jobs(&db);
     print_jobs(&db);
 
+    import_industries(&db);
+    export_industries(&db);
+    load_industries(&db);
+    print_industries(&db);
+
 	return 0;
 }

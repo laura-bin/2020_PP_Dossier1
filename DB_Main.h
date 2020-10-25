@@ -51,10 +51,10 @@ typedef struct {
 * Country entity
 ****************************************************************************************/
 typedef struct {
-    char type[4];       // "CTR"
+    char type[8];       // "CTR"
     uint id;            // primary key
-    char name[26];      // country name
-    char zone[26];      // zone
+    char name[24];      // country name
+    char zone[24];      // zone
     char iso[4];        // ISO code
 } country_entity;
 
@@ -62,28 +62,28 @@ typedef struct {
 * Job entity
 ****************************************************************************************/
 typedef struct {
-    char type[4];       // "JOB"
+    char type[8];       // "JOB"
     uint id;            // primary key
     char level[30];
     char department[30];
-    char name[60];
+    char name[56];
 } job_entity;
 
 /***************************************************************************************
 * Industry entity
 ****************************************************************************************/
 typedef struct {
-    char type[4];       // "IND"
+    char type[8];       // "IND"
     uint id;            // primary key
-    char sector[20];
-    char name[20];
+    char sector[30];
+    char name[54];
 } industry_entity;
 
 /***************************************************************************************
 * Group entity
 ****************************************************************************************/
 typedef struct {
-    char type[4];       // "GRP"
+    char type[8];       // "GRP"
     uint id;            // primary key
     char name[20];
     char country_iso[4];
@@ -92,11 +92,13 @@ typedef struct {
 
 /***************************************************************************************
 * Database
+* TODO V1 delete non appropriate buffers
 ****************************************************************************************/
 typedef struct {
     db_header header;
     country_entity countries[N_RES_CTR];   // Buffer of coutries
     job_entity jobs[N_RES_JOB];            // Buffer of jobs
+    industry_entity industries[N_RES_IND]; // Buffer of industries
 } dbc;
 
 /****************************************************************************************
@@ -117,3 +119,10 @@ void export_jobs(dbc *db);          // exports the job table from dat file to cs
 void load_jobs(dbc *db);            // loads the job table from the dat file to the buffer
 void print_jobs(dbc *db);           // prints the job table
 void print_job(dbc *db, uint id);   // prints a single job from the database buffer
+
+// Industry table
+void import_industries(dbc *db);         // imports the industry csv file to dat file
+void export_industries(dbc *db);         // exports the industry table from dat file to csv file
+void load_industries(dbc *db);           // loads the industry table from the dat file to the buffer
+void print_industries(dbc *db);          // prints the industry table
+void print_industry(dbc *db, uint id);   // prints a single industry from the database buffer

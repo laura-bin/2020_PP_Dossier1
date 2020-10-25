@@ -175,6 +175,6 @@ void print_countries(dbc *db) {
 * Prints a record from the buffer
 ****************************************************************************************/
 void print_country(dbc *db, uint id) {
-    printf("%4d %-26s %-26s %-3s \n", db->countries[id].id, db->countries[id].name,
+    printf("%4d %-24s %-24s %-3s \n", db->countries[id].id, db->countries[id].name,
            db->countries[id].zone, db->countries[id].iso);
 }
