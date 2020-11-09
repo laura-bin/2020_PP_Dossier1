@@ -1,4 +1,4 @@
-# gdb ./main
+# gdb ./clients
 # r / run
 # bt / backtrace
 # f / frame
@@ -6,17 +6,19 @@
 
 CFLAGS = -g #debug
 # CFLAGS = -O3
- CFLAGS += -Wall -Wpedantic -Wextra
+ CFLAGS += -Wall -Wpedantic -Wextra -Iinc
 
 .PHONY: all clean
 
-all: main
+all: clients
 
-main: DB_Main.c DB_Main.h DB_File.o DB_Country.o DB_Job.o DB_Industry.o DB_Group.o
-	gcc $(CFLAGS) -o main $^
+clients: src/main.c out/catalog.o out/db_file.o out/menus.o out/system.o out/utils.o
+	gcc $(CFLAGS) -o clients $^
 
-%.o: %.c DB_Main.h
+out/%.o: src/%.c inc/%.h
 	gcc $(CFLAGS) -c -o $@ $<
 
 clean:
-	rm -f *.o main Data_Export/* Data_DB_Comp/*
+	find out -name '*.o' -exec rm {} \+
+	rm -f clients datas/* Data_Export/* Data_DB_Comp/*
+	rmdir datas
