@@ -2,11 +2,11 @@
 * Dossier 1 : Analyse de donnees clients
 * ======================================
 *
-* Menus declaratifs :
-*   - definition des menus
-*   - boucle d'affichage du menu / appel de la fonction correspondant au menu choisi
+* Menus :
+*   - assignation of the text and the action to each menu
+*   - menu loop : diplays text and calls the corresponding action
 *
-* Programmation procedurale 2020 - Laura Binacchi - Fedora 32
+* PP 2020 - Laura Binacchi - Fedora 32
 ****************************************************************************************/
 
 #include <stdarg.h>
@@ -27,6 +27,10 @@ const struct menu_entry admin_menus[ADMIN_MENUS_COUNT] = {
     {
         .text = "Delete database file",
         .action = &delete_db
+    },
+    {
+        .text = "Display database file metadatas",
+        .action = &display_metadatas
     }
 };
 
@@ -34,10 +38,6 @@ const struct menu_entry admin_menus[ADMIN_MENUS_COUNT] = {
 * User mode menus
 ****************************************************************************************/
 const struct menu_entry user_menus[USER_MENUS_COUNT] = {
-    {
-        .text = ".",
-        .action = &dummy_fct
-    },
     {
         .text = ".",
         .action = &dummy_fct
@@ -60,7 +60,10 @@ const struct menu menus[APP_MODE_COUNT] = {
     },
 };
 
-/* Clears the terminal and prints the header */
+
+/***************************************************************************************
+* Clears the terminal and prints the header
+****************************************************************************************/
 void print_header(database *db) {
     clear_terminal();
     puts("+-----------------------------------------------------------------------------------+");
@@ -80,33 +83,33 @@ int main_menu(database *db) {
     unsigned choice = 1;
 
     while(choice) {
+        // print the menu
         print_header(db);
-
         for (i = 0; i < menu->entry_count; i++) {
-            printf("[%d] %s.\n", i+1, menu->entries[i].text);
+            printf("[%d] %s\n", i+1, menu->entries[i].text);
         }
-        printf("[0] Quit.\n");
+        printf("[0] Quit\n");
         puts("");
 
+        // get the user choice
         choice = get_uns_input();
 
-        // 
-        if (choice == 0) {
-            clear_terminal();
-                puts("+-----------------------------------------------------------------------------------+");
-                puts("|                                     GOODBYE !                                     |");
-                puts("+-----------------------------------------------------------------------------------+");
-                return 0;
-        }
-
-        // check if the menu is valid
+        // check if this choice is valid
         if (choice > menu->entry_count) {
             printf("[%d] is not a valid menu.\n", choice);
             pause_page();
             continue;
         }
 
+        // call the  corresponding action
         clear_terminal();
+        if (choice == 0) {
+                puts("+-----------------------------------------------------------------------------------+");
+                puts("|                                     GOODBYE !                                     |");
+                puts("+-----------------------------------------------------------------------------------+");
+                return 0;
+        }
+
         print_header(db);
         puts(menu->entries[choice-1].text);
         puts("-------------------------------------------------------------------------------------");
@@ -115,5 +118,6 @@ int main_menu(database *db) {
         (*menu->entries[choice-1].action)(db);
         pause_page();
     }
+    
     return 0;
 }

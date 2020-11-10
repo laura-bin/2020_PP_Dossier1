@@ -5,7 +5,7 @@
 * Database acces :
 *   - creation of the empty file
 *   - deletion of the database file
-*   - TODO metadatas display
+*   - metadatas display
 *   - TODO import of data from csv files
 *
 * PP 2020 - Laura Binacchi - Fedora 32
@@ -32,12 +32,13 @@ int create_db(database *db) {
     puts("Starting database file creation...\n");
 
     // close database file if a file is opened
-    if (db->dat_file != NULL) fclose(db->dat_file);
+    close_db(db);
 
     // then reopen database file in write mode (file is truncated)
     if ((db->dat_file = fopen(db->path, "wb")) == NULL) {
         log_error(db, "Database file creation");
     } else
+    log_info(db, "Database file creation", "Database file opened in write mode");
 
     // create header
     memset(&db->header, 0, sizeof(struct header));
@@ -73,14 +74,11 @@ int create_db(database *db) {
     free(buffer);
 
     printf("Database %s sucessfully created\n", db->header.db_name);
+    log_info(db, "Database file creation", "File successfully created");
 
     // reopen database in read mode
-    fclose(db->dat_file);
-    if ((db->dat_file = fopen(db->path, "rb")) == NULL) {
-        log_error(db, "Database file creation");
-    } else
-
-    log_info(db, "Database file creation", "File successfully created");
+    close_db(db);
+    open_db(db);
 
     return 0;
 }
@@ -89,13 +87,74 @@ int create_db(database *db) {
 * Deletes the database file
 ****************************************************************************************/
 int delete_db(database *db) {
-    FILE *fp;
+    close_db(db);
+    if (remove(db->path) == 0) {
+        log_info(db, "Delete database", "Database file successfully deleted");
+        printf("Database file %s sucessfully deleted.\n", db->filename);
+        return 0;
+    }
+    log_error(db, "Deleting database file");
+    perror("Error while deleting database file");
+    return 1;
+}
 
-    fp = fopen("test.dat", "wb");
-    fclose(fp);
-//    if (remove("test.dat") == 0) printf("OK");
+/****************************************************************************************
+* Opens the database in read mode, gets the metadata and fills the buffers
+****************************************************************************************/
+int open_db(database *db) {
+    if ((db->dat_file = fopen(db->path, "rb")) == NULL) {
+        log_error(db, "Opening database file");
+        return 1;
+    }
+    log_info(db, "Opening database file", "Database file opened in read mode");
 
+    // Get the header from the database file
+    fseek(db->dat_file, 0, SEEK_SET);
+    fread(&db->header, 1, sizeof(struct header), db->dat_file);
+
+    // TODO -> fill the buffers
+
+    return 0;
+}
+
+/****************************************************************************************
+* Closes the database file
+****************************************************************************************/
+int close_db(database *db) {
+    if (db->dat_file != NULL) {
+        fclose(db->dat_file);
+        db->dat_file = NULL;
+        log_info(db, "Closing database file", "Database file succesfully closed");
+        return 0;
+    }
+    return 1;
+}
+
+/****************************************************************************************
+* Displays the database metadatas (db name, number of reserved locations,
+* number of records in each tables, etc.)
+****************************************************************************************/
+int display_metadatas(database *db) {
+    table_code i;
     
+    if (db->dat_file == NULL) {
+        printf("Impossible : no database file opended.\n");
+        log_info(db, "Display metadatas", "impossible to show metadatas (no file opened)");
+        return 1;
+    }
+
+    printf("Database name: %s\n", db->header.db_name);
+    printf("Database size: %d\n", db->header.size);
+    puts("");
+
+    for (i = 0; i < TAB_COUNT; i++) {
+        printf("%s table:\n", tables_metadatas[i].display_name);
+        printf("    %-16s %10d recordings\n", "Space occupied", db->header.n_recorded[i]);
+        printf("    %-16s %10d recordings\n", "Space left", db->header.n_reserved[i] - db->header.n_recorded[i]);
+        printf("    %-16s %10d recordings\n", "Total space", db->header.n_reserved[i]);
+        puts("");
+    }
+
     return 0;
 }
 

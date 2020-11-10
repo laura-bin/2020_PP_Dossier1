@@ -36,15 +36,18 @@ typedef struct {
     FILE *dat_file;                         // database file pointer
     FILE *log_file;                         // log file pointer
     struct header header;                   // database header
-    country_entity countries[N_RES_CTR];    // buffer of coutries (sorted)
-    job_entity jobs[N_RES_JOB];             // buffer of jobs (sorted)
-    industry_entity industries[N_RES_IND];  // buffer of industries (sorted)
-    group_entity groups[N_RES_IND];         // buffer of groups (sorted)
+    struct country countries[N_RES_CTR];    // buffer of coutries (sorted)
+    struct job jobs[N_RES_JOB];             // buffer of jobs (sorted)
+    struct industry industries[N_RES_IND];  // buffer of industries (sorted)
+    struct group groups[N_RES_IND];         // buffer of groups (sorted)
 } database;
 
 /***************************************************************************************
 * Database file creation
 ****************************************************************************************/
-int create_db(database *db);    // create an empty database file
-int delete_db(database *db);    // delete the database file
+int create_db(database *db);            // creates an empty database file
+int delete_db(database *db);            // deletes the database file
+int open_db(database *db);              // opens the database file in read mode
+int close_db(database *db);             // closes the database file
+int display_metadatas(database *db);    // displays the database metadatas
 int dummy_fct(database *db);

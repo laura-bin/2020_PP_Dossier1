@@ -4,11 +4,15 @@
 * ======================================
 *
 * Catalog :
+*   - types & count of the different tables
+*   - number of tuples reserved for each table
+*   - database metadatas structure
 *   - database tables structures
 *
 * PP 2020 - Laura Binacchi - Fedora 32
 ****************************************************************************************/
-#include <time.h>
+
+#include <stddef.h>
 
 /***************************************************************************************
 * Types of tables & table count
@@ -33,91 +37,98 @@ typedef enum {
 #define N_RES_CMP 100000
 #define N_RES_PRS 500000
 
+/***************************************************************************************
+* Table metadatas
+****************************************************************************************/
 struct table_metadata {
     char name[8];           // tuple prefix in the database
+    char display_name[32];  // name displayed to the user
     unsigned n_reserved;    // number of tuples reserved in the table
     size_t size;            // tuple size
 };
 
+/***************************************************************************************
+* Array of tables metadatas
+****************************************************************************************/
 extern const struct table_metadata tables_metadatas[TAB_COUNT];
 
 /***************************************************************************************
-* Entities common fields
+* Tables common fields
 ****************************************************************************************/
-typedef struct {
+struct table {
     table_code type;
     unsigned id;
-} entity;
+};
 
 /***************************************************************************************
-* Country entity
+* Country tuple
 ****************************************************************************************/
-typedef struct {
+struct country {
     table_code type;
-    unsigned id;
+    unsigned id;            // pk
     char name[26];
     char zone[26];
     char iso[4];
-} country_entity;
+};
 
 /***************************************************************************************
-* Job entity
+* Job tuple
 ****************************************************************************************/
-typedef struct {
+struct job{
     table_code type;
-    unsigned id;
+    unsigned id;            // pk
     char level[32];
     char department[32];
     char name[56];
-} job_entity;
+};
 
 /***************************************************************************************
-* Industry entity
+* Industry tuple
 ****************************************************************************************/
-typedef struct {
+struct industry {
     table_code type;
-    unsigned id;
+    unsigned id;            // pk
     char sector[32];
     char name[56];
-} industry_entity;
+};
 
 /***************************************************************************************
-* Group entity
+* Group tuple
 ****************************************************************************************/
-typedef struct {
+struct group {
     table_code type;
-    unsigned id;
+    unsigned id;            // pk
     char name[52];
-    unsigned country_id;    // foreign key
-} group_entity;
+    unsigned country_id;    // fk
+};
 
 /***************************************************************************************
-* Company entity
+* Company tuple
 ****************************************************************************************/
-typedef struct {
+struct company {
     table_code type;
-    unsigned id;
-    unsigned id_group;
-    unsigned id_country;
-    unsigned id_industry;
+    unsigned id;            // pk
+    unsigned id_group;      // fk
+    unsigned id_country;    // fk
+    unsigned id_industry;   // fk
     char name[76];
-} company_entity;
+};
 
 /***************************************************************************************
-* Person entity
+* Person tuple
 ****************************************************************************************/
-typedef struct {
+struct person {
     table_code type;
-    unsigned id;
-    unsigned id_company;
-    unsigned id_job;
+    unsigned id;            // pk
+    unsigned id_company;    // fk
+    unsigned id_job;        // fk
     char title[16]; 
     char firstname[32];
     char lastname[32];
     char gender[8];
-    struct tm creation_date;  // date of recording -> 12 TODO -> char
+    char creation_date[12]; //struct tm creation_date; // date of creation of the record
     char phone_number[16];
     char mobile_number[16];
     char mail[40];
     unsigned shares;
-} person_entity;
+};

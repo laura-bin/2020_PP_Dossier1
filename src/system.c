@@ -2,9 +2,9 @@
 * Dossier 1 : Analyse de donnees clients
 * ======================================
 *
-* System dependent constants & functions prototypes
+* System dependent functions
 *
-* Programmation procedurale 2020 - Laura Binacchi - Fedora 32
+* PP 2020 - Laura Binacchi - Fedora 32
 ****************************************************************************************/
 
 #include <stdio.h>
@@ -22,8 +22,10 @@
 #include <sys/stat.h>
 #endif
 
-/* Tests the operating system :
- * only Windows (32 & 64) & linux based systems are supported by the application */
+/***************************************************************************************
+* Tests the operating system :
+* only Windows (32 & 64) & linux based systems are supported by the application
+****************************************************************************************/
 int test_OS(void) {
     #ifdef _WIN32
         return 0;
@@ -34,7 +36,9 @@ int test_OS(void) {
     #endif
 }
 
-/* Clears the terminal (new page) */
+/***************************************************************************************
+* Clears the terminal (new page)
+****************************************************************************************/
 void clear_terminal(void) {
 #ifdef _WIN32
     system("cls");
@@ -43,19 +47,9 @@ void clear_terminal(void) {
 #endif
 }
 
-/* Pauses the programs (waits for a key to be pressed) */
-void pause_page(void) {
-#ifdef _WIN32
-    puts("\nPress any key to continue...");
-    system("pause");
-#else
-    printf("\nPress any key to continue...");
-    int c = getchar();
-    if (c != '\n') clean_stdin();
-#endif
-}
-
-/* Makes a new directory in the directory from which the program is launched */
+/***************************************************************************************
+* Makes a new directory in the directory from which the program is launched
+****************************************************************************************/
 void make_sub_dir(char *new_dir) {
 #ifdef _WIN32
     _mkdir(new_dir);

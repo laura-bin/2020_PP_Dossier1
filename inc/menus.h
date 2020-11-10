@@ -3,11 +3,11 @@
 * Dossier 1 : Analyse de donnees clients
 * ======================================
 *
-* Menus declaratifs :
-*   - menu admin : creation / suppression du fichier de base de donnees
-*   - menu utilisateur : consultation du fichier de base de donnees
+* Declarative menus:
+*   - admin menu: db file creation, deletion, import, etc.
+*   - user menu: db file acces functions
 *
-* Programmation procedurale 2020 - Laura Binacchi - Fedora 32
+* PP 2020 - Laura Binacchi - Fedora 32
 ****************************************************************************************/
 
 #include "db_file.h"
@@ -15,8 +15,8 @@
 /***************************************************************************************
 * Number of menus for each application mode
 ****************************************************************************************/
-#define ADMIN_MENUS_COUNT   2
-#define USER_MENUS_COUNT    2
+#define ADMIN_MENUS_COUNT   3
+#define USER_MENUS_COUNT    1
 
 /***************************************************************************************
 * Application modes & count
@@ -31,7 +31,7 @@ enum app_mode {
 * Menu entry : text displayed to the user and action to call
 ****************************************************************************************/
 struct menu_entry {
-    char text[255];                     // text to display to the user
+    char *text;                         // text to display to the user
     int (*action)(database *db);        // action to execute when the entry is selected
 };
 
