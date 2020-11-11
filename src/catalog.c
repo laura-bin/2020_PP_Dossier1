@@ -9,6 +9,9 @@
 ****************************************************************************************/
 
 #include "catalog.h"
+#include "table/country.h"
+
+#include "system.h"
 
 /***************************************************************************************
 * Tables metadatas:
@@ -19,38 +22,45 @@
 ****************************************************************************************/
 const struct table_metadata tables_metadatas[TAB_COUNT] = {
     {
-        .name = "CTR",
+        .prefix = "CTR",
         .display_name = "Country",
+        .csv_path = CSV_DIR DIR_SEP"DB_Country.csv",
         .n_reserved = N_RES_CTR,
-        .size = sizeof(struct country)
+        .size = sizeof(struct country),
+        .import = &import_country
     },
     {
-        .name = "JOB",
+        .prefix = "JOB",
         .display_name = "Job",
+        .csv_path = CSV_DIR DIR_SEP"DB_Job.csv",
         .n_reserved = N_RES_JOB,
         .size = sizeof(struct job)
     },
     {
-        .name = "IND",
+        .prefix = "IND",
         .display_name = "Industry",
+        .csv_path = CSV_DIR DIR_SEP"DB_Industry.csv",
         .n_reserved = N_RES_IND,
         .size = sizeof(struct industry)
     },
     {
-        .name = "GRP",
+        .prefix = "GRP",
         .display_name = "Group",
+        .csv_path = CSV_DIR DIR_SEP"DB_Group.csv",
         .n_reserved = N_RES_GRP,
         .size = sizeof(struct group)
     },
     {
-        .name = "CMP",
+        .prefix = "CMP",
         .display_name = "Company",
+        .csv_path = CSV_DIR DIR_SEP"DB_Company.csv",
         .n_reserved = N_RES_CMP,
         .size = sizeof(struct company)
     },
     {
-        .name = "PRS",
+        .prefix = "PRS",
         .display_name = "Person",
+        .csv_path = CSV_DIR DIR_SEP"DB_Person.csv",
         .n_reserved = N_RES_PRS,
         .size = sizeof(struct person)
     },

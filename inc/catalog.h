@@ -3,11 +3,10 @@
 * Dossier 1 : Analyse de donnees clients
 * ======================================
 *
-* Catalog :
-*   - types & count of the different tables
-*   - number of tuples reserved for each table
-*   - database metadatas structure
-*   - database tables structures
+* Catalog:
+*   - tables infos : number of tuples reserved for each table, prefix length, etc.
+*   - database metatada structure
+*   - tuples definitions (structures written in the database file)
 *
 * PP 2020 - Laura Binacchi - Fedora 32
 ****************************************************************************************/
@@ -15,17 +14,10 @@
 #include <stddef.h>
 
 /***************************************************************************************
-* Types of tables & table count
+* Files paths & directories
 ****************************************************************************************/
-typedef enum {
-    COUNTRY,
-    JOB,
-    INDUSTRY,
-    GROUP,
-    COMPANY,
-    PERSON,
-    TAB_COUNT   // number of tables in the database
-} table_code;
+#define DAT_DIR "data_clients"  // database file & log file directory
+#define CSV_DIR "data_import"   // csv files directory
 
 /***************************************************************************************
 * Number of reserved locations in the DB file for each type of tuple
@@ -38,13 +30,34 @@ typedef enum {
 #define N_RES_PRS 500000
 
 /***************************************************************************************
-* Table metadatas
+* Size of tuple prefix corresponding to the table type (CTR, JOB, etc.)
 ****************************************************************************************/
+#define PREF_LEN 8
+
+/***************************************************************************************
+* Types of tables & table count
+****************************************************************************************/
+enum table {
+    COUNTRY,
+    JOB,
+    INDUSTRY,
+    GROUP,
+    COMPANY,
+    PERSON,
+    TAB_COUNT   // number of tables in the database
+};
+
+/***************************************************************************************
+* Table metadata
+****************************************************************************************/
+struct db;
 struct table_metadata {
-    char name[8];           // tuple prefix in the database
+    char prefix[PREF_LEN];  // tuple prefix in the database
     char display_name[32];  // name displayed to the user
+    char csv_path[32];      // csv file path used to import data
     unsigned n_reserved;    // number of tuples reserved in the table
     size_t size;            // tuple size
+    int (*import)(struct db *, char *, unsigned); // import function
 };
 
 /***************************************************************************************
@@ -53,32 +66,24 @@ struct table_metadata {
 extern const struct table_metadata tables_metadatas[TAB_COUNT];
 
 /***************************************************************************************
-* Tables common fields
-****************************************************************************************/
-struct table {
-    table_code type;
-    unsigned id;
-};
-
-/***************************************************************************************
 * Country tuple
 ****************************************************************************************/
 struct country {
-    table_code type;
+    char type[PREF_LEN];    // "CTR"
     unsigned id;            // pk
-    char name[26];
-    char zone[26];
+    char name[24];
+    char zone[24];
     char iso[4];
 };
 
 /***************************************************************************************
 * Job tuple
 ****************************************************************************************/
-struct job{
-    table_code type;
+struct job {
+    char type[PREF_LEN];    // "JOB"
     unsigned id;            // pk
-    char level[32];
-    char department[32];
+    char level[30];
+    char department[30];
     char name[56];
 };
 
@@ -86,17 +91,17 @@ struct job{
 * Industry tuple
 ****************************************************************************************/
 struct industry {
-    table_code type;
+    char type[PREF_LEN];    // "IND"
     unsigned id;            // pk
     char sector[32];
-    char name[56];
+    char name[52];
 };
 
 /***************************************************************************************
 * Group tuple
 ****************************************************************************************/
 struct group {
-    table_code type;
+    char type[PREF_LEN];    // "GRP"
     unsigned id;            // pk
     char name[52];
     unsigned country_id;    // fk
@@ -106,7 +111,7 @@ struct group {
 * Company tuple
 ****************************************************************************************/
 struct company {
-    table_code type;
+    char type[PREF_LEN];    // "CMP"
     unsigned id;            // pk
     unsigned id_group;      // fk
     unsigned id_country;    // fk
@@ -118,7 +123,7 @@ struct company {
 * Person tuple
 ****************************************************************************************/
 struct person {
-    table_code type;
+    char type[PREF_LEN];    // "PRS"
     unsigned id;            // pk
     unsigned id_company;    // fk
     unsigned id_job;        // fk

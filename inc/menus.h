@@ -15,7 +15,7 @@
 /***************************************************************************************
 * Number of menus for each application mode
 ****************************************************************************************/
-#define ADMIN_MENUS_COUNT   3
+#define ADMIN_MENUS_COUNT   4
 #define USER_MENUS_COUNT    1
 
 /***************************************************************************************
@@ -32,7 +32,7 @@ enum app_mode {
 ****************************************************************************************/
 struct menu_entry {
     char *text;                         // text to display to the user
-    int (*action)(database *db);        // action to execute when the entry is selected
+    int (*action)(struct db *);        // action to execute when the entry is selected
 };
 
 /***************************************************************************************
@@ -52,4 +52,4 @@ extern const struct menu menus[APP_MODE_COUNT];
 /***************************************************************************************
 * Displays the menu corresponding to the mode and calls the actions called by the user
 ****************************************************************************************/
-int main_menu(database* db);
+int main_menu(struct db *db);

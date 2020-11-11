@@ -1,0 +1,31 @@
+Id;Nm_Cty;Nm_Zon;Cd_Iso
+1;Austria;Germania;AT
+2;Belgium;Benelux;BE
+3;Bulgaria;Eastern Europe;BG
+4;Croatia;Eastern Europe;HR
+5;Czech Republic;Eastern Europe;CZ
+6;Denmark;Scandinavia;DK
+7;Estonia;Scandinavia;EE
+8;Finland;Scandinavia;FI
+9;France;Southern Europe;FR
+10;Germany;Germania;DE
+11;Greece;Southern Europe;GR
+12;Hungary;Eastern Europe;HU
+13;Iceland;Scandinavia;IS
+14;Ireland;UK and Ireland;IE
+15;Italy;Southern Europe;IT
+16;Liechtenstein;Germania;LI
+17;Luxembourg;Benelux;LU
+18;Malta;Southern Europe;MT
+19;Monaco;Southern Europe;MC
+20;Netherlands;Benelux;NL
+21;Norway;Scandinavia;NO
+22;Poland;Eastern Europe;PL
+23;Portugal;Southern Europe;PT
+24;Romania;Eastern Europe;RO
+25;Serbia;Eastern Europe;FY
+26;Slovakia;Eastern Europe;SK
+27;Spain;Southern Europe;ES
+28;Sweden;Scandinavia;SE
+29;Switzerland;Germania;CH
+30;United Kingdom;UK and Ireland;UK

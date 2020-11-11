@@ -50,7 +50,7 @@ unsigned get_uns_input(void) {
 /***************************************************************************************
 * Logs a message into the log file
 ****************************************************************************************/
-void log_info(database *db, char *from, char *msg) {
+void log_info(struct db *db, char *from, char *msg) {
     char sdt[64]; // string containing the datetime
     time_t t = time(NULL);
     struct tm tm = *localtime(&t);
@@ -58,14 +58,15 @@ void log_info(database *db, char *from, char *msg) {
     // format the date time string
 	sprintf(sdt, "%d-%02d-%02d %02d:%02d:%02d", tm.tm_year + 1900,
                 tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
-    
-    // log info to the log file
+
+    // log info into the log file
     fprintf(db->log_file, "%s %s: %s\n", sdt, from, msg);
+    fflush(db->log_file);
 }
 
 /***************************************************************************************
 * Logs an error message into the log file using errno
 ****************************************************************************************/
-void log_error(database *db, char *from) {
+void log_error(struct db *db, char *from) {
     log_info(db, from, strerror(errno));
 }

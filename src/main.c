@@ -24,20 +24,20 @@
 *       (admin is launched by adding param "admin")
 ****************************************************************************************/
 int main(int argc, char *argv[]) {
-    database db;
+    struct db db;
     int rv;         // returned value
 
     // open the log file & exit the program if it fails
-    make_sub_dir("datas");
-    if ((db.log_file = fopen("datas"DIR_SEP"db_clients.log", "a")) == NULL) return 1;
+    make_sub_dir(DAT_DIR);
+    if ((db.log_file = fopen(DAT_DIR DIR_SEP"db_clients.log", "a")) == NULL) return 1;
 
     // set the application mode
     if (argc == 2 && !strcmp(argv[1], "admin")) {
         db.app_mode = ADMIN;
-        log_info(&db, "Main program", "Program started by admin");
+        log_info(&db, "Main program", "Program started in admin mode");
     } else {
         db.app_mode = USER;
-        log_info(&db, "Main program", "Program started by user");
+        log_info(&db, "Main program", "Program started in user mode");
     }
 
     // test the OS & exit the program if its not supported
@@ -47,20 +47,18 @@ int main(int argc, char *argv[]) {
         return rv;
     }
 
-    // init database struct
     log_info(&db, "Main program", "Opening database file...");
-    strcpy(db.filename, "db_clients.dat");
-    strcpy(db.path, "datas"DIR_SEP"db_clients.dat");
+    // complete database file path
+    strcpy(db.dat_file_path, DAT_DIR DIR_SEP"db_clients.dat");
 
     // try to open the database file
-    open_db(&db);
-
     // in user mode, if no database is opened, the program stops
-    if (db.dat_file == NULL && db.app_mode == USER) {
+    rv = open_db(&db, READ);
+    if (rv && db.app_mode == USER) {
         puts("No database file available: please contact an administrator");
         log_info(&db, "Main program", "Program stopped (no database opened in user mode)");
         fclose(db.log_file);
-        return 1;
+        return rv;
     }
 
     // main menu loop

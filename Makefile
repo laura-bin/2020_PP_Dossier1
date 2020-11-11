@@ -10,15 +10,21 @@ CFLAGS = -g #debug
 
 .PHONY: all clean
 
-all: clients
+all: out clients
 
-clients: src/main.c out/catalog.o out/db_file.o out/menus.o out/system.o out/utils.o
+out: out/table
+
+clients: src/main.c out/catalog.o out/db_file.o out/menus.o out/system.o out/utils.o\
+			out/table/country.o
 	gcc $(CFLAGS) -o clients $^
 
 out/%.o: src/%.c inc/%.h
 	gcc $(CFLAGS) -c -o $@ $<
 
+out/%:
+	mkdir -p $@
+
 clean:
 	find out -name '*.o' -exec rm {} \+
-	rm -f clients datas/* Data_Export/* Data_DB_Comp/*
-	rmdir datas
+	rm -f clients data_clients/* data_export/* Data_DB_Comp/*
+#	rmdir data_clients

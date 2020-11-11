@@ -25,6 +25,10 @@ const struct menu_entry admin_menus[ADMIN_MENUS_COUNT] = {
         .action = &create_db
     },
     {
+        .text = "Import datas (from .csv files to dat file)",
+        .action = &import
+    },
+    {
         .text = "Delete database file",
         .action = &delete_db
     },
@@ -64,11 +68,11 @@ const struct menu menus[APP_MODE_COUNT] = {
 /***************************************************************************************
 * Clears the terminal and prints the header
 ****************************************************************************************/
-void print_header(database *db) {
+void print_header(struct db *db) {
     clear_terminal();
     puts("+-----------------------------------------------------------------------------------+");
     printf("| Client database: %-43s %20s |\n", 
-        db->dat_file == NULL ? "no database file opened" : db->filename,
+        db->dat_file == NULL ? "no database file opened" : db->header.db_name,
         menus[db->app_mode].title);
     puts("+-----------------------------------------------------------------------------------+");
     puts("");
@@ -77,7 +81,7 @@ void print_header(database *db) {
 /***************************************************************************************
 * Displays the main menu & call the action corresponding to the user's choice
 ****************************************************************************************/
-int main_menu(database *db) {
+int main_menu(struct db *db) {
     const struct menu *menu = &menus[db->app_mode];
     unsigned i;
     unsigned choice = 1;
