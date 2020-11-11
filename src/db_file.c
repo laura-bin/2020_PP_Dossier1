@@ -6,7 +6,8 @@
 *   - creation of the empty file
 *   - deletion of the database file
 *   - metadatas display
-*   - TODO import of data from csv files
+*   - data import from csv files
+*   - data export (test function)
 *
 * PP 2020 - Laura Binacchi - Fedora 32
 ****************************************************************************************/
@@ -134,27 +135,26 @@ int import(struct db *db) {
         // place the pointer to the offset of the table to import
         fseek(db->dat_file, db->header.offset[i], SEEK_SET);
 
-        if (i==0) {
-            // skip the csv header
-            fgets(line, buf_len, csv_file);
-            while (fgets(line, buf_len, csv_file) != NULL) {
-                rec_count += (*table->import)(db, line, buf_len);
-            }
+        // skip the csv header
+        fgets(line, buf_len, csv_file);
+
+        // then write each tuple & count successful new records
+        while (fgets(line, buf_len, csv_file) != NULL) {
+            rec_count += (*table->import)(db, line, buf_len);
         }
 
+        // close the csv file
         fclose(csv_file);
+
+        // log info
         sprintf(log_msg, "Table %-10s %10d new records", table->display_name, rec_count);
         log_info(db, "Importing data", log_msg);
         puts(log_msg);
     }
 
-    if (tab_error_count != 0) {
-        puts("");
-        printf("Import error on %d table(s)\n", tab_error_count);
-    } else {
-        puts("");
-        puts("All tables have been suceessfully updated");
-    }
+    // log info
+    if (tab_error_count != 0) printf("\nImport error on %d table(s)\n", tab_error_count);
+    else puts("\nAll tables have been suceessfully updated");
 
     // reopen database file in read mode
     close_db(db);
@@ -200,6 +200,7 @@ int open_db(struct db *db, enum opening_mode mode) {
         log_error(db, log_msg);
         return 1;
     }
+    
     log_info(db, log_msg, "Database file successfully opened");
     return 0;
 }

@@ -10,6 +10,11 @@
 
 #include "catalog.h"
 #include "table/country.h"
+#include "table/job.h"
+#include "table/industry.h"
+#include "table/group.h"
+#include "table/company.h"
+#include "table/person.h"
 
 #include "system.h"
 
@@ -34,34 +39,39 @@ const struct table_metadata tables_metadatas[TAB_COUNT] = {
         .display_name = "Job",
         .csv_path = CSV_DIR DIR_SEP"DB_Job.csv",
         .n_reserved = N_RES_JOB,
-        .size = sizeof(struct job)
+        .size = sizeof(struct job),
+        .import = &import_job
     },
     {
         .prefix = "IND",
         .display_name = "Industry",
         .csv_path = CSV_DIR DIR_SEP"DB_Industry.csv",
         .n_reserved = N_RES_IND,
-        .size = sizeof(struct industry)
+        .size = sizeof(struct industry),
+        .import = &import_industry
     },
     {
         .prefix = "GRP",
         .display_name = "Group",
         .csv_path = CSV_DIR DIR_SEP"DB_Group.csv",
         .n_reserved = N_RES_GRP,
-        .size = sizeof(struct group)
+        .size = sizeof(struct group),
+        .import = &import_group
     },
     {
         .prefix = "CMP",
         .display_name = "Company",
         .csv_path = CSV_DIR DIR_SEP"DB_Company.csv",
         .n_reserved = N_RES_CMP,
-        .size = sizeof(struct company)
+        .size = sizeof(struct company),
+        .import = &import_company
     },
     {
         .prefix = "PRS",
         .display_name = "Person",
         .csv_path = CSV_DIR DIR_SEP"DB_Person.csv",
         .n_reserved = N_RES_PRS,
-        .size = sizeof(struct person)
+        .size = sizeof(struct person),
+        .import = &import_person
     },
 };

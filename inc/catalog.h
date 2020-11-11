@@ -117,6 +117,14 @@ struct company {
     unsigned id_country;    // fk
     unsigned id_industry;   // fk
     char name[76];
+    char address[64];
+    char zip_code[10];
+    char city[40];
+    char phone_number[20];
+    char website[64];
+    char creation_date[12];
+    unsigned n_employees;
+    float share_value;
 };
 
 /***************************************************************************************
@@ -134,6 +142,6 @@ struct person {
     char creation_date[12]; //struct tm creation_date; // date of creation of the record
     char phone_number[16];
     char mobile_number[16];
-    char mail[40];
+    char email[40];
     unsigned shares;
 };

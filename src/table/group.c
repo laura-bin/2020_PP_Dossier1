@@ -2,7 +2,7 @@
 * Dossier 1 : Analyse de donnees clients
 * ======================================
 *
-* Country table functions:
+* Group table functions:
 *   - import
 *
 * PP 2020 - Laura Binacchi - Fedora 32
@@ -12,19 +12,19 @@
 #include <string.h>
 
 #include "catalog.h"
-#include "table/country.h"
+#include "table/group.h"
 
 /***************************************************************************************
-* Imports a country from a csv file line to the dat file
+* Imports a group from a csv file line to the dat file
 * returns the number of new records imported (1 if all is ok)
 ****************************************************************************************/
-int import_country(struct db *db, char *csv_line, unsigned line_len) {
-    struct country new_rec;         // new record to write in the dat file
+int import_group(struct db *db, char *csv_line, unsigned line_len) {
+    struct group new_rec;           // new record to write in the dat file
     char *tok, *next_tok;           // line's tokens separated by strtok
     char tmp_field[line_len];       // temporary field used for conversion to integer
 
     // init the new record to 0
-    memset(&new_rec, 0, sizeof(struct country));
+    memset(&new_rec, 0, sizeof(struct group));
 
     // set type
     strncpy(new_rec.type, tables_metadatas[COUNTRY].prefix, PREF_LEN);
@@ -41,15 +41,11 @@ int import_country(struct db *db, char *csv_line, unsigned line_len) {
     next_tok = strtok(NULL, ";");
     strncpy(new_rec.name, tok, next_tok-tok-1);
 
-    // set zone
-    tok = next_tok;
-    next_tok = strtok(NULL, ";");
-    strncpy(new_rec.zone, tok, next_tok-tok-1);
-
-    // set ISO code
-    tok = next_tok;
-    strncpy(new_rec.iso, tok, strlen(tok)-1);
+    // set country id
+    memset(tmp_field, 0, line_len);
+    strncpy(tmp_field, next_tok, strlen(next_tok)-1);
+    new_rec.country_id = atoi(tmp_field);
 
     // write the new entity into the dat file
-    return fwrite(&new_rec, sizeof(struct country), 1, db->dat_file);
+    return fwrite(&new_rec, sizeof(struct group), 1, db->dat_file);
 }
