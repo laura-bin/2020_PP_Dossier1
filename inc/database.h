@@ -13,6 +13,15 @@
 #include "catalog.h"
 
 /***************************************************************************************
+* Application modes & count
+****************************************************************************************/
+enum app_mode {
+    ADMIN,
+    USER,
+    APP_MODE_COUNT
+};
+
+/***************************************************************************************
 * Database file header
 ****************************************************************************************/
 struct header {
@@ -27,13 +36,14 @@ struct header {
 * Informations about the database used by the main program
 ****************************************************************************************/
 struct db {
-    int app_mode;                           // application mode : admin or user
+    enum app_mode app_mode;                 // application mode : admin or user
     char dat_file_path[255];                // database file relative path
     FILE *dat_file;                         // database file pointer
     FILE *log_file;                         // log file pointer
+    FILE *csv_file;                         // csv file pointer
     struct header header;                   // database header
     struct country countries[N_RES_CTR];    // buffer of coutries (sorted)
     struct job jobs[N_RES_JOB];             // buffer of jobs (sorted)
     struct industry industries[N_RES_IND];  // buffer of industries (sorted)
-    struct group groups[N_RES_IND];         // buffer of groups (sorted)
+    struct group groups[N_RES_GRP];         // buffer of groups (sorted)
 };

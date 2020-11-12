@@ -3,8 +3,7 @@
 * Dossier 1 : Analyse de donnees clients
 * ======================================
 *
-* Job table functions prototypes:
-*   - import
+* Job table functions prototypes
 *
 * PP 2020 - Laura Binacchi - Fedora 32
 ****************************************************************************************/
@@ -12,6 +11,11 @@
 #include "database.h"
 
 /***************************************************************************************
-* Import a job from the csv file to the dat file
+* Job table manipulation functions
 ****************************************************************************************/
-int import_job(struct db *db, char *csv_line, unsigned line_len);
+// import a job from the csv file to the dat file
+int import_job(struct db *db, char *csv_line);
+// export a job from the dat file to the csv file
+int export_job(struct db *db);
+int load_job(struct db *db);    // load a job from the dat file to the buffer
+int print_job(struct db *db);   // print a job on the stdout

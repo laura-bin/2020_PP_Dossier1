@@ -25,16 +25,20 @@ const struct menu_entry admin_menus[ADMIN_MENUS_COUNT] = {
         .action = &create_db
     },
     {
-        .text = "Import datas (from .csv files to dat file)",
+        .text = "Import data (from csv files to dat file)",
         .action = &import
+    },
+    {
+        .text = "Export data (from dat file to csv files)",
+        .action = &export
     },
     {
         .text = "Delete database file",
         .action = &delete_db
     },
     {
-        .text = "Display database file metadatas",
-        .action = &display_metadatas
+        .text = "Display database file metadata",
+        .action = &display_metadata
     }
 };
 

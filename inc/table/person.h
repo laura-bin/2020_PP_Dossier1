@@ -3,8 +3,7 @@
 * Dossier 1 : Analyse de donnees clients
 * ======================================
 *
-* Person table functions prototypes:
-*   - import
+* Person table functions prototypes
 *
 * PP 2020 - Laura Binacchi - Fedora 32
 ****************************************************************************************/
@@ -12,7 +11,10 @@
 #include "database.h"
 
 /***************************************************************************************
-* Import a person from the csv file to the dat file
+* Person table manipulation functions
 ****************************************************************************************/
-int import_person(struct db *db, char *csv_line, unsigned line_len);
-
+// import a person from the csv file to the dat file
+int import_person(struct db *db, char *csv_line);
+// export a person from the dat file to the csv file
+int export_person(struct db *db);  
+int print_person(struct db *db);   // print a person on the stdout

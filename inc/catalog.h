@@ -17,7 +17,9 @@
 * Files paths & directories
 ****************************************************************************************/
 #define DAT_DIR "data_clients"  // database file & log file directory
-#define CSV_DIR "data_import"   // csv files directory
+#define IMP_DIR "data_import"   // directory containing csv files used for import
+#define EXP_DIR "data_export"   // directory containing csv files used for export
+#define CSV_BUF_LEN 1024        // buffer length used on read/write csv files
 
 /***************************************************************************************
 * Number of reserved locations in the DB file for each type of tuple
@@ -54,16 +56,20 @@ struct db;
 struct table_metadata {
     char prefix[PREF_LEN];  // tuple prefix in the database
     char display_name[32];  // name displayed to the user
-    char csv_path[32];      // csv file path used to import data
     unsigned n_reserved;    // number of tuples reserved in the table
     size_t size;            // tuple size
-    int (*import)(struct db *, char *, unsigned); // import function
+    char csv_path[255];     // csv file path used to import data
+    char csv_header[255];   // csv file header
+    int (*import)(struct db *, char *); // import function pointer
+    int (*export)(struct db *);         // export function pointer
+    int (*load)(struct db *);           // load function pointer
+    int (*print)(struct db *);          // print function pointer
 };
 
 /***************************************************************************************
-* Array of tables metadatas
+* Array of tables metadata
 ****************************************************************************************/
-extern const struct table_metadata tables_metadatas[TAB_COUNT];
+extern const struct table_metadata tables_metadata[TAB_COUNT];
 
 /***************************************************************************************
 * Country tuple

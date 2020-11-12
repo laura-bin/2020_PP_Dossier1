@@ -5,7 +5,9 @@
 * v 1 :
 *   - admin menu (by launching program with param "admin") : db file creation / deletion
 *   - declarative menus
-*   - database metadatas display
+*   - database metadata display
+*   - data import
+*   - data export
 *
 * PP 2020 - Laura Binacchi - Fedora 32
 ****************************************************************************************/

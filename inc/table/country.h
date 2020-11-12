@@ -3,8 +3,7 @@
 * Dossier 1 : Analyse de donnees clients
 * ======================================
 *
-* Country table functions prototypes:
-*   - import
+* Country table functions prototypes
 *
 * PP 2020 - Laura Binacchi - Fedora 32
 ****************************************************************************************/
@@ -12,6 +11,11 @@
 #include "database.h"
 
 /***************************************************************************************
-* Import a country from the csv file to the dat file
+* Country table manipulation functions
 ****************************************************************************************/
-int import_country(struct db *db, char *csv_line, unsigned line_len);
+// import a country from the csv file to the dat file
+int import_country(struct db *db, char *csv_line);
+// export a country from the dat file to the csv files
+int export_country(struct db *db);
+int load_country(struct db *db);    // load a country from the dat file to the buffer
+int print_country(struct db *db);   // print a country on the stdout
