@@ -15,6 +15,5 @@
 ****************************************************************************************/
 // import a company from the csv file to the dat file
 int import_company(struct db *db, char *csv_line);
-// export a company from the dat file to the csv file
-int export_company(struct db *db);
+int export_company(struct db *db);  // export a company from the dat file to the csv file
 int print_company(struct db *db);   // print a company on the stdout

@@ -124,7 +124,7 @@ int export_company(struct db *db) {
 
     memset(&tuple, 0, sizeof(struct company));
     if (fread(&tuple, sizeof(struct company), 1, db->dat_file) == 1) {
-        sprintf(new_line, "%d;%d;%d;%d;%s;%s;%s;%s;%s;%s;%s;%d;%f\n", tuple.id,
+        sprintf(new_line, "%d;%d;%d;%d;%s;%s;%s;%s;%s;%s;%s;%d;%.2f\n", tuple.id,
                     tuple.id_group, tuple.id_country, tuple.id_industry, tuple.name,
                     tuple.address, tuple.zip_code, tuple.city, tuple.phone_number,
                     tuple.website, tuple.creation_date, tuple.n_employees, tuple.share_value);

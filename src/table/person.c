@@ -3,7 +3,10 @@
 * ======================================
 *
 * Person table function:
-*   - import
+*   - import from csv file to dat file
+*   - export from dat file to csv file
+*   - load from dat file to buffer
+*   - print a single tuple tuple from the buffer
 *
 * PP 2020 - Laura Binacchi - Fedora 32
 ****************************************************************************************/

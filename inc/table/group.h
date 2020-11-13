@@ -15,7 +15,6 @@
 ****************************************************************************************/
 // import a group from the csv file to the dat file
 int import_group(struct db *db, char *csv_line);
-// export a group from the dat file to the csv file
-int export_group(struct db *db);
-int load_group(struct db *db);    // load a group from the dat file to the buffer
-int print_group(struct db *db);   // print a group on the stdout
+int export_group(struct db *db);    // export a group from the dat file to the csv file
+int load_group(struct db *db);      // load a group from the dat file to the buffer
+int print_group(struct db *db);     // print a group on the stdout

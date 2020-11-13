@@ -15,6 +15,5 @@
 ****************************************************************************************/
 // import a person from the csv file to the dat file
 int import_person(struct db *db, char *csv_line);
-// export a person from the dat file to the csv file
-int export_person(struct db *db);  
+int export_person(struct db *db);  // export a person from the dat file to the csv file
 int print_person(struct db *db);   // print a person on the stdout

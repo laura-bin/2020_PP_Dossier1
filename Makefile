@@ -31,3 +31,4 @@ clean:
 	rmdir out/*
 	rmdir out
 	rmdir data_clients
+	rmdir data_export

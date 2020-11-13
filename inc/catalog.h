@@ -19,7 +19,7 @@
 #define DAT_DIR "data_clients"  // database file & log file directory
 #define IMP_DIR "data_import"   // directory containing csv files used for import
 #define EXP_DIR "data_export"   // directory containing csv files used for export
-#define CSV_BUF_LEN 1024        // buffer length used on read/write csv files
+#define CSV_BUF_LEN 255         // buffer length used on read/write csv files
 
 /***************************************************************************************
 * Number of reserved locations in the DB file for each type of tuple
@@ -88,9 +88,9 @@ struct country {
 struct job {
     char type[PREF_LEN];    // "JOB"
     unsigned id;            // pk
-    char level[30];
-    char department[30];
-    char name[56];
+    char level[22];
+    char department[24];
+    char name[38];
 };
 
 /***************************************************************************************
@@ -99,8 +99,8 @@ struct job {
 struct industry {
     char type[PREF_LEN];    // "IND"
     unsigned id;            // pk
-    char sector[32];
-    char name[52];
+    char sector[20];
+    char name[32];
 };
 
 /***************************************************************************************
@@ -109,7 +109,7 @@ struct industry {
 struct group {
     char type[PREF_LEN];    // "GRP"
     unsigned id;            // pk
-    char name[52];
+    char name[46];
     unsigned country_id;    // fk
 };
 
@@ -122,12 +122,12 @@ struct company {
     unsigned id_group;      // fk
     unsigned id_country;    // fk
     unsigned id_industry;   // fk
-    char name[76];
-    char address[64];
-    char zip_code[10];
-    char city[40];
+    char name[62];
+    char address[60];
+    char zip_code[12];
+    char city[32];
     char phone_number[20];
-    char website[64];
+    char website[40];
     char creation_date[12];
     unsigned n_employees;
     float share_value;
@@ -141,13 +141,13 @@ struct person {
     unsigned id;            // pk
     unsigned id_company;    // fk
     unsigned id_job;        // fk
-    char title[16]; 
-    char firstname[32];
-    char lastname[32];
-    char gender[8];
+    char title[12]; 
+    char firstname[30];
+    char lastname[38];
+    char gender[2];
     char creation_date[12]; //struct tm creation_date; // date of creation of the record
     char phone_number[16];
     char mobile_number[16];
-    char email[40];
+    char email[58];
     unsigned shares;
 };

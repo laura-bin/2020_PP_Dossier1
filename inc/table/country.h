@@ -15,7 +15,6 @@
 ****************************************************************************************/
 // import a country from the csv file to the dat file
 int import_country(struct db *db, char *csv_line);
-// export a country from the dat file to the csv files
-int export_country(struct db *db);
+int export_country(struct db *db);  // export a country from the dat file to the csv files
 int load_country(struct db *db);    // load a country from the dat file to the buffer
 int print_country(struct db *db);   // print a country on the stdout

@@ -17,7 +17,6 @@
 #include <time.h>
 
 #include "db_file.h"
-#include "table/country.h"
 #include "system.h"
 #include "utils.h"
 
@@ -180,9 +179,10 @@ int delete_db(struct db *db) {
 ****************************************************************************************/
 int import(struct db *db) {
     enum table i;                       // table index
+    char log_from[64];                  // log method message
+    char log_msg[1024];                 // log message
     FILE *csv_file;                     // csv file pointer
-    const unsigned buf_len = 1024;      // line buffer length
-    char line[buf_len];                 // csv line
+    char line[CSV_BUF_LEN];             // csv line
     int tab_error_count = 0;            // count of tables not updated
 
     // if there is no database, import is impossible
@@ -197,31 +197,29 @@ int import(struct db *db) {
     open_db(db, APPEND);
 
     for (i = 0; i < TAB_COUNT; i++) {
-        char log_msg[1024]; // log message
         int rec_count = 0;  // number of new tuples successfully recorded
         const struct table_metadata *table = &tables_metadata[i];
+
+        // set where we are
+        sprintf(log_from, "Importing data to %s table", table->display_name);
         
         // open the csv file: rb for consistent treatment of end of line symbols (depending on the OS)
         csv_file = fopen(table->csv_path, "rb");
         if (csv_file == NULL) {
-            sprintf(log_msg, "Importing data from %s", table->csv_path);
-            log_error(db, log_msg);
-            perror(log_msg);
+            log_error(db, log_from);
+            perror(log_from);
             tab_error_count++;
             continue;
         }
-
-        sprintf(log_msg, "%s successfully opened", table->csv_path);
-        log_info(db, "Importing data", log_msg);
 
         // place the pointer to the offset of the table to import
         fseek(db->dat_file, db->header.offset[i], SEEK_SET);
 
         // skip the csv header
-        fgets(line, buf_len, csv_file);
+        fgets(line, CSV_BUF_LEN, csv_file);
 
         // then write each tuple & count successful new records
-        while (fgets(line, buf_len, csv_file) != NULL) {
+        while (fgets(line, CSV_BUF_LEN, csv_file) != NULL) {
             rec_count += (*table->import)(db, line);
         }
 
@@ -234,9 +232,9 @@ int import(struct db *db) {
         fwrite(&db->header, sizeof(struct header), 1, db->dat_file);
 
         // log info
-        sprintf(log_msg, "Table %-8s %6d new records", table->display_name, rec_count);
-        log_info(db, "Importing data", log_msg);
-        puts(log_msg);
+        sprintf(log_msg, "%d new records", rec_count);
+        log_info(db, log_from, log_msg);
+        printf("%-35s %20s\n", log_from, log_msg);
     }
 
     // log info
@@ -277,20 +275,22 @@ int export(struct db *db) {
     strftime(sdt, 32, "%F_%H-%M-%S", tm);
 
     for (i = 0; i < TAB_COUNT; i++) {
+        char log_from[64];      // log from
         char log_msg[255];      // log message
         char csv_path[255];     // csv file path
         unsigned j = 0;
         unsigned n_rec = 0;
         const struct table_metadata *table = &tables_metadata[i];
 
+        sprintf(log_from, "Exporting data from %s table", table->display_name);
+
         // format the csv file path
         sprintf(csv_path, EXP_DIR DIR_SEP"%s_Export_%s.csv", table->display_name, sdt);
 
         // try to open the csv file
         if ((db->csv_file = fopen(csv_path, "w")) == NULL) {
-            sprintf(log_msg, "Exporting %s table", table->display_name);
-            log_error(db, log_msg);
-            perror(log_msg);
+            log_error(db, log_from);
+            perror(log_from);
             tab_error_count++;
             continue;
         }
@@ -309,16 +309,15 @@ int export(struct db *db) {
 
         // log info
         if (db->header.n_recorded[i] == 0) {
-            sprintf(log_msg, "Exporting %s table: no records to export", table->display_name);
+            strcpy(log_msg, "no records to export");
         } else if (n_rec == db->header.n_recorded[i]) {
-            sprintf(log_msg, "Exporting %s table: %d records successfully exported",
-                        table->display_name, n_rec);
+            sprintf(log_msg, "%d records successfully exported", n_rec);
         } else {
-            sprintf(log_msg, "Exporting %s table: error on %d record(s) export (%d successfully exported)",
-                        table->display_name, db->header.n_recorded[i] - n_rec, n_rec);
+            sprintf(log_msg, "error on %d record(s) export (%d successfully exported)",
+                        db->header.n_recorded[i] - n_rec, n_rec);
         }
-        log_info(db, "Exporting data", log_msg);
-        puts(log_msg);
+        log_info(db, log_from, log_msg);
+        printf("%-39s %40s\n", log_from, log_msg);
     }
 
     return tab_error_count;
