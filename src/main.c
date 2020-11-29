@@ -2,12 +2,14 @@
 * Dossier 1 : Analyse de donnees clients
 * ======================================
 *
-* v 1 :
+* v 1:
 *   - admin menu (by launching program with param "admin") : db file creation / deletion
 *   - declarative menus
 *   - database metadata display
 *   - data import
 *   - data export
+* v1.1:
+    - aligner en modulo 32
 *
 * PP 2020 - Laura Binacchi - Fedora 32
 ****************************************************************************************/

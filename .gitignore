@@ -1,5 +1,6 @@
 Data_DB_Comp/*
 Data_Export/*
+data_clients/*
+LB-*
 *.o
-main
-
+clients

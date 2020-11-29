@@ -26,7 +26,7 @@ enum app_mode {
 ****************************************************************************************/
 struct header {
     unsigned size;                  // db file size
-    char db_name[36];               // db name
+    char db_name[20];               // db name
     unsigned offset[TAB_COUNT];     // offset of each table
     unsigned n_reserved[TAB_COUNT]; // number of tuples reserved in each table
     unsigned n_recorded[TAB_COUNT]; // number of tuples saved in each table

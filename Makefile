@@ -6,7 +6,7 @@
 
 CFLAGS ?= -g #debug
 # CFLAGS = -O3
-override CFLAGS += -Wall -Wpedantic -Wextra -Iinc
+override CFLAGS += -Wall -Wpedantic -Wextra -Iinclude
 
 .PHONY: all clean
 
@@ -19,7 +19,7 @@ clients: src/main.c out/catalog.o out/db_file.o out/menus.o out/system.o out/uti
 			out/table/group.o out/table/company.o out/table/person.o
 	gcc $(CFLAGS) -o clients $^
 
-out/%.o: src/%.c inc/%.h
+out/%.o: src/%.c include/%.h
 	gcc $(CFLAGS) -c -o $@ $<
 
 out/%:

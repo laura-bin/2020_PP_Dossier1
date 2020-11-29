@@ -19,7 +19,7 @@
 #define DAT_DIR "data_clients"  // database file & log file directory
 #define IMP_DIR "data_import"   // directory containing csv files used for import
 #define EXP_DIR "data_export"   // directory containing csv files used for export
-#define CSV_BUF_LEN 255         // buffer length used on read/write csv files
+#define CSV_BUF_LEN 1024        // buffer length used on read/write csv files
 
 /***************************************************************************************
 * Number of reserved locations in the DB file for each type of tuple
@@ -122,12 +122,12 @@ struct company {
     unsigned id_group;      // fk
     unsigned id_country;    // fk
     unsigned id_industry;   // fk
-    char name[62];
-    char address[60];
-    char zip_code[12];
+    char name[64];
+    char address[64];
+    char zip_code[16];
     char city[32];
-    char phone_number[20];
-    char website[40];
+    char phone_number[24];
+    char website[42];
     char creation_date[12];
     unsigned n_employees;
     float share_value;
@@ -141,13 +141,13 @@ struct person {
     unsigned id;            // pk
     unsigned id_company;    // fk
     unsigned id_job;        // fk
-    char title[12]; 
-    char firstname[30];
-    char lastname[38];
+    char title[16]; 
+    char firstname[32];
+    char lastname[42];
     char gender[2];
     char creation_date[12]; //struct tm creation_date; // date of creation of the record
     char phone_number[16];
     char mobile_number[16];
-    char email[58];
+    char email[64];
     unsigned shares;
 };
