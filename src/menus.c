@@ -16,9 +16,7 @@
 #include "system.h"
 #include "utils.h"
 
-/***************************************************************************************
-* Admin mode menus
-****************************************************************************************/
+/* Admin mode menus assignation */
 const struct menu_entry admin_menus[ADMIN_MENUS_COUNT] = {
     {
         .text = "Create database file",
@@ -42,9 +40,7 @@ const struct menu_entry admin_menus[ADMIN_MENUS_COUNT] = {
     }
 };
 
-/***************************************************************************************
-* User mode menus
-****************************************************************************************/
+/* User mode menus assignation */
 const struct menu_entry user_menus[USER_MENUS_COUNT] = {
     {
         .text = ".",
@@ -52,9 +48,7 @@ const struct menu_entry user_menus[USER_MENUS_COUNT] = {
     }
 };
 
-/***************************************************************************************
-* Menus for each application mode
-****************************************************************************************/
+/* Menus for each application mode assignation */
 const struct menu menus[APP_MODE_COUNT] = {
     {
         .title = "Admin mode",
@@ -68,11 +62,14 @@ const struct menu menus[APP_MODE_COUNT] = {
     },
 };
 
+/* PRIVATE METHOD */
 
-/***************************************************************************************
-* Clears the terminal and prints the header
-****************************************************************************************/
-void print_header(struct db *db) {
+/**
+ * Clears the terminal and prints the header
+ * 
+ * @return 0 if the method has successfully been executed
+ */
+int print_header(struct db *db) {
     clear_terminal();
     puts("+-----------------------------------------------------------------------------------+");
     printf("| Client database: %-43s %20s |\n", 
@@ -80,17 +77,16 @@ void print_header(struct db *db) {
         menus[db->app_mode].title);
     puts("+-----------------------------------------------------------------------------------+");
     puts("");
+    return 0;
 }
 
-/***************************************************************************************
-* Displays the main menu & call the action corresponding to the user's choice
-****************************************************************************************/
+/* METHOD IMPLEMENTATION */
 int main_menu(struct db *db) {
-    const struct menu *menu = &menus[db->app_mode];
+    const struct menu *menu = &menus[db->app_mode]; // menus (display name + action)
+    unsigned choice = 1;                            // user menu choice
     unsigned i;
-    unsigned choice = 1;
-
-    while(choice) {
+    
+    while(1) {
         // print the menu
         print_header(db);
         for (i = 0; i < menu->entry_count; i++) {
@@ -104,7 +100,7 @@ int main_menu(struct db *db) {
 
         // check if this choice is valid
         if (choice > menu->entry_count) {
-            printf("[%d] is not a valid menu.\n", choice);
+            printf("[%d] is not a valid menu\n", choice);
             pause_page();
             continue;
         }
@@ -117,15 +113,11 @@ int main_menu(struct db *db) {
                 puts("+-----------------------------------------------------------------------------------+");
                 return 0;
         }
-
         print_header(db);
         puts(menu->entries[choice-1].text);
         puts("-------------------------------------------------------------------------------------");
         puts("");
-
         (*menu->entries[choice-1].action)(db);
         pause_page();
     }
-    
-    return 0;
 }

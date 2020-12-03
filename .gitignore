@@ -1,6 +1,7 @@
-Data_DB_Comp/*
-Data_Export/*
+data_export/*
 data_clients/*
+rapport/*
 LB-*
 *.o
 clients
+.vscode

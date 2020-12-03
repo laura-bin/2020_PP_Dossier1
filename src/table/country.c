@@ -57,6 +57,16 @@ int import_country(struct db *db, char *csv_line) {
     return fwrite(&new_rec, sizeof(struct country), 1, db->dat_file);
 }
 
+int *read_country(struct db *db, struct country *out_country) {
+    memset(out_country, 0, sizeof(struct country));
+    if (fread(out_country, sizeof(struct country), 1, db->dat_file) == 1) {
+
+    }
+
+
+    return 0;
+}
+
 /***************************************************************************************
 * Exports a country from the dat file to the csv file
 * returns the number of tuples successfully exported (1 or 0)
@@ -73,8 +83,20 @@ int export_country(struct db *db) {
     return 0;
 }
 
-int load_country(struct db *db) {
-    return 0;
+int load_countries(struct db *db, int count) {
+    struct country country;
+    int i;
+    int load_count = 0;
+
+    for (i = 0; i < count; i++) {
+        memset(&country, 0, sizeof(struct country));
+
+        if (fread(&country, sizeof(struct country), 1, db->dat_file) == 1) {
+            db->countries[i] = country;
+            load_count++;
+        }
+    }
+    return load_count;
 }
 
 int print_country(struct db *db) {

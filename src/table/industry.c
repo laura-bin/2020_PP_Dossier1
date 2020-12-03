@@ -67,7 +67,7 @@ int export_industry(struct db *db) {
     return 0;
 }
 
-int load_industry(struct db *db) {
+int load_industries(struct db *db, int count) {
     return 0;
 }
 

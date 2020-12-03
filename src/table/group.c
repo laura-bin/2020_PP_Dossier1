@@ -69,7 +69,7 @@ int export_group(struct db *db) {
     return 0;
 }
 
-int load_group(struct db *db) {
+int load_groups(struct db *db, int count) {
     return 0;
 }
 

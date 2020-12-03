@@ -35,7 +35,7 @@ const struct table_metadata tables_metadata[TAB_COUNT] = {
         .size = sizeof(struct country),
         .import = &import_country,
         .export = &export_country,
-        .load = &load_country,
+        .load = &load_countries,
         .print = &print_country
     },
     {
@@ -47,7 +47,7 @@ const struct table_metadata tables_metadata[TAB_COUNT] = {
         .size = sizeof(struct job),
         .import = &import_job,
         .export = &export_job,
-        .load = &load_job,
+        .load = &load_jobs,
         .print = &print_job
     },
     {
@@ -59,7 +59,7 @@ const struct table_metadata tables_metadata[TAB_COUNT] = {
         .size = sizeof(struct industry),
         .import = &import_industry,
         .export = &export_industry,
-        .load = &load_industry,
+        .load = &load_industries,
         .print = &print_industry
     },
     {
@@ -71,7 +71,7 @@ const struct table_metadata tables_metadata[TAB_COUNT] = {
         .size = sizeof(struct group),
         .import = &import_group,
         .export = &export_group,
-        .load = &load_group,
+        .load = &load_groups,
         .print = &print_group
     },
     {

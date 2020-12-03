@@ -22,38 +22,31 @@
 #include <sys/stat.h>
 #endif
 
-/***************************************************************************************
-* Tests the operating system :
-* only Windows (32 & 64) & linux based systems are supported by the application
-****************************************************************************************/
 int test_OS(void) {
     #ifdef _WIN32
         return 0;
     #elif __linux__
         return 0;
     #else
-        return 1;
+        return -1;
     #endif
 }
 
-/***************************************************************************************
-* Clears the terminal (new page)
-****************************************************************************************/
-void clear_terminal(void) {
+int clear_terminal(void) {
+// system (linux & win) return the value that is returned by the command interpreter
 #ifdef _WIN32
-    system("cls");
+    if (system("cls") == -1) return -1;
+    return 0;
 #else
-    system("clear");
+    if (system("clear") == -1) return -1;
+    return 0;
 #endif
 }
 
-/***************************************************************************************
-* Makes a new directory in the directory from which the program is launched
-****************************************************************************************/
-void make_sub_dir(char *new_dir) {
+int make_sub_dir(char *new_dir) {
 #ifdef _WIN32
-    _mkdir(new_dir);
+    return _mkdir(new_dir);
 #else
-    mkdir(new_dir, 0700);
+    return mkdir(new_dir, 0700);
 #endif
 }

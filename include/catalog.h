@@ -60,10 +60,10 @@ struct table_metadata {
     size_t size;            // tuple size
     char csv_path[255];     // csv file path used to import data
     char csv_header[255];   // csv file header
-    int (*import)(struct db *, char *); // import function pointer
-    int (*export)(struct db *);         // export function pointer
-    int (*load)(struct db *);           // load function pointer
-    int (*print)(struct db *);          // print function pointer
+    int (*import)(struct db *, char *);     // import function pointer
+    int (*export)(struct db *);             // export function pointer
+    int (*load)(struct db *, int count);    // load function pointer
+    int (*print)(struct db *);              // print function pointer
 };
 
 /***************************************************************************************

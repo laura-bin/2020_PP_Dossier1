@@ -74,7 +74,7 @@ int export_job(struct db *db) {
     return 0;
 }
 
-int load_job(struct db *db) {
+int load_jobs(struct db *db, int count) {
     return 0;
 }
 
