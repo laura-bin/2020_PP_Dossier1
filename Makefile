@@ -12,10 +12,10 @@ override CFLAGS += -Wall -Wpedantic -Wextra -Iinclude
 
 all: out clients
 
-out: out/db_file out/table out/utils
+out: out/db_file out/table out/utils out/ui
 
-clients: src/main.c out/menus.o \
-			out/db_file/catalog.o out/db_file/db_file_utils.o out/db_file/db_file_admin.o\
+clients: src/main.c out/ui/menus.o out/db_file/catalog.o\
+		 	out/db_file/db_file_utils.o out/db_file/db_file_admin.o\
 			out/table/country.o out/table/job.o out/table/industry.o \
 			out/table/group.o out/table/company.o out/table/person.o \
 			out/utils/logger.o out/utils/system.o
@@ -28,7 +28,6 @@ out/%:
 	mkdir -p $@
 
 clean:
-	find out -name '*.o' -exec rm {} \+
 	rm -f clients
 	rm -rf out
 	rm -rf data_clients
