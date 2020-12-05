@@ -1,16 +1,16 @@
 #pragma once
-/****************************************************************************************
-* Dossier 1 : Analyse de donnees clients
-* ======================================
-*
-* Declarative menus:
-*   - admin menu: db file creation, deletion, import, etc.
-*   - user menu: db file acces functions
-*
-* PP 2020 - Laura Binacchi - Fedora 32
-****************************************************************************************/
+/** *************************************************************************************
+ * Dossier 1 : Analyse de donnees clients
+ * ======================================
+ *
+ * Declarative menus:
+ *  - admin menu: db file creation, deletion, import, etc.
+ *  - user menu: db file access and operation functions
+ *
+ * PP 2020 - Laura Binacchi - Fedora 32
+ ****************************************************************************************/
 
-#include "db_file.h"
+#include "database.h"
 
 /* Number of menus for each application mode */
 #define ADMIN_MENUS_COUNT   5

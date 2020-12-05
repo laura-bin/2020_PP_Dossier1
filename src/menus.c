@@ -1,18 +1,16 @@
-/****************************************************************************************
-* Dossier 1 : Analyse de donnees clients
-* ======================================
-*
-* Menus :
-*   - assignation of the text and the action to each menu
-*   - menu loop : diplays text and calls the corresponding action
-*
-* PP 2020 - Laura Binacchi - Fedora 32
-****************************************************************************************/
+/** *************************************************************************************
+ * Dossier 1 : Analyse de donnees clients
+ * ======================================
+ *
+ * Menus :
+ *   - assignation of the text and the action to each menu
+ *   - menu loop: diplays text and calls the action chosen by the user
+ *
+ * PP 2020 - Laura Binacchi - Fedora 32
+ ****************************************************************************************/
 
-#include <stdarg.h>
-
+#include "db_file/db_file.h"
 #include "menus.h"
-#include "db_file.h"
 #include "system.h"
 #include "utils.h"
 
@@ -44,7 +42,7 @@ const struct menu_entry admin_menus[ADMIN_MENUS_COUNT] = {
 const struct menu_entry user_menus[USER_MENUS_COUNT] = {
     {
         .text = ".",
-        .action = &dummy_fct
+        .action = NULL
     }
 };
 
@@ -62,7 +60,7 @@ const struct menu menus[APP_MODE_COUNT] = {
     },
 };
 
-/* PRIVATE METHOD */
+/* PRIVATE FUNCTION */
 
 /**
  * Clears the terminal and prints the header
@@ -80,7 +78,7 @@ int print_header(struct db *db) {
     return 0;
 }
 
-/* METHOD IMPLEMENTATION */
+/* HEADER IMPLEMENTATION */
 int main_menu(struct db *db) {
     const struct menu *menu = &menus[db->app_mode]; // menus (display name + action)
     unsigned choice = 1;                            // user menu choice

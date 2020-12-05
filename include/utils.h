@@ -1,4 +1,5 @@
 #pragma once
+//TODO
 /**********************************************************************************************************************
 * Dossier 1 : Analyse de donnees clients
 * ======================================
@@ -8,7 +9,8 @@
  * PP 2020 - Laura Binacchi - Fedora 32
  *********************************************************************************************************************/
 
-#include "db_file.h"
+// #include "db_file.h"
+#include "database.h"
 
 void clean_stdin(void);                                 // cleans the stdin buffer
 void pause_page(void);                                  // pauses the program (waits for a key to be pressed)

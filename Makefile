@@ -12,9 +12,10 @@ override CFLAGS += -Wall -Wpedantic -Wextra -Iinclude
 
 all: out clients
 
-out: out/table
+out: out/table out/db_file
 
-clients: src/main.c out/catalog.o out/db_file.o out/menus.o out/system.o out/utils.o \
+clients: src/main.c out/catalog.o out/menus.o out/system.o out/utils.o \
+			out/db_file/db_file_utils.o out/db_file/db_file_admin.o\
 			out/table/country.o out/table/job.o out/table/industry.o \
 			out/table/group.o out/table/company.o out/table/person.o
 	gcc $(CFLAGS) -o clients $^

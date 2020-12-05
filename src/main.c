@@ -13,9 +13,10 @@
  *  - use standard comments https://www.doxygen.nl/manual/docblocks.html
  *  - improve values returned (use more the values returned by the method called
  *      and document when errno is set)
+ *  - improve log messages
  * v2:
  *  - load code tables into buffers
- *  - 
+ *  - splitting db_file methods into distinct files
  *
  * PP 2020 - Laura Binacchi - Fedora 32
  ****************************************************************************************/
@@ -25,6 +26,7 @@
 #include "menus.h"
 #include "system.h"
 #include "utils.h"
+#include "db_file/db_file_utils.h"
 
 /**
  * Main program :
@@ -65,7 +67,6 @@ int main(int argc, char *argv[]) {
     // - in user mode, if no database is opened, the program stops
     // - in admin mode, the program continues
     //      and the terminal header shows that no database is opened
-    log_info(&db, "Main program", "Opening database file...");
     strcpy(db.dat_file_path, DAT_DIR DIR_SEP"db_clients.dat");
     if (open_db(&db, READ) && db.app_mode == USER) {
         puts("No database file available: please contact an administrator");
