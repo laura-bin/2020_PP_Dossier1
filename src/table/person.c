@@ -1,26 +1,21 @@
-//TODO
-/****************************************************************************************
-* Dossier 1 : Analyse de donnees clients
-* ======================================
-*
-* Person table function:
-*   - import from csv file to dat file
-*   - export from dat file to csv file
-*   - load from dat file to buffer
-*   - print a single tuple tuple from the buffer
-*
-* PP 2020 - Laura Binacchi - Fedora 32
-****************************************************************************************/
+/** *************************************************************************************
+ * Dossier 1 : Analyse de donnees clients
+ * ======================================
+ *
+ * Person table function:
+ *   - import from csv file to dat file
+ *   - export from dat file to csv file
+ *   - load from dat file to buffer
+ *   - print a single tuple tuple from the buffer
+ *
+ * PP 2020 - Laura Binacchi - Fedora 32
+ ****************************************************************************************/
 
 #include <stdlib.h>
 #include <string.h>
 
 #include "table/person.h"
 
-/***************************************************************************************
-* Imports a person from a csv file line to the dat file
-* returns the number of new records imported (1 if all is ok)
-****************************************************************************************/
 int import_person(struct db *db, char *csv_line) {
     struct person new_rec;          // new record to write in the dat file
     char *tok, *next_tok;           // line's tokens separated by strtok
@@ -104,10 +99,6 @@ int import_person(struct db *db, char *csv_line) {
     return fwrite(&new_rec, sizeof(struct person), 1, db->dat_file);
 }
 
-/***************************************************************************************
-* Exports a person from the dat file to the csv file
-* returns the number of tuples successfully exported (1 or 0)
-****************************************************************************************/
 int export_person(struct db *db) {
     struct person tuple;        // tuple read from the database file
     char new_line[CSV_BUF_LEN]; // new line to write in the csv file

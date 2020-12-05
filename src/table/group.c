@@ -1,26 +1,21 @@
-//TODO
-/****************************************************************************************
-* Dossier 1 : Analyse de donnees clients
-* ======================================
-*
-* Group table functions:
-*   - import from csv file to dat file
-*   - export from dat file to csv file
-*   - load from dat file to buffer
-*   - print a single tuple tuple from the buffer
-*
-* PP 2020 - Laura Binacchi - Fedora 32
-****************************************************************************************/
+/** *************************************************************************************
+ * Dossier 1 : Analyse de donnees clients
+ * ======================================
+ *
+ * Group table functions:
+ *  - import from csv file to dat file
+ *  - export from dat file to csv file
+ *  - load from dat file to buffer
+ *  - print a single tuple tuple from the buffer
+ *
+ * PP 2020 - Laura Binacchi - Fedora 32
+ ****************************************************************************************/
 
 #include <stdlib.h>
 #include <string.h>
 
 #include "table/group.h"
 
-/***************************************************************************************
-* Imports a group from a csv file line to the dat file
-* returns the number of new records imported (1 if all is ok)
-****************************************************************************************/
 int import_group(struct db *db, char *csv_line) {
     struct group new_rec;           // new record to write in the dat file
     char *tok, *next_tok;           // line's tokens separated by strtok
@@ -53,10 +48,6 @@ int import_group(struct db *db, char *csv_line) {
     return fwrite(&new_rec, sizeof(struct group), 1, db->dat_file);
 }
 
-/***************************************************************************************
-* Exports a group from the dat file to the csv file
-* returns the number of tuples successfully exported (1 or 0)
-****************************************************************************************/
 int export_group(struct db *db) {
     struct group tuple;       // tuple read from the database file
     char new_line[CSV_BUF_LEN]; // new line to write in the csv file
@@ -70,7 +61,19 @@ int export_group(struct db *db) {
 }
 
 int load_groups(struct db *db, int count) {
-    return 0;
+    struct group entity;
+    int i;
+    int load_count = 0;
+
+    for (i = 0; i < count; i++) {
+        memset(&entity, 0, sizeof(struct group));
+
+        if (fread(&entity, sizeof(struct group), 1, db->dat_file) == 1) {
+            db->groups[i] = entity;
+            load_count++;
+        }
+    }
+    return load_count;
 }
 
 int print_group(struct db *db) {

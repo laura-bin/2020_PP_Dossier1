@@ -117,7 +117,7 @@ struct person {
     unsigned id;            // pk
     unsigned id_company;    // fk
     unsigned id_job;        // fk
-    char title[16]; 
+    char title[16];
     char firstname[32];
     char lastname[42];
     char gender[2];

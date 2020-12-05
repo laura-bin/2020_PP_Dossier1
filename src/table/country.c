@@ -17,10 +17,6 @@
 
 #include "table/country.h"
 
-/***************************************************************************************
-* Imports a country from a csv file line to the dat file
-* returns the number of new records imported (1 if all is ok)
-****************************************************************************************/
 int import_country(struct db *db, char *csv_line) {
     struct country new_rec;         // new record to write in the dat file
     char *tok, *next_tok;           // line's tokens separated by strtok
@@ -57,20 +53,6 @@ int import_country(struct db *db, char *csv_line) {
     return fwrite(&new_rec, sizeof(struct country), 1, db->dat_file);
 }
 
-int *read_country(struct db *db, struct country *out_country) {
-    memset(out_country, 0, sizeof(struct country));
-    if (fread(out_country, sizeof(struct country), 1, db->dat_file) == 1) {
-
-    }
-
-
-    return 0;
-}
-
-/***************************************************************************************
-* Exports a country from the dat file to the csv file
-* returns the number of tuples successfully exported (1 or 0)
-****************************************************************************************/
 int export_country(struct db *db) {
     struct country tuple;       // tuple read from the database file
     char new_line[CSV_BUF_LEN]; // new line to write in the csv file
@@ -84,15 +66,15 @@ int export_country(struct db *db) {
 }
 
 int load_countries(struct db *db, int count) {
-    struct country country;
+    struct country entity;
     int i;
     int load_count = 0;
 
     for (i = 0; i < count; i++) {
-        memset(&country, 0, sizeof(struct country));
+        memset(&entity, 0, sizeof(struct country));
 
-        if (fread(&country, sizeof(struct country), 1, db->dat_file) == 1) {
-            db->countries[i] = country;
+        if (fread(&entity, sizeof(struct country), 1, db->dat_file) == 1) {
+            db->countries[i] = entity;
             load_count++;
         }
     }
