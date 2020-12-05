@@ -10,7 +10,7 @@
  * PP 2020 - Laura Binacchi - Fedora 32
  ****************************************************************************************/
 
-#include "database.h"
+#include "db_file/database.h"
 
 /* Number of menus for each application mode */
 #define ADMIN_MENUS_COUNT   5

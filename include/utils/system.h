@@ -1,12 +1,12 @@
 #pragma once
-/****************************************************************************************
-* Dossier 1 : Analyse de donnees clients
-* ======================================
-*
-* System dependent constants & functions prototypes
-*
-* PP 2020 - Laura Binacchi - Fedora 32
-****************************************************************************************/
+/** *************************************************************************************
+ * Dossier 1 : Analyse de donnees clients
+ * ======================================
+ *
+ * System dependent constants & functions prototypes
+ *
+ * PP 2020 - Laura Binacchi - Fedora 32
+ ****************************************************************************************/
 
 /* Directory separator */
 #ifdef _WIN32

@@ -9,7 +9,7 @@
 * PP 2020 - Laura Binacchi - Fedora 32
 ****************************************************************************************/
 
-#include "database.h"
+#include "db_file/database.h"
 
 /***************************************************************************************
 * Industry table manipulation functions

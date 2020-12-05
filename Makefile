@@ -12,12 +12,13 @@ override CFLAGS += -Wall -Wpedantic -Wextra -Iinclude
 
 all: out clients
 
-out: out/table out/db_file
+out: out/db_file out/table out/utils
 
-clients: src/main.c out/catalog.o out/menus.o out/system.o out/utils.o \
-			out/db_file/db_file_utils.o out/db_file/db_file_admin.o\
+clients: src/main.c out/menus.o \
+			out/db_file/catalog.o out/db_file/db_file_utils.o out/db_file/db_file_admin.o\
 			out/table/country.o out/table/job.o out/table/industry.o \
-			out/table/group.o out/table/company.o out/table/person.o
+			out/table/group.o out/table/company.o out/table/person.o \
+			out/utils/logger.o out/utils/system.o
 	gcc $(CFLAGS) -o clients $^
 
 out/%.o: src/%.c include/%.h
@@ -28,8 +29,7 @@ out/%:
 
 clean:
 	find out -name '*.o' -exec rm {} \+
-	rm -f clients data_clients/* data_export/*
-	rmdir out/*
-	rmdir out
-	rmdir data_clients
-	rmdir data_export
+	rm -f clients
+	rm -rf out
+	rm -rf data_clients
+	rm -rf data_export

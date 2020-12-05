@@ -23,10 +23,10 @@
 
 #include <string.h>
 
-#include "menus.h"
-#include "system.h"
-#include "utils.h"
 #include "db_file/db_file_utils.h"
+#include "menus.h"
+#include "utils/logger.h"
+#include "utils/system.h"
 
 /**
  * Main program :

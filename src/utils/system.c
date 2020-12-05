@@ -1,18 +1,17 @@
-//TODO
-/****************************************************************************************
-* Dossier 1 : Analyse de donnees clients
-* ======================================
-*
-* System dependent functions
-*
-* PP 2020 - Laura Binacchi - Fedora 32
-****************************************************************************************/
+/** *************************************************************************************
+ * Dossier 1 : Analyse de donnees clients
+ * ======================================
+ *
+ * System dependent functions
+ *
+ * PP 2020 - Laura Binacchi - Fedora 32
+ ****************************************************************************************/
 
 #include <stdio.h>
 
-#include "utils.h"
+#include "utils/system.h"
 
-#ifdef _WIN32 // win 32 or win64
+#ifdef _WIN32 // win 32 or win 64
 #include <windows.h>
 #include <conio.h>
 #include <direct.h>

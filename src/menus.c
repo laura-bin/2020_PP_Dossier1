@@ -3,16 +3,19 @@
  * ======================================
  *
  * Menus :
- *   - assignation of the text and the action to each menu
- *   - menu loop: diplays text and calls the action chosen by the user
+ *  - assignation of the text and the action to each menu
+ *  - menu loop: diplays text and calls the action chosen by the user
+ * 
+ * Private functions
+ *  - UI management (print & get user's inputs)
  *
  * PP 2020 - Laura Binacchi - Fedora 32
  ****************************************************************************************/
 
 #include "db_file/db_file.h"
 #include "menus.h"
-#include "system.h"
-#include "utils.h"
+#include "utils/system.h"
+#include "utils/logger.h"
 
 /* Admin mode menus assignation */
 const struct menu_entry admin_menus[ADMIN_MENUS_COUNT] = {
@@ -60,14 +63,48 @@ const struct menu menus[APP_MODE_COUNT] = {
     },
 };
 
-/* PRIVATE FUNCTION */
+/* PRIVATE FUNCTIONS */
+
+/**
+ * Cleans the stdin buffer
+ */
+void clean_stdin(void) {
+    int c;
+    do c = getchar();
+    while (c != '\n' && c != EOF);
+}
+
+/**
+ * Pauses the program (waits for a key to be pressed)
+ */
+void pause_page(void) {
+    printf("\nPress any key to continue...");
+    int c = getchar();
+    if (c != '\n') clean_stdin();
+}
+
+/**
+ * Gets an unsigned integer from the user
+ * 
+ * @return a valid unsigned integer
+ */
+unsigned get_uns_input(void) {
+    int input = -1;
+
+    while (scanf("%d", &input) != 1 || input < 0) {
+        clean_stdin();
+        printf("Please enter an unsigned integer: ");
+    }
+    clean_stdin();
+    return input;
+}
 
 /**
  * Clears the terminal and prints the header
  * 
- * @return 0 if the method has successfully been executed
+ * @param db: database information stored in RAM
  */
-int print_header(struct db *db) {
+void print_header(struct db *db) {
     clear_terminal();
     puts("+-----------------------------------------------------------------------------------+");
     printf("| Client database: %-43s %20s |\n", 
@@ -75,10 +112,10 @@ int print_header(struct db *db) {
         menus[db->app_mode].title);
     puts("+-----------------------------------------------------------------------------------+");
     puts("");
-    return 0;
 }
 
 /* HEADER IMPLEMENTATION */
+
 int main_menu(struct db *db) {
     const struct menu *menu = &menus[db->app_mode]; // menus (display name + action)
     unsigned choice = 1;                            // user menu choice

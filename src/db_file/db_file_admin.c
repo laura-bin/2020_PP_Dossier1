@@ -18,8 +18,8 @@
 
 #include "db_file/db_file_admin.h"
 #include "db_file/db_file_utils.h"
-#include "system.h"
-#include "utils.h"
+#include "utils/logger.h"
+#include "utils/system.h"
 
 
 int create_db(struct db *db) {

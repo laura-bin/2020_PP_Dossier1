@@ -1,31 +1,29 @@
-//TODO
-/****************************************************************************************
-* Dossier 1 : Analyse de donnees clients
-* ======================================
-*
-* Catalog :
-*   - tables metadata assignation
-*
-* PP 2020 - Laura Binacchi - Fedora 32
-****************************************************************************************/
+/** *************************************************************************************
+ * Dossier 1 : Analyse de donnees clients
+ * ======================================
+ *
+ * Catalog :
+ *  - tables metadata assignation
+ *
+ * PP 2020 - Laura Binacchi - Fedora 32
+ ****************************************************************************************/
 
-#include "catalog.h"
+#include "db_file/catalog.h"
 #include "table/country.h"
 #include "table/job.h"
 #include "table/industry.h"
 #include "table/group.h"
 #include "table/company.h"
 #include "table/person.h"
+#include "utils/system.h"
 
-#include "system.h"
-
-/***************************************************************************************
-* Tables metadata:
-*   - prefix to write in the database file
-*   - name to display to the user
-*   - number of reserved locations (size of each table)
-*   - tuple size
-****************************************************************************************/
+/**
+ * Tables metadata:
+ *  - prefix to write in the database file
+ *  - name to display to the user
+ *  - number of reserved locations (size of each table)
+ *  - tuple size
+ */
 const struct table_metadata tables_metadata[TAB_COUNT] = {
     {
         .prefix = "CTR",
