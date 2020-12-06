@@ -40,6 +40,17 @@ int export_country(struct db *db);
  */
 int load_countries(struct db *db, int count);
 
+/**
+ * Prints a country
+ *
+ * @param country: country to print
+ */
+void print_country(struct country *country);
 
-
-int print_country(struct db *db);   // print a country on the stdout
+/**
+ * Prints the country table from RAM stored buffer
+ *
+ * @param db: database information stored in RAM
+ * @param n_rec: country records count
+ */
+void print_buf_countries(struct db *db, unsigned n_rec);

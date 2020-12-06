@@ -39,4 +39,17 @@ int export_industry(struct db *db);
  */
 int load_industries(struct db *db, int count);
 
-int print_industry(struct db *db);  // print a industry on the stdout
+/**
+ * Prints an industry
+ *
+ * @param industry: industry to print
+ */
+void print_industry(struct industry *industry);
+
+/**
+ * Prints the industry table from RAM stored buffer
+ *
+ * @param db: database information stored in RAM
+ * @param n_rec: industry records count
+ */
+void print_buf_industries(struct db *db, unsigned n_rec);

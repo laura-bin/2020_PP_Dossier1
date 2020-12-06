@@ -35,7 +35,8 @@ const struct table_metadata tables_metadata[TAB_COUNT] = {
         .import = &import_country,
         .export = &export_country,
         .load = &load_countries,
-        .print = &print_country
+        .print_buf = &print_buf_countries,
+        .print = NULL
     },
     {
         .prefix = "JOB",
@@ -47,7 +48,8 @@ const struct table_metadata tables_metadata[TAB_COUNT] = {
         .import = &import_job,
         .export = &export_job,
         .load = &load_jobs,
-        .print = &print_job
+        .print_buf = &print_buf_jobs,
+        .print = NULL
     },
     {
         .prefix = "IND",
@@ -59,7 +61,8 @@ const struct table_metadata tables_metadata[TAB_COUNT] = {
         .import = &import_industry,
         .export = &export_industry,
         .load = &load_industries,
-        .print = &print_industry
+        .print_buf = &print_buf_industries,
+        .print = NULL
     },
     {
         .prefix = "GRP",
@@ -71,7 +74,8 @@ const struct table_metadata tables_metadata[TAB_COUNT] = {
         .import = &import_group,
         .export = &export_group,
         .load = &load_groups,
-        .print = &print_group
+        .print_buf = &print_buf_groups,
+        .print = NULL
     },
     {
         .prefix = "CMP",
@@ -83,7 +87,8 @@ const struct table_metadata tables_metadata[TAB_COUNT] = {
         .import = &import_company,
         .export = &export_company,
         .load = NULL,
-        .print = &print_company
+        .print_buf = NULL,
+        .print = NULL
     },
     {
         .prefix = "PRS",
@@ -95,6 +100,7 @@ const struct table_metadata tables_metadata[TAB_COUNT] = {
         .import = &import_person,
         .export = &export_person,
         .load = NULL,
-        .print = &print_person
+        .print_buf = NULL,
+        .print = NULL
     },
 };

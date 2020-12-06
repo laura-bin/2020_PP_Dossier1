@@ -113,7 +113,3 @@ int export_person(struct db *db) {
     }
     return 0;
 }
-
-int print_person(struct db *db) {
-    return 0;
-}

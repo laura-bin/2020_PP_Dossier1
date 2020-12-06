@@ -14,7 +14,7 @@
 
 /* Number of menus for each application mode */
 #define ADMIN_MENUS_COUNT   5
-#define USER_MENUS_COUNT    1
+#define USER_MENUS_COUNT    4
 
 /* Menu entry: text displayed to the user and action to call */
 struct menu_entry {
@@ -35,7 +35,7 @@ extern const struct menu menus[APP_MODE_COUNT];
 /**
  * Displays the main menu & call the action corresponding to the user's choice:
  *  loop until the user has chosen to quit
- * 
+ *
  * @return 0 if the method has successfully been executed
  */
 int main_menu(struct db *db);

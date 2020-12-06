@@ -28,5 +28,3 @@ int import_person(struct db *db, char *csv_line);
  * @return the number of tuples successfully exported (1 or 0)
  */
 int export_person(struct db *db);
-
-int print_person(struct db *db);   // print a person on the stdout

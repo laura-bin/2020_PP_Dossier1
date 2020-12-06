@@ -81,6 +81,17 @@ int load_jobs(struct db *db, int count) {
     return load_count;
 }
 
-int print_job(struct db *db) {
-    return 0;
+void print_job(struct job *job) {
+    printf("%4d %-22s %-24s %-38s\n",
+            job->id,
+            job->level,
+            job->department,
+            job->name);
+}
+
+void print_buf_jobs(struct db *db, unsigned n_rec) {
+    unsigned i;
+    for (i = 0; i < n_rec; i++) {
+        print_job(&db->jobs[i]);
+    }
 }

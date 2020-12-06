@@ -76,6 +76,16 @@ int load_groups(struct db *db, int count) {
     return load_count;
 }
 
-int print_group(struct db *db) {
-    return 0;
+void print_group(struct group *group) {
+    printf("%6d %-32s %-4d\n",
+            group->id,
+            group->name,
+            group->country_id);
+}
+
+void print_buf_groups(struct db *db, unsigned n_rec) {
+    unsigned i;
+    for (i = 0; i < n_rec; i++) {
+        print_group(&db->groups[i]);
+    }
 }

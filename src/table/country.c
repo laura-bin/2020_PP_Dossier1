@@ -15,6 +15,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "db_file/catalog.h"
 #include "table/country.h"
 
 int import_country(struct db *db, char *csv_line) {
@@ -81,6 +82,17 @@ int load_countries(struct db *db, int count) {
     return load_count;
 }
 
-int print_country(struct db *db) {
-    return 0;
+void print_country(struct country *country) {
+    printf("%4d %-16s %-16s %-4s \n",
+            country->id,
+            country->name,
+            country->zone,
+            country->iso);
+}
+
+void print_buf_countries(struct db *db, unsigned n_rec) {
+    unsigned i;
+    for (i = 0; i < n_rec; i++) {
+        print_country(&db->countries[i]);
+    }
 }

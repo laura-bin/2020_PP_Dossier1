@@ -74,6 +74,16 @@ int load_industries(struct db *db, int count) {
     return load_count;
 }
 
-int print_industry(struct db *db) {
-    return 0;
+void print_industry(struct industry *industry) {
+    printf("%4d %-20s %-32s\n",
+            industry->id,
+            industry->sector,
+            industry->name);
+}
+
+void print_buf_industries(struct db *db, unsigned n_rec) {
+    unsigned i;
+    for (i = 0; i < n_rec; i++) {
+        print_industry(&db->industries[i]);
+    }
 }

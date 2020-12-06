@@ -5,7 +5,7 @@
  * Menus :
  *  - assignation of the text and the action to each menu
  *  - menu loop: diplays text and calls the action chosen by the user
- * 
+ *
  * Private functions
  *  - UI management (print & get user's inputs)
  *
@@ -44,8 +44,20 @@ const struct menu_entry admin_menus[ADMIN_MENUS_COUNT] = {
 /* User mode menus assignation */
 const struct menu_entry user_menus[USER_MENUS_COUNT] = {
     {
-        .text = ".",
-        .action = NULL
+        .text = "View Country table",
+        .action = &print_countries
+    },
+    {
+        .text = "View Job table",
+        .action = &print_jobs
+    },
+    {
+        .text = "View Industry table",
+        .action = &print_industries
+    },
+    {
+        .text = "View Group table",
+        .action = &print_groups
     }
 };
 
@@ -85,7 +97,7 @@ void pause_page(void) {
 
 /**
  * Gets an unsigned integer from the user
- * 
+ *
  * @return a valid unsigned integer
  */
 unsigned get_uns_input(void) {
@@ -101,13 +113,13 @@ unsigned get_uns_input(void) {
 
 /**
  * Clears the terminal and prints the header
- * 
+ *
  * @param db: database information stored in RAM
  */
 void print_header(struct db *db) {
     clear_terminal();
     puts("+-----------------------------------------------------------------------------------+");
-    printf("| Client database: %-43s %20s |\n", 
+    printf("| Client database: %-43s %20s |\n",
         db->dat_file == NULL ? "no database file opened" : db->header.db_name,
         menus[db->app_mode].title);
     puts("+-----------------------------------------------------------------------------------+");
@@ -120,7 +132,7 @@ int main_menu(struct db *db) {
     const struct menu *menu = &menus[db->app_mode]; // menus (display name + action)
     unsigned choice = 1;                            // user menu choice
     unsigned i;
-    
+
     while(1) {
         // print the menu
         print_header(db);

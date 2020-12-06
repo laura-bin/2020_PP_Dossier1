@@ -39,4 +39,17 @@ int export_group(struct db *db);
  */
 int load_groups(struct db *db, int count);
 
-int print_group(struct db *db);     // print a group on the stdout
+/**
+ * Prints a group
+ *
+ * @param group: group to print
+ */
+void print_group(struct group *group);
+
+/**
+ * Prints the group table from RAM stored buffer
+ *
+ * @param db: database information stored in RAM
+ * @param n_rec: group records count
+ */
+void print_buf_groups(struct db *db, unsigned n_rec);

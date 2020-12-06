@@ -39,4 +39,17 @@ int export_job(struct db *db);
  */
 int load_jobs(struct db *db, int count);
 
-int print_job(struct db *db);   // print a job on the stdout
+/**
+ * Prints a job
+ *
+ * @param job: job to print
+ */
+void print_job(struct job *job);
+
+/**
+ * Prints the job table from RAM stored buffer
+ *
+ * @param db: database information stored in RAM
+ * @param n_rec: job records count
+ */
+void print_buf_jobs(struct db *db, unsigned n_rec);

@@ -123,7 +123,3 @@ int export_company(struct db *db) {
     }
     return 0;
 }
-
-int print_company(struct db *db) {
-    return 0;
-}

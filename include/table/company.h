@@ -28,5 +28,3 @@ int import_company(struct db *db, char *csv_line);
  * @return the number of tuples successfully exported (1 or 0)
  */
 int export_company(struct db *db);
-
-int print_company(struct db *db);   // print a company on the stdout

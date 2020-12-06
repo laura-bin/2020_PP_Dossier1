@@ -16,7 +16,8 @@
  *  - improve log messages
  * v2:
  *  - load code tables into buffers
- *  - splitting db_file methods into distinct files
+ *  - print code tables
+ *  - files reorganizations: splitting db_file methods into distinct files, etc.
  *
  * PP 2020 - Laura Binacchi - Fedora 32
  ****************************************************************************************/
