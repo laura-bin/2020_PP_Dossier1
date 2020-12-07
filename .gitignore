@@ -1,6 +1,5 @@
 data_export/*
 data_clients/*
-rapport/*
 LB-*
 *.o
 clients
