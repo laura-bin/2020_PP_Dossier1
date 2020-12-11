@@ -42,6 +42,9 @@ int import_industry(struct db *db, char *csv_line) {
     // set name
     tok = next_tok;
     strncpy(new_rec.name, tok, strlen(tok)-1);
+    if (new_rec.name[strlen(new_rec.name)-1] == '\r') {
+        new_rec.name[strlen(new_rec.name)-1] = 0;
+    }
 
     return fwrite(&new_rec, sizeof(struct industry), 1, db->dat_file);
 }

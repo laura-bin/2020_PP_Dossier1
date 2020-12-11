@@ -18,6 +18,13 @@
  *  - load code tables into buffers
  *  - print code tables
  *  - files reorganizations: splitting db_file methods into distinct files, etc.
+ * v2.1:
+ *  - fix  window / linux compatibility issues for csv files (carriage return)
+ * v3:
+ *  - sequential searches in code tables
+ *  - pagination
+ *
+ * TODO type log messages to make error messages more visible
  *
  * PP 2020 - Laura Binacchi - Fedora 32
  ****************************************************************************************/

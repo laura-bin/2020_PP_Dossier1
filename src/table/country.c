@@ -22,6 +22,7 @@ int import_country(struct db *db, char *csv_line) {
     struct country new_rec;         // new record to write in the dat file
     char *tok, *next_tok;           // line's tokens separated by strtok
     char tmp_field[CSV_BUF_LEN];    // temporary field used for conversion to integer
+    int i;
 
     // init the new record to 0
     memset(&new_rec, 0, sizeof(struct country));
@@ -49,6 +50,9 @@ int import_country(struct db *db, char *csv_line) {
     // set ISO code
     tok = next_tok;
     strncpy(new_rec.iso, tok, strlen(tok)-1);
+    if (new_rec.iso[strlen(new_rec.iso)-1] == '\r') {
+        new_rec.iso[strlen(new_rec.iso)-1] = 0;
+    }
 
     // write the new entity into the dat file
     return fwrite(&new_rec, sizeof(struct country), 1, db->dat_file);
