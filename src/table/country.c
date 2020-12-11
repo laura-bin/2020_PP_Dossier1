@@ -22,7 +22,6 @@ int import_country(struct db *db, char *csv_line) {
     struct country new_rec;         // new record to write in the dat file
     char *tok, *next_tok;           // line's tokens separated by strtok
     char tmp_field[CSV_BUF_LEN];    // temporary field used for conversion to integer
-    int i;
 
     // init the new record to 0
     memset(&new_rec, 0, sizeof(struct country));

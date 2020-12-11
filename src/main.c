@@ -19,10 +19,11 @@
  *  - print code tables
  *  - files reorganizations: splitting db_file methods into distinct files, etc.
  * v2.1:
- *  - fix  window / linux compatibility issues for csv files (carriage return)
+ *  - fix window / linux compatibility issues for csv files (carriage return)
  * v3:
- *  - sequential searches in code tables
  *  - pagination
+ *  - generic linked lists
+ *  - sequential searches in code tables
  *
  * TODO type log messages to make error messages more visible
  *

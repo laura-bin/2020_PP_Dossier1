@@ -3,8 +3,7 @@
  * Dossier 1 : Analyse de donnees clients
  * ======================================
  *
- * Database file views:
- *  - print code tables from their buffers (county, job, industry, group)
+ * Database file sequential searches in code tables (county, job, industry, group)
  *
  * PP 2020 - Laura Binacchi - Fedora 32
  ****************************************************************************************/
@@ -16,25 +15,25 @@
  *
  * @param db: database information stored in RAM
  */
-int print_countries(struct db *db);
+int search_countries(struct db *db);
 
 /**
  * Prints the job table from the buffer
  *
  * @param db: database information stored in RAM
  */
-int print_jobs(struct db *db);
+int search_jobs(struct db *db);
 
 /**
  * Prints the industry table from the buffer
  *
  * @param db: database information stored in RAM
  */
-int print_industries(struct db *db);
+int search_industries(struct db *db);
 
 /**
  * Prints the group table from the buffer
  *
  * @param db: database information stored in RAM
  */
-int print_groups(struct db *db);
+int search_groups(struct db *db);

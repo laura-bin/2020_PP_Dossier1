@@ -14,6 +14,7 @@
 
 #include "db_file/db_file.h"
 #include "ui/menus.h"
+#include "ui/ui-utils.h"
 #include "utils/logger.h"
 #include "utils/system.h"
 
@@ -44,20 +45,20 @@ const struct menu_entry admin_menus[ADMIN_MENUS_COUNT] = {
 /* User mode menus assignation */
 const struct menu_entry user_menus[USER_MENUS_COUNT] = {
     {
-        .text = "View Country table",
-        .action = &print_countries
+        .text = "Search country",
+        .action = &search_countries
     },
     {
-        .text = "View Job table",
-        .action = &print_jobs
+        .text = "Search job",
+        .action = &search_jobs
     },
     {
-        .text = "View Industry table",
-        .action = &print_industries
+        .text = "Search industry",
+        .action = &search_industries
     },
     {
-        .text = "View Group table",
-        .action = &print_groups
+        .text = "Search group",
+        .action = &search_groups
     }
 };
 
@@ -74,42 +75,6 @@ const struct menu menus[APP_MODE_COUNT] = {
         .entries = user_menus
     },
 };
-
-/* PRIVATE FUNCTIONS */
-
-/**
- * Cleans the stdin buffer
- */
-void clean_stdin(void) {
-    int c;
-    do c = getchar();
-    while (c != '\n' && c != EOF);
-}
-
-/**
- * Pauses the program (waits for a key to be pressed)
- */
-void pause_page(void) {
-    printf("\nPress any key to continue...");
-    int c = getchar();
-    if (c != '\n') clean_stdin();
-}
-
-/**
- * Gets an unsigned integer from the user
- *
- * @return a valid unsigned integer
- */
-unsigned get_uns_input(void) {
-    int input = -1;
-
-    while (scanf("%d", &input) != 1 || input < 0) {
-        clean_stdin();
-        printf("Please enter an unsigned integer: ");
-    }
-    clean_stdin();
-    return input;
-}
 
 /**
  * Clears the terminal and prints the header
