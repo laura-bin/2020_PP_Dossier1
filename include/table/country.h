@@ -48,6 +48,11 @@ int load_countries(struct db *db, int count);
 void print_country(struct country *country);
 
 /**
+ * Prints a country header containing the names of the fields
+ */
+void print_country_header(void);
+
+/**
  * Prints the country table from RAM stored buffer
  *
  * @param db: database information stored in RAM

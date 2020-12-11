@@ -12,6 +12,7 @@
 #include <string.h>
 
 #include "ui/ui-utils.h"
+#include "utils/system.h"
 
 /* PRIVATE FUNCTION */
 
@@ -54,4 +55,27 @@ void get_text_input(char *out_input, int size) {
         else clean_stdin();
     }
     return;
+}
+
+void paginate(unsigned n, struct node* list, void (*print)(void *), void (*print_header)(void)) {
+    unsigned i = 0;
+    unsigned page = 0;
+    unsigned pages = n / PAGE_SIZE;
+
+    while (list != NULL) {
+        if (i % PAGE_SIZE == 0) {
+            clear_terminal();
+            page++;
+            printf("Page %u/%u\n\n", page, pages);
+            printf("%9s ", "");
+            (*print_header)();
+            puts("");
+        }
+
+        printf("%4u/%-4u ", ++i, n);
+        (*print)(list->data);
+        list = list->next;
+
+        if (i % PAGE_SIZE == 0 && page != pages) pause_page();
+    }
 }

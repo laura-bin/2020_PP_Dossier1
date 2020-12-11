@@ -93,6 +93,14 @@ void print_country(struct country *country) {
             country->iso);
 }
 
+void print_country_header(void) {
+    printf("%4s %-16s %-16s %-4s \n",
+            "ID",
+            "NAME",
+            "ZONE",
+            "ISO");
+}
+
 void print_buf_countries(struct db *db, unsigned n_rec) {
     unsigned i;
     for (i = 0; i < n_rec; i++) {

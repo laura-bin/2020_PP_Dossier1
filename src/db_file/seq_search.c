@@ -54,7 +54,7 @@ int string_starts_with(char *str, char *prefix) {
 int search_countries(struct db *db) {
     char searched[24];
     unsigned i;
-    int results = 0;
+    unsigned results = 0;
     struct node *head = NULL;
     struct node *cur_node = NULL;
 
@@ -72,11 +72,13 @@ int search_countries(struct db *db) {
     if (! results) {
         puts("No result found");
     } else {
-        cur_node = head;
-        while (cur_node != NULL) {
-            print_country(cur_node->data);
-            cur_node = cur_node->next;
-        }
+        paginate(results, head,
+                    (void (*)(void *))&print_country,
+                    &print_country_header);
+        // while (cur_node != NULL) {
+        //     print_country(cur_node->data);
+        //     cur_node = cur_node->next;
+        // }
 
         free_list(head);
     }
