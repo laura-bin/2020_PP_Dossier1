@@ -11,28 +11,28 @@
 #include "database.h"
 
 /**
- * Prints the country table from the buffer
+ * Searches if a country contains a substring entered by the user
  *
  * @param db: database information stored in RAM
  */
 int search_countries(struct db *db);
 
 /**
- * Prints the job table from the buffer
+ * Searches if a job contains a substring entered by the user
  *
  * @param db: database information stored in RAM
  */
 int search_jobs(struct db *db);
 
 /**
- * Prints the industry table from the buffer
+ * Searches if an industry contains a substring entered by the user
  *
  * @param db: database information stored in RAM
  */
 int search_industries(struct db *db);
 
 /**
- * Prints the group table from the buffer
+ * Searches if a group contains a substring entered by the user
  *
  * @param db: database information stored in RAM
  */

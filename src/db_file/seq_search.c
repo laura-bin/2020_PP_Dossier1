@@ -14,56 +14,41 @@
 #include "db_file/database.h"
 #include "db_file/seq_search.h"
 #include "table/country.h"
+#include "table/job.h"
+#include "table/industry.h"
+#include "table/group.h"
 #include "ui/ui-utils.h"
 #include "utils/linked_list.h"
-
-// TODO pagination
-// TODO print table header
-// TODO check if table is empty
 
 /* PRIVATE FUNCTION */
 
 /**
- * Compares two strings: test if a given string begins by a given prefix
- *  - case insensitive
- *  - returns 1 if the prefix is empty
+ * Searches a record in the RAM stored buffer (sequential search)
  *
- * @param str: string tested
- * @param prefix: string prefix tested
- *
- * @return either:
- *          1 if the string begins by the prefix
- *          0 if not
+ * @param db: database information stored in RAM
+ * @param tab: table enum
+ * @param compare: comparison function
+ * @param print: print record function
+ * @param print_header: print table header (fields names) function
  */
-int string_starts_with(char *str, char *prefix) {
-    size_t str_len = strlen(str);
-    size_t prefix_len = strlen(prefix);
+int seq_search(struct db *db, enum table tab,
+            void *(*compare)(struct db *, unsigned, char *),
+            void (*print)(void *),
+            void (*print_header)(void)) {
+    char searched[64];              // string searched
+    unsigned i;                     // record index
+    unsigned results = 0;           // number of records found
+    struct node *head = NULL;       // linked list head
+    struct node *cur_node = NULL;   // linked list current node
+    void *found;                    // record found
 
-    if (prefix_len <= str_len) {
-        size_t i = 0;
-        for (i = 0; i < prefix_len; i++) {
-            if (tolower(str[i]) != tolower(prefix[i])) return 0;
-        }
-        return 1;
-    }
-    return 0;
-}
+    printf("Enter the substring searched: ");
+    get_text_input(searched, 64);
 
-/* HEADER IMPLEMENTATION */
-
-int search_countries(struct db *db) {
-    char searched[24];
-    unsigned i;
-    unsigned results = 0;
-    struct node *head = NULL;
-    struct node *cur_node = NULL;
-
-    printf("Enter the name searched: ");
-    get_text_input(searched, 24);
-
-    for (i = 0; i < db->header.n_recorded[COUNTRY]; i++) {
-        if (string_starts_with(db->countries[i].name, searched)) {
-            cur_node = append_item(cur_node, &db->countries[i]);
+    for (i = 0; i < db->header.n_recorded[tab]; i++) {
+        found = (*compare) (db, i, searched);
+        if (found != NULL) {
+            cur_node = append_item(cur_node, found);
             if (head == NULL) head = cur_node;
             results++;
         }
@@ -72,31 +57,31 @@ int search_countries(struct db *db) {
     if (! results) {
         puts("No result found");
     } else {
-        paginate(results, head,
-                    (void (*)(void *))&print_country,
-                    &print_country_header);
-        // while (cur_node != NULL) {
-        //     print_country(cur_node->data);
-        //     cur_node = cur_node->next;
-        // }
-
+        paginate(results, head, print, print_header);
         free_list(head);
     }
 
     return 0;
 }
 
+/* HEADER IMPLEMENTATION */
+
+int search_countries(struct db *db) {
+    return seq_search(db, COUNTRY, &compare_country,
+        (void (*)(void *))&print_country,&print_country_header);
+}
+
 int search_jobs(struct db *db) {
-    tables_metadata[JOB].print_buf(db, db->header.n_recorded[JOB]);
-    return 0;
+    return seq_search(db, JOB, &compare_job,
+        (void (*)(void *))&print_job, &print_job_header);
 }
 
 int search_industries(struct db *db) {
-    tables_metadata[INDUSTRY].print_buf(db, db->header.n_recorded[INDUSTRY]);
-    return 0;
+    return seq_search(db, INDUSTRY, &compare_industry,
+        (void (*)(void *))&print_industry, &print_industry_header);
 }
 
 int search_groups(struct db *db) {
-    tables_metadata[GROUP].print_buf(db, db->header.n_recorded[GROUP]);
-    return 0;
+    return seq_search(db, GROUP, &compare_group,
+        (void (*)(void *))&print_group, &print_group_header);
 }

@@ -41,13 +41,6 @@ enum table {
     TAB_COUNT   // number of tables in the database
 };
 
-
-/* Tuple base */
-struct tuple {
-    char type[PREF_LEN];
-    unsigned id;
-};
-
 /* Table metadata */
 struct db;
 struct table_metadata {
@@ -60,8 +53,6 @@ struct table_metadata {
     int (*import)(struct db *, char *);         // import function pointer
     int (*export)(struct db *);                 // export function pointer
     int (*load)(struct db *, int);              // load function pointer
-    void (*print_buf)(struct db *, unsigned);   // print buffer function pointer
-    void (*print)(struct tuple *);              // print function pointer
 };
 
 /* Array of tables metadata */

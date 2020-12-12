@@ -15,6 +15,7 @@
 #include <string.h>
 
 #include "table/group.h"
+#include "utils/string_comparison.h"
 
 int import_group(struct db *db, char *csv_line) {
     struct group new_rec;           // new record to write in the dat file
@@ -77,15 +78,25 @@ int load_groups(struct db *db, int count) {
 }
 
 void print_group(struct group *group) {
-    printf("%6d %-32s %-4d\n",
+    printf("%6d %-48s %8d\n",
             group->id,
             group->name,
             group->country_id);
 }
 
-void print_buf_groups(struct db *db, unsigned n_rec) {
-    unsigned i;
-    for (i = 0; i < n_rec; i++) {
-        print_group(&db->groups[i]);
+void print_group_header(void) {
+    printf("%6s %-48s %-8s\n",
+            "ID",
+            "NAME",
+            "COUNTRY");
+}
+
+void *compare_group(struct db *db, unsigned i, char *searched) {
+    void *found = NULL;
+
+    if (contains_icase(1, searched, db->groups[i].name)) {
+        found = &db->groups[i];
     }
+
+    return found;
 }

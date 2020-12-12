@@ -21,7 +21,6 @@
 #include "utils/logger.h"
 #include "utils/system.h"
 
-
 int create_db(struct db *db) {
     enum table i_tab;       // table iteration index
     unsigned i_tup;         // tuple iteration index
@@ -82,7 +81,7 @@ int create_db(struct db *db) {
             }
         }
     }
-    
+
     free(buffer);
 
     printf("Database %s sucessfully created\n", db->header.db_name);
@@ -141,7 +140,7 @@ int import(struct db *db) {
 
         // set where we are
         sprintf(log_from, "Importing data to %s table", table->display_name);
-        
+
         // open the csv file: rb for consistent treatment of end of line symbols (depending on the OS)
         csv_file = fopen(table->csv_path, "rb");
         if (csv_file == NULL) {
@@ -257,7 +256,7 @@ int export(struct db *db) {
 
 int display_metadata(struct db *db) {
     enum table i;
-    
+
     if (db->dat_file == NULL) {
         printf("Impossible: no database file opened\n");
         return -1;

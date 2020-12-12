@@ -8,7 +8,6 @@
  * PP 2020 - Laura Binacchi - Fedora 32
  ****************************************************************************************/
 
-#include "db_file/catalog.h"
 #include "table/country.h"
 #include "table/job.h"
 #include "table/industry.h"
@@ -17,13 +16,7 @@
 #include "table/person.h"
 #include "utils/system.h"
 
-/**
- * Tables metadata:
- *  - prefix to write in the database file
- *  - name to display to the user
- *  - number of reserved locations (size of each table)
- *  - tuple size
- */
+/* Tables metadata assignation */
 const struct table_metadata tables_metadata[TAB_COUNT] = {
     {
         .prefix = "CTR",
@@ -35,8 +28,6 @@ const struct table_metadata tables_metadata[TAB_COUNT] = {
         .import = &import_country,
         .export = &export_country,
         .load = &load_countries,
-        .print_buf = &print_buf_countries,
-        .print = NULL
     },
     {
         .prefix = "JOB",
@@ -48,8 +39,6 @@ const struct table_metadata tables_metadata[TAB_COUNT] = {
         .import = &import_job,
         .export = &export_job,
         .load = &load_jobs,
-        .print_buf = &print_buf_jobs,
-        .print = NULL
     },
     {
         .prefix = "IND",
@@ -61,8 +50,6 @@ const struct table_metadata tables_metadata[TAB_COUNT] = {
         .import = &import_industry,
         .export = &export_industry,
         .load = &load_industries,
-        .print_buf = &print_buf_industries,
-        .print = NULL
     },
     {
         .prefix = "GRP",
@@ -74,8 +61,6 @@ const struct table_metadata tables_metadata[TAB_COUNT] = {
         .import = &import_group,
         .export = &export_group,
         .load = &load_groups,
-        .print_buf = &print_buf_groups,
-        .print = NULL
     },
     {
         .prefix = "CMP",
@@ -87,8 +72,6 @@ const struct table_metadata tables_metadata[TAB_COUNT] = {
         .import = &import_company,
         .export = &export_company,
         .load = NULL,
-        .print_buf = NULL,
-        .print = NULL
     },
     {
         .prefix = "PRS",
@@ -100,7 +83,5 @@ const struct table_metadata tables_metadata[TAB_COUNT] = {
         .import = &import_person,
         .export = &export_person,
         .load = NULL,
-        .print_buf = NULL,
-        .print = NULL
     },
 };

@@ -19,7 +19,8 @@ clients: src/main.c out/ui/menus.o out/ui/ui-utils.o\
 		 	out/db_file/db_file_utils.o out/db_file/db_file_admin.o\
 			out/table/country.o out/table/job.o out/table/industry.o \
 			out/table/group.o out/table/company.o out/table/person.o \
-			out/utils/logger.o out/utils/system.o out/utils/linked_list.o
+			out/utils/logger.o out/utils/system.o out/utils/linked_list.o\
+			out/utils/string_comparison.o
 	gcc $(CFLAGS) -o clients $^
 
 out/%.o: src/%.c include/%.h

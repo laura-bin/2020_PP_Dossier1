@@ -11,12 +11,11 @@
 *
 * PP 2020 - Laura Binacchi - Fedora 32
 ****************************************************************************************/
-
 #include <stdlib.h>
 #include <string.h>
 
-#include "db_file/catalog.h"
 #include "table/country.h"
+#include "utils/string_comparison.h"
 
 int import_country(struct db *db, char *csv_line) {
     struct country new_rec;         // new record to write in the dat file
@@ -86,7 +85,7 @@ int load_countries(struct db *db, int count) {
 }
 
 void print_country(struct country *country) {
-    printf("%4d %-16s %-16s %-4s \n",
+    printf("%4d %-26s %-26s %-4s \n",
             country->id,
             country->name,
             country->zone,
@@ -94,16 +93,22 @@ void print_country(struct country *country) {
 }
 
 void print_country_header(void) {
-    printf("%4s %-16s %-16s %-4s \n",
+    printf("%4s %-26s %-26s %-4s\n",
             "ID",
             "NAME",
             "ZONE",
             "ISO");
 }
 
-void print_buf_countries(struct db *db, unsigned n_rec) {
-    unsigned i;
-    for (i = 0; i < n_rec; i++) {
-        print_country(&db->countries[i]);
+void *compare_country(struct db *db, unsigned i, char *searched) {
+    void *found = NULL;
+
+    if (contains_icase(3, searched,
+            db->countries[i].name,
+            db->countries[i].zone,
+            db->countries[i].iso)) {
+        found = &db->countries[i];
     }
+
+    return found;
 }

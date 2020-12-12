@@ -48,14 +48,19 @@ int load_countries(struct db *db, int count);
 void print_country(struct country *country);
 
 /**
- * Prints a country header containing the names of the fields
+ * Prints the country table header containing its fields names
  */
 void print_country_header(void);
 
 /**
- * Prints the country table from RAM stored buffer
+ * Compares a country referenced by its index with a searched substring
  *
  * @param db: database information stored in RAM
- * @param n_rec: country records count
+ * @param i: index of the country to compare
+ * @param searched: substring searched
+ *
+ * @return either:
+ *          - the pointer of the country if one of its field contains the substring
+ *          - NULL if no field contains the substring
  */
-void print_buf_countries(struct db *db, unsigned n_rec);
+void *compare_country(struct db *db, unsigned i, char *searched);

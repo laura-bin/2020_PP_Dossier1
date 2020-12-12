@@ -47,9 +47,19 @@ int load_groups(struct db *db, int count);
 void print_group(struct group *group);
 
 /**
- * Prints the group table from RAM stored buffer
+ * Prints the group table header containing its fields names
+ */
+void print_group_header(void);
+
+/**
+ * Compares a group referenced by its index with a searched substring
  *
  * @param db: database information stored in RAM
- * @param n_rec: group records count
+ * @param i: index of the group to compare
+ * @param searched: substring searched
+ *
+ * @return either:
+ *          - the pointer of the group if one of its field contains the substring
+ *          - NULL if no field contains the substring
  */
-void print_buf_groups(struct db *db, unsigned n_rec);
+void *compare_group(struct db *db, unsigned i, char *searched);

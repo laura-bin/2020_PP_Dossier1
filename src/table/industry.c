@@ -15,6 +15,7 @@
 #include <string.h>
 
 #include "table/industry.h"
+#include "utils/string_comparison.h"
 
 int import_industry(struct db *db, char *csv_line) {
     struct industry new_rec;        // new record to write in the dat file
@@ -78,15 +79,27 @@ int load_industries(struct db *db, int count) {
 }
 
 void print_industry(struct industry *industry) {
-    printf("%4d %-20s %-32s\n",
+    printf("%4d %-22s %-34s\n",
             industry->id,
             industry->sector,
             industry->name);
 }
 
-void print_buf_industries(struct db *db, unsigned n_rec) {
-    unsigned i;
-    for (i = 0; i < n_rec; i++) {
-        print_industry(&db->industries[i]);
+void print_industry_header(void) {
+    printf("%4s %-22s %-34s\n",
+            "ID",
+            "SECTOR",
+            "NAME");
+}
+
+void *compare_industry(struct db *db, unsigned i, char *searched) {
+    void *found = NULL;
+
+    if (contains_icase(2, searched,
+            db->industries[i].sector,
+            db->industries[i].name)) {
+        found = &db->industries[i];
     }
+
+    return found;
 }

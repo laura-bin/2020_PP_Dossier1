@@ -1,6 +1,6 @@
 data_export/*
 data_clients/*
-LB-*
+LB*
 *.o
 clients
 .vscode

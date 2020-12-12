@@ -8,6 +8,7 @@
  *  - get text
  * User output functions:
  *  - pause page
+ *  - pagination
  *
  * PP 2020 - Laura Binacchi - Fedora 32
  *********************************************************************************************************************/
@@ -23,6 +24,17 @@
 void pause_page(void);
 
 /**
+ * Prints a linked list with pagination
+ *
+ * @param n: number of items to print
+ * @param list: linked list to print
+ * @param print: print function to call
+ * @param print_header: print header function to call
+ */
+void paginate(unsigned n, struct node* list, void (*print)(void *),
+                void (*print_header)(void));
+
+/**
  * Gets an unsigned integer from the user
  *
  * @return a valid unsigned integer
@@ -36,13 +48,3 @@ unsigned get_uns_input(void);
  * @param size: input max size
  */
 void get_text_input(char *out_input, int size);
-
-/**
- * Prints a linked list with pagination
- *
- * @param n: number of items to print
- * @param list: linked list to print
- * @param print: print function to call
- * @param print_header: print header function to call
- */
-void paginate(unsigned n, struct node* list, void (*print)(void *), void (*print_header)(void));

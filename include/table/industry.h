@@ -47,9 +47,19 @@ int load_industries(struct db *db, int count);
 void print_industry(struct industry *industry);
 
 /**
- * Prints the industry table from RAM stored buffer
+ * Prints the industry table header containing its fields names
+ */
+void print_industry_header(void);
+
+/**
+ * Compares an industry referenced by its index with a searched substring
  *
  * @param db: database information stored in RAM
- * @param n_rec: industry records count
+ * @param i: index of the industry to compare
+ * @param searched: substring searched
+ *
+ * @return either:
+ *          - the pointer of the industry if one of its field contains the substring
+ *          - NULL if no field contains the substring
  */
-void print_buf_industries(struct db *db, unsigned n_rec);
+void *compare_industry(struct db *db, unsigned i, char *searched);

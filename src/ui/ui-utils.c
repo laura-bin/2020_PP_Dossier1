@@ -2,8 +2,7 @@
  * Dossier 1 : Analyse de donnees clients
  * ======================================
  *
- * User interface function:
- *  -
+ * User interface functions : input and output management
  *
  * PP 2020 - Laura Binacchi - Fedora 32
  ****************************************************************************************/
@@ -33,6 +32,30 @@ void pause_page(void) {
     if (c != '\n') clean_stdin();
 }
 
+void paginate(unsigned n, struct node* list, void (*print)(void *),
+                void (*print_header)(void)) {
+    unsigned i = 0;
+    unsigned page = 0;
+    unsigned pages = (n+PAGE_SIZE-1) / PAGE_SIZE;
+
+    while (list != NULL) {
+        if (i % PAGE_SIZE == 0) {
+            clear_terminal();
+            page++;
+            printf("Page %u/%u\n\n", page, pages);
+            printf("%9s ", "");
+            (*print_header)();
+            puts("");
+        }
+
+        printf("%4u/%-4u ", ++i, n);
+        (*print)(list->data);
+        list = list->next;
+
+        if (i % PAGE_SIZE == 0 && page != pages) pause_page();
+    }
+}
+
 unsigned get_uns_input(void) {
     int input = -1;
 
@@ -55,27 +78,4 @@ void get_text_input(char *out_input, int size) {
         else clean_stdin();
     }
     return;
-}
-
-void paginate(unsigned n, struct node* list, void (*print)(void *), void (*print_header)(void)) {
-    unsigned i = 0;
-    unsigned page = 0;
-    unsigned pages = n / PAGE_SIZE;
-
-    while (list != NULL) {
-        if (i % PAGE_SIZE == 0) {
-            clear_terminal();
-            page++;
-            printf("Page %u/%u\n\n", page, pages);
-            printf("%9s ", "");
-            (*print_header)();
-            puts("");
-        }
-
-        printf("%4u/%-4u ", ++i, n);
-        (*print)(list->data);
-        list = list->next;
-
-        if (i % PAGE_SIZE == 0 && page != pages) pause_page();
-    }
 }

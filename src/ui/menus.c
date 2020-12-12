@@ -59,6 +59,10 @@ const struct menu_entry user_menus[USER_MENUS_COUNT] = {
     {
         .text = "Search group",
         .action = &search_groups
+    },
+    {
+        .text = "Display database file metadata",
+        .action = &display_metadata
     }
 };
 

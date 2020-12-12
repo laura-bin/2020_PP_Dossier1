@@ -15,6 +15,7 @@
 #include <string.h>
 
 #include "table/job.h"
+#include "utils/string_comparison.h"
 
 int import_job(struct db *db, char *csv_line) {
     struct job new_rec;             // new record to write in the dat file
@@ -85,16 +86,30 @@ int load_jobs(struct db *db, int count) {
 }
 
 void print_job(struct job *job) {
-    printf("%4d %-22s %-24s %-38s\n",
+    printf("%4d %-24s %-26s %-40s\n",
             job->id,
             job->level,
             job->department,
             job->name);
 }
 
-void print_buf_jobs(struct db *db, unsigned n_rec) {
-    unsigned i;
-    for (i = 0; i < n_rec; i++) {
-        print_job(&db->jobs[i]);
+void print_job_header(void) {
+    printf("%4s %-24s %-26s %-40s\n",
+            "ID",
+            "LEVEL",
+            "DEPARTMENT",
+            "NAME");
+}
+
+void *compare_job(struct db *db, unsigned i, char *searched) {
+    void *found = NULL;
+
+    if (contains_icase(3, searched,
+            db->jobs[i].level,
+            db->jobs[i].department,
+            db->jobs[i].name)) {
+        found = &db->jobs[i];
     }
+
+    return found;
 }

@@ -8,6 +8,7 @@
  * PP 2020 - Laura Binacchi - Fedora 32
  *********************************************************************************************************************/
 
+/* Generic linked list structure */
 struct node {
     void *data;
     struct node *previous;
