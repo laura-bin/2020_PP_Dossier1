@@ -13,10 +13,11 @@
  * (case insensitive)
  *
  * @param n_str: number of strings to compare with the substring
- * @param ...: substring followed by the strings to compare with it
+ * @param substr: substring searched
+ * @param ...: strings compared to the substring
  *
  * @return either:
  *          1 if at least one of the strings contains the substring
  *          0 if no string contains the substring
  */
-int contains_icase(int n_str, ...);
+int contains_icase(int n_str, char* substr, ...);

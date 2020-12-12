@@ -3,7 +3,7 @@
  * ======================================
  *
  * Database file views:
- *  - print code tables from their buffers (county, job, industry, group)
+ *  - print code tables from their buffers (country, job, industry, group)
  *
  * PP 2020 - Laura Binacchi - Fedora 32
  ****************************************************************************************/
