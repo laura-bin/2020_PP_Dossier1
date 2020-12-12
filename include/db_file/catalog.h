@@ -53,6 +53,9 @@ struct table_metadata {
     int (*import)(struct db *, char *);         // import function pointer
     int (*export)(struct db *);                 // export function pointer
     int (*load)(struct db *, int);              // load function pointer
+    void *(*compare)(struct db *, unsigned, char *);    // string comparision function
+    void (*print)(void *);                              // print a single record function
+    void (*print_header)(void);                 // print the table header (fields names)
 };
 
 /* Array of tables metadata */

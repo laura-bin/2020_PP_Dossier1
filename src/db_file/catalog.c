@@ -28,6 +28,9 @@ const struct table_metadata tables_metadata[TAB_COUNT] = {
         .import = &import_country,
         .export = &export_country,
         .load = &load_countries,
+        .compare = &compare_country,
+        .print = (void (*)(void *))&print_country,
+        .print_header = &print_country_header
     },
     {
         .prefix = "JOB",
@@ -39,6 +42,9 @@ const struct table_metadata tables_metadata[TAB_COUNT] = {
         .import = &import_job,
         .export = &export_job,
         .load = &load_jobs,
+        .compare = &compare_job,
+        .print = (void (*)(void *))&print_job,
+        .print_header = &print_job_header
     },
     {
         .prefix = "IND",
@@ -50,6 +56,9 @@ const struct table_metadata tables_metadata[TAB_COUNT] = {
         .import = &import_industry,
         .export = &export_industry,
         .load = &load_industries,
+        .compare = &compare_industry,
+        .print = (void (*)(void *))&print_industry,
+        .print_header = &print_industry_header
     },
     {
         .prefix = "GRP",
@@ -61,6 +70,9 @@ const struct table_metadata tables_metadata[TAB_COUNT] = {
         .import = &import_group,
         .export = &export_group,
         .load = &load_groups,
+        .compare = &compare_group,
+        .print = (void (*)(void *))&print_group,
+        .print_header = &print_group_header
     },
     {
         .prefix = "CMP",
@@ -72,6 +84,9 @@ const struct table_metadata tables_metadata[TAB_COUNT] = {
         .import = &import_company,
         .export = &export_company,
         .load = NULL,
+        .compare = NULL,
+        .print = NULL,
+        .print_header = NULL
     },
     {
         .prefix = "PRS",
@@ -83,5 +98,8 @@ const struct table_metadata tables_metadata[TAB_COUNT] = {
         .import = &import_person,
         .export = &export_person,
         .load = NULL,
+        .compare = NULL,
+        .print = NULL,
+        .print_header = NULL
     },
 };
