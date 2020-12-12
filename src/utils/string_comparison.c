@@ -36,21 +36,21 @@ char* lower_str(char *str) {
 
 /* HEADER IMPLEMENTATION */
 
-int contains_icase(int n_str, ...) {
+int contains_icase(int n_str, char *substr, ...) {
     va_list args;
-    va_start(args, n_str);
     int found = 0;
+    char *searched = lower_str(substr);
 
-    char *substr = lower_str(va_arg(args, char*));
-
+    va_start(args, substr);
     while (n_str > 0 && !found) {
         char *str = lower_str(va_arg(args, char*));
-        if (strstr(str, substr)) found = 1;
+        if (strstr(str, searched)) found = 1;
         free(str);
         n_str--;
     }
 
-    free(substr);
     va_end(args);
+    free(searched);
+
     return found;
 }
