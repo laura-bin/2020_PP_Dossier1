@@ -3,7 +3,7 @@
  * Dossier 1 : Analyse de donnees clients
  * ======================================
  *
- * Database file sequential searches in code tables (county, job, industry, group)
+ * Database file sequential searches in code tables (country, job, industry, group)
  *
  * PP 2020 - Laura Binacchi - Fedora 32
  ****************************************************************************************/
