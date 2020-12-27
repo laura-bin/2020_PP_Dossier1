@@ -59,6 +59,8 @@
 #define PERSON_MOBILE_LEN       14
 #define PERSON_EMAIL_LEN        58
 
+#define ID_LEN                  12
+
 /* Types of tables & table count */
 enum table {
     COUNTRY,
@@ -80,12 +82,12 @@ enum index {
 /* Table metadata */
 struct db;
 struct table_metadata {
-    char prefix[PREFIX_LEN];  // tuple prefix in the database
-    char display_name[32];  // name displayed to the user
-    unsigned n_reserved;    // number of tuples reserved in the table
-    size_t size;            // tuple size
-    char csv_path[255];     // csv file path used to import data
-    char csv_header[255];   // csv file header
+    char prefix[PREFIX_LEN];    // tuple prefix in the database
+    char display_name[32];      // name displayed to the user
+    unsigned n_reserved;        // number of tuples reserved in the table
+    size_t size;                // tuple size
+    char csv_path[255];         // csv file path used to import data
+    char csv_header[255];       // csv file header
     int (*import)(struct db *, char *);         // import function pointer
     int (*export)(struct db *);                 // export function pointer
     int (*load)(struct db *, int);              // load function pointer
