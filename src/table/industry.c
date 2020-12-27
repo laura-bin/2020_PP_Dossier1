@@ -15,6 +15,7 @@
 #include <string.h>
 
 #include "table/industry.h"
+#include "utils/preprocess_string.h"
 #include "utils/string_comparison.h"
 
 int import_industry(struct db *db, char *csv_line) {
@@ -26,7 +27,7 @@ int import_industry(struct db *db, char *csv_line) {
     memset(&new_rec, 0, sizeof(struct industry));
 
     // set type
-    strncpy(new_rec.type, tables_metadata[INDUSTRY].prefix, PREF_LEN);
+    strncpy(new_rec.type, tables_metadata[INDUSTRY].prefix, PREFIX_LEN);
 
     // set id
     tok = strtok(csv_line, ";");
@@ -51,13 +52,15 @@ int import_industry(struct db *db, char *csv_line) {
 }
 
 int export_industry(struct db *db) {
-    struct industry tuple;       // tuple read from the database file
+    struct industry tuple;      // tuple read from the database file
     char new_line[CSV_BUF_LEN]; // new line to write in the csv file
 
     memset(&tuple, 0, sizeof(struct industry));
     if (fread(&tuple, sizeof(struct industry), 1, db->dat_file) == 1) {
         sprintf(new_line, "%d;%s;%s\n", tuple.id, tuple.sector, tuple.name);
-        if (strlen(new_line) == (long unsigned)fprintf(db->csv_file, new_line)) return 1;
+        if (strlen(new_line) == (long unsigned)fprintf(db->csv_file, new_line)) {
+            return 1;
+        }
     }
     return 0;
 }
@@ -79,14 +82,18 @@ int load_industries(struct db *db, int count) {
 }
 
 void print_industry(struct industry *industry) {
-    printf("%4d %-22s %-34s\n",
+    printf("%" STR(ID_LEN) "d "
+            "%-" STR(INDUSTRY_SECTOR_LEN) "s "
+            "%-" STR(INDUSTRY_NAME_LEN) "s\n",
             industry->id,
             industry->sector,
             industry->name);
 }
 
 void print_industry_header(void) {
-    printf("%4s %-22s %-34s\n",
+    printf("%" STR(ID_LEN) "s "
+            "%-" STR(INDUSTRY_SECTOR_LEN) "s "
+            "%-" STR(INDUSTRY_NAME_LEN) "s\n",
             "ID",
             "SECTOR",
             "NAME");
