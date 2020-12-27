@@ -25,7 +25,7 @@ int import_company(struct db *db, char *csv_line) {
     memset(&new_rec, 0, sizeof(struct company));
 
     // set type
-    strncpy(new_rec.type, tables_metadata[COMPANY].prefix, PREF_LEN);
+    strncpy(new_rec.type, tables_metadata[COMPANY].prefix, PREFIX_LEN);
 
     // set id
     tok = strtok(csv_line, ";");
@@ -119,7 +119,9 @@ int export_company(struct db *db) {
                     tuple.id_group, tuple.id_country, tuple.id_industry, tuple.name,
                     tuple.address, tuple.zip_code, tuple.city, tuple.phone_number,
                     tuple.website, tuple.creation_date, tuple.n_employees, tuple.share_value);
-        if (strlen(new_line) == (long unsigned)fprintf(db->csv_file, new_line)) return 1;
+        if (strlen(new_line) == (long unsigned)fprintf(db->csv_file, new_line)) {
+            return 1;
+        }
     }
     return 0;
 }
