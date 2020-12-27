@@ -12,6 +12,7 @@
  * PP 2020 - Laura Binacchi - Fedora 32
  ****************************************************************************************/
 
+#include <errno.h>
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
@@ -21,20 +22,27 @@
 #include "utils/logger.h"
 #include "utils/system.h"
 
-int create_db(struct db *db) {
-    enum table i_tab;       // table iteration index
-    unsigned i_tup;         // tuple iteration index
+/* PRIVATE FUNCTIONS */
+
+int create_index() {
+
+    return 0;
+}
+
+/**
+ * Creates the database file header
+ * 
+ * @param db: database information stored in RAM
+ *
+ * @return either:
+ *      the max entity size
+ *     -1 if an error occured (errno is set)
+ */
+ssize_t create_header(struct db *db) {
     size_t offset;          // table or index offset
-    char *buffer;           // empty tuple buffer
-    size_t max_size = 0;    // max entity size used to initialize the buffer
+    size_t max_size = 0;    // max entity size
+    enum table i_tab;       // table iteration index
 
-    // open database in write mode
-    if (open_db(db, WRITE)) {
-        puts("An error occured on database file opening: please refer to log file for details");
-        return -1;
-    }
-
-    // create the header
     memset(&db->header, 0, sizeof(struct header));
     strcpy(db->header.db_name, "db_clients");
     offset = sizeof(struct header);
@@ -49,20 +57,33 @@ int create_db(struct db *db) {
         offset += table->n_reserved * table->size;
         max_size = max_size > table->size ? max_size : table->size;
     }
+
     db->header.size = offset;
 
-    // stop if an error occured
     if (fwrite(&db->header, sizeof(db->header), 1, db->dat_file) != 1) {
-        log_info(db, "Creating database file header", "fwrite error");
-        puts("An error occured while writing the header");
         return -1;
     }
 
-    // create empty tables
+    return max_size;
+}
+
+/**
+ * Creates the empty tables
+ * 
+ * @param db: database information stored in RAM
+ *
+ * @return either:
+ *      0 if the tables have been successfully created
+ *     -1 if an error occured (errno is set)
+ */
+int create_empty_tables(struct db *db, size_t max_size) {
+    char *buffer;           // empty tuple buffer
+    enum table i_tab;       // table iteration index
+    unsigned i_tup;         // tuple iteration index
+
     buffer = malloc(max_size);
+
     if (buffer == NULL) {
-        log_error(db, "Creating database file, buffer malloc");
-        perror("Creating database file, allocating memory to the tuple buffer");
         return -1;
     }
 
@@ -75,8 +96,6 @@ int create_db(struct db *db) {
         for (i_tup = 0; i_tup < table->n_reserved; i_tup++) {
             // stop if an error occured
             if (fwrite(buffer, table->size, 1, db->dat_file) != 1) {
-                log_info(db, "Creating database file empty tuples", "fwrite error");
-                puts("An error occured while writing the empty tuples");
                 return -1;
             }
         }
@@ -84,8 +103,37 @@ int create_db(struct db *db) {
 
     free(buffer);
 
-    printf("Database %s sucessfully created\n", db->header.db_name);
+    return 0;
+}
+
+/* HEADER IMPLEMENTATION */
+
+int create_db(struct db *db) {
+    ssize_t max_size;       // entity max_size
+
+    // open database in write mode
+    if (open_db(db, WRITE)) {
+        puts("An error occured on database file opening: please refer to log file for details");
+        return -1;
+    }
+
+    // create the header & stop if an error occured
+    max_size = create_header(db);
+    if (max_size < 0) {
+        log_info(db, "Creating database file header", strerror(errno));
+        printf("An error occured on header creation: %s\n", strerror(errno));
+        return -1;
+    }
+
+    // create empty tuples & stop if an error occured
+    if (create_empty_tables(db, (size_t) max_size) < 0) {
+        log_info(db, "Creating database file empty tuples", strerror(errno));
+        printf("An error occured on empty tuples creation: %s\n", strerror(errno));
+        return -1;
+    }
+
     log_info(db, "Database file creation", "Success");
+    printf("Database %s sucessfully created\n", db->header.db_name);
 
     // reopen database in read mode
     close_db(db);
