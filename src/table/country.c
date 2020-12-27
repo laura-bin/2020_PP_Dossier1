@@ -15,6 +15,7 @@
 #include <string.h>
 
 #include "table/country.h"
+#include "utils/preprocess_string.h"
 #include "utils/string_comparison.h"
 
 int import_country(struct db *db, char *csv_line) {
@@ -26,7 +27,7 @@ int import_country(struct db *db, char *csv_line) {
     memset(&new_rec, 0, sizeof(struct country));
 
     // set type
-    strncpy(new_rec.type, tables_metadata[COUNTRY].prefix, PREF_LEN);
+    strncpy(new_rec.type, tables_metadata[COUNTRY].prefix, PREFIX_LEN);
 
     // set id
     tok = strtok(csv_line, ";");
@@ -63,7 +64,9 @@ int export_country(struct db *db) {
     memset(&tuple, 0, sizeof(struct country));
     if (fread(&tuple, sizeof(struct country), 1, db->dat_file) == 1) {
         sprintf(new_line, "%d;%s;%s;%s\n", tuple.id, tuple.name, tuple.zone, tuple.iso);
-        if (strlen(new_line) == (long unsigned)fprintf(db->csv_file, new_line)) return 1;
+        if (strlen(new_line) == (long unsigned)fprintf(db->csv_file, new_line)) {
+            return 1;
+        }
     }
     return 0;
 }
@@ -85,7 +88,10 @@ int load_countries(struct db *db, int count) {
 }
 
 void print_country(struct country *country) {
-    printf("%4d %-26s %-26s %-4s \n",
+    printf("%4d "
+            "%-" STR(COUNTRY_NAME_LEN) "s "
+            "%-" STR(COUNTRY_ZONE_LEN) "s "
+            "%-" STR(COUNTRY_ZONE_LEN) "s\n",
             country->id,
             country->name,
             country->zone,
@@ -93,7 +99,10 @@ void print_country(struct country *country) {
 }
 
 void print_country_header(void) {
-    printf("%4s %-26s %-26s %-4s\n",
+    printf("%4s "
+            "%-" STR(COUNTRY_NAME_LEN) "s "
+            "%-" STR(COUNTRY_ZONE_LEN) "s "
+            "%-" STR(COUNTRY_ZONE_LEN) "s\n",
             "ID",
             "NAME",
             "ZONE",
