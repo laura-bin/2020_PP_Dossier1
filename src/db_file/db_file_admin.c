@@ -42,6 +42,7 @@ ssize_t create_header(struct db *db) {
     size_t offset;          // table or index offset
     size_t max_size = 0;    // max entity size
     enum table i_tab;       // table iteration index
+    enum index i_index;     // index iteration index
 
     memset(&db->header, 0, sizeof(struct header));
     strcpy(db->header.db_name, "db_clients");
@@ -50,12 +51,22 @@ ssize_t create_header(struct db *db) {
     for (i_tab = 0; i_tab < TAB_COUNT; i_tab++) {
         const struct table_metadata *table = &tables_metadata[i_tab];
 
-        db->header.n_reserved[i_tab] = table->n_reserved;
-        db->header.offset[i_tab] = offset;
-        db->header.n_recorded[i_tab] = 0;
+        db->header.n_table_res[i_tab] = table->n_reserved;
+        db->header.table_off[i_tab] = offset;
+        db->header.n_table_rec[i_tab] = 0;
 
         offset += table->n_reserved * table->size;
         max_size = max_size > table->size ? max_size : table->size;
+    }
+
+    for (i_index = 0; i_index < INDEX_COUNT; i_index++) {
+        const struct index_metadata *index = &indexes_metadata[i_index];
+
+        db->header.n_index_res[i_index] = index->n_reserved;
+        db->header.index_off[i_index] = offset;
+        db->header.n_index_rec[i_index] = 0;
+
+        max_size = max_size > index->size ? max_size : index->size;
     }
 
     db->header.size = offset;
@@ -68,7 +79,7 @@ ssize_t create_header(struct db *db) {
 }
 
 /**
- * Creates the empty tables
+ * Creates the empty tables & indexes tuples
  * 
  * @param db: database information stored in RAM
  *
@@ -76,9 +87,10 @@ ssize_t create_header(struct db *db) {
  *      0 if the tables have been successfully created
  *     -1 if an error occured (errno is set)
  */
-int create_empty_tables(struct db *db, size_t max_size) {
+int create_empty_tuples(struct db *db, size_t max_size) {
     char *buffer;           // empty tuple buffer
     enum table i_tab;       // table iteration index
+    enum index i_index;     // index iteration index
     unsigned i_tup;         // tuple iteration index
 
     buffer = malloc(max_size);
@@ -87,6 +99,7 @@ int create_empty_tables(struct db *db, size_t max_size) {
         return -1;
     }
 
+    // create empty tables tuples
     for (i_tab = 0; i_tab < TAB_COUNT; i_tab++) {
         const struct table_metadata *table = &tables_metadata[i_tab];
 
@@ -96,13 +109,29 @@ int create_empty_tables(struct db *db, size_t max_size) {
         for (i_tup = 0; i_tup < table->n_reserved; i_tup++) {
             // stop if an error occured
             if (fwrite(buffer, table->size, 1, db->dat_file) != 1) {
+                free(buffer);
+                return -1;
+            }
+        }
+    }
+
+    // create empty indexes tuples
+    for (i_index = 0; i_index < INDEX_COUNT; i_index++) {
+        const struct index_metadata *index = &indexes_metadata[i_index];
+
+        memset(buffer, 0, max_size);
+        strcpy(buffer, index->prefix);
+
+        for (i_tup = 0; i_tup < index->n_reserved; i_tup++) {
+            // stop if an error occured
+            if (fwrite(buffer, index->size, 1, db->dat_file) != 1) {
+                free(buffer);
                 return -1;
             }
         }
     }
 
     free(buffer);
-
     return 0;
 }
 
@@ -126,7 +155,7 @@ int create_db(struct db *db) {
     }
 
     // create empty tuples & stop if an error occured
-    if (create_empty_tables(db, (size_t) max_size) < 0) {
+    if (create_empty_tuples(db, (size_t) max_size) < 0) {
         log_info(db, "Creating database file empty tuples", strerror(errno));
         printf("An error occured on empty tuples creation: %s\n", strerror(errno));
         return -1;
@@ -199,7 +228,7 @@ int import(struct db *db) {
         }
 
         // place the pointer to the offset of the table to import
-        fseek(db->dat_file, db->header.offset[i], SEEK_SET);
+        fseek(db->dat_file, db->header.table_off[i], SEEK_SET);
 
         // skip the csv header
         fgets(line, CSV_BUF_LEN, csv_file);
@@ -213,7 +242,7 @@ int import(struct db *db) {
         fclose(csv_file);
 
         // update the header infos
-        db->header.n_recorded[i] = rec_count;
+        db->header.n_table_rec[i] = rec_count;
         fseek(db->dat_file, 0, SEEK_SET);
         fwrite(&db->header, sizeof(struct header), 1, db->dat_file);
 
@@ -278,22 +307,22 @@ int export(struct db *db) {
         fprintf(db->csv_file, "%s\n", table->csv_header);
 
         // place the pointer at the first tuple
-        fseek(db->dat_file, db->header.offset[i], SEEK_SET);
+        fseek(db->dat_file, db->header.table_off[i], SEEK_SET);
 
-        for (j = 0; j < db->header.n_recorded[i]; j++) {
+        for (j = 0; j < db->header.n_table_rec[i]; j++) {
             n_rec += (*table->export)(db);
         }
 
         fclose(db->csv_file);
 
         // log info
-        if (db->header.n_recorded[i] == 0) {
+        if (db->header.n_table_rec[i] == 0) {
             strcpy(log_msg, "no records to export");
-        } else if (n_rec == db->header.n_recorded[i]) {
+        } else if (n_rec == db->header.n_table_rec[i]) {
             sprintf(log_msg, "%d records successfully exported", n_rec);
         } else {
             sprintf(log_msg, "error on %d record(s) export (%d successfully exported)",
-                        db->header.n_recorded[i] - n_rec, n_rec);
+                        db->header.n_table_rec[i] - n_rec, n_rec);
         }
         log_info(db, log_from, log_msg);
         printf("%-39s %40s\n", log_from, log_msg);
@@ -316,9 +345,9 @@ int display_metadata(struct db *db) {
 
     for (i = 0; i < TAB_COUNT; i++) {
         printf("%s table:\n", tables_metadata[i].display_name);
-        printf("    %-16s %10d records\n", "Space occupied", db->header.n_recorded[i]);
-        printf("    %-16s %10d records\n", "Space left", db->header.n_reserved[i] - db->header.n_recorded[i]);
-        printf("    %-16s %10d records\n", "Total space", db->header.n_reserved[i]);
+        printf("    %-16s %10d records\n", "Space occupied", db->header.n_table_rec[i]);
+        printf("    %-16s %10d records\n", "Space left", db->header.n_table_res[i] - db->header.n_table_rec[i]);
+        printf("    %-16s %10d records\n", "Total space", db->header.n_table_res[i]);
         puts("");
     }
     return 0;

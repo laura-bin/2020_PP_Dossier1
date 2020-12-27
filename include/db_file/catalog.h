@@ -4,9 +4,9 @@
  * ======================================
  *
  * Catalog:
- *  - tables infos : number of tuples reserved for each table, prefix length, etc.
- *  - database metatada structure
- *  - tuples definitions (structures written in the database file)
+ *  - fields length constants
+ *  - tables & indexes metadata
+ *  - tables & indexes structures
  *
  * PP 2020 - Laura Binacchi - Fedora 32
  ****************************************************************************************/
@@ -69,14 +69,14 @@ enum table {
     GROUP,
     COMPANY,
     PERSON,
-    TAB_COUNT   // number of tables in the database
+    TAB_COUNT
 };
 
 /* Indexes & count */
 enum index {
-    PERS_BY_COMP_ID,
-    PERS_BY_NAME,
-    I_COUNT     // number of indexes in the database
+    PERS_BY_COMP_ID,    // person by company id
+    PERS_BY_LASTNAME,   // person by lastname
+    INDEX_COUNT
 };
 
 /* Table metadata */
@@ -98,6 +98,16 @@ struct table_metadata {
 
 /* Array of tables metadata */
 extern const struct table_metadata tables_metadata[TAB_COUNT];
+
+/* Index metadata */
+struct index_metadata {
+    char prefix[PREFIX_LEN];    // tuple prefix in the database
+    unsigned n_reserved;        // number of tuples reserved in the table
+    size_t size;                // tuple size
+};
+
+/* Array of indexes metadata */
+extern const struct index_metadata indexes_metadata[INDEX_COUNT];
 
 /* Country tuple */
 struct country {
@@ -174,12 +184,16 @@ struct person {
 
 /* Person by company id index */
 struct person_by_company {
+    char type[PREFIX_LEN];  // "PRS_CMP"
     unsigned company_id;
     unsigned offset;
+    char filler[16];
 };
 
-/* Person by name index */
-struct person_by_name {
+/* Person by lastname index */
+struct person_by_lastname {
+    char type[PREFIX_LEN];  // "PRS_LN"
     char lastname[PERSON_LASTNAME_LEN];
     unsigned offset;
+    char filler[10];
 };

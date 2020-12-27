@@ -4,6 +4,7 @@
  *
  * Catalog :
  *  - tables metadata assignation
+ *  - indexes metadata assignation
  *
  * PP 2020 - Laura Binacchi - Fedora 32
  ****************************************************************************************/
@@ -101,5 +102,20 @@ const struct table_metadata tables_metadata[TAB_COUNT] = {
         .compare = NULL,
         .print = NULL,
         .print_header = NULL
+    }
+};
+
+
+/* Indexes metadata assignation */
+const struct index_metadata indexes_metadata[INDEX_COUNT] = {
+    {
+        .prefix = "PRS_CMP",
+        .n_reserved = N_RES_PRS,
+        .size = sizeof(struct person_by_company),
     },
+    {
+        .prefix = "PRS_LN",
+        .n_reserved = N_RES_PRS,
+        .size = sizeof(struct person_by_lastname),
+    }
 };

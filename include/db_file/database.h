@@ -22,10 +22,13 @@ enum app_mode {
 /* Database file header */
 struct header {
     unsigned size;                      // db file size
-    char db_name[20];                   // db name
-    unsigned offset[TAB_COUNT];         // offset of each table
-    unsigned n_reserved[TAB_COUNT];     // number of tuples reserved in each table
-    unsigned n_recorded[TAB_COUNT];     // number of tuples saved in each table
+    char db_name[28];                   // db name
+    unsigned table_off[TAB_COUNT];      // tables offsets
+    unsigned index_off[INDEX_COUNT];    // indexes offsets
+    unsigned n_table_res[TAB_COUNT];    // number of tuples reserved in each table
+    unsigned n_index_res[INDEX_COUNT];  // number of tuples reserved in each index
+    unsigned n_table_rec[TAB_COUNT];    // number of tuples saved in each table
+    unsigned n_index_rec[INDEX_COUNT];  // number of tuples saved in each index
 };
 
 /* Informations about the database used by the main program */

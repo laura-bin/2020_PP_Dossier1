@@ -41,7 +41,7 @@ int seq_search(struct db *db, enum table tab) {
     printf("Enter the substring searched: ");
     get_text_input(searched, 64);
 
-    for (i = 0; i < db->header.n_recorded[tab]; i++) {
+    for (i = 0; i < db->header.n_table_rec[tab]; i++) {
         found = (*table->compare)(db, i, searched);
         if (found != NULL) {
             cur_node = append_item(cur_node, found);
