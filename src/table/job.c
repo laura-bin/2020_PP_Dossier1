@@ -15,6 +15,7 @@
 #include <string.h>
 
 #include "table/job.h"
+#include "utils/preprocess_string.h"
 #include "utils/string_comparison.h"
 
 int import_job(struct db *db, char *csv_line) {
@@ -26,7 +27,7 @@ int import_job(struct db *db, char *csv_line) {
     memset(&new_rec, 0, sizeof(struct job));
 
     // set type
-    strncpy(new_rec.type, tables_metadata[JOB].prefix, PREF_LEN);
+    strncpy(new_rec.type, tables_metadata[JOB].prefix, PREFIX_LEN);
 
     // set id
     tok = strtok(csv_line, ";");
@@ -64,7 +65,9 @@ int export_job(struct db *db) {
     if (fread(&tuple, sizeof(struct job), 1, db->dat_file) == 1) {
         sprintf(new_line, "%d;%s;%s;%s\n", tuple.id, tuple.level,
                     tuple.department, tuple.name);
-        if (strlen(new_line) == (long unsigned)fprintf(db->csv_file, new_line)) return 1;
+        if (strlen(new_line) == (long unsigned)fprintf(db->csv_file, new_line)) {
+            return 1;
+        }
     }
     return 0;
 }
@@ -86,7 +89,10 @@ int load_jobs(struct db *db, int count) {
 }
 
 void print_job(struct job *job) {
-    printf("%4d %-24s %-26s %-40s\n",
+    printf("%" STR(ID_LEN) "d "
+            "%-" STR(JOB_LEVEL_LEN) "s "
+            "%-" STR(JOB_DEPARTMENT_LEN) "s "
+            "%-" STR(JOB_NAME_LEN) "s\n",
             job->id,
             job->level,
             job->department,
@@ -94,7 +100,10 @@ void print_job(struct job *job) {
 }
 
 void print_job_header(void) {
-    printf("%4s %-24s %-26s %-40s\n",
+    printf("%" STR(ID_LEN) "s "
+            "%-" STR(JOB_LEVEL_LEN) "s "
+            "%-" STR(JOB_DEPARTMENT_LEN) "s "
+            "%-" STR(JOB_NAME_LEN) "s\n",
             "ID",
             "LEVEL",
             "DEPARTMENT",
