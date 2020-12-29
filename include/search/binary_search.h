@@ -14,12 +14,8 @@
 
 /**
  * Searches a company by its id
- * 
- * @return either
- *      if the company have benn found: the person found
- *      else: the closest results
  */
-void *search_company_by_id(struct db *db);
+int search_company_by_id(struct db *db);
 
 /**
  * Searches a person by its id
@@ -28,4 +24,4 @@ void *search_company_by_id(struct db *db);
  *      if the person have benn found: the person found
  *      else: the closest results
  */
-void *search_person_by_id(struct db *db);
+int search_person_by_id(struct db *db);

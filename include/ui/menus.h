@@ -14,7 +14,7 @@
 
 /* Number of menus for each application mode */
 #define ADMIN_MENUS_COUNT   5
-#define USER_MENUS_COUNT    5
+#define USER_MENUS_COUNT    9
 
 /* Menu entry: text displayed to the user and action to call */
 struct menu_entry {

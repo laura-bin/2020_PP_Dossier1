@@ -3,10 +3,11 @@
  * Dossier 1 : Analyse de donnees clients
  * ======================================
  *
- * Grouping of the different functions concerning the database file
+ * Grouping of the different search functions
  *
  * PP 2020 - Laura Binacchi - Fedora 32
  ****************************************************************************************/
 
-// #include "db_file_admin.h"
-// #include "seq_search.h"
+#include "search/binary_search.h"
+#include "search/index_search.h"
+#include "search/sequential_search.h"

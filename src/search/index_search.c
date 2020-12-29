@@ -13,14 +13,14 @@
 
 #include "search/index_search.h"
 
-void *search_people_by_company_id(struct db *db) {
-    void *r = NULL;
-    return r;
+int search_people_by_company_id(struct db *db) {
+    puts("Function not yet implemented");
+    return 0;
 }
 
-void *search_people_by_lastname(struct db *db) {
-    void *r = NULL;
-    return r;
+int search_people_by_lastname(struct db *db) {
+    puts("Function not yet implemented");
+    return 0;
 }
 
 

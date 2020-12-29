@@ -13,7 +13,7 @@
  ****************************************************************************************/
 
 #include "db_file/admin.h"
-#include "search/seq_search.h"
+#include "search/search.h"
 #include "ui/menus.h"
 #include "ui/ui-utils.h"
 #include "utils/logger.h"
@@ -60,6 +60,22 @@ const struct menu_entry user_menus[USER_MENUS_COUNT] = {
     {
         .text = "Search group",
         .action = &search_groups
+    },
+    {
+        .text = "Search company by id",
+        .action = &search_company_by_id
+    },
+    {
+        .text = "Search person by id",
+        .action = &search_person_by_id
+    },
+    {
+        .text = "Search people by company id",
+        .action = &search_people_by_company_id
+    },
+    {
+        .text = "Search people by lastname prefix",
+        .action = &search_people_by_company_id
     },
     {
         .text = "Display database file metadata",

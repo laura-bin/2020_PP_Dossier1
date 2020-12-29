@@ -13,12 +13,12 @@
 
 #include "search/binary_search.h"
 
-void *search_company_by_id(struct db *db) {
-    void *r = NULL;
-    return r;
+int search_company_by_id(struct db *db) {
+    puts("Function not yet implemented");
+    return 0;
 }
 
-void *search_person_by_id(struct db *db) {
-    void *r = NULL;
-    return r;
+int search_person_by_id(struct db *db) {
+    puts("Function not yet implemented");
+    return 0;
 }

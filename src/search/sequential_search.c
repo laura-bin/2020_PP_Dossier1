@@ -12,7 +12,7 @@
 #include <string.h>
 
 #include "db_file/database.h"
-#include "search/seq_search.h"
+#include "search/sequential_search.h"
 #include "table/country.h"
 #include "table/job.h"
 #include "table/industry.h"
@@ -28,7 +28,7 @@
  * @param db: database information stored in RAM
  * @param tab: table enum
  */
-int seq_search(struct db *db, enum table tab) {
+int sequential_search(struct db *db, enum table tab) {
     char searched[MAX_LEN];         // substring searched
     unsigned i;                     // record index
     unsigned results = 0;           // number of records found
@@ -63,17 +63,17 @@ int seq_search(struct db *db, enum table tab) {
 /* HEADER IMPLEMENTATION */
 
 int search_countries(struct db *db) {
-    return seq_search(db, COUNTRY);
+    return sequential_search(db, COUNTRY);
 }
 
 int search_jobs(struct db *db) {
-    return seq_search(db, JOB);
+    return sequential_search(db, JOB);
 }
 
 int search_industries(struct db *db) {
-    return seq_search(db, INDUSTRY);
+    return sequential_search(db, INDUSTRY);
 }
 
 int search_groups(struct db *db) {
-    return seq_search(db, GROUP);
+    return sequential_search(db, GROUP);
 }

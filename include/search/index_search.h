@@ -14,18 +14,10 @@
 
 /**
  * Searches people by their company id
- * 
- * @return either
- *      the list of people found
- *      NULL if no result was found
  */
-void *search_people_by_company_id(struct db *db);
+int search_people_by_company_id(struct db *db);
 
 /**
  * Searches people by lastname prefix
- * 
- * @return either
- *      the list of people found
- *      NULL if no result was found
  */
-void *search_people_by_lastname(struct db *db);
+int search_people_by_lastname(struct db *db);
