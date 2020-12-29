@@ -60,6 +60,7 @@
 #define PERSON_EMAIL_LEN        58
 
 #define ID_LEN                  12
+#define MAX_LEN                 62
 
 /* Types of tables & table count */
 enum table {
@@ -184,16 +185,18 @@ struct person {
 
 /* Person by company id index */
 struct person_by_company {
-    char type[PREFIX_LEN];  // "PRS_CMP"
+    char type[PREFIX_LEN];  // "PRS_CMP" ou IPC
+    unsigned offset;        // person offset
     unsigned company_id;
-    unsigned offset;
     char filler[16];
 };
 
 /* Person by lastname index */
 struct person_by_lastname {
     char type[PREFIX_LEN];  // "PRS_LN"
+    unsigned offset;        // person offset
+    unsigned left;          // left node offset
+    unsigned rigth;         // right node offset
     char lastname[PERSON_LASTNAME_LEN];
-    unsigned offset;
     char filler[10];
 };

@@ -102,7 +102,7 @@ void print_industry_header(void) {
 void *compare_industry(struct db *db, unsigned i, char *searched) {
     void *found = NULL;
 
-    if (contains_icase(2, searched,
+    if (contain_icase(2, searched,
             db->industries[i].sector,
             db->industries[i].name)) {
         found = &db->industries[i];

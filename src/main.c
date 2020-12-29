@@ -24,6 +24,31 @@
  *  - pagination
  *  - generic linked lists
  *  - sequential searches in code tables
+ * v3.1:
+ *  - use constants to define fields length
+ * v4:
+ *  - indexes creation
+ * TODO :
+ *  - check flush / syncx
+ *  - normalisation des tables (extractions des domaines) : zones, secteurs, level, department chargés en RAM (tableau de 20)
+ *  - quick sort algorithm
+ *  - routine de tri pour la création des index
+ *  - indexes creation: person by company id (on tape l'id de la company et in a la liste des personnes)
+ *  - indexes creation: person by name
+ *  - acces dichotomique aux compagnies et personnes (les id sont triés mais pas continus) -> algorithme de recherche dichotomique
+ *  - acces indexé aux personnes
+ *  - search company by id (binary search) & show the closest results if the id is not in the db
+ *  - search person by id (binary search) & show the closest results if the id is not in the db
+ *  - search person by company (id ?) (linked list, b-tree) -> par id (entre l'id et sort la liste des personnes qui y travaillent) et par début de nom de compagnie (vue en maître-détail : toutes les copagnies qui commencent par prox avec la liste des personnes qui y travaillent)
+ *  - search company by group (linked list)
+ *  - search person by name prefix (b-tree)
+ *  - show the results in reversed order
+ *  - report (txt ou rtf) + date dans le nom du fichier de sortie
+ *  - rapport de détail : liste des personnes travaillant pour chaque compagnie d'un groupe
+ *  - rapport de détail : liste de toutes les compagnies appartenant à un groupe par pays
+ *  - rapport aggrégé (group by) : nombre de personnes par groupe (somme des n_emp) et nombre de personnes connues dans la db (count) -> pourcentage de personnes connues dans la db
+ *  - rapport aggrégé : valeur totale des actions détenues par les employés pour un groupe donné, éclaté par genre et niveau de fonction
+ *  - rapports aggrégés : garder les données dans des listes chaînées
  *
  * TODO type log messages to make error messages more visible
  *
@@ -32,7 +57,7 @@
 
 #include <string.h>
 
-#include "db_file/db_file_utils.h"
+#include "db_file/open_close.h"
 #include "ui/menus.h"
 #include "utils/logger.h"
 #include "utils/system.h"

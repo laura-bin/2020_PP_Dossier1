@@ -12,7 +12,7 @@
 #include <string.h>
 
 #include "db_file/database.h"
-#include "db_file/seq_search.h"
+#include "search/seq_search.h"
 #include "table/country.h"
 #include "table/job.h"
 #include "table/industry.h"
@@ -29,7 +29,7 @@
  * @param tab: table enum
  */
 int seq_search(struct db *db, enum table tab) {
-    char searched[64];              // string searched
+    char searched[MAX_LEN];         // substring searched
     unsigned i;                     // record index
     unsigned results = 0;           // number of records found
     struct node *head = NULL;       // linked list head
@@ -39,7 +39,7 @@ int seq_search(struct db *db, enum table tab) {
     const struct table_metadata *table = &tables_metadata[tab];
 
     printf("Enter the substring searched: ");
-    get_text_input(searched, 64);
+    get_text_input(searched, MAX_LEN);
 
     for (i = 0; i < db->header.n_table_rec[tab]; i++) {
         found = (*table->compare)(db, i, searched);

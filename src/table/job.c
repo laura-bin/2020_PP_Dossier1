@@ -113,7 +113,7 @@ void print_job_header(void) {
 void *compare_job(struct db *db, unsigned i, char *searched) {
     void *found = NULL;
 
-    if (contains_icase(3, searched,
+    if (contain_icase(3, searched,
             db->jobs[i].level,
             db->jobs[i].department,
             db->jobs[i].name)) {

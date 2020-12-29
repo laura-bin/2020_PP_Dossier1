@@ -15,7 +15,7 @@
 
 #include <string.h>
 
-#include "db_file/db_file_utils.h"
+#include "db_file/open_close.h"
 #include "utils/logger.h"
 
 /* PRIVATE FUNCTIONS */

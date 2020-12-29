@@ -12,7 +12,8 @@
  * PP 2020 - Laura Binacchi - Fedora 32
  ****************************************************************************************/
 
-#include "db_file/db_file.h"
+#include "db_file/admin.h"
+#include "search/seq_search.h"
 #include "ui/menus.h"
 #include "ui/ui-utils.h"
 #include "utils/logger.h"

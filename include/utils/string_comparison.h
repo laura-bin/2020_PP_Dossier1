@@ -20,4 +20,19 @@
  *          1 if at least one of the strings contains the substring
  *          0 if no string contains the substring
  */
-int contains_icase(int n_str, char* substr, ...);
+int contain_icase(int n_str, char* substr, ...);
+
+/**
+ * Tests if a string starts with a substring
+ * (case insensitive)
+ *
+ * @param string: string to compare
+ * @param searched: searched substring
+ *
+ * @return either:
+ *          < 0 if the string is shorter than the substring
+ *              or if the substring is before the string in alphabetical order
+ *          0 if the string starts with the substring
+ *          > 0 if the substring is after the string in alphabetical order
+ */
+int start_with_icase(char *string, char *searched);

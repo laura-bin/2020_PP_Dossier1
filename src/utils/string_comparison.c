@@ -36,7 +36,7 @@ char* lower_str(char *str) {
 
 /* HEADER IMPLEMENTATION */
 
-int contains_icase(int n_str, char *substr, ...) {
+int contain_icase(int n_str, char *substr, ...) {
     va_list args;
     int found = 0;
     char *searched = lower_str(substr);
@@ -51,6 +51,27 @@ int contains_icase(int n_str, char *substr, ...) {
 
     va_end(args);
     free(searched);
+
+    return found;
+}
+
+int start_with_icase(char *string, char *searched) {
+    int found = 0;
+    char *lower_string;
+    char *lower_searched;
+    size_t searched_len = strlen(searched);
+
+    if (searched_len > strlen(string)) {
+        return -1;
+    }
+
+    lower_string = lower_str(string);
+    lower_searched = lower_str(searched);
+
+    found = strncmp(lower_searched, lower_string, searched_len);
+
+    free(lower_string);
+    free(lower_searched);
 
     return found;
 }

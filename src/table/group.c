@@ -101,7 +101,7 @@ void print_group_header(void) {
 void *compare_group(struct db *db, unsigned i, char *searched) {
     void *found = NULL;
 
-    if (contains_icase(1, searched, db->groups[i].name)) {
+    if (contain_icase(1, searched, db->groups[i].name)) {
         found = &db->groups[i];
     }
 

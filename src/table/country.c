@@ -112,7 +112,7 @@ void print_country_header(void) {
 void *compare_country(struct db *db, unsigned i, char *searched) {
     void *found = NULL;
 
-    if (contains_icase(3, searched,
+    if (contain_icase(3, searched,
             db->countries[i].name,
             db->countries[i].zone,
             db->countries[i].iso)) {

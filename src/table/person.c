@@ -115,3 +115,53 @@ int export_person(struct db *db) {
     }
     return 0;
 }
+
+// search via index
+// void *search_person_by_lastname_prefix(struct db *db, char *searched) {
+//     struct person_by_lastname index;
+//     unsigned index_off;
+//     int i, lg, tst;
+//     char lastname_buffer[PERSON_LASTNAME_LEN];
+//     int rv;
+
+//     index_off = db->header.index_ipn_head;
+
+//     while (1) {
+//         if (index_off == 0) {
+//             return 0;
+//         }
+
+//         fseek(db->dat_file, index_off, SEEK_SET);
+//         fread(&index, 1, sizeof(struct person_by_lastname), db->dat_file);
+
+//         memset(&lastname_buffer, 0, PERSON_LASTNAME_LEN);
+
+//         rv = start_with_icase(index.lastname, searched);
+
+//         if (rv > 0) {
+//             break;
+//         }
+
+//         if (rv == 0) {
+//             // read person
+//             // append to list
+//         }
+//     }
+
+//     return list;
+// }
+
+// void *compare_person(struct db *db, unsigned i, char *searched) {
+//     void *found = NULL;
+
+    
+
+//     if (contains_icase(3, searched,
+//             db->jobs[i].level,
+//             db->jobs[i].department,
+//             db->jobs[i].name)) {
+//         found = &db->jobs[i];
+//     }
+
+//     return found;
+// }
