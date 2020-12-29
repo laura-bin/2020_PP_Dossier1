@@ -73,11 +73,15 @@ enum table {
     TAB_COUNT
 };
 
-/* Indexes & count */
-enum index {
+/* Numeric indexes types & count */
+enum num_index {
     PERS_BY_COMP_ID,    // person by company id
+    NUM_INDEX_COUNT
+};
+
+enum alpha_index {
     PERS_BY_LASTNAME,   // person by lastname
-    INDEX_COUNT
+    ALPHA_INDEX_COUNT
 };
 
 /* Table metadata */
@@ -107,8 +111,11 @@ struct index_metadata {
     size_t size;                // tuple size
 };
 
-/* Array of indexes metadata */
-extern const struct index_metadata indexes_metadata[INDEX_COUNT];
+/* Array of numeric indexes metadata */
+extern const struct index_metadata num_indexes_metadata[NUM_INDEX_COUNT];
+
+/* Array of alphanumeric indexes metadata */
+extern const struct index_metadata alpha_indexes_metadata[ALPHA_INDEX_COUNT];
 
 /* Country tuple */
 struct country {
@@ -183,20 +190,20 @@ struct person {
     char filler[20];
 };
 
-/* Person by company id index */
-struct person_by_company {
-    char type[PREFIX_LEN];  // "PRS_CMP" ou IPC
-    unsigned offset;        // person offset
-    unsigned company_id;
+/* Numeric index entity */
+struct num_entity {
+    char type[PREFIX_LEN];
+    unsigned offset;        // entity offset
+    unsigned value;         // value
     char filler[16];
 };
 
-/* Person by lastname index */
-struct person_by_lastname {
-    char type[PREFIX_LEN];  // "PRS_LN"
-    unsigned offset;        // person offset
+/* Alphanumeric index entity */
+struct alpha_entity {
+    char type[PREFIX_LEN];
+    unsigned offset;        // entity offset
     unsigned left;          // left node offset
     unsigned rigth;         // right node offset
-    char lastname[PERSON_LASTNAME_LEN];
-    char filler[10];
+    char value[MAX_LEN];    // value
+    char filler[14];
 };

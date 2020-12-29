@@ -19,7 +19,8 @@
 
 #include "db_file/admin.h"
 #include "db_file/header.h"
-#include "db_file/index.h"
+#include "db_file/alpha_index.h"
+#include "db_file/num_index.h"
 #include "db_file/open_close.h"
 #include "utils/logger.h"
 #include "utils/system.h"
@@ -27,67 +28,107 @@
 /* PRIVATE FUNCTION */
 
 /**
- * Creates the empty tables & indexes tuples
+ * Creates the empty tables
  * 
  * @param db: database information stored in RAM
  *
  * @return either:
- *      0 if the tables have been successfully created
- *     -1 if an error occured (errno is set)
+ *      the number of tables successfully created
+ *      -1 if an error occured (errno is set)
  */
-int create_empty_tuples(struct db *db, size_t max_size) {
-    char *buffer;           // empty tuple buffer
-    enum table i_tab;       // table iteration index
-    enum index i_index;     // index iteration index
-    unsigned i_tup;         // tuple iteration index
-
-    buffer = malloc(max_size);
-
-    if (buffer == NULL) {
-        return -1;
-    }
+int create_empty_tables(struct db *db) {
+    char *buffer;   // empty tuple buffer
+    enum table i;   // table index
+    unsigned i_tup; // tuple index
 
     // create empty tables tuples
-    for (i_tab = 0; i_tab < TAB_COUNT; i_tab++) {
-        const struct table_metadata *table = &tables_metadata[i_tab];
+    for (i = 0; i < TAB_COUNT; i++) {
+        const struct table_metadata *table = &tables_metadata[i];
 
-        memset(buffer, 0, max_size);
+        buffer = malloc(table->size);
+        if (buffer == NULL) {
+            return -1;
+        }
+
+        memset(buffer, 0, table->size);
         strcpy(buffer, table->prefix);
 
         for (i_tup = 0; i_tup < table->n_reserved; i_tup++) {
-            // stop if an error occured
             if (fwrite(buffer, table->size, 1, db->dat_file) != 1) {
                 free(buffer);
                 return -1;
             }
         }
+
+        free(buffer);
     }
 
-    // create empty indexes tuples
-    for (i_index = 0; i_index < INDEX_COUNT; i_index++) {
-        const struct index_metadata *index = &indexes_metadata[i_index];
+    return i;
+}
 
-        memset(buffer, 0, max_size);
-        strcpy(buffer, index->prefix);
+/**
+ * Creates the empty numeric indexes
+ * 
+ * @param db: database information stored in RAM
+ *
+ * @return either:
+ *      the number of indexes successfully created
+ *      -1 if an error occured (errno is set)
+ */
+int create_empty_num_indexes(struct db *db) {
+    struct num_entity tuple;    // empty tuple buffer
+    enum num_index i;           // numeric index index
+    unsigned i_tup;             // tuple index
+
+    for (i = 0; i < NUM_INDEX_COUNT; i++) {
+        const struct index_metadata *index = &num_indexes_metadata[i];
+
+        memset(&tuple, 0, sizeof(struct num_entity));
+        strcpy(tuple.type, index->prefix);
 
         for (i_tup = 0; i_tup < index->n_reserved; i_tup++) {
-            // stop if an error occured
-            if (fwrite(buffer, index->size, 1, db->dat_file) != 1) {
-                free(buffer);
+            if (fwrite(&tuple, index->size, 1, db->dat_file) != 1) {
                 return -1;
             }
         }
     }
 
-    free(buffer);
-    return 0;
+    return i;
+}
+
+/**
+ * Creates the empty alphanumeric indexes
+ * 
+ * @param db: database information stored in RAM
+ *
+ * @return either:
+ *      the number of indexes successfully created
+ *      -1 if an error occured (errno is set)
+ */
+int create_empty_alpha_indexes(struct db *db) {
+    struct alpha_entity tuple;  // empty tuple buffer
+    enum alpha_index i;         // numeric index index
+    unsigned i_tup;             // tuple index
+
+    for (i = 0; i < ALPHA_INDEX_COUNT; i++) {
+        const struct index_metadata *index = &alpha_indexes_metadata[i];
+
+        memset(&tuple, 0, sizeof(struct alpha_entity));
+        strcpy(tuple.type, index->prefix);
+
+        for (i_tup = 0; i_tup < index->n_reserved; i_tup++) {
+            if (fwrite(&tuple, index->size, 1, db->dat_file) != 1) {
+                return -1;
+            }
+        }
+    }
+
+    return i;
 }
 
 /* HEADER IMPLEMENTATION */
 
 int create_db(struct db *db) {
-    ssize_t max_size;       // entity max_size
-
     // open database in write mode
     if (open_db(db, WRITE)) {
         puts("An error occured on database file opening: please refer to log file for details");
@@ -95,17 +136,30 @@ int create_db(struct db *db) {
     }
 
     // create the header & stop if an error occured
-    max_size = create_header(db);
-    if (max_size < 0) {
+    if (create_header(db) < 0) {
         log_info(db, "Creating database file header", strerror(errno));
         printf("An error occured on header creation: %s\n", strerror(errno));
         return -1;
     }
 
-    // create empty tuples & stop if an error occured
-    if (create_empty_tuples(db, (size_t) max_size) < 0) {
-        log_info(db, "Creating database file empty tuples", strerror(errno));
-        printf("An error occured on empty tuples creation: %s\n", strerror(errno));
+    // create empty tables & stop if an error occured
+    if (create_empty_tables(db) < 0) {
+        log_info(db, "Creating database file empty tables", strerror(errno));
+        printf("An error occured on empty tables creation: %s\n", strerror(errno));
+        return -1;
+    }
+
+    // create empty numeric indexes & stop if an error occured
+    if (create_empty_num_indexes(db) < 0) {
+        log_info(db, "Creating database file empty numeric indexes", strerror(errno));
+        printf("An error occured on empty numeric indexes creation: %s\n", strerror(errno));
+        return -1;
+    }
+
+    // create empty alphanumeric indexes & stop if an error occured
+    if (create_empty_alpha_indexes(db) < 0) {
+        log_info(db, "Creating database file empty alphanumeric indexes", strerror(errno));
+        printf("An error occured on empty alphanumeric indexes creation: %s\n", strerror(errno));
         return -1;
     }
 
@@ -113,7 +167,6 @@ int create_db(struct db *db) {
     printf("Database %s sucessfully created\n", db->header.db_name);
 
     // reopen database in read mode
-    close_db(db);
     open_db(db, READ);
 
     return 0;
@@ -176,7 +229,7 @@ int import(struct db *db) {
         }
 
         // place the pointer to the offset of the table to import
-        fseek(db->dat_file, db->header.table_off[i], SEEK_SET);
+        fseek(db->dat_file, db->header.offset_table[i], SEEK_SET);
 
         // skip the csv header
         fgets(line, CSV_BUF_LEN, csv_file);
@@ -190,7 +243,7 @@ int import(struct db *db) {
         fclose(csv_file);
 
         // update the header infos
-        db->header.n_table_rec[i] = rec_count;
+        db->header.n_rec_table[i] = rec_count;
         fseek(db->dat_file, 0, SEEK_SET);
         fwrite(&db->header, sizeof(struct header), 1, db->dat_file);
 
@@ -203,6 +256,16 @@ int import(struct db *db) {
     // log info
     if (tab_error_count != 0) printf("\nImport error on %d table(s)\n", tab_error_count);
     else puts("\nAll tables have been suceessfully updated");
+
+    // create person by lastname index
+    if (create_person_by_lastname(db) < 0) {
+        log_info(db, "Creating person by lastname index", strerror(errno));
+        printf("An error occured on person by lastname index creation: %s\n", strerror(errno));
+        return -1;
+    } else {
+        log_info(db, "Creating person by lastname index", "Succes");
+        puts("\nIndex person by lastname successfully created");
+    }
 
     // reopen database file in read mode
     open_db(db, READ);
@@ -255,22 +318,22 @@ int export(struct db *db) {
         fprintf(db->csv_file, "%s\n", table->csv_header);
 
         // place the pointer at the first tuple
-        fseek(db->dat_file, db->header.table_off[i], SEEK_SET);
+        fseek(db->dat_file, db->header.offset_table[i], SEEK_SET);
 
-        for (j = 0; j < db->header.n_table_rec[i]; j++) {
+        for (j = 0; j < db->header.n_rec_table[i]; j++) {
             n_rec += (*table->export)(db);
         }
 
         fclose(db->csv_file);
 
         // log info
-        if (db->header.n_table_rec[i] == 0) {
+        if (db->header.n_rec_table[i] == 0) {
             strcpy(log_msg, "no records to export");
-        } else if (n_rec == db->header.n_table_rec[i]) {
+        } else if (n_rec == db->header.n_rec_table[i]) {
             sprintf(log_msg, "%d records successfully exported", n_rec);
         } else {
             sprintf(log_msg, "error on %d record(s) export (%d successfully exported)",
-                        db->header.n_table_rec[i] - n_rec, n_rec);
+                        db->header.n_rec_table[i] - n_rec, n_rec);
         }
         log_info(db, log_from, log_msg);
         printf("%-39s %40s\n", log_from, log_msg);
@@ -293,9 +356,9 @@ int display_metadata(struct db *db) {
 
     for (i = 0; i < TAB_COUNT; i++) {
         printf("%s table:\n", tables_metadata[i].display_name);
-        printf("    %-16s %10d records\n", "Space occupied", db->header.n_table_rec[i]);
-        printf("    %-16s %10d records\n", "Space left", db->header.n_table_res[i] - db->header.n_table_rec[i]);
-        printf("    %-16s %10d records\n", "Total space", db->header.n_table_res[i]);
+        printf("    %-16s %10d records\n", "Space occupied", db->header.n_rec_table[i]);
+        printf("    %-16s %10d records\n", "Space left", db->header.n_res_table[i] - db->header.n_rec_table[i]);
+        printf("    %-16s %10d records\n", "Total space", db->header.n_res_table[i]);
         puts("");
     }
     return 0;

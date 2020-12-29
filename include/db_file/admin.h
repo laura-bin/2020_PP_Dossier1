@@ -39,6 +39,7 @@ int delete_db(struct db *db);
 
 /**
  * Imports data from csv files to dat file
+ * then creates the indexes
  * 
  * @param db: database information stored in RAM
  *

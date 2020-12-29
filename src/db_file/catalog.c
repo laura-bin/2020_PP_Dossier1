@@ -105,17 +105,20 @@ const struct table_metadata tables_metadata[TAB_COUNT] = {
     }
 };
 
-
-/* Indexes metadata assignation */
-const struct index_metadata indexes_metadata[INDEX_COUNT] = {
+/* Numeric indexes metadata assignation */
+const struct index_metadata num_indexes_metadata[NUM_INDEX_COUNT] = {
     {
         .prefix = "PRS_CMP",
         .n_reserved = N_RES_PRS,
-        .size = sizeof(struct person_by_company),
-    },
+        .size = sizeof(struct num_entity)
+    }
+};
+
+/* Alphanumeric indexes metadata assignation */
+const struct index_metadata alpha_indexes_metadata[ALPHA_INDEX_COUNT] = {
     {
         .prefix = "PRS_LN",
         .n_reserved = N_RES_PRS,
-        .size = sizeof(struct person_by_lastname),
+        .size = sizeof(struct alpha_entity)
     }
 };

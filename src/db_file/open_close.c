@@ -63,10 +63,10 @@ int load_buffers(struct db *db) {
         sprintf(log_from, "%s table load", table->display_name);
 
         if (table->load != NULL) {
-            n_rec = db->header.n_table_rec[i];
+            n_rec = db->header.n_rec_table[i];
             if (n_rec == 0) continue;
 
-            fseek(db->dat_file, db->header.table_off[i], SEEK_SET);
+            fseek(db->dat_file, db->header.offset_table[i], SEEK_SET);
             n_rec_loaded = table->load(db, n_rec);
             if (n_rec == n_rec_loaded) {
                 sprintf(log_msg, "%d records successfully loaded", n_rec_loaded);
