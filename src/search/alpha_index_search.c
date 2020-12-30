@@ -93,12 +93,12 @@ int search_by_alpha_index(struct db *db, enum alpha_index type) {
     index_offset = find_first_index(db, searched, type);
 
     // create the list of results
-    end = db->header.offset_alpha_index[type] + index_info->n_reserved * index_info->size;
+    end = db->header.offset_alpha_index[type] + db->header.n_rec_table[index_info->table] * sizeof(struct alpha_entity);
     while (index_offset < end) {
         // read the index
         fseek(db->dat_file, index_offset, SEEK_SET);
-        memset(&index, 0, index_info->size);
-        fread(&index, index_info->size, 1, db->dat_file);
+        memset(&index, 0, sizeof(struct alpha_entity));
+        fread(&index, sizeof(struct alpha_entity), 1, db->dat_file);
 
         // stop if the prefix doesn't match the index value
         if (start_with_icase(index.value, searched)) {
@@ -115,7 +115,7 @@ int search_by_alpha_index(struct db *db, enum alpha_index type) {
             results++;
         }
 
-        index_offset += index_info->size;
+        index_offset += sizeof(struct alpha_entity);
     }
 
     paginate(results, head, index_info->print, index_info->print_header);

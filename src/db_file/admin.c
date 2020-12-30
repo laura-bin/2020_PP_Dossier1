@@ -86,8 +86,8 @@ int create_empty_num_indexes(struct db *db) {
         memset(&tuple, 0, sizeof(struct num_entity));
         strcpy(tuple.type, index->prefix);
 
-        for (i_tup = 0; i_tup < index->n_reserved; i_tup++) {
-            if (fwrite(&tuple, index->size, 1, db->dat_file) != 1) {
+        for (i_tup = 0; i_tup < db->header.n_rec_table[index->table]; i_tup++) {
+            if (fwrite(&tuple, sizeof(struct num_entity), 1, db->dat_file) != 1) {
                 return -1;
             }
         }
@@ -116,8 +116,8 @@ int create_empty_alpha_indexes(struct db *db) {
         memset(&tuple, 0, sizeof(struct alpha_entity));
         strcpy(tuple.type, index->prefix);
 
-        for (i_tup = 0; i_tup < index->n_reserved; i_tup++) {
-            if (fwrite(&tuple, index->size, 1, db->dat_file) != 1) {
+        for (i_tup = 0; i_tup < db->header.n_rec_table[index->table]; i_tup++) {
+            if (fwrite(&tuple, sizeof(struct alpha_entity), 1, db->dat_file) != 1) {
                 return -1;
             }
         }
@@ -255,7 +255,17 @@ int import(struct db *db) {
 
     // log info
     if (tab_error_count != 0) printf("\nImport error on %d table(s)\n", tab_error_count);
-    else puts("\nAll tables have been suceessfully updated");
+    else puts("\nAll tables have been suceessfully updated\n");
+
+    // create person by company id index
+    if (create_person_by_company_id(db) < 0) {
+        log_info(db, "Creating person by company id index", strerror(errno));
+        printf("An error occured on person by company id index creation: %s\n", strerror(errno));
+        return -1;
+    } else {
+        log_info(db, "Creating person by company id index", "Succes");
+        puts("Index person by company id successfully created");
+    }
 
     // create person by lastname index
     if (create_person_by_lastname(db) < 0) {
@@ -264,7 +274,7 @@ int import(struct db *db) {
         return -1;
     } else {
         log_info(db, "Creating person by lastname index", "Succes");
-        puts("\nIndex person by lastname successfully created");
+        puts("Index person by lastname successfully created");
     }
 
     // reopen database file in read mode

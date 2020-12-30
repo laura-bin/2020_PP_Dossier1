@@ -28,10 +28,8 @@ struct header {
     unsigned offset_alpha_index[ALPHA_INDEX_COUNT]; // alphanumeric indexes offsets
     unsigned offset_tree[ALPHA_INDEX_COUNT];        // binary-trees heads offsets
     unsigned n_res_table[TAB_COUNT];                // number of tuples reserved in each table
-    unsigned n_res_num_index[NUM_INDEX_COUNT];      // number of tuples reserved in each numeric index
-    unsigned n_res_alpha_index[ALPHA_INDEX_COUNT];  // number of tuples reserved in each alphanumeric index
     unsigned n_rec_table[TAB_COUNT];                // number of tuples saved in each table
-    char filler[4];
+    char filler[12];
 };
 
 /* Informations about the database used by the main program */

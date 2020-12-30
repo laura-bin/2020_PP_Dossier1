@@ -48,10 +48,9 @@ void fill_num_indexes_info(struct db *db, size_t *offset) {
     for (i = 0; i < NUM_INDEX_COUNT; i++) {
         const struct index_metadata *index = &num_indexes_metadata[i];
 
-        db->header.n_res_num_index[i] = index->n_reserved;
         db->header.offset_num_index[i] = *offset;
 
-        *offset += index->n_reserved * index->size;
+        *offset += db->header.n_res_table[index->table] * sizeof(struct num_entity);
     }
 }
 
@@ -67,10 +66,9 @@ void fill_alpha_indexes_info(struct db *db, size_t *offset) {
     for (i = 0; i < ALPHA_INDEX_COUNT; i++) {
         const struct index_metadata *index = &alpha_indexes_metadata[i];
 
-        db->header.n_res_alpha_index[i] = index->n_reserved;
         db->header.offset_alpha_index[i] = *offset;
 
-        *offset += index->n_reserved * index->size;
+        *offset += db->header.n_res_table[index->table] * sizeof(struct alpha_entity);
     }
 }
 

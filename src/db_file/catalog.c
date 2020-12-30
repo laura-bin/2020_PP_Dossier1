@@ -109,11 +109,10 @@ const struct table_metadata tables_metadata[TAB_COUNT] = {
 const struct index_metadata num_indexes_metadata[NUM_INDEX_COUNT] = {
     {
         .prefix = "PRS_CMP",
-        .n_reserved = N_RES_PRS,
-        .size = sizeof(struct num_entity),
-        .read= NULL,
-        .print = NULL,
-        .print_header = NULL
+        .table = PERSON,
+        .read = &read_person,
+        .print = (void (*)(void *))&print_person,
+        .print_header = &print_person_header
     }
 };
 
@@ -121,8 +120,7 @@ const struct index_metadata num_indexes_metadata[NUM_INDEX_COUNT] = {
 const struct index_metadata alpha_indexes_metadata[ALPHA_INDEX_COUNT] = {
     {
         .prefix = "PRS_LN",
-        .n_reserved = N_RES_PRS,
-        .size = sizeof(struct alpha_entity),
+        .table = PERSON,
         .read = &read_person,
         .print = (void (*)(void *))&print_person,
         .print_header = &print_person_header
