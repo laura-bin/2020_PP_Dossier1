@@ -88,7 +88,7 @@ int load_countries(struct db *db, int count) {
 }
 
 void print_country(struct country *country) {
-    printf("%4d "
+    printf("%" STR(ID_LEN) "u "
             "%-" STR(COUNTRY_NAME_LEN) "s "
             "%-" STR(COUNTRY_ZONE_LEN) "s "
             "%-" STR(COUNTRY_ZONE_LEN) "s\n",
@@ -99,7 +99,7 @@ void print_country(struct country *country) {
 }
 
 void print_country_header(void) {
-    printf("%4s "
+    printf("%" STR(ID_LEN) "s "
             "%-" STR(COUNTRY_NAME_LEN) "s "
             "%-" STR(COUNTRY_ZONE_LEN) "s "
             "%-" STR(COUNTRY_ZONE_LEN) "s\n",

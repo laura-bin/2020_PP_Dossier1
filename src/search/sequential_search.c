@@ -23,7 +23,8 @@
 /* PRIVATE FUNCTION */
 
 /**
- * Searches a record in the RAM stored buffer (sequential search)
+ * Searches records in the RAM stored buffer (sequential search)
+ * and shows the paginated list of results
  *
  * @param db: database information stored in RAM
  * @param tab: table enum
@@ -50,12 +51,8 @@ int sequential_search(struct db *db, enum table tab) {
         }
     }
 
-    if (! results) {
-        puts("No result found");
-    } else {
-        paginate(results, head, table->print, table->print_header);
-        free_list(head);
-    }
+    paginate(results, head, table->print, table->print_header);
+    free_list(head, 0);
 
     return 0;
 }

@@ -28,12 +28,17 @@ struct node *append_item(struct node *list, void *item) {
     return new_node;
 }
 
-void free_list (struct node *head) {
+void free_list(struct node *head, int free_data) {
     struct node *next_node;
 
     while (head) {
         // save next node pointer
         next_node = head->next;
+
+        // free the data
+        if (free_data) {
+            free(head->data);
+        }
 
         // free the node
         free(head);

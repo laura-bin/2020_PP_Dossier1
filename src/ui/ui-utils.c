@@ -38,6 +38,10 @@ void paginate(unsigned n, struct node* list, void (*print)(void *),
     unsigned page = 0;
     unsigned pages = (n+PAGE_SIZE-1) / PAGE_SIZE;
 
+    if (!n) {
+        puts("\nNo result found");
+    }
+
     while (list != NULL) {
         if (i % PAGE_SIZE == 0) {
             clear_terminal();

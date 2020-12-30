@@ -1,23 +1,18 @@
-#pragma once
 /** *************************************************************************************
  * Dossier 1 : Analyse de donnees clients
  * ======================================
  *
- * Database file searches by index:
+ * Database file searches by numerc index:
  *  - search people by company id
- *  - search people by lastname prefix
  *
  * PP 2020 - Laura Binacchi - Fedora 32
  ****************************************************************************************/
 
-#include "db_file/database.h"
+#include <stdlib.h>
 
-/**
- * Searches people by their company id
- */
-int search_people_by_company_id(struct db *db);
+#include "search/num_index_search.h"
 
-/**
- * Searches people by lastname prefix
- */
-int search_people_by_lastname(struct db *db);
+int search_people_by_company_id(struct db *db) {
+    puts("Function not yet implemented");
+    return 0;
+}

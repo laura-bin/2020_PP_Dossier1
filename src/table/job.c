@@ -89,7 +89,7 @@ int load_jobs(struct db *db, int count) {
 }
 
 void print_job(struct job *job) {
-    printf("%" STR(ID_LEN) "d "
+    printf("%" STR(ID_LEN) "u "
             "%-" STR(JOB_LEVEL_LEN) "s "
             "%-" STR(JOB_DEPARTMENT_LEN) "s "
             "%-" STR(JOB_NAME_LEN) "s\n",

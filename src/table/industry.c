@@ -82,7 +82,7 @@ int load_industries(struct db *db, int count) {
 }
 
 void print_industry(struct industry *industry) {
-    printf("%" STR(ID_LEN) "d "
+    printf("%" STR(ID_LEN) "u "
             "%-" STR(INDUSTRY_SECTOR_LEN) "s "
             "%-" STR(INDUSTRY_NAME_LEN) "s\n",
             industry->id,

@@ -81,7 +81,7 @@ int load_groups(struct db *db, int count) {
 }
 
 void print_group(struct group *group) {
-    printf("%" STR(ID_LEN) "d "
+    printf("%" STR(ID_LEN) "u "
             "%-" STR(GROUP_NAME_LEN) "s "
             "%" STR(ID_LEN) "d\n",
             group->id,

@@ -9,6 +9,16 @@
  *********************************************************************************************************************/
 
 /**
+ * Creates a new lowercase string from a given string
+ * /!\ free after use
+ *
+ * @param str: string to lower
+ *
+ * @return the lowercase string
+ */
+char* lower_str(char *str);
+
+/**
  * Tests if a substring is contained in at least one of the given strings
  * (case insensitive)
  *
@@ -30,8 +40,7 @@ int contain_icase(int n_str, char* substr, ...);
  * @param searched: searched substring
  *
  * @return either:
- *          < 0 if the string is shorter than the substring
- *              or if the substring is before the string in alphabetical order
+ *          < 0 if the substring is before the string in alphabetical order
  *          0 if the string starts with the substring
  *          > 0 if the substring is after the string in alphabetical order
  */

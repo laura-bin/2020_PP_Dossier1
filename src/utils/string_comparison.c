@@ -14,16 +14,6 @@
 
 #include "utils/string_comparison.h"
 
-/* PRIVATE METHOD */
-
-/**
- * Creates a new lowercase string from a given string
- * /!\ free after use
- *
- * @param str: string to lower
- *
- * @return the lowercase string
- */
 char* lower_str(char *str) {
     size_t i;
     char *new_str = malloc(strlen(str)+1);
@@ -33,8 +23,6 @@ char* lower_str(char *str) {
 
     return new_str;
 }
-
-/* HEADER IMPLEMENTATION */
 
 int contain_icase(int n_str, char *substr, ...) {
     va_list args;

@@ -106,9 +106,12 @@ extern const struct table_metadata tables_metadata[TAB_COUNT];
 
 /* Index metadata */
 struct index_metadata {
-    char prefix[PREFIX_LEN];    // tuple prefix in the database
-    unsigned n_reserved;        // number of tuples reserved in the table
-    size_t size;                // tuple size
+    char prefix[PREFIX_LEN];                // tuple prefix in the database
+    unsigned n_reserved;                    // number of tuples reserved in the table
+    size_t size;                            // tuple size
+    void *(*read)(struct db *, unsigned);   // read a record function by direct access
+    void (*print)(void *);                  // print a single record function
+    void (*print_header)(void);             // print the table header (fields names)
 };
 
 /* Array of numeric indexes metadata */

@@ -75,7 +75,7 @@ const struct menu_entry user_menus[USER_MENUS_COUNT] = {
     },
     {
         .text = "Search people by lastname prefix",
-        .action = &search_people_by_company_id
+        .action = &search_people_by_lastname
     },
     {
         .text = "Display database file metadata",

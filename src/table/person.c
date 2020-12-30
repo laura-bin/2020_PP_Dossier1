@@ -15,6 +15,7 @@
 #include <string.h>
 
 #include "table/person.h"
+#include "utils/preprocess_string.h"
 
 int import_person(struct db *db, char *csv_line) {
     struct person new_rec;          // new record to write in the dat file
@@ -116,52 +117,39 @@ int export_person(struct db *db) {
     return 0;
 }
 
-// search via index
-// void *search_person_by_lastname_prefix(struct db *db, char *searched) {
-//     struct person_by_lastname index;
-//     unsigned index_off;
-//     int i, lg, tst;
-//     char lastname_buffer[PERSON_LASTNAME_LEN];
-//     int rv;
+void *read_person(struct db *db, unsigned offset) {
+    struct person *tuple;   // tuple read from the database file
 
-//     index_off = db->header.index_ipn_head;
+    tuple = malloc(sizeof (struct person));
+    memset(tuple, 0, sizeof(struct person));
+    fseek(db->dat_file, offset, SEEK_SET);
+    fread(tuple, sizeof(struct person), 1, db->dat_file);
 
-//     while (1) {
-//         if (index_off == 0) {
-//             return 0;
-//         }
+    return tuple;
+}
 
-//         fseek(db->dat_file, index_off, SEEK_SET);
-//         fread(&index, 1, sizeof(struct person_by_lastname), db->dat_file);
+void print_person(struct person *person) {
+    printf("%" STR(ID_LEN) "u "
+            "%-" STR(PERSON_TITLE_LEN) "s "
+            "%-" STR(PERSON_LASTNAME_LEN) "s "
+            "%-" STR(PERSON_FIRSTNAME_LEN) "s "
+            "%-7s\n",
+            person->id,
+            person->title,
+            person->lastname,
+            person->firstname,
+            person->gender);
+}
 
-//         memset(&lastname_buffer, 0, PERSON_LASTNAME_LEN);
-
-//         rv = start_with_icase(index.lastname, searched);
-
-//         if (rv > 0) {
-//             break;
-//         }
-
-//         if (rv == 0) {
-//             // read person
-//             // append to list
-//         }
-//     }
-
-//     return list;
-// }
-
-// void *compare_person(struct db *db, unsigned i, char *searched) {
-//     void *found = NULL;
-
-    
-
-//     if (contains_icase(3, searched,
-//             db->jobs[i].level,
-//             db->jobs[i].department,
-//             db->jobs[i].name)) {
-//         found = &db->jobs[i];
-//     }
-
-//     return found;
-// }
+void print_person_header(void) {
+    printf("%" STR(ID_LEN) "s "
+            "%-" STR(PERSON_TITLE_LEN) "s "
+            "%-" STR(PERSON_LASTNAME_LEN) "s "
+            "%-" STR(PERSON_FIRSTNAME_LEN) "s "
+            "%-7s\n",
+            "ID",
+            "TITLE",
+            "LASTNAME",
+            "FIRSTNAME",
+            "GENDER");
+}

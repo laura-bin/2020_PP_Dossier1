@@ -29,5 +29,6 @@ struct node *append_item(struct node *list, void *item);
  * Frees a linked list
  *
  * @param head: pointer of the first node of the list
+ * @param free_data: free data boolean
  */
-void free_list(struct node *head);
+void free_list(struct node *head, int free_data);

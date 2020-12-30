@@ -8,17 +8,17 @@
  ****************************************************************************************/
 
 #include <limits.h>
-#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 #include "db_file/catalog.h"
 #include "db_file/alpha_index.h"
+#include "utils/string_comparison.h"
 
 /* PRIVATE FUNCTIONS */
 
 /**
- * Compares two alphanumeric indexes (case sensitive)
+ * Compares two alphanumeric indexes (case insensitive)
  * 
  * @param index1: first index to compare
  * @param index2: second index to compare
@@ -32,11 +32,19 @@ int compare_alpha_index(const void *index1, const void *index2) {
     struct alpha_entity *i1 = (struct alpha_entity *) index1;
     struct alpha_entity *i2 = (struct alpha_entity *) index2;
 
-    return strcmp(i1->value, i2->value);
+    char *i1_value = lower_str(i1->value);
+    char *i2_value = lower_str(i2->value);
+
+    int res = strcmp(i1_value, i2_value);
+
+    free(i1_value);
+    free(i2_value);
+
+    return res;
 }
 
 /**
- * Creates the binary tree for an alphanumeric indec
+ * Creates the binary tree for an alphanumeric index
  * 
  * @param db: database information stored in RAM
  * @param type: index type
@@ -69,7 +77,7 @@ unsigned create_binary_tree(struct db *db, enum alpha_index type, unsigned head,
 
     if (right_size > 0) {
         index.rigth = create_binary_tree(db, type, head_right, right_size);
-    }  else {
+    } else {
         index.rigth = UINT_MAX;
     }
 
@@ -96,11 +104,11 @@ int create_person_by_lastname(struct db *db) {
         return -1;
     }
     
+    fseek(db->dat_file, offset, SEEK_SET);
     for (i = 0; i < db->header.n_rec_table[PERSON]; i++) {
         // load person
         memset(&person, 0, sizeof(struct person));
-        fseek(db->dat_file, offset, SEEK_SET);
-        if (fread(&person, sizeof(person), 1, db->dat_file) != 1) {
+        if (fread(&person, sizeof(struct person), 1, db->dat_file) != 1) {
             free(index);
             return -1;
         }
@@ -118,12 +126,12 @@ int create_person_by_lastname(struct db *db) {
             &compare_alpha_index);
 
     // write the sorted list in the database file
-    fseek(db->dat_file, db->header.offset_num_index[PERS_BY_LASTNAME], SEEK_SET);
+    fseek(db->dat_file, db->header.offset_alpha_index[PERS_BY_LASTNAME], SEEK_SET);
     for (i = 0; i < db->header.n_rec_table[PERSON]; i++) {
         fwrite(&index[i], sizeof(struct alpha_entity), 1, db->dat_file);
     }
 
-    // create the binary tree (fill left )
+    // create the binary tree (fill left & right offsets)
     db->header.offset_tree[PERS_BY_LASTNAME] = create_binary_tree(db, PERS_BY_LASTNAME,
             (db->header.n_rec_table[PERSON]-1) / 2, db->header.n_rec_table[PERSON]);
 

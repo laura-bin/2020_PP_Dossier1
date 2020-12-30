@@ -28,3 +28,28 @@ int import_person(struct db *db, char *csv_line);
  * @return the number of tuples successfully exported (1 or 0)
  */
 int export_person(struct db *db);
+
+/**
+ * Reads a person by direct access in the database file
+ * /!\ free after use
+ *
+ * @param db: database information stored in RAM
+ * @param db: person offset in the database file
+ *
+ * @return either
+ *      a pointer to the person found
+ *      NULL if an error occured
+ */
+void *read_person(struct db *db, unsigned offset);
+
+/**
+ * Prints a person
+ *
+ * @param person: person to print
+ */
+void print_person(struct person *person);
+
+/**
+ * Prints the person table header containing its fields names
+ */
+void print_person_header(void);
