@@ -8,9 +8,16 @@ CFLAGS ?= -g #debug
 # CFLAGS = -O3
 override CFLAGS += -Wall -Wpedantic -Wextra -Iinclude
 
-.PHONY: all clean
+.PHONY: all clean tests
 
 all: out clients
+
+tests: out tests/test_sort
+	./tests/test_sort
+
+tests/test_sort: tests/test_sort.c out/utils/sort.o
+	gcc $(CFLAGS) -o $@ $<
+	# gcc $(CFLAGS) -o $@ $^
 
 out: out/db_file out/table out/search out/utils out/ui
 
@@ -22,7 +29,7 @@ clients: src/main.c out/ui/menus.o out/ui/ui-utils.o \
 			out/table/country.o out/table/job.o out/table/industry.o \
 			out/table/group.o out/table/company.o out/table/person.o \
 			out/utils/logger.o out/utils/system.o out/utils/linked_list.o \
-			out/utils/string_comparison.o
+			out/utils/string_comparison.o out/utils/sort.o
 	gcc $(CFLAGS) -o clients $^
 
 out/%.o: src/%.c include/%.h
@@ -36,3 +43,4 @@ clean:
 	rm -rf out
 	rm -rf data_clients
 	rm -rf data_export
+	rm -f tests/test_sort

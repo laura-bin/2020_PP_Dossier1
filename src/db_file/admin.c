@@ -81,7 +81,7 @@ int create_empty_num_indexes(struct db *db) {
     unsigned i_tup;             // tuple index
 
     for (i = 0; i < NUM_INDEX_COUNT; i++) {
-        const struct index_metadata *index = &num_indexes_metadata[i];
+        const struct num_index_metadata *index = &num_indexes_metadata[i];
 
         memset(&tuple, 0, sizeof(struct num_entity));
         strcpy(tuple.type, index->prefix);
@@ -111,7 +111,7 @@ int create_empty_alpha_indexes(struct db *db) {
     unsigned i_tup;             // tuple index
 
     for (i = 0; i < ALPHA_INDEX_COUNT; i++) {
-        const struct index_metadata *index = &alpha_indexes_metadata[i];
+        const struct alpha_index_metadata *index = &alpha_indexes_metadata[i];
 
         memset(&tuple, 0, sizeof(struct alpha_entity));
         strcpy(tuple.type, index->prefix);
@@ -257,24 +257,34 @@ int import(struct db *db) {
     if (tab_error_count != 0) printf("\nImport error on %d table(s)\n", tab_error_count);
     else puts("\nAll tables have been suceessfully updated\n");
 
-    // create person by company id index
-    if (create_person_by_company_id(db) < 0) {
+    // create numeric indexes
+    // TODO replace by loop
+    if (create_num_index(db, COMP_BY_GROUP_ID) < 0) {
+        log_info(db, "Creating company by group id index", strerror(errno));
+        printf("An error occured on company by group id index creation: %s\n", strerror(errno));
+        return -1;
+    } else {
+        log_info(db, "Creating company by group id index", "Success");
+        puts("Company by group id index successfully created");
+    }
+
+    if (create_num_index(db, PERS_BY_COMP_ID) < 0) {
         log_info(db, "Creating person by company id index", strerror(errno));
         printf("An error occured on person by company id index creation: %s\n", strerror(errno));
         return -1;
     } else {
-        log_info(db, "Creating person by company id index", "Succes");
-        puts("Index person by company id successfully created");
+        log_info(db, "Creating person by company id index", "Success");
+        puts("Person by company id index successfully created");
     }
 
-    // create person by lastname index
-    if (create_person_by_lastname(db) < 0) {
+    // create alphanumeric index
+    if (create_alpha_index(db, PERS_BY_LASTNAME) < 0) {
         log_info(db, "Creating person by lastname index", strerror(errno));
         printf("An error occured on person by lastname index creation: %s\n", strerror(errno));
         return -1;
     } else {
-        log_info(db, "Creating person by lastname index", "Succes");
-        puts("Index person by lastname successfully created");
+        log_info(db, "Creating person by lastname index", "Success");
+        puts("Person by lastname index successfully created");
     }
 
     // reopen database file in read mode

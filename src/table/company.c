@@ -11,6 +11,7 @@
  * PP 2020 - Laura Binacchi - Fedora 32
  ****************************************************************************************/
 
+#include <limits.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -124,4 +125,66 @@ int export_company(struct db *db) {
         }
     }
     return 0;
+}
+
+unsigned read_company_group_id(struct db *db, unsigned offset) {
+    struct company tuple;   // tuple read from the database file
+    memset(&tuple, 0, sizeof(struct company));
+    fseek(db->dat_file, offset, SEEK_SET);
+    if (fread(&tuple, sizeof(struct company), 1, db->dat_file) == 1) {
+        return tuple.id_group;
+    }
+    return UINT_MAX;
+}
+
+void *read_company(struct db *db, unsigned offset) {
+    struct company *tuple;  // tuple read from the database file
+
+    tuple = malloc(sizeof (struct company));
+    memset(tuple, 0, sizeof(struct company));
+    fseek(db->dat_file, offset, SEEK_SET);
+    fread(tuple, sizeof(struct company), 1, db->dat_file);
+
+    return tuple;
+}
+
+void print_company_details(struct company *company) {
+    printf("%-16s %u\n"
+            "%-16s %u\n"
+            "%-16s %u\n"
+            "%-16s %u\n"
+            "%-16s %s\n"
+            "%-16s %s\n"
+            "%-16s %s\n"
+            "%-16s %s\n"
+            "%-16s %s\n"
+            "%-16s %s\n"
+            "%-16s %s\n"
+            "%-16s %u\n"
+            "%-16s %f\n",
+            "ID", company->id,
+            "GROUP ID", company->id_group,
+            "COUNTRY ID", company->id_country,
+            "INDUSTRY ID", company->id_industry,
+            "NAME", company->name,
+            "ADDRESS", company->address,
+            "ZIP CODE", company->zip_code,
+            "CITY", company->city,
+            "PHONE NUMBER", company->phone_number,
+            "WEBSITE", company->website,
+            "CREATION DATE", company->creation_date,
+            "EMPLOYEES", company->n_employees,
+            "SHARE VALUE", company->share_value);
+}
+
+int compare_company_id(struct db *db, unsigned offset, unsigned searched) {
+    struct company company;
+
+    memset(&company, 0, sizeof(struct company));
+    fseek(db->dat_file, offset, SEEK_SET);
+    if (fread(&company, sizeof(struct company), 1, db->dat_file) == 1) {
+        return searched - company.id;
+    }
+
+    return INT_MAX;
 }

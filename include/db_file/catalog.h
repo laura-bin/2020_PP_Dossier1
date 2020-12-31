@@ -75,6 +75,7 @@ enum table {
 
 /* Numeric indexes types & count */
 enum num_index {
+    COMP_BY_GROUP_ID,   // company by group id
     PERS_BY_COMP_ID,    // person by company id
     NUM_INDEX_COUNT
 };
@@ -93,31 +94,39 @@ struct table_metadata {
     size_t size;                // tuple size
     char csv_path[255];         // csv file path used to import data
     char csv_header[255];       // csv file header
-    int (*import)(struct db *, char *);         // import function pointer
-    int (*export)(struct db *);                 // export function pointer
-    int (*load)(struct db *, int);              // load function pointer
-    void *(*compare)(struct db *, unsigned, char *);    // string comparision function
-    void (*print)(void *);                              // print a single record function
+    int (*import)(struct db *, char *);                 // import
+    int (*export)(struct db *);                         // export
+    int (*load)(struct db *, int);                      // load
+    void *(*compare)(struct db *, unsigned, char *);    // string comparision
+    int (*compare_id)(struct db *, unsigned, unsigned); // id comparision
+    void *(*read)(struct db *, unsigned);               // read a record by direct access
+    void (*print)(void *);                              // print a single record
+    void (*print_details)(void *);                      // print a detailed vue of a single record
     void (*print_header)(void);                 // print the table header (fields names)
 };
 
 /* Array of tables metadata */
 extern const struct table_metadata tables_metadata[TAB_COUNT];
 
-/* Index metadata */
-struct index_metadata {
-    char prefix[PREFIX_LEN];                // tuple prefix in the database
-    enum table table;                       // table on wich the index is based 
-    void *(*read)(struct db *, unsigned);   // read a record function by direct access
-    void (*print)(void *);                  // print a single record function
-    void (*print_header)(void);             // print the table header (fields names)
+/* Numeric index metadata */
+struct num_index_metadata {
+    char prefix[PREFIX_LEN];                        // tuple prefix in the database
+    enum table table;                               // table on wich the index is based 
+    unsigned (*read_value)(struct db *, unsigned);  // read the numeric indexed value
+};
+
+/* Alphanumeric index metadata */
+struct alpha_index_metadata {
+    char prefix[PREFIX_LEN];                            // tuple prefix in the database
+    enum table table;                                   // table on wich the index is based 
+    void (*read_value)(struct db *, unsigned, char *);  // read the alphanumeric indexed value
 };
 
 /* Array of numeric indexes metadata */
-extern const struct index_metadata num_indexes_metadata[NUM_INDEX_COUNT];
+extern const struct num_index_metadata num_indexes_metadata[NUM_INDEX_COUNT];
 
 /* Array of alphanumeric indexes metadata */
-extern const struct index_metadata alpha_indexes_metadata[ALPHA_INDEX_COUNT];
+extern const struct alpha_index_metadata alpha_indexes_metadata[ALPHA_INDEX_COUNT];
 
 /* Country tuple */
 struct country {

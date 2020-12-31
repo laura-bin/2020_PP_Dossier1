@@ -11,6 +11,7 @@
  * PP 2020 - Laura Binacchi - Fedora 32
  ****************************************************************************************/
 
+#include <limits.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -117,6 +118,25 @@ int export_person(struct db *db) {
     return 0;
 }
 
+unsigned read_person_company_id(struct db *db, unsigned offset) {
+    struct person tuple;    // tuple read from the database file
+    memset(&tuple, 0, sizeof(struct person));
+    fseek(db->dat_file, offset, SEEK_SET);
+    if (fread(&tuple, sizeof(struct person), 1, db->dat_file) == 1) {
+        return tuple.id_company;
+    }
+    return UINT_MAX;
+}
+
+void read_person_lastname(struct db *db, unsigned offset, char *out_lastname) {
+    struct person tuple;    // tuple read from the database file
+    memset(&tuple, 0, sizeof(struct person));
+    fseek(db->dat_file, offset, SEEK_SET);
+    if (fread(&tuple, sizeof(struct person), 1, db->dat_file) == 1) {
+        strncpy(out_lastname, tuple.lastname, PERSON_LASTNAME_LEN);
+    }
+}
+
 void *read_person(struct db *db, unsigned offset) {
     struct person *tuple;   // tuple read from the database file
 
@@ -126,6 +146,33 @@ void *read_person(struct db *db, unsigned offset) {
     fread(tuple, sizeof(struct person), 1, db->dat_file);
 
     return tuple;
+}
+
+void print_person_details(struct person *person) {
+    printf("%-16s %u\n"
+            "%-16s %u\n"
+            "%-16s %u\n"
+            "%-16s %s\n"
+            "%-16s %s\n"
+            "%-16s %s\n"
+            "%-16s %s\n"
+            "%-16s %s\n"
+            "%-16s %s\n"
+            "%-16s %s\n"
+            "%-16s %s\n"
+            "%-16s %u\n",
+            "ID", person->id,
+            "COMPANY ID", person->id_company,
+            "JOB ID", person->id_job,
+            "TITLE", person->title,
+            "LASTNAME", person->lastname,
+            "FIRSTNAME", person->firstname,
+            "GENDER", person->gender,
+            "CREATION DATE", person->creation_date,
+            "PHONE NUMBER", person->phone_number,
+            "MOBILE NUMBER", person->mobile_number,
+            "EMAIL", person->email,
+            "SHARES", person->shares);
 }
 
 void print_person(struct person *person) {
@@ -152,4 +199,16 @@ void print_person_header(void) {
             "LASTNAME",
             "FIRSTNAME",
             "GENDER");
+}
+
+int compare_person_id(struct db *db, unsigned offset, unsigned searched) {
+    struct person person;
+
+    memset(&person, 0, sizeof(struct person));
+    fseek(db->dat_file, offset, SEEK_SET);
+    if (fread(&person, sizeof(struct person), 1, db->dat_file) == 1) {
+        return searched - person.id;
+    }
+
+    return INT_MAX;
 }

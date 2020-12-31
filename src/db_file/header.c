@@ -46,7 +46,7 @@ void fill_num_indexes_info(struct db *db, size_t *offset) {
     enum num_index i;
 
     for (i = 0; i < NUM_INDEX_COUNT; i++) {
-        const struct index_metadata *index = &num_indexes_metadata[i];
+        const struct num_index_metadata *index = &num_indexes_metadata[i];
 
         db->header.offset_num_index[i] = *offset;
 
@@ -64,7 +64,7 @@ void fill_alpha_indexes_info(struct db *db, size_t *offset) {
     enum alpha_index i;
 
     for (i = 0; i < ALPHA_INDEX_COUNT; i++) {
-        const struct index_metadata *index = &alpha_indexes_metadata[i];
+        const struct alpha_index_metadata *index = &alpha_indexes_metadata[i];
 
         db->header.offset_alpha_index[i] = *offset;
 

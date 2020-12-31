@@ -30,6 +30,27 @@ int import_person(struct db *db, char *csv_line);
 int export_person(struct db *db);
 
 /**
+ * Reads the company id of a person
+ *
+ * @param db: database information stored in RAM
+ * @param db: person offset in the database file
+ *
+ * @return either
+ *      the id found
+ *      UINT_MAX if an error occured
+ */
+unsigned read_person_company_id(struct db *db, unsigned offset);
+
+/**
+ * Reads the lastname of a person
+ *
+ * @param db: database information stored in RAM
+ * @param db: person offset in the database file
+ * @param lastname: lastname returned
+ */
+void read_person_lastname(struct db *db, unsigned offset, char *out_lastname);
+
+/**
  * Reads a person by direct access in the database file
  * /!\ free after use
  *
@@ -43,6 +64,13 @@ int export_person(struct db *db);
 void *read_person(struct db *db, unsigned offset);
 
 /**
+ * Prints a detailed vue of a person
+ *
+ * @param person: person to print
+ */
+void print_person_details(struct person *person);
+
+/**
  * Prints a person
  *
  * @param person: person to print
@@ -53,3 +81,19 @@ void print_person(struct person *person);
  * Prints the person table header containing its fields names
  */
 void print_person_header(void);
+
+/**
+ * Compares a searched id with the person id
+ *
+ * @param db: database information stored in RAM
+ * @param offset: offset of the person to compare
+ * @param searched: id searched
+ *
+ * @return either
+ *      < 0 if the searched id is lower than the person id
+ *      0 if the searched id is equal to the person id
+ *      > 0 if the searched id is greater than the person id
+ *      INT_MAX if an error occured
+ */
+int compare_person_id(struct db *db, unsigned offset, unsigned searched);
+

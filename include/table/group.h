@@ -40,6 +40,26 @@ int export_group(struct db *db);
 int load_groups(struct db *db, int count);
 
 /**
+ * Reads a group by direct access in the database file
+ * /!\ free after use
+ *
+ * @param db: database information stored in RAM
+ * @param db: group offset in the database file
+ *
+ * @return either
+ *      a pointer to the group found
+ *      NULL if an error occured
+ */
+void *read_group(struct db *db, unsigned offset);
+
+/**
+ * Prints a detailed vue of a group
+ *
+ * @param group: group to print
+ */
+void print_group_details(struct group *group);
+
+/**
  * Prints a group
  *
  * @param group: group to print
@@ -50,6 +70,21 @@ void print_group(struct group *group);
  * Prints the group table header containing its fields names
  */
 void print_group_header(void);
+
+/**
+ * Compares a searched id with the group id
+ *
+ * @param db: database information stored in RAM
+ * @param offset: offset of the group to compare
+ * @param searched: id searched
+ *
+ * @return either
+ *      < 0 if the searched id is lower than the group id
+ *      0 if the searched id is equal to the group id
+ *      > 0 if the searched id is greater than the group id
+ *      INT_MAX if an error occured
+ */
+int compare_group_id(struct db *db, unsigned offset, unsigned searched);
 
 /**
  * Compares a group referenced by its index with a searched substring

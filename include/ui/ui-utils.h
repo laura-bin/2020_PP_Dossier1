@@ -35,6 +35,17 @@ void paginate(unsigned n, struct node* list, void (*print)(void *),
                 void (*print_header)(void));
 
 /**
+ * Prints a details list of results:
+ *  - the single result found
+ *  - the nearest results if no result has been found
+ *
+ * @param results: list size
+ * @param list: linked list to print
+ * @param print_detail: print function to call
+ */
+void print_detail_list(int results, struct node* list, void (*print_detail)(void *));
+
+/**
  * Gets an unsigned integer from the user
  *
  * @return a valid unsigned integer

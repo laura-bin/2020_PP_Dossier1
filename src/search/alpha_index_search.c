@@ -15,8 +15,8 @@
 #include "db_file/catalog.h"
 #include "search/alpha_index_search.h"
 #include "table/person.h"
-#include "utils/string_comparison.h"
 #include "ui/ui-utils.h"
+#include "utils/string_comparison.h"
 
 /* PRIVATE FUNCTION */
 
@@ -25,13 +25,13 @@
  *
  * @param db: database information stored in RAM
  * @param prefix: prefix searched
- * @param index_offset: head index
+ * @param type: index type
  *
  * @return either
- *      the offset of the first matched person index
+ *      the offset of the first matched alphanumeric index
  *      UINTMAX if no result has been found
  */
-unsigned find_first_index(struct db *db, char *prefix, enum alpha_index type) {
+unsigned find_first_alpha_index(struct db *db, char *prefix, enum alpha_index type) {
     struct alpha_entity index;
     int comparison_result;
     unsigned index_offset = db->header.offset_tree[type];
@@ -81,16 +81,17 @@ int search_by_alpha_index(struct db *db, enum alpha_index type) {
     struct node *head = NULL;       // linked list head
     struct node *cur_node = NULL;   // linked list current node
     unsigned results = 0;           // number of records found
-    unsigned end;                   // index last offset
+    unsigned end;                   // last offset
     
-    const struct index_metadata *index_info = &alpha_indexes_metadata[type];
+    const struct alpha_index_metadata *index_info = &alpha_indexes_metadata[type];
+    const struct table_metadata *table_info = &tables_metadata[index_info->table];
 
     // get the user input
     printf("Enter the substring searched: ");
     get_text_input(searched, MAX_LEN);
 
     // get the first index matching with the searched prefix
-    index_offset = find_first_index(db, searched, type);
+    index_offset = find_first_alpha_index(db, searched, type);
 
     // create the list of results
     end = db->header.offset_alpha_index[type] + db->header.n_rec_table[index_info->table] * sizeof(struct alpha_entity);
@@ -106,7 +107,7 @@ int search_by_alpha_index(struct db *db, enum alpha_index type) {
         }
 
         // else read the associated record
-        found = (*index_info->read)(db, index.offset);
+        found = (*table_info->read)(db, index.offset);
 
         // and add it to the list of results
         if (found != NULL) {
@@ -118,7 +119,7 @@ int search_by_alpha_index(struct db *db, enum alpha_index type) {
         index_offset += sizeof(struct alpha_entity);
     }
 
-    paginate(results, head, index_info->print, index_info->print_header);
+    paginate(results, head, table_info->print, table_info->print_header);
     free_list(head, 1);
     return 0;
 }

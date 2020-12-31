@@ -3,8 +3,7 @@
  * Dossier 1 : Analyse de donnees clients
  * ======================================
  *
- * Database numeric indexes creation:
- *  - create person by company id index
+ * Database numeric indexes creation
  *
  * PP 2020 - Laura Binacchi - Fedora 32
  ****************************************************************************************/
@@ -12,13 +11,14 @@
 #include "db_file/database.h"
 
 /**
- * Creates the person by company id index
- * and writes it in the database file
+ * Creates the specified index and writes it to the database file
+ *
  * 
  * @param db: database information stored in RAM
+ * @param index_type: the index to create
  * 
  * @return either
  *      0 if the index has successfully been created
  *     -1 if an error occured (errno is set)
  */
-int create_person_by_company_id(struct db *db);
+int create_num_index(struct db *db, enum num_index index_type);

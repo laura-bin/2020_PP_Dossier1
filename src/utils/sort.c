@@ -44,8 +44,9 @@ void _swap(void *e1, void *e2, size_t element_size, char *temp_buffer) {
  * Private quick sort
  * 
  * @param ptr: pointer of the array to sort
- * @param count: number of elements to sort
- * @param size: size of the elements
+ * @param first: index of the first element of the partition
+ * @param last: index of the last element of the partition
+ * @param element_size: size of the elements
  * @param comp: comparison function
  * @param temp_buffer: temporary buffer used for swapping elements
  */
@@ -58,7 +59,7 @@ void _quick_sort(void *ptr, ssize_t first, ssize_t last, size_t element_size, in
 
    ssize_t i, j, pivot;
 
-    if (first >= last){
+    if (first >= last) {
         return;
     }
 
@@ -95,6 +96,6 @@ void _quick_sort(void *ptr, ssize_t first, ssize_t last, size_t element_size, in
 
 void quick_sort(void *ptr, ssize_t count, size_t size, int (*comp)(const void *, const void *)) {
     char *temp_buffer = malloc(size);
-    _quick_sort(ptr, 0, count, size, comp, temp_buffer);
+    _quick_sort(ptr, 0, count - 1, size, comp, temp_buffer);
     free(temp_buffer);
 }

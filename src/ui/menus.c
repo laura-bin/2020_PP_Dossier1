@@ -62,6 +62,10 @@ const struct menu_entry user_menus[USER_MENUS_COUNT] = {
         .action = &search_groups
     },
     {
+        .text = "Search group by id",
+        .action = &search_group_by_id
+    },
+    {
         .text = "Search company by id",
         .action = &search_company_by_id
     },

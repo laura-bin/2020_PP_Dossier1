@@ -60,6 +60,22 @@ void paginate(unsigned n, struct node* list, void (*print)(void *),
     }
 }
 
+void print_detail_list(int results, struct node* list, void (*print_detail)(void *)) {
+    clear_terminal();
+
+    if (results == 1) {
+        puts("Result found:\n");
+    } else {
+        puts("Nearest results:\n");
+    }
+
+    while (list != NULL) {
+        (*print_detail)(list->data);
+        puts("");
+        list = list->next;
+    }
+}
+
 unsigned get_uns_input(void) {
     int input = -1;
 

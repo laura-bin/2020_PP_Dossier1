@@ -30,7 +30,10 @@ const struct table_metadata tables_metadata[TAB_COUNT] = {
         .export = &export_country,
         .load = &load_countries,
         .compare = &compare_country,
+        .compare_id = NULL,
+        .read = NULL,
         .print = (void (*)(void *))&print_country,
+        .print_details = NULL,
         .print_header = &print_country_header
     },
     {
@@ -44,7 +47,10 @@ const struct table_metadata tables_metadata[TAB_COUNT] = {
         .export = &export_job,
         .load = &load_jobs,
         .compare = &compare_job,
+        .compare_id = NULL,
+        .read = NULL,
         .print = (void (*)(void *))&print_job,
+        .print_details = NULL,
         .print_header = &print_job_header
     },
     {
@@ -58,7 +64,10 @@ const struct table_metadata tables_metadata[TAB_COUNT] = {
         .export = &export_industry,
         .load = &load_industries,
         .compare = &compare_industry,
+        .compare_id = NULL,
+        .read = NULL,
         .print = (void (*)(void *))&print_industry,
+        .print_details = NULL,
         .print_header = &print_industry_header
     },
     {
@@ -72,7 +81,10 @@ const struct table_metadata tables_metadata[TAB_COUNT] = {
         .export = &export_group,
         .load = &load_groups,
         .compare = &compare_group,
+        .compare_id = &compare_group_id,
+        .read = &read_group,
         .print = (void (*)(void *))&print_group,
+        .print_details = (void (*)(void *))&print_group_details,
         .print_header = &print_group_header
     },
     {
@@ -86,7 +98,10 @@ const struct table_metadata tables_metadata[TAB_COUNT] = {
         .export = &export_company,
         .load = NULL,
         .compare = NULL,
+        .compare_id = &compare_company_id,
+        .read = &read_company,
         .print = NULL,
+        .print_details = (void (*)(void *))&print_company_details,
         .print_header = NULL
     },
     {
@@ -100,29 +115,33 @@ const struct table_metadata tables_metadata[TAB_COUNT] = {
         .export = &export_person,
         .load = NULL,
         .compare = NULL,
-        .print = NULL,
-        .print_header = NULL
+        .compare_id = &compare_person_id,
+        .read = &read_person,
+        .print = (void (*)(void *))&print_person,
+        .print_details = (void (*)(void *))&print_person_details,
+        .print_header = &print_person_header
     }
 };
 
 /* Numeric indexes metadata assignation */
-const struct index_metadata num_indexes_metadata[NUM_INDEX_COUNT] = {
+const struct num_index_metadata num_indexes_metadata[NUM_INDEX_COUNT] = {
+    {
+        .prefix = "CMP_GRP",
+        .table = COMPANY,
+        .read_value = &read_company_group_id
+    },
     {
         .prefix = "PRS_CMP",
         .table = PERSON,
-        .read = &read_person,
-        .print = (void (*)(void *))&print_person,
-        .print_header = &print_person_header
+        .read_value = &read_person_company_id
     }
 };
 
 /* Alphanumeric indexes metadata assignation */
-const struct index_metadata alpha_indexes_metadata[ALPHA_INDEX_COUNT] = {
+const struct alpha_index_metadata alpha_indexes_metadata[ALPHA_INDEX_COUNT] = {
     {
         .prefix = "PRS_LN",
         .table = PERSON,
-        .read = &read_person,
-        .print = (void (*)(void *))&print_person,
-        .print_header = &print_person_header
+        .read_value = &read_person_lastname
     }
 };

@@ -13,6 +13,7 @@
 
 #include "db_file/catalog.h"
 #include "db_file/alpha_index.h"
+#include "utils/sort.h"
 #include "utils/string_comparison.h"
 
 /* PRIVATE FUNCTIONS */
@@ -89,51 +90,48 @@ unsigned create_binary_tree(struct db *db, enum alpha_index type, unsigned head,
 
 /* HEADER IMPLEMENTATION */
 
-int create_person_by_lastname(struct db *db) {
-    struct person person;
+int create_alpha_index(struct db *db, enum alpha_index index_type) {
     struct alpha_entity *index;
-    const char *index_type;
     unsigned offset;
     unsigned i;
 
+    const struct alpha_index_metadata *index_info = &alpha_indexes_metadata[index_type];
+    const struct table_metadata *table_info = &tables_metadata[index_info->table];
+
     // init variables
-    index_type = alpha_indexes_metadata[PERS_BY_LASTNAME].prefix;
-    offset = db->header.offset_table[PERSON];
-    index = malloc(db->header.n_rec_table[PERSON] * sizeof(struct alpha_entity));
+    offset = db->header.offset_table[index_info->table];
+    index = malloc(db->header.n_rec_table[index_info->table] * sizeof(struct alpha_entity));
     if (index == NULL) {
         return -1;
     }
-    
-    fseek(db->dat_file, offset, SEEK_SET);
-    for (i = 0; i < db->header.n_rec_table[PERSON]; i++) {
-        // load person
-        memset(&person, 0, sizeof(struct person));
-        if (fread(&person, sizeof(struct person), 1, db->dat_file) != 1) {
-            free(index);
-            return -1;
-        }
 
-        // fill the index
+    // fill the index
+    for (i = 0; i < db->header.n_rec_table[index_info->table]; i++) {
+        strcpy(index[i].type, index_info->prefix);
         index[i].offset = offset;
-        strncpy(index[i].value, person.lastname, PERSON_LASTNAME_LEN);
-        strcpy(index[i].type, index_type);
 
-        offset += sizeof(struct person);
+        (*index_info->read_value)(db, offset, index[i].value);
+        offset += table_info->size;
     }
 
     // sort the list
-    qsort(index, db->header.n_rec_table[PERSON], sizeof(struct alpha_entity),
+    // qsort(index, db->header.n_rec_table[index_info->table], sizeof(struct alpha_entity),
+    //         &compare_alpha_index);
+    quick_sort(index, db->header.n_rec_table[index_info->table], sizeof(struct alpha_entity),
             &compare_alpha_index);
 
     // write the sorted list in the database file
-    fseek(db->dat_file, db->header.offset_alpha_index[PERS_BY_LASTNAME], SEEK_SET);
-    for (i = 0; i < db->header.n_rec_table[PERSON]; i++) {
-        fwrite(&index[i], sizeof(struct alpha_entity), 1, db->dat_file);
+    fseek(db->dat_file, db->header.offset_alpha_index[index_type], SEEK_SET);
+    for (i = 0; i < db->header.n_rec_table[index_info->table]; i++) {
+        if (fwrite(&index[i], sizeof(struct alpha_entity), 1, db->dat_file) != 1) {
+            free(index);
+            return -1;
+        }
     }
 
     // create the binary tree (fill left & right offsets)
-    db->header.offset_tree[PERS_BY_LASTNAME] = create_binary_tree(db, PERS_BY_LASTNAME,
-            (db->header.n_rec_table[PERSON]-1) / 2, db->header.n_rec_table[PERSON]);
+    db->header.offset_tree[index_type] = create_binary_tree(db, index_type,
+            (db->header.n_rec_table[index_info->table]-1) / 2, db->header.n_rec_table[index_info->table]);
 
     // write the updated header in the database file
     fseek(db->dat_file, 0, SEEK_SET);

@@ -7,11 +7,15 @@
  * PP 2020 - Laura Binacchi - Fedora 32
  ****************************************************************************************/
 
+#include <limits.h>
 #include <stdlib.h>
 #include <string.h>
 
 #include "db_file/catalog.h"
 #include "db_file/num_index.h"
+#include "utils/sort.h"
+
+/* PRIVATE FUNCTION */
 
 /**
  * Compares two numeric indexes
@@ -22,7 +26,7 @@
  * @return either
  *      < 0 if the first index value is lower than the second
  *      0 if the two values are equals
- *      > 0 if the first index value is higher than the second
+ *      > 0 if the first index value is greater than the second
  */
 int compare_num_index(const void *index1, const void *index2) {
     struct num_entity *i1 = (struct num_entity *) index1;
@@ -33,46 +37,48 @@ int compare_num_index(const void *index1, const void *index2) {
 
 /* HEADER IMPLEMENTATION */
 
-int create_person_by_company_id(struct db *db) {
-    struct person person;
+int create_num_index(struct db *db, enum num_index index_type) {
     struct num_entity *index;
-    const char *index_type;
     unsigned offset;
     unsigned i;
 
+    const struct num_index_metadata *index_info = &num_indexes_metadata[index_type];
+    const struct table_metadata *table_info = &tables_metadata[index_info->table];
+
     // init variables
-    index_type = num_indexes_metadata[PERS_BY_COMP_ID].prefix;
-    offset = db->header.offset_table[PERSON];
-    index = malloc(db->header.n_rec_table[PERSON] * sizeof(struct num_entity));
+    offset = db->header.offset_table[index_info->table];
+    index = malloc(db->header.n_rec_table[index_info->table] * sizeof(struct num_entity));
     if (index == NULL) {
         return -1;
     }
 
-    fseek(db->dat_file, offset, SEEK_SET);
-    for (i = 0; i < db->header.n_rec_table[PERSON]; i++) {
-        // load person
-        memset(&person, 0, sizeof(struct person));
-        if (fread(&person, sizeof(struct person), 1, db->dat_file) != 1) {
+    // fill the index
+    for (i = 0; i < db->header.n_rec_table[index_info->table]; i++) {
+        strcpy(index[i].type, index_info->prefix);
+        index[i].offset = offset;
+        index[i].value = (*index_info->read_value)(db, offset);
+
+        if (index[i].value == UINT_MAX) {
             free(index);
             return -1;
         }
 
-        // fill the index
-        index[i].offset = offset;
-        index[i].value = person.id_company;
-        strcpy(index[i].type, index_type);
-
-        offset += sizeof(struct person);
+        offset += table_info->size;
     }
 
     // sort the list
-    qsort(index, db->header.n_rec_table[PERSON], sizeof(struct num_entity),
+    // qsort(index, db->header.n_rec_table[index_info->table], sizeof(struct num_entity),
+    //         &compare_num_index);
+    quick_sort(index, db->header.n_rec_table[index_info->table], sizeof(struct num_entity),
             &compare_num_index);
 
     // write the sorted list in the database file
-    fseek(db->dat_file, db->header.offset_num_index[PERS_BY_COMP_ID], SEEK_SET);
-    for (i = 0; i < db->header.n_rec_table[PERSON]; i++) {
-        fwrite(&index[i], sizeof(struct num_entity), 1, db->dat_file);
+    fseek(db->dat_file, db->header.offset_num_index[index_type], SEEK_SET);
+    for (i = 0; i < db->header.n_rec_table[index_info->table]; i++) {
+        if (fwrite(&index[i], sizeof(struct num_entity), 1, db->dat_file) != 1) {
+            free(index);
+            return -1;
+        }
     }
 
     free(index);

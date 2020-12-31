@@ -10,14 +10,13 @@
 
 #include <limits.h>
 #include <stdlib.h>
-#include <stdlib.h>
 #include <string.h>
 
 #include "db_file/catalog.h"
 #include "search/num_index_search.h"
 #include "table/person.h"
-#include "utils/string_comparison.h"
 #include "ui/ui-utils.h"
+#include "utils/string_comparison.h"
 
 /* PRIVATE FUNCTION */
 
@@ -26,14 +25,17 @@
  * (binary search non optimized adaptation)
  *
  * @param db: database information stored in RAM
- * @param prefix: prefix searched
- * @param index_offset: head index
+ * @param searched: number searched
+ * @param start: start index (0 on the first call)
+ * @param stop: stop index (number of recorded indexes -1 on the first call)
+ * @param found: found boolean
+ * @param type: index type
  *
  * @return either
- *      the offset of the first matched person index
+ *      the offset of the first matched numeric index
  *      UINTMAX if no result has been found
  */
-unsigned binary_search(struct db *db, unsigned searched, unsigned start,
+unsigned find_first_num_index(struct db *db, unsigned searched, unsigned start,
                             unsigned stop, unsigned found, enum num_index type) {
     struct num_entity index;
     unsigned middle = start + (stop - start) / 2;
@@ -67,7 +69,7 @@ unsigned binary_search(struct db *db, unsigned searched, unsigned start,
         start = middle + 1;
     }
 
-    return binary_search(db, searched, start, stop, found, type);
+    return find_first_num_index(db, searched, start, stop, found, type);
 }
 
 /**
@@ -79,22 +81,23 @@ unsigned binary_search(struct db *db, unsigned searched, unsigned start,
  */
 int search_by_num_index(struct db *db, enum num_index type) {
     unsigned searched;              // number searched
-    unsigned index_offset;          // head node of the results tree
+    unsigned index_offset;          // first offset matching
     struct num_entity index;        // index entity found
     void *found;                    // record found
     struct node *head = NULL;       // linked list head
     struct node *cur_node = NULL;   // linked list current node
     unsigned results = 0;           // number of records found
-    unsigned end;                  // last offset
+    unsigned end;                   // last offset
     
-    const struct index_metadata *index_info = &num_indexes_metadata[type];
+    const struct num_index_metadata *index_info = &num_indexes_metadata[type];
+    const struct table_metadata *table_info = &tables_metadata[index_info->table];
 
     // get the user input
     printf("Enter the number searched: ");
     searched = get_uns_input();
 
     // get the first index matching with the searched prefix
-    index_offset = binary_search(db, searched, 0, db->header.n_rec_table[index_info->table], 0, type);
+    index_offset = find_first_num_index(db, searched, 0, db->header.n_rec_table[index_info->table]-1, 0, type);
 
     // create the list of results
     end = db->header.offset_num_index[type] + db->header.n_rec_table[index_info->table] * sizeof(struct num_entity);
@@ -110,7 +113,7 @@ int search_by_num_index(struct db *db, enum num_index type) {
         }
 
         // else read the associated record
-        found = (*index_info->read)(db, index.offset);
+        found = (*table_info->read)(db, index.offset);
 
         // and add it to the list of results
         if (found != NULL) {
@@ -122,7 +125,7 @@ int search_by_num_index(struct db *db, enum num_index type) {
         index_offset += sizeof(struct num_entity);
     }
 
-    paginate(results, head, index_info->print, index_info->print_header);
+    paginate(results, head, table_info->print, table_info->print_header);
     free_list(head, 1);
     return 0;
 }

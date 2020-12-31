@@ -11,6 +11,7 @@
  * PP 2020 - Laura Binacchi - Fedora 32
  ****************************************************************************************/
 
+#include <limits.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -80,6 +81,26 @@ int load_groups(struct db *db, int count) {
     return load_count;
 }
 
+void *read_group(struct db *db, unsigned offset) {
+    struct group *tuple;    // tuple read from the database file
+
+    tuple = malloc(sizeof (struct group));
+    memset(tuple, 0, sizeof(struct group));
+    fseek(db->dat_file, offset, SEEK_SET);
+    fread(tuple, sizeof(struct group), 1, db->dat_file);
+
+    return tuple;
+}
+
+void print_group_details(struct group *group) {
+    printf("%-16s %u\n"
+            "%-16s %s\n"
+            "%-16s %u\n",
+            "ID", group->id,
+            "NAME", group->name,
+            "COUNTRY ID", group->country_id);
+}
+
 void print_group(struct group *group) {
     printf("%" STR(ID_LEN) "u "
             "%-" STR(GROUP_NAME_LEN) "s "
@@ -96,6 +117,18 @@ void print_group_header(void) {
             "ID",
             "NAME",
             "COUNTRY ID");
+}
+
+int compare_group_id(struct db *db, unsigned offset, unsigned searched) {
+    struct group group;
+
+    memset(&group, 0, sizeof(struct group));
+    fseek(db->dat_file, offset, SEEK_SET);
+    if (fread(&group, sizeof(struct group), 1, db->dat_file) == 1) {
+        return searched - group.id;
+    }
+
+    return INT_MAX;
 }
 
 void *compare_group(struct db *db, unsigned i, char *searched) {
