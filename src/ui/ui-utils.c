@@ -7,6 +7,7 @@
  * PP 2020 - Laura Binacchi - Fedora 32
  ****************************************************************************************/
 
+#include <ctype.h>
 #include <stdio.h>
 #include <string.h>
 
@@ -29,11 +30,13 @@ void clean_stdin(void) {
 void pause_page(void) {
     printf("\nPress any key to continue...");
     int c = getchar();
-    if (c != '\n') clean_stdin();
+    if (c != '\n') {
+        clean_stdin();
+    }
 }
 
 void paginate(unsigned n, struct node* list, void (*print)(void *),
-                void (*print_header)(void)) {
+                void (*print_header)(void), int reversed) {
     unsigned i = 0;
     unsigned page = 0;
     unsigned pages = (n+PAGE_SIZE-1) / PAGE_SIZE;
@@ -52,9 +55,16 @@ void paginate(unsigned n, struct node* list, void (*print)(void *),
             puts("");
         }
 
-        printf("%4u/%-4u ", ++i, n);
-        (*print)(list->data);
-        list = list->next;
+        if (reversed) {
+            printf("%4u/%-4u ", n-i, n);
+            (*print)(list->data);
+            list = list->previous;
+        } else {
+            printf("%4u/%-4u ", i+1, n);
+            (*print)(list->data);
+            list = list->next;
+        }
+        i++;
 
         if (i % PAGE_SIZE == 0 && page != pages) pause_page();
     }
@@ -93,9 +103,25 @@ void get_text_input(char *out_input, int size) {
     if (out_input != NULL) {
         char *lf;
         // if there is a line feed character, delete it
-        if ((lf = strchr(out_input, '\n')) != NULL) *lf = '\0';
+        if ((lf = strchr(out_input, '\n')) != NULL) {
+            *lf = '\0';
+        }
         // else empty the stdin
         else clean_stdin();
     }
-    return;
+}
+
+int get_yes_input(void) {
+    char input;
+    char yes = 0;
+
+    scanf("%c", &input);
+    if (input != '\n') {
+        if (tolower(input) == 'y') {
+            yes = 1;
+        }
+        clean_stdin();
+    }
+
+    return yes;
 }

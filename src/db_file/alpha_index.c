@@ -115,10 +115,10 @@ int create_alpha_index(struct db *db, enum alpha_index index_type) {
     }
 
     // sort the list
-    // qsort(index, db->header.n_rec_table[index_info->table], sizeof(struct alpha_entity),
-    //         &compare_alpha_index);
-    quick_sort(index, db->header.n_rec_table[index_info->table], sizeof(struct alpha_entity),
+    qsort(index, db->header.n_rec_table[index_info->table], sizeof(struct alpha_entity),
             &compare_alpha_index);
+    // quick_sort(index, db->header.n_rec_table[index_info->table], sizeof(struct alpha_entity),
+    //         &compare_alpha_index);
 
     // write the sorted list in the database file
     fseek(db->dat_file, db->header.offset_alpha_index[index_type], SEEK_SET);

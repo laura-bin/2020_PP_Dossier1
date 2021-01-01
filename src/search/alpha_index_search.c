@@ -78,10 +78,11 @@ int search_by_alpha_index(struct db *db, enum alpha_index type) {
     unsigned index_offset;          // head node of the results tree
     struct alpha_entity index;      // index entity found
     void *found;                    // record found
-    struct node *head = NULL;       // linked list head
-    struct node *cur_node = NULL;   // linked list current node
+    struct node *head = NULL;       // linked list first node
+    struct node *last = NULL;       // linked list last node
     unsigned results = 0;           // number of records found
     unsigned end;                   // last offset
+    int reversed;                   // reversed order boolean
     
     const struct alpha_index_metadata *index_info = &alpha_indexes_metadata[type];
     const struct table_metadata *table_info = &tables_metadata[index_info->table];
@@ -89,6 +90,9 @@ int search_by_alpha_index(struct db *db, enum alpha_index type) {
     // get the user input
     printf("Enter the substring searched: ");
     get_text_input(searched, MAX_LEN);
+
+    printf("Print the results in reversed order ? [yes/NO] ");
+    reversed = get_yes_input();
 
     // get the first index matching with the searched prefix
     index_offset = find_first_alpha_index(db, searched, type);
@@ -111,15 +115,15 @@ int search_by_alpha_index(struct db *db, enum alpha_index type) {
 
         // and add it to the list of results
         if (found != NULL) {
-            cur_node = append_item(cur_node, found);
-            if (head == NULL) head = cur_node;
+            last = append_item(last, found);
+            if (head == NULL) head = last;
             results++;
         }
 
         index_offset += sizeof(struct alpha_entity);
     }
 
-    paginate(results, head, table_info->print, table_info->print_header);
+    paginate(results, reversed ? last : head, table_info->print, table_info->print_header, reversed);
     free_list(head, 1);
     return 0;
 }

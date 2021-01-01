@@ -67,10 +67,10 @@ int create_num_index(struct db *db, enum num_index index_type) {
     }
 
     // sort the list
-    // qsort(index, db->header.n_rec_table[index_info->table], sizeof(struct num_entity),
-    //         &compare_num_index);
-    quick_sort(index, db->header.n_rec_table[index_info->table], sizeof(struct num_entity),
+    qsort(index, db->header.n_rec_table[index_info->table], sizeof(struct num_entity),
             &compare_num_index);
+    // quick_sort(index, db->header.n_rec_table[index_info->table], sizeof(struct num_entity),
+    //         &compare_num_index);
 
     // write the sorted list in the database file
     fseek(db->dat_file, db->header.offset_num_index[index_type], SEEK_SET);

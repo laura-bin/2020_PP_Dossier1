@@ -84,10 +84,11 @@ int search_by_num_index(struct db *db, enum num_index type) {
     unsigned index_offset;          // first offset matching
     struct num_entity index;        // index entity found
     void *found;                    // record found
-    struct node *head = NULL;       // linked list head
-    struct node *cur_node = NULL;   // linked list current node
+    struct node *head = NULL;       // linked list first node
+    struct node *last = NULL;       // linked list last node
     unsigned results = 0;           // number of records found
     unsigned end;                   // last offset
+    int reversed;                   // reversed order boolean
     
     const struct num_index_metadata *index_info = &num_indexes_metadata[type];
     const struct table_metadata *table_info = &tables_metadata[index_info->table];
@@ -95,6 +96,9 @@ int search_by_num_index(struct db *db, enum num_index type) {
     // get the user input
     printf("Enter the number searched: ");
     searched = get_uns_input();
+
+    printf("Print the results in reversed order ? [yes/NO] ");
+    reversed = get_yes_input();
 
     // get the first index matching with the searched prefix
     index_offset = find_first_num_index(db, searched, 0, db->header.n_rec_table[index_info->table]-1, 0, type);
@@ -117,15 +121,15 @@ int search_by_num_index(struct db *db, enum num_index type) {
 
         // and add it to the list of results
         if (found != NULL) {
-            cur_node = append_item(cur_node, found);
-            if (head == NULL) head = cur_node;
+            last = append_item(last, found);
+            if (head == NULL) head = last;
             results++;
         }
 
         index_offset += sizeof(struct num_entity);
     }
 
-    paginate(results, head, table_info->print, table_info->print_header);
+    paginate(results, reversed ? last : head, table_info->print, table_info->print_header, reversed);
     free_list(head, 1);
     return 0;
 }

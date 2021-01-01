@@ -35,12 +35,18 @@
  *  - search person by id (binary search)
  *  - search company by group id (numeric index + binary search adaptation)
  *  - search person by company id (numeric index + binary search adaptation)
- *  - search person by lastname (alphanumeric index + binary tree) -> not all fields OK ??
+ *  - search person by lastname (alphanumeric index + binary tree)
+ * v4.1:
+ *  - print the linked lists in reversed order
  * 
  * TODO :
- *  - search people by company id: sort people on lastname
- *  - show the results in reversed order
  *  - reports
+ *  - rapports (txt ou rtf) + date dans le nom du fichier de sortie
+ *  - rapport de détail : liste des personnes travaillant pour chaque compagnie d'un groupe
+ *  - rapport de détail : liste de toutes les compagnies appartenant à un groupe par pays
+ *  - rapport aggrégé (group by) : nombre de personnes par groupe (somme des n_emp) et nombre de personnes connues dans la db (count) -> pourcentage de personnes connues dans la db
+ *  - rapport aggrégé : valeur totale des actions détenues par les employés pour un groupe donné, éclaté par genre et niveau de fonction
+ *  - rapports aggrégés : garder les données dans des listes chaînées
  *
  * PP 2020 - Laura Binacchi - Fedora 32
  ****************************************************************************************/

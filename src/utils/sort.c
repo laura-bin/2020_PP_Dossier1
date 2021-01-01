@@ -27,7 +27,7 @@ void *_elem(void *ptr, size_t element_size, size_t i) {
 }
 
 /**
- * Swaps two elements of the list
+ * Swaps two elements
  * 
  * @param e1: first element
  * @param e2: second element
@@ -92,7 +92,7 @@ void _quick_sort(void *ptr, ssize_t first, ssize_t last, size_t element_size, in
 #undef QSORT_ELEM
 }
 
-/* HEADER IMPLEMENTATIONS */
+/* HEADER IMPLEMENTATION */
 
 void quick_sort(void *ptr, ssize_t count, size_t size, int (*comp)(const void *, const void *)) {
     char *temp_buffer = malloc(size);

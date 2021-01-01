@@ -33,25 +33,29 @@ int sequential_search(struct db *db, enum table tab) {
     char searched[MAX_LEN];         // substring searched
     unsigned i;                     // record index
     unsigned results = 0;           // number of records found
-    struct node *head = NULL;       // linked list head
-    struct node *cur_node = NULL;   // linked list current node
+    struct node *head = NULL;       // linked list first node
+    struct node *last = NULL;       // linked list last node
     void *found;                    // record found
+    int reversed;                   // reversed order boolean
 
     const struct table_metadata *table = &tables_metadata[tab];
 
     printf("Enter the substring searched: ");
     get_text_input(searched, MAX_LEN);
 
+    printf("Print the results in reversed order ? [yes/NO] ");
+    reversed = get_yes_input();
+
     for (i = 0; i < db->header.n_rec_table[tab]; i++) {
         found = (*table->compare)(db, i, searched);
         if (found != NULL) {
-            cur_node = append_item(cur_node, found);
-            if (head == NULL) head = cur_node;
+            last = append_item(last, found);
+            if (head == NULL) head = last;
             results++;
         }
     }
 
-    paginate(results, head, table->print, table->print_header);
+    paginate(results, reversed ? last : head, table->print, table->print_header, reversed);
     free_list(head, 0);
 
     return 0;

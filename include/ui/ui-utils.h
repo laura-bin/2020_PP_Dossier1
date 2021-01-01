@@ -30,9 +30,10 @@ void pause_page(void);
  * @param list: linked list to print
  * @param print: print function to call
  * @param print_header: print header function to call
+ * @param reversed: print in reversed order boolean
  */
 void paginate(unsigned n, struct node* list, void (*print)(void *),
-                void (*print_header)(void));
+                void (*print_header)(void), int reversed);
 
 /**
  * Prints a details list of results:
@@ -59,3 +60,13 @@ unsigned get_uns_input(void);
  * @param size: input max size
  */
 void get_text_input(char *out_input, int size);
+
+/**
+ * Gets a yes/no answer from the user
+ * (default is no)
+ *
+ * @return either
+ *      1 if the first character entered by the user is 'Y' or 'y'
+ *      0 in all other cases
+ */
+int get_yes_input(void);
