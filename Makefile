@@ -19,14 +19,16 @@ tests/test_sort: tests/test_sort.c out/utils/sort.o
 	gcc $(CFLAGS) -o $@ $<
 	# gcc $(CFLAGS) -o $@ $^
 
-out: out/db_file out/table out/search out/utils out/ui out/report
+out: out/db_file out/table out/search out/utils out/ui out/display_search out/report
 
 clients: src/main.c out/ui/menus.o out/ui/ui-utils.o \
 			out/db_file/admin.o out/db_file/catalog.o out/db_file/open_close.o \
 			out/db_file/header.o out/db_file/alpha_index.o out/db_file/num_index.o \
 			out/search/binary_search.o out/search/sequential_search.o \
 			out/search/num_index_search.o out/search/alpha_index_search.o \
-			out/report/aggregation.o out/report/main_detail.o \
+			out/display_search/display_binary_search.o out/display_search/display_sequential_search.o \
+			out/display_search/display_num_index_search.o out/display_search/display_alpha_index_search.o \
+			out/report/aggregation_report.o out/report/main_detail_report.o \
 			out/table/country.o out/table/job.o out/table/industry.o \
 			out/table/group.o out/table/company.o out/table/person.o \
 			out/utils/logger.o out/utils/system.o out/utils/linked_list.o \

@@ -3,37 +3,21 @@
  * Dossier 1 : Analyse de donnees clients
  * ======================================
  *
- * Database file sequential searches in code tables (country, job, industry, group)
+ * Generic sequential search
  *
- * PP 2020 - Laura Binacchi - Fedora 32
+ * PP 2020-2021 - Laura Binacchi - Fedora 32
  ****************************************************************************************/
 
 #include "db_file/database.h"
+#include "search/search_result.h"
 
 /**
- * Searches if a country contains a substring entered by the user
+ * Searches records in the RAM stored buffer (sequential search)
  *
  * @param db: database information stored in RAM
- */
-int search_countries(struct db *db);
-
-/**
- * Searches if a job contains a substring entered by the user
+ * @param tab: table type
+ * @param searched: substring searched
  *
- * @param db: database information stored in RAM
+ * @return the list of results
  */
-int search_jobs(struct db *db);
-
-/**
- * Searches if an industry contains a substring entered by the user
- *
- * @param db: database information stored in RAM
- */
-int search_industries(struct db *db);
-
-/**
- * Searches if a group contains a substring entered by the user
- *
- * @param db: database information stored in RAM
- */
-int search_groups(struct db *db);
+struct search_result sequential_search(struct db *db, enum table tab, char *searched);

@@ -2,10 +2,9 @@
  * Dossier 1 : Analyse de donnees clients
  * ======================================
  *
- * Database file searches by alphanumeric index:
- *  - search people by lastname prefix
+ * Generic search by alphanumeric index
  *
- * PP 2020 - Laura Binacchi - Fedora 32
+ * PP 2020-2021 - Laura Binacchi - Fedora 32
  ****************************************************************************************/
 
 #include <limits.h>
@@ -14,8 +13,7 @@
 
 #include "db_file/catalog.h"
 #include "search/alpha_index_search.h"
-#include "table/person.h"
-#include "ui/ui-utils.h"
+#include "utils/linked_list.h"
 #include "utils/string_comparison.h"
 
 /* PRIVATE FUNCTION */
@@ -66,33 +64,23 @@ unsigned find_first_alpha_index(struct db *db, char *prefix, enum alpha_index ty
     }
 }
 
-/**
- * Searches records by an alphanumeric index
- * and shows the paginated list of results
- *
- * @param db: database information stored in RAM
- * @param type: alphanumeric index type
- */
-int search_by_alpha_index(struct db *db, enum alpha_index type) {
-    char searched[MAX_LEN];         // substring searched
+/* HEADER IMPLEMENTATION */
+
+struct search_result search_by_alpha_index(struct db *db, enum alpha_index type, char *searched) {
     unsigned index_offset;          // head node of the results tree
     struct alpha_entity index;      // index entity found
     void *found;                    // record found
-    struct node *head = NULL;       // linked list first node
-    struct node *last = NULL;       // linked list last node
-    unsigned results = 0;           // number of records found
     unsigned end;                   // last offset
-    int reversed;                   // reversed order boolean
+
+    // results initialization
+    struct search_result res = {
+        .result_count = 0,
+        .head = NULL,
+        .tail = NULL,
+    };
     
     const struct alpha_index_metadata *index_info = &alpha_indexes_metadata[type];
     const struct table_metadata *table_info = &tables_metadata[index_info->table];
-
-    // get the user input
-    printf("Enter the substring searched: ");
-    get_text_input(searched, MAX_LEN);
-
-    printf("Print the results in reversed order ? [yes/NO] ");
-    reversed = get_yes_input();
 
     // get the first index matching with the searched prefix
     index_offset = find_first_alpha_index(db, searched, type);
@@ -115,21 +103,13 @@ int search_by_alpha_index(struct db *db, enum alpha_index type) {
 
         // and add it to the list of results
         if (found != NULL) {
-            last = append_item(last, found);
-            if (head == NULL) head = last;
-            results++;
+            res.tail = append_item(res.tail, found);
+            if (res.head == NULL) res.head = res.tail;
+            res.result_count++;
         }
 
         index_offset += sizeof(struct alpha_entity);
     }
 
-    paginate(results, reversed ? last : head, table_info->print, table_info->print_header, reversed);
-    free_list(head, 1);
-    return 0;
-}
-
-/* HEADER IMPLEMENTATION */
-
-int search_people_by_lastname(struct db *db) {
-    return search_by_alpha_index(db, PERS_BY_LASTNAME);
+    return res;
 }

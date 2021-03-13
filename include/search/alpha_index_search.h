@@ -3,15 +3,22 @@
  * Dossier 1 : Analyse de donnees clients
  * ======================================
  *
- * Database file searches by alphanumeric index:
- *  - search people by lastname prefix
+ * Generic search by alphanumeric index
  *
- * PP 2020 - Laura Binacchi - Fedora 32
+ * PP 2020-2021 - Laura Binacchi - Fedora 32
  ****************************************************************************************/
 
 #include "db_file/database.h"
+#include "search/search_result.h"
 
 /**
- * Searches people by lastname prefix
+ * Searches records by a given alphanumeric index
+ * and returns the list of results
+ *
+ * @param db: database information stored in RAM
+ * @param type: alphanumeric index type
+ * @param searched: string prefix searched into the index
+ * 
+ * @return the list of results
  */
-int search_people_by_lastname(struct db *db);
+struct search_result search_by_alpha_index(struct db *db, enum alpha_index type, char *searched);

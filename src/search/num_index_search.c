@@ -2,20 +2,17 @@
  * Dossier 1 : Analyse de donnees clients
  * ======================================
  *
- * Database file searches by numerc index:
- *  - search people by company id
+ * Generic search by numeric index
  *
- * PP 2020 - Laura Binacchi - Fedora 32
+ * PP 2020-2021 - Laura Binacchi - Fedora 32
  ****************************************************************************************/
 
 #include <limits.h>
-#include <stdlib.h>
 #include <string.h>
 
 #include "db_file/catalog.h"
 #include "search/num_index_search.h"
-#include "table/person.h"
-#include "ui/ui-utils.h"
+#include "utils/linked_list.h"
 #include "utils/string_comparison.h"
 
 /* PRIVATE FUNCTION */
@@ -72,33 +69,23 @@ unsigned find_first_num_index(struct db *db, unsigned searched, unsigned start,
     return find_first_num_index(db, searched, start, stop, found, type);
 }
 
-/**
- * Searches records by an numeric index
- * and shows the paginated list of results
- *
- * @param db: database information stored in RAM
- * @param type: numeric index type
- */
-int search_by_num_index(struct db *db, enum num_index type) {
-    unsigned searched;              // number searched
+/* HEADER IMPLEMENTATION */
+
+struct search_result search_by_num_index(struct db *db, enum num_index type, unsigned searched) {
     unsigned index_offset;          // first offset matching
     struct num_entity index;        // index entity found
     void *found;                    // record found
-    struct node *head = NULL;       // linked list first node
-    struct node *last = NULL;       // linked list last node
-    unsigned results = 0;           // number of records found
     unsigned end;                   // last offset
-    int reversed;                   // reversed order boolean
+
+    // results initialization
+    struct search_result res = {
+        .result_count = 0,
+        .head = NULL,
+        .tail = NULL,
+    };
     
     const struct num_index_metadata *index_info = &num_indexes_metadata[type];
     const struct table_metadata *table_info = &tables_metadata[index_info->table];
-
-    // get the user input
-    printf("Enter the number searched: ");
-    searched = get_uns_input();
-
-    printf("Print the results in reversed order ? [yes/NO] ");
-    reversed = get_yes_input();
 
     // get the first index matching with the searched prefix
     index_offset = find_first_num_index(db, searched, 0, db->header.n_rec_table[index_info->table]-1, 0, type);
@@ -121,23 +108,13 @@ int search_by_num_index(struct db *db, enum num_index type) {
 
         // and add it to the list of results
         if (found != NULL) {
-            last = append_item(last, found);
-            if (head == NULL) head = last;
-            results++;
+            res.tail = append_item(res.tail, found);
+            if (res.head == NULL) res.head = res.tail;
+            res.result_count++;
         }
 
         index_offset += sizeof(struct num_entity);
     }
 
-    paginate(results, reversed ? last : head, table_info->print, table_info->print_header, reversed);
-    free_list(head, 1);
-    return 0;
-}
-
-/* HEADER IMPLEMENTATION */
-
-
-int search_people_by_company_id(struct db *db) {
-    search_by_num_index(db, PERS_BY_COMP_ID);
-    return 0;
+    return res;
 }
