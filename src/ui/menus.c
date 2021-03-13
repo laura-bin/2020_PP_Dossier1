@@ -14,6 +14,7 @@
 
 #include "db_file/admin.h"
 #include "search/search.h"
+#include "report/report.h"
 #include "ui/menus.h"
 #include "ui/ui-utils.h"
 #include "utils/logger.h"
@@ -80,6 +81,26 @@ const struct menu_entry user_menus[USER_MENUS_COUNT] = {
     {
         .text = "Search people by lastname prefix",
         .action = &search_people_by_lastname
+    },
+    {
+        .text = "Report: people by company name",
+        .action = &report_people_by_company_name
+    },
+    {
+        .text = "Report: people by grouped order by company",
+        .action = &report_people_by_group_order_by_company
+    },
+    {
+        .text = "Report: companies by group grouped by country",
+        .action = &report_companies_by_group_order_by_country
+    },
+    {
+        .text = "Report: count people by group id",
+        .action = &report_count_people_by_group
+    },
+    {
+        .text = "Report: shares by employee grouped by gender and job",
+        .action = &report_sum_shares_by_employee_group_by_gender_group_by_job
     },
     {
         .text = "Display database file metadata",

@@ -1,0 +1,9 @@
+\BOOKMARK [1][-]{section.1}{D\351finition de la structure de donn\351es}{}% 1
+\BOOKMARK [1][-]{section.2}{R\351alisation de la librairie}{}% 2
+\BOOKMARK [1][-]{section.3}{Structure du projet}{}% 3
+\BOOKMARK [1][-]{section.4}{Compilation du projet}{}% 4
+\BOOKMARK [1][-]{section.5}{Installation du client et du serveur}{}% 5
+\BOOKMARK [1][-]{section.6}{Tests}{}% 6
+\BOOKMARK [2][-]{subsection.6.1}{Envoi d'une liste courte}{section.6}% 7
+\BOOKMARK [2][-]{subsection.6.2}{Envoi d'une liste vide}{section.6}% 8
+\BOOKMARK [2][-]{subsection.6.3}{Envoi d'une liste de 65535 \351l\351ments}{section.6}% 9
