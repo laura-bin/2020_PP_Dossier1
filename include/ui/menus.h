@@ -7,14 +7,14 @@
  *  - admin menu: db file creation, deletion, import, etc.
  *  - user menu: db file access and operation functions
  *
- * PP 2020 - Laura Binacchi - Fedora 32
+ * PP 2020-2021 - Laura Binacchi - Fedora 32
  ****************************************************************************************/
 
 #include "db_file/database.h"
 
 /* Number of menus for each application mode */
 #define ADMIN_MENUS_COUNT   5
-#define USER_MENUS_COUNT    15
+#define USER_MENUS_COUNT    14
 
 /* Menu entry: text displayed to the user and action to call */
 struct menu_entry {

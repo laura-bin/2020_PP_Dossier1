@@ -1,5 +1,6 @@
+// TODO
 
-#include "report/aggregation.h"
+#include "report/aggregation_report.h"
 
 int report_count_people_by_group(struct db *db) {
     return 0;

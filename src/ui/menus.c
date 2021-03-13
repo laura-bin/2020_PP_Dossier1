@@ -9,11 +9,11 @@
  * Private functions
  *  - UI management (print & get user's inputs)
  *
- * PP 2020 - Laura Binacchi - Fedora 32
+ * PP 2020-2021 - Laura Binacchi - Fedora 32
  ****************************************************************************************/
 
 #include "db_file/admin.h"
-#include "search/search.h"
+#include "display_search/display_search.h"
 #include "report/report.h"
 #include "ui/menus.h"
 #include "ui/ui-utils.h"
@@ -81,10 +81,6 @@ const struct menu_entry user_menus[USER_MENUS_COUNT] = {
     {
         .text = "Search people by lastname prefix",
         .action = &search_people_by_lastname
-    },
-    {
-        .text = "Report: people by company name",
-        .action = &report_people_by_company_name
     },
     {
         .text = "Report: people by grouped order by company",

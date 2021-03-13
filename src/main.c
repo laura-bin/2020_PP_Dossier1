@@ -48,7 +48,7 @@
  *  - rapport aggrégé : valeur totale des actions détenues par les employés pour un groupe donné, éclaté par genre et niveau de fonction
  *  - rapports aggrégés : garder les données dans des listes chaînées
  *
- * PP 2020 - Laura Binacchi - Fedora 32
+ * PP 2020-2021 - Laura Binacchi - Fedora 32
  ****************************************************************************************/
 
 #include <string.h>

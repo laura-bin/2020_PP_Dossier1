@@ -5,7 +5,7 @@
  * 
  * Macro converting constants to string
  *
- * PP 2020 - Laura Binacchi - Fedora 32
+ * PP 2020-2021 - Laura Binacchi - Fedora 32
  *********************************************************************************************************************/
 
 #define STR_HELPER(x) #x

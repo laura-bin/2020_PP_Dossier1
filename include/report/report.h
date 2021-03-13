@@ -5,8 +5,8 @@
  *
  * Grouping of the different reports functions
  *
- * PP 2020 - Laura Binacchi - Fedora 32
+ * PP 2020-2021 - Laura Binacchi - Fedora 32
  ****************************************************************************************/
 
-#include "report/aggregation.h"
-#include "report/main_detail.h"
+#include "report/aggregation_report.h"
+#include "report/main_detail_report.h"

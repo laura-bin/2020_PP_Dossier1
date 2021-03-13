@@ -1,4 +1,3 @@
-//TODO
 /****************************************************************************************
 * Dossier 1 : Analyse de donnees clients
 * ======================================
@@ -9,8 +8,9 @@
 *   - load from dat file to buffer
 *   - print a single tuple tuple from the buffer
 *
-* PP 2020 - Laura Binacchi - Fedora 32
+* PP 2020-2021 - Laura Binacchi - Fedora 32
 ****************************************************************************************/
+
 #include <stdlib.h>
 #include <string.h>
 

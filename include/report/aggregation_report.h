@@ -2,6 +2,8 @@
  * Dossier 1 : Analyse de donnees clients
  * ======================================
  *
+ * TODO
+ * 
  * Aggregation reports:
  *  - Nombre de personnes par groupe (somme des nr_emp) et nombre de personnes connues dans la DB
 (comptage des records personnes liés au groupe)

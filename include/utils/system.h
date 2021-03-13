@@ -5,7 +5,7 @@
  *
  * System dependent constants & functions prototypes
  *
- * PP 2020 - Laura Binacchi - Fedora 32
+ * PP 2020-2021 - Laura Binacchi - Fedora 32
  ****************************************************************************************/
 
 /* Directory separator */
