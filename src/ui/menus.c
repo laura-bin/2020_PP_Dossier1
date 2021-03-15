@@ -83,7 +83,7 @@ const struct menu_entry user_menus[USER_MENUS_COUNT] = {
         .action = &search_people_by_lastname
     },
     {
-        .text = "Report: people by grouped order by company",
+        .text = "Report: people by group order by company",
         .action = &report_people_by_group_order_by_company
     },
     {
