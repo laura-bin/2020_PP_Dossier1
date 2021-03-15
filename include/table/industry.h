@@ -40,6 +40,19 @@ int export_industry(struct db *db);
 int load_industries(struct db *db, int count);
 
 /**
+ * Reads an industry by direct access in the database file
+ * /!\ free after use
+ *
+ * @param db: database information stored in RAM
+ * @param db: industry offset in the database file
+ *
+ * @return either
+ *      a pointer to the industry found
+ *      NULL if an error occured
+ */
+void *read_industry(struct db *db, unsigned offset);
+
+/**
  * Prints an industry
  *
  * @param industry: industry to print
@@ -50,6 +63,21 @@ void print_industry(struct industry *industry);
  * Prints the industry table header containing its fields names
  */
 void print_industry_header(void);
+
+/**
+ * Compares a searched id with the industry id
+ *
+ * @param db: database information stored in RAM
+ * @param offset: offset of the industry to compare
+ * @param searched: id searched
+ *
+ * @return either
+ *      < 0 if the searched id is lower than the industry id
+ *      0 if the searched id is equal to the industry id
+ *      > 0 if the searched id is greater than the industry id
+ *      INT_MAX if an error occured
+ */
+int compare_industry_id(struct db *db, unsigned offset, unsigned searched);
 
 /**
  * Compares an industry referenced by its index with a searched substring

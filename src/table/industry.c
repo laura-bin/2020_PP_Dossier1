@@ -11,6 +11,7 @@
  * PP 2020-2021 - Laura Binacchi - Fedora 32
  ****************************************************************************************/
 
+#include <limits.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -81,6 +82,17 @@ int load_industries(struct db *db, int count) {
     return load_count;
 }
 
+void *read_industry(struct db *db, unsigned offset) {
+    struct industry *tuple;    // tuple read from the database file
+
+    tuple = malloc(sizeof (struct industry));
+    memset(tuple, 0, sizeof(struct industry));
+    fseek(db->dat_file, offset, SEEK_SET);
+    fread(tuple, sizeof(struct industry), 1, db->dat_file);
+
+    return tuple;
+}
+
 void print_industry(struct industry *industry) {
     printf("%" STR(ID_LEN) "u "
             "%-" STR(INDUSTRY_SECTOR_LEN) "s "
@@ -97,6 +109,18 @@ void print_industry_header(void) {
             "ID",
             "SECTOR",
             "NAME");
+}
+
+int compare_industry_id(struct db *db, unsigned offset, unsigned searched) {
+    struct industry industry;
+
+    memset(&industry, 0, sizeof(struct industry));
+    fseek(db->dat_file, offset, SEEK_SET);
+    if (fread(&industry, sizeof(struct industry), 1, db->dat_file) == 1) {
+        return searched - industry.id;
+    }
+
+    return INT_MAX;
 }
 
 void *compare_industry(struct db *db, unsigned i, char *searched) {
