@@ -161,7 +161,7 @@ void print_company_details(struct company *company) {
             "%-16s %s\n"
             "%-16s %s\n"
             "%-16s %u\n"
-            "%-16s %f\n",
+            "%-16s %.2f\n",
             "ID", company->id,
             "GROUP ID", company->id_group,
             "COUNTRY ID", company->id_country,
