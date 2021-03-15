@@ -60,7 +60,7 @@
 #define PERSON_MOBILE_LEN       14
 #define PERSON_EMAIL_LEN        58
 
-#define ID_LEN                  12
+#define ID_LEN                  10
 #define MAX_LEN                 62
 
 /* Types of tables & table count */
