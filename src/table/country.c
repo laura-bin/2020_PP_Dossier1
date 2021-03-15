@@ -88,6 +88,17 @@ int load_countries(struct db *db, int count) {
     return load_count;
 }
 
+void *read_country(struct db *db, unsigned offset) {
+    struct country *tuple;    // tuple read from the database file
+
+    tuple = malloc(sizeof (struct country));
+    memset(tuple, 0, sizeof(struct country));
+    fseek(db->dat_file, offset, SEEK_SET);
+    fread(tuple, sizeof(struct country), 1, db->dat_file);
+
+    return tuple;
+}
+
 void print_country(struct country *country) {
     printf("%" STR(ID_LEN) "u "
             "%-" STR(COUNTRY_NAME_LEN) "s "

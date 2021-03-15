@@ -40,6 +40,19 @@ int export_country(struct db *db);
 int load_countries(struct db *db, int count);
 
 /**
+ * Reads a country by direct access in the database file
+ * /!\ free after use
+ *
+ * @param db: database information stored in RAM
+ * @param db: country offset in the database file
+ *
+ * @return either
+ *      a pointer to the country found
+ *      NULL if an error occured
+ */
+void *read_country(struct db *db, unsigned offset);
+
+/**
  * Prints a country
  *
  * @param country: country to print
