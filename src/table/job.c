@@ -11,6 +11,7 @@
  * PP 2020-2021 - Laura Binacchi - Fedora 32
  ****************************************************************************************/
 
+#include <limits.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -88,6 +89,17 @@ int load_jobs(struct db *db, int count) {
     return load_count;
 }
 
+void *read_job(struct db *db, unsigned offset) {
+    struct job *tuple;    // tuple read from the database file
+
+    tuple = malloc(sizeof (struct job));
+    memset(tuple, 0, sizeof(struct job));
+    fseek(db->dat_file, offset, SEEK_SET);
+    fread(tuple, sizeof(struct job), 1, db->dat_file);
+
+    return tuple;
+}
+
 void print_job(struct job *job) {
     printf("%" STR(ID_LEN) "u "
             "%-" STR(JOB_LEVEL_LEN) "s "
@@ -108,6 +120,18 @@ void print_job_header(void) {
             "LEVEL",
             "DEPARTMENT",
             "NAME");
+}
+
+int compare_job_id(struct db *db, unsigned offset, unsigned searched) {
+    struct job job;
+
+    memset(&job, 0, sizeof(struct job));
+    fseek(db->dat_file, offset, SEEK_SET);
+    if (fread(&job, sizeof(struct job), 1, db->dat_file) == 1) {
+        return searched - job.id;
+    }
+
+    return INT_MAX;
 }
 
 void *compare_job(struct db *db, unsigned i, char *searched) {
