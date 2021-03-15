@@ -17,6 +17,7 @@
 #define DAT_DIR "data_clients"  // database file & log file directory
 #define IMP_DIR "data_import"   // directory containing csv files used for import
 #define EXP_DIR "data_export"   // directory containing csv files used for export
+#define REP_DIR "data_report"   // directory containing data reports
 #define CSV_BUF_LEN 1024        // buffer length used on read/write csv files
 
 /* Number of reserved locations in the DB file for each type of tuple */

@@ -11,6 +11,7 @@
 * PP 2020-2021 - Laura Binacchi - Fedora 32
 ****************************************************************************************/
 
+#include <limits.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -107,6 +108,18 @@ void print_country_header(void) {
             "NAME",
             "ZONE",
             "ISO");
+}
+
+int compare_country_id(struct db *db, unsigned offset, unsigned searched) {
+    struct country country;
+
+    memset(&country, 0, sizeof(struct country));
+    fseek(db->dat_file, offset, SEEK_SET);
+    if (fread(&country, sizeof(struct country), 1, db->dat_file) == 1) {
+        return searched - country.id;
+    }
+
+    return INT_MAX;
 }
 
 void *compare_country(struct db *db, unsigned i, char *searched) {
