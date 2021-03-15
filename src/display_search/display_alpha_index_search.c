@@ -28,7 +28,7 @@ int display_search_by_alpha_index(struct db *db, enum alpha_index type) {
 
     const struct table_metadata *table_info = &tables_metadata[alpha_indexes_metadata[type].table];
 
-    // get the user searched substring
+    // get the user inputs
     printf("Enter the substring searched: ");
     get_text_input(searched, MAX_LEN);
 
@@ -36,13 +36,10 @@ int display_search_by_alpha_index(struct db *db, enum alpha_index type) {
     printf("Print the results in reversed order ? [yes/NO] ");
     reversed = get_yes_input();
 
+    // get the results and display the paginated list of results
     res = search_by_alpha_index(db, PERS_BY_LASTNAME, searched);
-    paginate(
-        res.result_count,
-        reversed ? res.tail : res.head,
-        table_info->print,
-        table_info->print_header,
-        reversed);
+    paginate(res.result_count, reversed ? res.tail : res.head, table_info->print,
+        table_info->print_header, reversed);
     free_list(res.head, 1);
 
     return 0;

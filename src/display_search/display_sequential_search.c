@@ -28,17 +28,17 @@ int display_sequential_search(struct db *db, enum table tab) {
 
     const struct table_metadata *table = &tables_metadata[tab];
 
+    // get the user inputs
     printf("Enter the substring searched: ");
     get_text_input(searched, MAX_LEN);
 
     printf("Print the results in reversed order ? [yes/NO] ");
     reversed = get_yes_input();
 
+    // get the results and display the paginated list of results
     res = sequential_search(db, tab, searched);
-    paginate(
-        res.result_count, 
-        reversed ? res.tail : res.head,
-        table->print, table->print_header, reversed);
+    paginate(res.result_count, reversed ? res.tail : res.head, table->print,
+        table->print_header, reversed);
     free_list(res.head, 0);
 
     return 0;

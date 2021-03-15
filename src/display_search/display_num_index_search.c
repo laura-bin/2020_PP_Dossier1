@@ -26,27 +26,23 @@
  * @param type: index type enum
  */
 int display_search_by_num_index(struct db *db, enum num_index type) {
-    unsigned searched;
-    int reversed;
+    unsigned searched;          // integer id searched
+    int reversed;               // reversed order boolean
+    struct search_result res;   // list of results found
+
+    const struct table_metadata *table_info = &tables_metadata[num_indexes_metadata[type].table];
     
-    // get the user input
+    // get the user inputs
     printf("Enter the number searched: ");
     searched = get_uns_input();
 
     printf("Print the results in reversed order ? [yes/NO] ");
     reversed = get_yes_input();
 
-    struct search_result res;
+    // get the results and display the paginated list of results
     res = search_by_num_index(db, PERS_BY_COMP_ID, searched);
-
-    const struct table_metadata *table_info = &tables_metadata[num_indexes_metadata[type].table];
-
-    paginate(
-        res.result_count, 
-        reversed ? res.tail : res.head, 
-        table_info->print, 
-        table_info->print_header, 
-        reversed);
+    paginate(res.result_count, reversed ? res.tail : res.head, table_info->print,
+        table_info->print_header, reversed);
     free_list(res.head, 1);
 
     return 0;
