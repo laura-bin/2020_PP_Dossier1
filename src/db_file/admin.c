@@ -255,7 +255,7 @@ int import(struct db *db) {
 
     // log info
     if (tab_error_count != 0) printf("\nImport error on %d table(s)\n", tab_error_count);
-    else puts("\nAll tables have been suceessfully updated\n");
+    else puts("\nAll tables have been successfully updated\n");
 
     // create numeric indexes
     // TODO replace by loop

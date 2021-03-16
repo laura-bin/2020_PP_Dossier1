@@ -24,7 +24,7 @@ out: out/db_file out/table out/search out/utils out/ui out/display_search out/re
 clients: src/main.c out/ui/menus.o out/ui/ui-utils.o \
 			out/db_file/admin.o out/db_file/catalog.o out/db_file/open_close.o \
 			out/db_file/header.o out/db_file/alpha_index.o out/db_file/num_index.o \
-			out/search/binary_search.o out/search/sequential_search.o \
+			out/search/search_result.o out/search/binary_search.o out/search/sequential_search.o \
 			out/search/num_index_search.o out/search/alpha_index_search.o \
 			out/display_search/display_binary_search.o out/display_search/display_sequential_search.o \
 			out/display_search/display_num_index_search.o out/display_search/display_alpha_index_search.o \
@@ -46,4 +46,5 @@ clean:
 	rm -rf out
 	rm -rf data_clients
 	rm -rf data_export
+	rm -rf data_report
 	rm -f tests/test_sort

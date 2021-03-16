@@ -188,3 +188,10 @@ int compare_company_id(struct db *db, unsigned offset, unsigned searched) {
 
     return INT_MAX;
 }
+
+int compare_company_country_id(const void *company1, const void *company2) {
+    struct company *c1 = *(struct company **)company1;
+    struct company *c2 = *(struct company **)company2;
+
+    return (c1->id_country - c2->id_country);
+}

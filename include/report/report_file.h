@@ -9,13 +9,13 @@
  ****************************************************************************************/
 
 /**
- * Opens a report file with a formatted name
+ * Creates a new report file with a formatted name
  * creates the directory if it doesn't exist
  * 
  * @param filename: filename
  * 
  * @return either
- *      the file pointer
+ *      the file pointer opened in write mode
  *      NULL if an error occured
  */
-FILE *open_report_file(char *filename);
+FILE *create_report_file(char *filename);

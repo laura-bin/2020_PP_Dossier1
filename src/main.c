@@ -38,6 +38,10 @@
  *  - search person by lastname (alphanumeric index + binary tree)
  * v4.1:
  *  - print the linked lists in reversed order
+ * v5:
+ *  - split search functions
+ *  - report group employees grouped by company (detail report)
+ *  - report group companies grouped by country (detail report)
  * 
  * TODO :
  *  - reports

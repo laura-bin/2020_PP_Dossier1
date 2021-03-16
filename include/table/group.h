@@ -35,7 +35,7 @@ int export_group(struct db *db);
  * @param db: database information stored in RAM
  * @param count: number of records to load
  *
- * @return the number of records suceessfully loaded
+ * @return the number of records successfully loaded
  */
 int load_groups(struct db *db, int count);
 

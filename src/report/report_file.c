@@ -14,7 +14,7 @@
 #include "report/report_file.h"
 #include "utils/system.h"
 
-FILE *open_report_file(char *filename) {
+FILE *create_report_file(char *filename) {
     char file_path[255];            // report file path
     char sdt[32];                   // string formatted date time
     time_t t = time(NULL);

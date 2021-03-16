@@ -33,6 +33,7 @@ unsigned find_first_alpha_index(struct db *db, char *prefix, enum alpha_index ty
     struct alpha_entity index;
     int comparison_result;
     unsigned index_offset = db->header.offset_tree[type];
+    unsigned previous_offset;
 
     while (1) {
         // stop searching on leaf node
@@ -50,9 +51,21 @@ unsigned find_first_alpha_index(struct db *db, char *prefix, enum alpha_index ty
         // compare the person lastname with the prefix giver by the user
         comparison_result = start_with_icase(index.value, prefix);
 
-        // if they match, return the index offset
+        // if they match, go to the first matching result
         if (comparison_result == 0) {
-            return index_offset;
+            do {
+                previous_offset = index_offset;
+                index_offset -= sizeof(struct alpha_entity);
+
+                // read the previous value
+                memset(&index, 0, sizeof(struct alpha_entity));
+                fseek(db->dat_file, index_offset, SEEK_SET);
+                if (fread(&index, sizeof(struct alpha_entity), 1, db->dat_file) != 1) {
+                    return UINT_MAX;
+                }
+            } while (!start_with_icase(index.value, prefix));
+
+            return previous_offset;
         }
 
         // else continue the search

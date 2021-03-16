@@ -35,7 +35,7 @@ int export_job(struct db *db);
  * @param db: database information stored in RAM
  * @param count: number of records to load
  *
- * @return the number of records suceessfully loaded
+ * @return the number of records successfully loaded
  */
 int load_jobs(struct db *db, int count);
 

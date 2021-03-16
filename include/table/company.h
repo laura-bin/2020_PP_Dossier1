@@ -75,3 +75,16 @@ void print_company_details(struct company *company);
  *      INT_MAX if an error occured
  */
 int compare_company_id(struct db *db, unsigned offset, unsigned searched);
+
+/**
+ * Compares 2 companies country ids
+ *
+ * @param company1: first company compared
+ * @param company2: second company compared
+ *
+ * @return either
+ *      < 0 if the company1 country id is lower than the company2 country id
+ *      0 if the company1 country id equals the company2 country id
+ *      > 0 if the company1 country id is greater than the company2 country id
+ */
+int compare_company_country_id(const void *company1, const void *company2);

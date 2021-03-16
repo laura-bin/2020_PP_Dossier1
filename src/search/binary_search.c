@@ -17,13 +17,12 @@ unsigned binary_search(struct db *db, unsigned searched, unsigned start,
     unsigned middle = start + (stop - start) / 2;
     unsigned offset = db->header.offset_table[table_type] + middle * table_info->size;
 
-
     found = (*table_info->compare_id)(db, offset, searched);
     if (found == INT_MAX) {
         return UINT_MAX;
     }
 
-    if (start == middle || found == 0) {
+    if (start > stop || found == 0) {
         return offset;
     }
 
