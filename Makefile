@@ -8,16 +8,17 @@ CFLAGS ?= -g #debug
 # CFLAGS = -O3
 override CFLAGS += -Wall -Wpedantic -Wextra -Iinclude
 
-.PHONY: all clean tests
+.PHONY: all clean tests 
 
 all: out clients
 
-tests: out tests/test_sort
-	./tests/test_sort
+tests: out run_test/sort run_test/string_replace
 
-tests/test_sort: tests/test_sort.c out/utils/sort.o
-	gcc $(CFLAGS) -o $@ $<
-	# gcc $(CFLAGS) -o $@ $^
+run_test/%: tests/%
+	-./tests/string_replace
+
+tests/%: tests/%.c out/utils/%.o
+	gcc $(CFLAGS) -o $@ $^
 
 out: out/db_file out/table out/search out/utils out/ui out/display_search out/report
 
@@ -33,7 +34,7 @@ clients: src/main.c out/ui/menus.o out/ui/ui-utils.o \
 			out/table/country.o out/table/job.o out/table/industry.o \
 			out/table/group.o out/table/company.o out/table/person.o \
 			out/utils/logger.o out/utils/system.o out/utils/linked_list.o \
-			out/utils/string_comparison.o out/utils/sort.o
+			out/utils/string_comparison.o out/utils/sort.o out/utils/string_replace.o
 	gcc $(CFLAGS) -o clients $^
 
 out/%.o: src/%.c include/%.h
