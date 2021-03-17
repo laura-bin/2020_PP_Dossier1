@@ -3,7 +3,11 @@
  * Dossier 1 : Analyse de donnees clients
  * ======================================
  *
- * String comparison function
+ * String utils functions:
+ *  - lower a string
+ *  - string contains a substring (case insensitive)
+ *  - string starts with a substring (case insensitive)
+ *  - replacement of a character by another one
  *
  * PP 2020-2021 - Laura Binacchi - Fedora 32
  *********************************************************************************************************************/
@@ -45,3 +49,12 @@ int contain_icase(int n_str, char* substr, ...);
  *          > 0 if the substring is after the string in alphabetical order
  */
 int start_with_icase(char *string, char *searched);
+
+/**
+ * Replaces a character of a string with another one
+ * 
+ * @param string: string in which replace character(s)
+ * @param search: character to replace
+ * @param replace: replacement character
+ */
+void string_replace(char *string, char search, char replace);

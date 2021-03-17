@@ -12,10 +12,10 @@ override CFLAGS += -Wall -Wpedantic -Wextra -Iinclude
 
 all: out clients
 
-tests: out run_test/sort run_test/string_replace
+tests: out run_test/sort run_test/string_utils
 
 run_test/%: tests/%
-	-./tests/string_replace
+	-./tests/string_utils
 
 tests/%: tests/%.c out/utils/%.o
 	gcc $(CFLAGS) -o $@ $^
@@ -34,7 +34,7 @@ clients: src/main.c out/ui/menus.o out/ui/ui-utils.o \
 			out/table/country.o out/table/job.o out/table/industry.o \
 			out/table/group.o out/table/company.o out/table/person.o \
 			out/utils/logger.o out/utils/system.o out/utils/linked_list.o \
-			out/utils/string_comparison.o out/utils/sort.o out/utils/string_replace.o
+			out/utils/string_utils.o out/utils/sort.o
 	gcc $(CFLAGS) -o clients $^
 
 out/%.o: src/%.c include/%.h

@@ -17,7 +17,7 @@
 
 #include "table/country.h"
 #include "utils/preprocess_string.h"
-#include "utils/string_comparison.h"
+#include "utils/string_utils.h"
 
 int import_country(struct db *db, char *csv_line) {
     struct country new_rec;         // new record to write in the dat file

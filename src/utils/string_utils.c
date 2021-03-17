@@ -2,7 +2,11 @@
  * Dossier 1 : Analyse de donnees clients
  * ======================================
  *
- * String comparison function
+ * String utils functions:
+ *  - lower a string
+ *  - string contains a substring (case insensitive)
+ *  - string starts with a substring (case insensitive)
+ *  - replacement of a character by another one
  *
  * PP 2020-2021 - Laura Binacchi - Fedora 32
  *********************************************************************************************************************/
@@ -12,7 +16,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "utils/string_comparison.h"
+#include "utils/string_utils.h"
 
 char* lower_str(char *str) {
     size_t i;
@@ -67,4 +71,13 @@ int start_with_icase(char *string, char *searched) {
     free(lower_searched);
 
     return comparison_result;
+}
+
+void string_replace(char *string, char search, char replace) {
+    while (*string) {
+        if (*string == search) {
+            *string = replace;
+        }
+        string++;
+    }
 }

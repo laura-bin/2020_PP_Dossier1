@@ -17,7 +17,7 @@
 
 #include "table/industry.h"
 #include "utils/preprocess_string.h"
-#include "utils/string_comparison.h"
+#include "utils/string_utils.h"
 
 int import_industry(struct db *db, char *csv_line) {
     struct industry new_rec;        // new record to write in the dat file

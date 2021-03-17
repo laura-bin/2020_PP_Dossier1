@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "utils/string_replace.h"
+#include "utils/string_utils.h"
 
 int failed = 0;
 

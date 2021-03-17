@@ -19,7 +19,7 @@ de fonction
 #include "ui/ui-utils.h"
 #include "utils/logger.h"
 #include "utils/preprocess_string.h"
-#include "utils/string_replace.h"
+#include "utils/string_utils.h"
 
 #define FORMAT          "\n%-"STR(JOB_LEVEL_LEN)"s %20.2lf\n"
 #define FORMAT_PERCENT  "%-"STR(JOB_LEVEL_LEN)"s %20.2lf    %5.2lf%%\n"

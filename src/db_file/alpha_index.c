@@ -14,7 +14,7 @@
 #include "db_file/catalog.h"
 #include "db_file/alpha_index.h"
 #include "utils/sort.h"
-#include "utils/string_comparison.h"
+#include "utils/string_utils.h"
 
 /* PRIVATE FUNCTIONS */
 
