@@ -35,6 +35,9 @@ int display_search_by_num_index(struct db *db, enum num_index type) {
     // get the user inputs
     printf("Enter the number searched: ");
     searched = get_uns_input();
+    if (searched == 0) {
+        return 0;
+    }
 
     printf("Print the results in reversed order ? [yes/NO] ");
     reversed = get_yes_input();

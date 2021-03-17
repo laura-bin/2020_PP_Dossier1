@@ -39,8 +39,11 @@ int display_search_by_id(struct db *db, enum table table_type) {
     const struct table_metadata *table_info = &tables_metadata[table_type];
 
     // get the user input
-    printf("Enter the number searched: ");
+    printf("Enter the id searched: ");
     searched = get_uns_input();
+    if (searched == 0) {
+        return 0;
+    }
 
     // get the record offset matching with the searched id or the nearest result
     result_offset = binary_search(db, searched, 0, db->header.n_rec_table[table_type]-1, table_type);

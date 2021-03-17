@@ -40,7 +40,10 @@ int report_people_by_group_order_by_company(struct db *db) {
     // copy the group searched pointer from the groups buffer stored in RAM
     printf("Enter the id searched [1-%u]: ", db->header.n_rec_table[GROUP]);
     group_id = get_uns_input();
-    if (group_id == 0 || group_id > db->header.n_rec_table[GROUP]) {
+    if (group_id == 0) {
+        return 0;
+    }
+    if (group_id > db->header.n_rec_table[GROUP]) {
         puts("\nInvalid group id");
         return 1;
     }
