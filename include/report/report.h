@@ -10,5 +10,5 @@
 
 #include "report/people_by_group.h"
 #include "report/companies_by_group.h"
-#include "report/people_count_by_groups.h"
+#include "report/people_count_by_group.h"
 #include "report/people_shares_sum.h"

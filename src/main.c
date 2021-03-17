@@ -45,15 +45,12 @@
  *  - split search functions
  *  - report group employees grouped by company (detail report)
  *  - report group companies grouped by country (detail report)
+ *  - report percentage of employees recorded by group (aggregation report)
  * 
- * TODO :
+ * TODO:
  *  - reports
- *  - rapports (txt ou rtf) + date dans le nom du fichier de sortie
- *  - rapport de détail : liste des personnes travaillant pour chaque compagnie d'un groupe
- *  - rapport de détail : liste de toutes les compagnies appartenant à un groupe par pays
- *  - rapport aggrégé (group by) : nombre de personnes par groupe (somme des n_emp) et nombre de personnes connues dans la db (count) -> pourcentage de personnes connues dans la db
+ *  - underscores in group names
  *  - rapport aggrégé : valeur totale des actions détenues par les employés pour un groupe donné, éclaté par genre et niveau de fonction
- *  - rapports aggrégés : garder les données dans des listes chaînées
  *
  * PP 2020-2021 - Laura Binacchi - Fedora 32
  ****************************************************************************************/

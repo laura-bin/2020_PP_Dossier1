@@ -25,8 +25,8 @@ int report_companies_by_group_order_by_country(struct db *db) {
     struct node *company_node;      // current node of the companies found
     struct search_result companies; // list of companies found
     struct company *company;        // company buffer
-    unsigned previous_country_id;   // previous country id stored for comparison
     unsigned company_index;         // company's index used for iteration
+    unsigned previous_country_id;   // previous country id stored for comparison
     unsigned group_id;              // group id searched
     unsigned companies_found = 0;
     unsigned countries_found = 0;
@@ -103,8 +103,8 @@ int report_companies_by_group_order_by_country(struct db *db) {
         fprintf(report, "\nNo company registered in the database\n");
     }
 
-    fprintf(report, "\nTOTAL countries: %16u\n", countries_found);
-    fprintf(report, "TOTAL companies: %16u\n", companies_found);
+    fprintf(report, "\nTOTAL countries: %10u\n", countries_found);
+    fprintf(report, "TOTAL companies: %10u\n", companies_found);
     fclose(report);
 
     log_info(db, log_msg, "Success");
