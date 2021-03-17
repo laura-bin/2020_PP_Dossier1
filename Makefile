@@ -28,7 +28,9 @@ clients: src/main.c out/ui/menus.o out/ui/ui-utils.o \
 			out/search/num_index_search.o out/search/alpha_index_search.o \
 			out/display_search/display_binary_search.o out/display_search/display_sequential_search.o \
 			out/display_search/display_num_index_search.o out/display_search/display_alpha_index_search.o \
-			out/report/aggregation_report.o out/report/main_detail_report.o out/report/report_file.o\
+			out/report/report_file.o out/report/utils.o \
+			out/report/people_by_group.o out/report/companies_by_group.o \
+			out/report/people_count_by_groups.o out/report/people_shares_sum.o \
 			out/table/country.o out/table/job.o out/table/industry.o \
 			out/table/group.o out/table/company.o out/table/person.o \
 			out/utils/logger.o out/utils/system.o out/utils/linked_list.o \

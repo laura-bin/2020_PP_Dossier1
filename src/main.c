@@ -39,6 +39,8 @@
  * v4.1:
  *  - print the linked lists in reversed order
  * v5:
+ *  - bugfix binary search
+ *  - bugfix alphanumeric search
  *  - split search functions
  *  - report group employees grouped by company (detail report)
  *  - report group companies grouped by country (detail report)
