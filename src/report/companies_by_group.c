@@ -32,6 +32,7 @@ int report_companies_by_group_order_by_country(struct db *db) {
     unsigned countries_found = 0;
     FILE *report;
     char filename[255];
+    char log_msg[255];
 
     // copy the group searched pointer from the groups buffer stored in RAM
     printf("Enter the id searched [1-%u]: ", db->header.n_rec_table[GROUP]);
@@ -46,10 +47,10 @@ int report_companies_by_group_order_by_country(struct db *db) {
     group = &db->groups[group_id-1];
     
     // create the new report file
-    strcpy(filename, group->name);
-    strcat(filename, "_companies_by_country");
+    sprintf(filename, "%s_companies_by_country", group->name);
+    sprintf(log_msg, "Creating group companies by country report (%s)", group->name);
     if ((report = create_report_file(filename)) == NULL) {
-        log_error(db, "Creating group companies by country report file");
+        log_error(db, log_msg);
         perror("Creating the report file");
         return 1;
     }
@@ -106,7 +107,7 @@ int report_companies_by_group_order_by_country(struct db *db) {
     fprintf(report, "TOTAL companies: %16u\n", companies_found);
     fclose(report);
 
-    log_info(db, "group companies report creation", "success");
+    log_info(db, log_msg, "Success");
     printf("Report successfully generated (%u companies found in %u countries)\n",
                 companies_found, countries_found);
 

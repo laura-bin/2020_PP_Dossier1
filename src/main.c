@@ -117,7 +117,7 @@ int main(int argc, char *argv[]) {
 
     // close file pointers
     close_db(&db);
-    log_info(&db, "Main program", "Program stopped by the user");
+    log_info(&db, "Main program", "Program stopped by the user\n");
     fclose(db.log_file);
 
     return rv;

@@ -33,9 +33,9 @@ int report_people_by_group_order_by_company(struct db *db) {
     unsigned people_found = 0;      // 0 if no employee is registered in the database file for the searched group
     unsigned people_count = 0;      // employees count
     unsigned group_id;              // group id searched
-
     FILE *report;
     char filename[255];
+    char log_msg[255];
 
     // copy the group searched pointer from the groups buffer stored in RAM
     printf("Enter the id searched [1-%u]: ", db->header.n_rec_table[GROUP]);
@@ -50,10 +50,10 @@ int report_people_by_group_order_by_company(struct db *db) {
     group = &db->groups[group_id-1];
 
     // create the new report file
-    strcpy(filename, group->name);
-    strcat(filename, "_employees_by_company");
+    sprintf(filename, "%s_employees_by_company", group->name);
+    sprintf(log_msg, "Creating group employees by company report (%s)", group->name);
     if ((report = create_report_file(filename)) == NULL) {
-        log_error(db, "Creating group employees by company report file");
+        log_error(db, log_msg);
         perror("Creating the report file");
         return 1;
     }
@@ -121,7 +121,7 @@ int report_people_by_group_order_by_company(struct db *db) {
     fprintf(report, "TOTAL employees registered: %15u\n", people_found);
     fclose(report);
 
-    log_info(db, "group employees report creation", "success");
+    log_info(db, log_msg, "Success");
     printf("Report successfully generated (%u employees found in the database)\n", people_found);
 
     return 0;
