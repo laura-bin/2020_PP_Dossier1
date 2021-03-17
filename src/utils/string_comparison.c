@@ -44,22 +44,27 @@ int contain_icase(int n_str, char *substr, ...) {
 }
 
 int start_with_icase(char *string, char *searched) {
-    int found = 0;
     char *lower_string;
     char *lower_searched;
-    size_t searched_len = strlen(searched);
+    int comparison_result;
 
-    if (searched_len > strlen(string)) {
-        return -1;
-    }
+    size_t searched_len = strlen(searched);
+    size_t string_len = strlen(string);
 
     lower_string = lower_str(string);
     lower_searched = lower_str(searched);
 
-    found = strncmp(lower_searched, lower_string, searched_len);
+    if (searched_len <= string_len) {
+        comparison_result = strncmp(lower_searched, lower_string, searched_len);
+    } else {
+        comparison_result = strncmp(lower_searched, lower_string, string_len);
+        if (comparison_result == 0) {
+            comparison_result = 1;
+        }
+    }
 
     free(lower_string);
     free(lower_searched);
 
-    return found;
+    return comparison_result;
 }
