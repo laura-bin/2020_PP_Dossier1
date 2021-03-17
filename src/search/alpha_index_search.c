@@ -48,11 +48,8 @@ unsigned find_first_alpha_index(struct db *db, char *prefix, enum alpha_index ty
             return UINT_MAX;
         }
 
-        printf("searched %s - compared to %s\n", prefix, index.value);
-
         // compare the person lastname with the prefix giver by the user
         comparison_result = start_with_icase(index.value, prefix);
-        printf("comparison result %d\n", comparison_result);
 
         // if they match, go to the first matching result
         if (comparison_result == 0) {
