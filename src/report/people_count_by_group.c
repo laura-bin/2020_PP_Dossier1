@@ -78,8 +78,8 @@ int report_people_count_by_group(struct db *db) {
             fprintf(report, "\n[%u/%u] %s (%s)\n",
                 company_index, companies.result_count, company->name,
                 db->countries[company->id_country-1].name);
-            fprintf(report, "    Number of employees: %12u\n", company->n_employees);
-            fprintf(report, "    Recorded employees:  %12u  %3.2lf%%\n", employees.result_count, percentage);
+            fprintf(report, "\tNumber of employees: %12u\n", company->n_employees);
+            fprintf(report, "\tRecorded employees:  %12u  %5.2lf%%\n", employees.result_count, percentage);
 
             free_list(employees.head, 1);
             company_index++;
@@ -91,18 +91,14 @@ int report_people_count_by_group(struct db *db) {
     }
 
     // compute total percentage of employees recorded
-    if (total_employees) {
-        percentage = (double)total_records * 100.0 / (double)total_employees;
-    } else {
-        percentage = 0.0;
-    }
+    percentage = total_employees ? (double)total_records * 100.0 / (double)total_employees : 0.0;
 
     fprintf(report, "\nTOTAL number of employees: %10u\n", total_employees);
-    fprintf(report, "TOTAL recorded employees:  %10u  %3.2lf%%\n", total_records, percentage);
+    fprintf(report, "TOTAL recorded employees:  %10u  %5.2lf%%\n", total_records, percentage);
     fclose(report);
 
     log_info(db, log_msg, "Success");
-    printf("Report successfully generated - %3.2lf%% employees recorded\n", percentage);
+    printf("Report successfully generated - %5.2lf%% employees recorded\n", percentage);
 
     return 0;
 }

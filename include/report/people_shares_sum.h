@@ -10,4 +10,11 @@
 
 #include "db_file/database.h"
 
-int report_people_shares_sum_group_by_gender_group_by_job(struct db *db);
+struct people_shares_data {
+    char job_level[JOB_LEVEL_LEN];  // job level name
+    double shares_sum_f;            // total value of shares held by female employees
+    double shares_sum_m;            // total value of shares held by male employees
+    double shares_sum_x;            // total value of shares held by non binary employees
+};
+
+int report_people_shares_sum_group_by_job_level_group_by_gender(struct db *db);

@@ -96,7 +96,7 @@ const struct menu_entry user_menus[USER_MENUS_COUNT] = {
     },
     {
         .text = "Report: employees shares sum grouped by gender and job",
-        .action = &report_people_shares_sum_group_by_gender_group_by_job
+        .action = &report_people_shares_sum_group_by_job_level_group_by_gender
     },
     {
         .text = "Display database file metadata",

@@ -46,11 +46,11 @@
  *  - report group employees grouped by company (detail report)
  *  - report group companies grouped by country (detail report)
  *  - report percentage of employees recorded by group (aggregation report)
+ *  - report employees sum of shares by group
  * 
  * TODO:
  *  - reports
  *  - underscores in group names
- *  - rapport aggrégé : valeur totale des actions détenues par les employés pour un groupe donné, éclaté par genre et niveau de fonction
  *
  * PP 2020-2021 - Laura Binacchi - Fedora 32
  ****************************************************************************************/
