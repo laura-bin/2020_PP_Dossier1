@@ -13,7 +13,6 @@
 
 #include "report/people_by_group.h"
 #include "report/report_file.h"
-#include "report/utils.h"
 #include "search/binary_search.h"
 #include "search/num_index_search.h"
 #include "ui/ui-utils.h"
@@ -27,36 +26,31 @@ int report_people_by_group_order_by_company(struct db *db) {
     struct company *company;        // company buffer
     struct node *person_node;       // current node of the people found
     struct person *person;          // person found
-    struct job *job;                // job buffer
     struct search_result companies; // companies found
     struct search_result people;    // people found
     unsigned company_index;         // company's index used for iteration
     unsigned person_index;          // person's index used for iteration
     unsigned people_found = 0;      // 0 if no employee is registered in the database file for the searched group
     unsigned people_count = 0;      // employees count
-    unsigned id_searched;           // tuple id searched (used for binary search)
+    unsigned group_id;              // group id searched
 
     FILE *report;
     char filename[255];
 
-    // get the group with the id given by the user
-    id_searched = 0;
-    group = get_one_by_id(db, GROUP, &id_searched);
-    if (group == NULL) {
-        perror("An error occured while searching the group");
-        return 1;
-    } else if (group->id != id_searched) {
-        // if the group found is not the group searched, print the nearest result
-        printf("\nNo record found\nNearest record id: [%u]\n", group->id);
-        free(group);
+    // copy the group searched pointer from the groups buffer stored in RAM
+    printf("Enter the id searched [1-%u]: ", db->header.n_rec_table[GROUP]);
+    group_id = get_uns_input();
+    if (group_id == 0 || group_id > db->header.n_rec_table[GROUP]) {
+        puts("\nInvalid group id");
         return 1;
     }
+    group = &db->groups[group_id-1];
 
     // create the new report file
     strcpy(filename, group->name);
     strcat(filename, "_employees_by_company");
     if ((report = create_report_file(filename)) == NULL) {
-        log_error(db, "Creating group emplyees by company report file");
+        log_error(db, "Creating group employees by company report file");
         perror("Creating the report file");
         return 1;
     }
@@ -65,7 +59,7 @@ int report_people_by_group_order_by_company(struct db *db) {
     fprintf(report, "%s list of employees by company\n", group->name);
 
     // get companies by group id searched
-    companies = search_by_num_index(db, COMP_BY_GROUP_ID, id_searched);
+    companies = search_by_num_index(db, COMP_BY_GROUP_ID, group_id);
     if (companies.result_count > 0) {
         company_node = companies.head;
         company_index = 1;
@@ -96,25 +90,14 @@ int report_people_by_group_order_by_company(struct db *db) {
                 // list employees
                 while (person_node) {
                     person = person_node->data;
-
-                    // get employee's job
-                    job = get_one_by_id(db, JOB, &person->id_job);
-
-                    if (job == NULL) {
-                        job = malloc(sizeof(struct job));
-                        strcpy(job->name, "unknown");
-                    } else if (job->id != person->id_job) {
-                        strcpy(job->name, "unknown");
-                    }
-
                     fprintf(report,
                         "%4u "
                         "%-" STR(PERSON_LASTNAME_LEN) "s "
                         "%-" STR(PERSON_FIRSTNAME_LEN) "s "
                         "%-" STR(JOB_NAME_LEN) "s\n",
-                        person_index, person->lastname, person->firstname, job->name);
+                        person_index, person->lastname, person->firstname,
+                        db->jobs[person->id_job-1].name);
 
-                    free(job);
                     person_index++;
                     person_node = person_node->next;
                 }
@@ -130,8 +113,6 @@ int report_people_by_group_order_by_company(struct db *db) {
     } else {
         fprintf(report, "\nNo company registered in the database\n");
     }
-
-    free(group);
 
     fprintf(report, "\nTOTAL group employees: %20u\n", people_count);
     fprintf(report, "TOTAL employees registered: %15u\n", people_found);

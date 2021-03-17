@@ -91,7 +91,7 @@ const struct menu_entry user_menus[USER_MENUS_COUNT] = {
         .action = &report_companies_by_group_order_by_country
     },
     {
-        .text = "Report: employees coutn by groups",
+        .text = "Report: employees count by groups",
         .action = &report_people_count_by_groups
     },
     {
