@@ -49,8 +49,7 @@
  *  - report employees sum of shares by group
  * 
  * TODO:
- *  - reports
- *  - underscores in group names
+ *  - tests
  *
  * PP 2020-2021 - Laura Binacchi - Fedora 32
  ****************************************************************************************/
