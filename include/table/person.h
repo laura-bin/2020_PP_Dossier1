@@ -97,3 +97,15 @@ void print_person_header(void);
  */
 int compare_person_id(struct db *db, unsigned offset, unsigned searched);
 
+/**
+ * Compares 2 peole lastnames
+ *
+ * @param person1: first person compared
+ * @param person2: second person compared
+ *
+ * @return either
+ *      < 0 if the person1 lastname is before the person2 lastname in alhabetical order
+ *      0 if the person1 lastname is the same as the person2 lastname
+ *      > 0 if the person1 lastname is after the person2 lastname in alhabetical order
+ */
+int compare_person_lastname(const void *person1, const void *person2);

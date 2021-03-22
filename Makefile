@@ -8,7 +8,7 @@ CFLAGS ?= -g #debug
 # CFLAGS = -O3
 override CFLAGS += -Wall -Wpedantic -Wextra -Iinclude
 
-objects = out/ui/menus.o out/ui/ui-utils.o \
+objects = out/ui/menus.o out/ui/ui_utils.o \
 		out/db_file/admin.o out/db_file/catalog.o out/db_file/open_close.o \
 		out/db_file/header.o out/db_file/alpha_index.o out/db_file/num_index.o \
 		out/search/search_result.o out/search/binary_search.o out/search/sequential_search.o \
@@ -22,16 +22,29 @@ objects = out/ui/menus.o out/ui/ui-utils.o \
 		out/utils/logger.o out/utils/system.o out/utils/linked_list.o \
 		out/utils/string_utils.o out/utils/sort.o
 
+integration_tests = out/tests/integrations/main_test_create_db
+
+unit_tests = out/tests/units/string_utils out/tests/units/sort
+
+directories = out/db_file out/table out/search out/utils out/ui out/display_search out/report out/tests/units out/tests/integrations
+
+.PRECIOUS: $(integration_tests) $(unit_tests)
 .PHONY: all clean tests 
 
-all: out clients tests/main_test_create_db
+all: out clients
 
-tests: out run_test/sort run_test/string_utils
+tests: run_integration_tests run_unit_tests
 
-run_test/%: tests/%
-	-./tests/string_utils
+run_integration_tests: $(patsubst out/tests/%,run_test/%, $(integration_tests))
 
-out: out/db_file out/table out/search out/utils out/ui out/display_search out/report
+run_unit_tests: $(patsubst out/tests/%,run_test/%, $(unit_tests))
+
+run_test/%: out/tests/%
+	@echo -e "\n\n> Running ./$<\n"
+	@-./$^
+
+out/tests/%: tests/%.c $(objects)
+	gcc $(CFLAGS) -o $@ $^
 
 clients: src/main.c $(objects)
 	gcc $(CFLAGS) -o $@ $^
@@ -39,17 +52,15 @@ clients: src/main.c $(objects)
 out/%.o: src/%.c include/%.h
 	gcc $(CFLAGS) -c -o $@ $<
 
+out: $(directories)
+	mkdir -p $@
+
 out/%:
 	mkdir -p $@
 
 clean:
 	rm -f clients
-	rm -f tests/main_test_create_db
 	rm -rf out
 	rm -rf data_clients
 	rm -rf data_export
 	rm -rf data_report
-	rm -f tests/test_sort
-
-tests/%: tests/%.c $(objects)
-	gcc $(CFLAGS) -o $@ $^

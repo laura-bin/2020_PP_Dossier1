@@ -14,7 +14,7 @@
 #include "report/report_file.h"
 #include "search/num_index_search.h"
 #include "search/search_result.h"
-#include "ui/ui-utils.h"
+#include "ui/ui_utils.h"
 #include "utils/logger.h"
 
 int report_people_count_by_group(struct db *db) {
@@ -34,7 +34,7 @@ int report_people_count_by_group(struct db *db) {
     char log_msg[255];
 
     // copy the group searched pointer from the groups buffer stored in RAM
-    printf("Enter the id searched [1-%u]: ", db->header.n_rec_table[GROUP]);
+    printf("Enter the id searched [1-%u] (0 to go back): ", db->header.n_rec_table[GROUP]);
     group_id = get_uns_input();
     if (group_id == 0) {
         return 0;

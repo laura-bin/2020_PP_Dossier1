@@ -3,7 +3,8 @@
  * Dossier 1 : Analyse de donnees clients
  * ======================================
  *
- * Database structure used to store database information in RAM
+ * Database information stored in RAM:
+ * database and header structures
  *
  * PP 2020-2021 - Laura Binacchi - Fedora 32
  ****************************************************************************************/
@@ -29,7 +30,7 @@ struct header {
     unsigned offset_tree[ALPHA_INDEX_COUNT];        // binary-trees heads offsets
     unsigned n_res_table[TAB_COUNT];                // number of tuples reserved in each table
     unsigned n_rec_table[TAB_COUNT];                // number of tuples saved in each table
-    char filler[12];
+    char filler[8];
 };
 
 /* Informations about the database used by the main program */

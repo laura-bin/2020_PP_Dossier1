@@ -30,7 +30,7 @@ const struct table_metadata tables_metadata[TAB_COUNT] = {
         .export = &export_country,
         .load = &load_countries,
         .compare = &compare_country,
-        .compare_id = &compare_country_id,
+        .compare_id = NULL,
         .read = &read_country,
         .print = (void (*)(void *))&print_country,
         .print_details = NULL,
@@ -47,7 +47,7 @@ const struct table_metadata tables_metadata[TAB_COUNT] = {
         .export = &export_job,
         .load = &load_jobs,
         .compare = &compare_job,
-        .compare_id = &compare_job_id,
+        .compare_id = NULL,
         .read = &read_job,
         .print = (void (*)(void *))&print_job,
         .print_details = NULL,
@@ -64,7 +64,7 @@ const struct table_metadata tables_metadata[TAB_COUNT] = {
         .export = &export_industry,
         .load = &load_industries,
         .compare = &compare_industry,
-        .compare_id = &compare_industry_id,
+        .compare_id = NULL,
         .read = &read_industry,
         .print = (void (*)(void *))&print_industry,
         .print_details = NULL,
@@ -127,11 +127,13 @@ const struct table_metadata tables_metadata[TAB_COUNT] = {
 const struct num_index_metadata num_indexes_metadata[NUM_INDEX_COUNT] = {
     {
         .prefix = "CMP_GRP",
+        .display_name = "Company by group id",
         .table = COMPANY,
         .read_value = &read_company_group_id
     },
     {
         .prefix = "PRS_CMP",
+        .display_name = "Person by company id",
         .table = PERSON,
         .read_value = &read_person_company_id
     }
@@ -141,6 +143,7 @@ const struct num_index_metadata num_indexes_metadata[NUM_INDEX_COUNT] = {
 const struct alpha_index_metadata alpha_indexes_metadata[ALPHA_INDEX_COUNT] = {
     {
         .prefix = "PRS_LN",
+        .display_name = "Person by lastname",
         .table = PERSON,
         .read_value = &read_person_lastname
     }

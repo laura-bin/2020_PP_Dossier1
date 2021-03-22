@@ -65,21 +65,6 @@ void print_industry(struct industry *industry);
 void print_industry_header(void);
 
 /**
- * Compares a searched id with the industry id
- *
- * @param db: database information stored in RAM
- * @param offset: offset of the industry to compare
- * @param searched: id searched
- *
- * @return either
- *      < 0 if the searched id is lower than the industry id
- *      0 if the searched id is equal to the industry id
- *      > 0 if the searched id is greater than the industry id
- *      INT_MAX if an error occured
- */
-int compare_industry_id(struct db *db, unsigned offset, unsigned searched);
-
-/**
  * Compares an industry referenced by its index with a searched substring
  *
  * @param db: database information stored in RAM

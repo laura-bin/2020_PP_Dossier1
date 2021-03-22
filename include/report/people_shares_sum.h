@@ -10,6 +10,12 @@
 
 #include "db_file/database.h"
 
+/**
+ * Create the report of the sum of shares owned by the employees of a group
+ * with statistics by job level and gender
+ * 
+ * @param db: database information stored in RAM
+ */
 struct people_shares_data {
     char job_level[JOB_LEVEL_LEN];  // job level name
     double shares_sum_f;            // total value of shares held by female employees

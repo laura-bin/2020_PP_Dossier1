@@ -122,18 +122,6 @@ void print_job_header(void) {
             "NAME");
 }
 
-int compare_job_id(struct db *db, unsigned offset, unsigned searched) {
-    struct job job;
-
-    memset(&job, 0, sizeof(struct job));
-    fseek(db->dat_file, offset, SEEK_SET);
-    if (fread(&job, sizeof(struct job), 1, db->dat_file) == 1) {
-        return searched - job.id;
-    }
-
-    return INT_MAX;
-}
-
 void *compare_job(struct db *db, unsigned i, char *searched) {
     void *found = NULL;
 

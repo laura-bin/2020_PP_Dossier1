@@ -16,7 +16,7 @@
 #include "utils/logger.h"
 #include "utils/system.h"
 
-int main(int argc, char *argv[]) {
+int main(void) {
     struct db db;
 
     // open the log file & exit the program if it fails

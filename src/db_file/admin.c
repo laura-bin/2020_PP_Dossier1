@@ -86,7 +86,7 @@ int create_empty_num_indexes(struct db *db) {
         memset(&tuple, 0, sizeof(struct num_entity));
         strcpy(tuple.type, index->prefix);
 
-        for (i_tup = 0; i_tup < db->header.n_rec_table[index->table]; i_tup++) {
+        for (i_tup = 0; i_tup < db->header.n_res_table[index->table]; i_tup++) {
             if (fwrite(&tuple, sizeof(struct num_entity), 1, db->dat_file) != 1) {
                 return -1;
             }
@@ -116,7 +116,7 @@ int create_empty_alpha_indexes(struct db *db) {
         memset(&tuple, 0, sizeof(struct alpha_entity));
         strcpy(tuple.type, index->prefix);
 
-        for (i_tup = 0; i_tup < db->header.n_rec_table[index->table]; i_tup++) {
+        for (i_tup = 0; i_tup < db->header.n_res_table[index->table]; i_tup++) {
             if (fwrite(&tuple, sizeof(struct alpha_entity), 1, db->dat_file) != 1) {
                 return -1;
             }
@@ -195,9 +195,11 @@ int delete_db(struct db *db) {
 }
 
 int import(struct db *db) {
-    enum table i;                       // table index
+    enum table i_table;                 // table index
+    enum num_index i_num_index;         // numeric index index
+    enum alpha_index i_alpha_index;     // alphanumeric index index
     char log_from[64];                  // log method message
-    char log_msg[1024];                 // log message
+    char log_msg[255];                  // log message
     FILE *csv_file;                     // csv file pointer
     char line[CSV_BUF_LEN];             // csv line
     int tab_error_count = 0;            // count of tables not updated
@@ -212,9 +214,10 @@ int import(struct db *db) {
     // reopen database file in append mode
     open_db(db, APPEND);
 
-    for (i = 0; i < TAB_COUNT; i++) {
+    // import tables
+    for (i_table = 0; i_table < TAB_COUNT; i_table++) {
         int rec_count = 0;  // number of new tuples successfully recorded
-        const struct table_metadata *table = &tables_metadata[i];
+        const struct table_metadata *table = &tables_metadata[i_table];
 
         // set where we are
         sprintf(log_from, "Importing data to %s table", table->display_name);
@@ -229,7 +232,7 @@ int import(struct db *db) {
         }
 
         // place the pointer to the offset of the table to import
-        fseek(db->dat_file, db->header.offset_table[i], SEEK_SET);
+        fseek(db->dat_file, db->header.offset_table[i_table], SEEK_SET);
 
         // skip the csv header
         fgets(line, CSV_BUF_LEN, csv_file);
@@ -243,7 +246,7 @@ int import(struct db *db) {
         fclose(csv_file);
 
         // update the header infos
-        db->header.n_rec_table[i] = rec_count;
+        db->header.n_rec_table[i_table] = rec_count;
         fseek(db->dat_file, 0, SEEK_SET);
         fwrite(&db->header, sizeof(struct header), 1, db->dat_file);
 
@@ -258,33 +261,33 @@ int import(struct db *db) {
     else puts("\nAll tables have been successfully updated\n");
 
     // create numeric indexes
-    // TODO replace by loop
-    if (create_num_index(db, COMP_BY_GROUP_ID) < 0) {
-        log_info(db, "Creating company by group id index", strerror(errno));
-        printf("An error occured on company by group id index creation: %s\n", strerror(errno));
-        return -1;
-    } else {
-        log_info(db, "Creating company by group id index", "Success");
-        puts("Company by group id index successfully created");
+    for (i_num_index = 0; i_num_index < NUM_INDEX_COUNT; i_num_index++) {
+        const struct num_index_metadata *num_index = &num_indexes_metadata[i_num_index];
+
+        sprintf(log_from, "%s index creation", num_index->display_name);
+        if (create_num_index(db, i_num_index) < 0) {
+            log_info(db, log_from, strerror(errno));
+            printf(log_from, strerror(errno));
+            return -1;
+        } else {
+            log_info(db, log_from, "Success");
+            printf("%s index successfully created\n", num_index->display_name);
+        }
     }
 
-    if (create_num_index(db, PERS_BY_COMP_ID) < 0) {
-        log_info(db, "Creating person by company id index", strerror(errno));
-        printf("An error occured on person by company id index creation: %s\n", strerror(errno));
-        return -1;
-    } else {
-        log_info(db, "Creating person by company id index", "Success");
-        puts("Person by company id index successfully created");
-    }
+    // create alphanumeric indexes
+    for (i_alpha_index = 0; i_alpha_index < ALPHA_INDEX_COUNT; i_alpha_index++) {
+        const struct alpha_index_metadata *alpha_index = &alpha_indexes_metadata[i_alpha_index];
 
-    // create alphanumeric index
-    if (create_alpha_index(db, PERS_BY_LASTNAME) < 0) {
-        log_info(db, "Creating person by lastname index", strerror(errno));
-        printf("An error occured on person by lastname index creation: %s\n", strerror(errno));
-        return -1;
-    } else {
-        log_info(db, "Creating person by lastname index", "Success");
-        puts("Person by lastname index successfully created");
+        sprintf(log_from, "%s index creation", alpha_index->display_name);
+        if (create_alpha_index(db, i_alpha_index) < 0) {
+            log_info(db, log_from, strerror(errno));
+            printf(log_from, strerror(errno));
+            return -1;
+        } else {
+            log_info(db, log_from, "Success");
+            printf("%s index successfully created\n", alpha_index->display_name);
+        }
     }
 
     // reopen database file in read mode

@@ -212,3 +212,10 @@ int compare_person_id(struct db *db, unsigned offset, unsigned searched) {
 
     return INT_MAX;
 }
+
+int compare_person_lastname(const void *person1, const void *person2) {
+    struct person *p1 = *(struct person **)person1;
+    struct person *p2 = *(struct person **)person2;
+
+    return (strcmp(p1->lastname, p2->lastname));
+}

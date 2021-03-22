@@ -19,20 +19,20 @@ csv_field_length() {
     done
 }
 
-# echo "Country table"
-# csv_field_length data_import/DB_Country.csv
+echo "Country table"
+csv_field_length ../data_import/DB_Country.csv
 
-# echo "Job table"
-# csv_field_length data_import/DB_Job.csv
+echo "Job table"
+csv_field_length ../data_import/DB_Job.csv
 
-# echo "Industry table"
-# csv_field_length data_import/DB_Industry.csv
+echo "Industry table"
+csv_field_length ../data_import/DB_Industry.csv
 
-# echo "Group table"
-# csv_field_length data_import/DB_Group.csv
+echo "Group table"
+csv_field_length ../data_import/DB_Group.csv
 
-# echo "Company table"
-# csv_field_length data_import/DB_Company.csv
+echo "Company table"
+csv_field_length ../data_import/DB_Company.csv
 
 echo "Person table"
-csv_field_length data_import/DB_Person.csv
+csv_field_length ../data_import/DB_Person.csv

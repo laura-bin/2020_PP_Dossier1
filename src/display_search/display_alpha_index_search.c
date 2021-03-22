@@ -10,7 +10,7 @@
 
 #include "display_search/display_alpha_index_search.h"
 #include "search/alpha_index_search.h"
-#include "ui/ui-utils.h"
+#include "ui/ui_utils.h"
 
 /* PRIVATE FUNCTION */
 

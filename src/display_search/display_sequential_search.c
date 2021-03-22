@@ -10,7 +10,7 @@
 
 #include "display_search/display_sequential_search.h"
 #include "search/sequential_search.h"
-#include "ui/ui-utils.h"
+#include "ui/ui_utils.h"
 
 /* PRIVATE FUNCTION */
 

@@ -13,7 +13,7 @@ int failed = 0;
         char _r = strcmp(_str, expect) == 0 ? 'v' : 'x'; \
         printf("%c: string_replace(%s, %c, %c) == %s\n", _r, #orig, from, to, #expect); \
         if (_r != 'v') ++failed; \
-    } while (0);
+    } while (0)
 
 int main() {
     TEST("a b_c", ' ', '_', "a_b_c");

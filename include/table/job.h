@@ -65,21 +65,6 @@ void print_job(struct job *job);
 void print_job_header(void);
 
 /**
- * Compares a searched id with the job id
- *
- * @param db: database information stored in RAM
- * @param offset: offset of the job to compare
- * @param searched: id searched
- *
- * @return either
- *      < 0 if the searched id is lower than the job id
- *      0 if the searched id is equal to the job id
- *      > 0 if the searched id is greater than the job id
- *      INT_MAX if an error occured
- */
-int compare_job_id(struct db *db, unsigned offset, unsigned searched);
-
-/**
  * Compares a job referenced by its index with a searched substring
  *
  * @param db: database information stored in RAM

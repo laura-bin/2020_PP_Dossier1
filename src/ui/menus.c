@@ -16,7 +16,7 @@
 #include "display_search/display_search.h"
 #include "report/report.h"
 #include "ui/menus.h"
-#include "ui/ui-utils.h"
+#include "ui/ui_utils.h"
 #include "utils/logger.h"
 #include "utils/system.h"
 

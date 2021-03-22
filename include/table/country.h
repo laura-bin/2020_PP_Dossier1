@@ -65,21 +65,6 @@ void print_country(struct country *country);
 void print_country_header(void);
 
 /**
- * Compares a searched id with the group id
- *
- * @param db: database information stored in RAM
- * @param offset: offset of the group to compare
- * @param searched: id searched
- *
- * @return either
- *      < 0 if the searched id is lower than the group id
- *      0 if the searched id is equal to the group id
- *      > 0 if the searched id is greater than the group id
- *      INT_MAX if an error occured
- */
-int compare_country_id(struct db *db, unsigned offset, unsigned searched);
-
-/**
  * Compares a country referenced by its index with a searched substring
  *
  * @param db: database information stored in RAM

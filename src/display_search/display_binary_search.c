@@ -15,7 +15,7 @@
 
 #include "display_search/display_binary_search.h"
 #include "search/binary_search.h"
-#include "ui/ui-utils.h"
+#include "ui/ui_utils.h"
 #include "utils/logger.h"
 
 /**
@@ -39,7 +39,7 @@ int display_search_by_id(struct db *db, enum table table_type) {
     const struct table_metadata *table_info = &tables_metadata[table_type];
 
     // get the user input
-    printf("Enter the id searched: ");
+    printf("Enter the id searched (0 to go back): ");
     searched = get_uns_input();
     if (searched == 0) {
         return 0;

@@ -11,7 +11,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "ui/ui-utils.h"
+#include "ui/ui_utils.h"
 #include "utils/system.h"
 
 /* PRIVATE FUNCTION */

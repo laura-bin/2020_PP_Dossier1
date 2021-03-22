@@ -11,4 +11,11 @@
 
 #include "db_file/database.h"
 
+/**
+ * Create the report of the employees count by group id,
+ * employees actually recorded in the database file
+ * and percentage of both
+ * 
+ * @param db: database information stored in RAM
+ */
 int report_people_count_by_group(struct db *db);

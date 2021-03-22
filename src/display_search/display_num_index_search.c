@@ -14,7 +14,8 @@
 #include "display_search/display_num_index_search.h"
 #include "search/num_index_search.h"
 #include "table/person.h"
-#include "ui/ui-utils.h"
+#include "ui/ui_utils.h"
+#include "utils/sort.h"
 
 /* PRIVATE FUNCTION */
 
@@ -24,13 +25,16 @@
  *
  * @param db: database information stored in RAM
  * @param type: index type enum
+ * @param compare: comparison function used for sorting the list of results
  */
-int display_search_by_num_index(struct db *db, enum num_index type) {
+int display_search_by_num_index(struct db *db, enum num_index type,
+            int (*compare)(const void *, const void *)) {
     unsigned searched;          // integer id searched
     int reversed;               // reversed order boolean
     struct search_result res;   // list of results found
 
-    const struct table_metadata *table_info = &tables_metadata[num_indexes_metadata[type].table];
+    const struct num_index_metadata *index_info = &num_indexes_metadata[type];
+    const struct table_metadata *table_info = &tables_metadata[index_info->table];
     
     // get the user inputs
     printf("Enter the number searched: ");
@@ -44,6 +48,12 @@ int display_search_by_num_index(struct db *db, enum num_index type) {
 
     // get the results and display the paginated list of results
     res = search_by_num_index(db, PERS_BY_COMP_ID, searched);
+
+    // sort the list of results if a comparison function is defined
+    if (compare != NULL) {
+        sort_linked_list(&res, compare);
+    }
+
     paginate(res.result_count, reversed ? res.tail : res.head, table_info->print,
         table_info->print_header, reversed);
     free_list(res.head, 1);
@@ -54,5 +64,5 @@ int display_search_by_num_index(struct db *db, enum num_index type) {
 /* HEADER IMPLEMENTATION */
 
 int search_people_by_company_id(struct db *db) {
-    return display_search_by_num_index(db, PERS_BY_COMP_ID);
+    return display_search_by_num_index(db, PERS_BY_COMP_ID, compare_person_lastname);
 }

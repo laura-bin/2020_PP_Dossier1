@@ -24,7 +24,7 @@ struct menu_entry {
 
 /* Menu corresponding to an application mode (menus for the admin & menus for the user) */
 struct menu {
-    char *title;                        // menu title : displays the application mode
+    char *title;                        // menu title: displays the application mode
     const struct menu_entry *entries;   // list of menu entries
     unsigned entry_count;               // number of entries for the menu
 };

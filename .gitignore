@@ -4,3 +4,7 @@ LB*
 *.o
 clients
 .vscode
+
+rapport/*
+!rapport/*.tex
+!rapport/*.pdf

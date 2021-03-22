@@ -48,7 +48,8 @@
  *  - report percentage of employees recorded by group (aggregation report)
  *  - report employees sum of shares by group
  * 
- * TODO:
+ * v6:
+ *  - rapport
  *  - tests
  *
  * PP 2020-2021 - Laura Binacchi - Fedora 32

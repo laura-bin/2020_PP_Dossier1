@@ -13,6 +13,8 @@
 
 #include <stddef.h>
 
+#include "search/search_result.h"
+
 /* Files paths & directories */
 #define DAT_DIR "data_clients"  // database file & log file directory
 #define IMP_DIR "data_import"   // directory containing csv files used for import
@@ -103,7 +105,7 @@ struct table_metadata {
     void *(*read)(struct db *, unsigned);               // read a record by direct access
     void (*print)(void *);                              // print a single record
     void (*print_details)(void *);                      // print a detailed vue of a single record
-    void (*print_header)(void);                 // print the table header (fields names)
+    void (*print_header)(void);                         // print the table header (fields names)
 };
 
 /* Array of tables metadata */
@@ -112,13 +114,16 @@ extern const struct table_metadata tables_metadata[TAB_COUNT];
 /* Numeric index metadata */
 struct num_index_metadata {
     char prefix[PREFIX_LEN];                        // tuple prefix in the database
+    char display_name[32];                          // name displayed to the user
     enum table table;                               // table on wich the index is based 
     unsigned (*read_value)(struct db *, unsigned);  // read the numeric indexed value
 };
 
+
 /* Alphanumeric index metadata */
 struct alpha_index_metadata {
     char prefix[PREFIX_LEN];                            // tuple prefix in the database
+    char display_name[32];                              // name displayed to the user
     enum table table;                                   // table on wich the index is based 
     void (*read_value)(struct db *, unsigned, char *);  // read the alphanumeric indexed value
 };

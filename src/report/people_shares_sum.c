@@ -16,7 +16,7 @@ de fonction
 #include "report/people_shares_sum.h"
 #include "report/report_file.h"
 #include "search/num_index_search.h"
-#include "ui/ui-utils.h"
+#include "ui/ui_utils.h"
 #include "utils/logger.h"
 #include "utils/preprocess_string.h"
 #include "utils/string_utils.h"
@@ -53,7 +53,7 @@ int report_people_shares_sum_group_by_job_level_group_by_gender(struct db *db) {
     char log_msg[255];
 
     // copy the group searched pointer from the groups buffer stored in RAM
-    printf("Enter the id searched [1-%u]: ", db->header.n_rec_table[GROUP]);
+    printf("Enter the id searched [1-%u] (0 to go back): ", db->header.n_rec_table[GROUP]);
     group_id = get_uns_input();
     if (group_id == 0) {
         return 0;
