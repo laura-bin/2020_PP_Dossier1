@@ -24,9 +24,13 @@
 \usepackage{fancyhdr}       % en-têtes
 \usepackage{lastpage}       % numéro de dernière page
 
-\title{Programmation procédurale}
-\date{2021}
-\author{Laura Bin}
+\title{}
+
+\title{Programmation procédurale\bigbreak \bigbreak
+    \large Dossier 1\bigbreak
+    \normalsize Création d’une base de données de clients\bigbreak}
+\date{2020 -- 2021}
+\author{Laura Binacchi}
 
 \pagestyle{fancy}
 \renewcommand\headrulewidth{1pt}
@@ -34,11 +38,14 @@
 \fancyhead[C]{Programmation procédurale }
 \fancyhead[R]{\today}
 
+
 \begin{document}
-    \pagenumbering{arabic}
+    \pagenumbering{gobble}
+    \includepdf[pages={1}]{pdg}
     \newpage
     \tableofcontents
     \newpage
+    \pagenumbering{arabic}
 
     \section{Cahier des charges}
     \paragraph{}
@@ -404,8 +411,46 @@ dans la base.
 
     \newpage
     \section{Tests}
-    Vérifications de l'import de données avec le fichier d'export + diff.
-    Vérification de la taille du fichier et des différents offsets dans le fichier binaire par rapport aux tailles calculées, aux tailles théoriques.
+    \paragraph{}
+    Tous les tests du dossier \emph{tests} peuvent être compilés et lancés par le \emph{Makefile} avec la commande \texttt{make tests}. Les tests d'intégration peuvent être lancés avec la commande \texttt{make run\_integration\_tests} et les tests unitaires avec la commande \texttt{make run\_unit\_tests}.
+
+    \subsection{Import des données}
+    \paragraph{}
+    Le processus complet de la création du fichier de données est testé par le fichier \emph{test\_create\_db.c} (test d'intégration) : création du fichier de données vide, import des données à partir des \emph{csv}, export, affichage des métadonnées et log des informations dans \emph{db\_client.log}.
+
+    \paragraph{}
+    Comparer la taille réelle du fichier avec la taille calculée par le programme m'a permis de trouver une erreur au niveau de la création des index vides. Après correction, le fichier de données fait bien la taille calculée par le programme. Les offsets des différentes tables correspondent bien aux offset théoriques.
+
+    \paragraph{}
+    L'intégrité des données est vérifiée par comparaison avec les fichiers exportés. Les fichiers exportés sont légèrement plus petits que les fichiers d'import. En effet, les fichiers d'import contiennent un retour charriot qui a dû être supprimé pour le bon fonctionnement des affichages sous une distribution Linux.
+    
+    \paragraph{}
+    La commande \texttt{diff --strip-trailing-cr import data} (où \texttt{import} et \texttt{export} sont remplacés par les noms des fichiers à tester) permet de vérifier que la présence ou non des retours charriots est bien la seule différence. Le fichier d'import des compagnies présente une différence supplémentaire : la présence d'espaces dans le champ \emph{am\_val}. L'ajout de l'argument \texttt{-w} à la commande \texttt{diff} permet de confirmer que c'est bien la seule différence.
+
+
+    \subsection{Interface utilisateur}
+    \paragraph{}
+    Tous les éléments d'interface en console ont été testés en lançant le programme et en vérifiant que tout se déroulait correctement : menus, affichage des résultats, des listes, etc.
+    
+    \paragraph{}
+    La navigation dans le menu a été testée en vérifiant évidemment que le menu affiché correspondait bien au menu choisi par l'utilisateur mais aussi en entrant des entrées non valides. Le menu tout comme les entrées de menu qui attendent un entier positif ne prennent en compte que le premier entier valide entré\footnote{Cette fonctionnalité est implémentée par la méthode \texttt{get\_uns\_input} du fichier \emph{ui\_utils.c}}. Le buffer de l'entrée standard est ensuite vidé pour ne pas tenir compte de tous les caractères suivants.
+    
+    \paragraph{}
+    Le programme pourrait être amélioré en répétant cette opération avant la lecture d'une entrée utilisateur : dans l'état actuel du programme, il est possible d'entrer une donnée à un moment où elle n'est pas attendue et elle sera prise en compte par la prochaine fonction attendant une entrée. Si cette entrée n'est pas valide, elle sera ignorée avec affichage du message d'erreur. Sinon, elle est prise en compte et le programme effectue une action qui n'a pas forcément été demandée.
+
+
+    \subsection{Cas d'erreur}
+    \paragraph{}
+    Les cas d'erreurs ont été testés en provoquant volontairement les erreurs, e.g. en lançant l'import de données sans fichier d'imports présents. Les possibilités de ce type d'erreurs ont été limitées au maximum en anticipant la possibilité qu'elle advienne, e.g. si le répertoire \emph{data\_export} n'existe pas, il est créé avant la création de fichiers d'export. S'il est impossible de prévenir ces erreurs, elles sont gérées par l'affichage d'un message d'erreur et le log de l'erreur.
+
+    \paragraph{}
+    Le fichiers de logs est un bon outil pour vérifier le bon fonctionnement du programme. L'écriture des logs appropriés a été testé tout au long de l'écriture du programme, si possible en provoquant volontairement les erreurs, sinon en modifiant les fonctions.
+
+
+    \paragraph{}
+
+
+
 
 
     \subsection{Tests unitaires}
@@ -414,48 +459,42 @@ dans la base.
 
     \subsection{}
 
+    
+
+    \newpage
     \section{Problèmes rencontrés}
 
-    CONCEPTION DU PROGRAMME:
-    J'ai commencé par reprendre le menu développé pour le projet "agenda" mais avec amélioration. L'amélioration principale: menus déclaratifs -> beaucoup plus simple d'ajouter de nouveaux menus (pas de code à modifier dans le gestion des menus, juste ajouter un menu (titre + action) dans les menus du mode admin ou du mode user dans menu.c (et évidemment implémenter la méthode) et mettre à jour le compte dans le menu.h)
+    \subsection{Compatibilité entre Windows et Linux}
+    \paragraph{}
+    Durant le développement de l'application, j'ai été confrontée à de nombreux bugs dont certain ont été plus difficiles à trouver que d'autres. Dans la plupart des cas, les messages d'erreurs étaient assez clairs. Un des problèmes les plus difficiles à debugger auxquels j'ai été confrontée était un problème d'affichage : lors de l'affichage des listes de résultats, certains caractères et parfois certaines lignes entières étaient effacées alors que les données semblaient correctes.
 
-    Difficulté: les fichiers csv entre win et linux (aka ces putain de retour charriot)
+    \paragraph{}
+    Le problème était en fait un problème de compatibilité entre Windows et Linux : le retour à la ligne se fait sous Windows avec un retour charriot supplémentaire. J'ai réglé se problème dans les fonctions d'import des tables en testant la présence d'un \texttt{\textbackslash r} à la fin du dernier champ et en le remplaçant par un \texttt{0} si nécessaire.
 
-    IMPLEMENTATION DES RECHERCHES DANS LES TABLES DE CODE :
-    choix d'un tableau pour les buffers car petite taille + garder possibilité
-
-    ces tables sont stockées dans des buffers
-    si on entre juste enter, c'est la table entière qui est affichée
-
+    \paragraph{}
+    J'ai essayé de rendre mon programme le plus compatible possible avec une distribution Windows. Les fonctions propres au système d'exploitations ont été évitées au maximum. Quand elles étaient nécessaires, elles ont été implémentées dans un \texttt{ifdef} qui teste l'OS. Celui-ci est également testé au lancement du programme pour empêcher le programme d'être lancé sous une distribution pour laquelle le programme n'a pas été conçu et pour laquelle il n'a donc pas été testé. Malgré cela, le programme a été testé uniquement sous une distribution Linux et pourrait donc présenter des bugs sous Windows.
 
 
-
-    TESTS:
-ECRITURE DU MAIN
-    tests au fur et à mesure de l'écriture du programme
-    exemple : que se passe-t-il s'il est impossible de créer le log file :
-    test avec un directory qui n'existe pas et qui n'est pas crée par le programme:
-    % screenshots/log_file_fail.png
-    quand le directory est créé, on passe au message d'erreur suivant : il n'y a pas de fichier de base de données (en effet, le mode "user" rassemble les fonctions de lecture et d'expoitation de la base de données -> il faut d'abord créer cette base de données en mode admin)
-    % log_file_success_db_file_fail.png
-    plus tard, quand la base de données aura été créée en mode admin, on aura accès au menu :
-
-MENU PRINCIPAL :
-    test des entrées non valides au clavier : caractère, chaîne de caractère, nombre négatif -> "Please enter an unsigned integer"
-    Enter -> rien
-    entrer un nombre supérieur au nombre de menus -> "[13] is not a valid menu"
-    Nombre entier suivi d'autre chose ("1 2", "1.2", "1a") -> prend le premier integer lisible
-    => une chaine de caractère qui ne commence pas par un chiffre n'est pas prise en compte mais si commence par un nombre, prend le premier unsigned int valides
-    => on pourrait imaginer de n'accepter que les integer entrés seuls mais ce n'est pas l'objet du programme qui fonctionne très bien comme ça par ailleurs
-
-    Dans le menu admin, de manière générale, peu de restrictions sont présentes quant aux possibilités de l'utilisateur (pas de demande de type "êtes vous sûr" avant de supprimer la DB par exemple).
-    Je ne l'ai pas fait parce que j'ai supposé que le mode admin ne serait utilisé que par quelqu'un qui a le droit d'avoir accès à ces fonctionnalité: plutôt que de blinder chaquer méthode séparément, l'application pourrait plutôt être améliorée en restreignant l'accès à ce mode (par login/pwd). C'est d'ailleurs en partie pour cette raison que j'ai séparé ces fonctionnalités dans un autre mode (ça et le fait que le coeur du projet, c'est l'exploitation de la DB -> ne pas alourdir ces fonctions/ ce menu d'exploitation, et en plus on peut rajouter des fonctions "utilitaires" de gestion de la DB pas demandées dans le cahier des charges -> pratiques pour le développement -> mais pas fournie à l'utilisateur final (c'est le cas du delete))
-
-
-    DIFFICULTES :
-
-    - gestion des log cf telegram
-    - généralisation : où s'arrêter, que généraliser (généralement, ça vient quand on commence à répéter beaucoup la mêm echose, pas possibel de savoit à l'avance quoi ggénéraliser, en tout cas quand c'est la première fois qu'on écrit ce type de programme, ie sans expérience)
-
+    \subsection{Inclusions circulaires}
+    \paragraph{}
+    Certaines difficultés rencontrées sont liées à la taille du projet demandé. C'est la cas des inclusions circulaires : un premier fichier inclut un second qui lui-même inclut le premier. Cette difficulté a pu être contournée la plupart du temps par une modification de l'architecture du programme.
     
+    \paragraph{}
+    Le seul endroit où j'ai résolu ce problème différemment est dans les fichiers \emph{catalog.h} et \emph{database.h} qui s'incluent mutuellement. J'ai supprimé l'inclusion de \emph{database.h} dans \emph{catalog.h} en faisant une déclaration avancée de la structure \texttt{db}, à la manière de la déclaration d'un prototype de fonction avant son implémentation.
+
+
+    \subsection{Gestion des erreurs}
+    \paragraph{}
+    La gestion des erreurs peut très vite alourdir le code. Elle est pourtant nécessaire à son bon fonctionnement. Par contre, il est impossible de gérer toutes les erreurs et ce n'est d'ailleurs pas souhaitable : certaines erreurs doivent arrêter le programme.
+
+    \paragraph{}
+    L'endroit du programme où sont gérées les erreurs a été difficile à déterminer. J'ai essayé de le faire de manière cohérente : les affichages des erreurs et les écritures de logs ne sont pas gérées dans les fonctions utilitaires mais dans les fonctions qui les appellent. En effet, les fonctions d'appel peuvent vouloir gérer les mêmes erreurs différemment. J'aurais également pu gérer le log des erreurs dans chaque fonction et l'affichage à l'utilisateur dans les fonctions d'interface utilisateur.
+
+
+    \subsection{Généricité du code}
+    \paragraph{}
+    Enfin le bon degré de généricité à implémenter n'a pas toujours été facile à déterminer. Une analyse préalable du code m'a permis de déterminer de manière assez juste quand génériciser les fonctions mais je me suis trompée notamment dans la manière de découper les fonctions de recherche. J'avais inclus les affichages en console dans les fonctions de recherches alors que ces fonctions sont aussi appelées pour la génération des rapports, sans affichage des résultats donc.
+
+    \paragraph{}
+    Implémenter du code générique m'a pris plus de temps que de copier-coller le code des fonctions en l'adaptant. Le faire m'a pourtant permis d'aller beaucoup plus loin dans l'apprentissage du C, avec par exemple l'utilisation de pointeurs de fonctions ou encore avec l'utilisation du \emph{Makefile}, nécessaire pour compiler un projet avec autant de fichiers.
 \end{document}
