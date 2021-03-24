@@ -126,7 +126,7 @@ dans la base.
 
     \subsection{Fichier de base de données}
     Le programme est centré sur l'exploitation d'un fichier de base de données. Cette base de données est décrite dans le fichier \emph{catalog.h}. Le catalogue définit les différentes structures composant la base de données : les tables (\emph{country}, \emph{job}, \emph{industry}, \emph{group}, \emph{company} et \emph{person}), les index numériques et les index alphanumériques. Il définit également les tailles des champs de ces enregistrements\footnote{Ces tailles ont été déterminées en lançant l'exécutable \texttt{csv\_field\_length.sh}. Pour chaque fichier d'import, l'exécutable affiche la plus longue ligne et sa taille (utilisée pour définir la taille du buffer de lecture des fichiers \emph{csv}) et le plus long de chacun des champs et sa taille. Ces tailles sont adaptées avec ajout d'un filler pour faciliter la lecture du fichier binaire dans un éditeur hexadécimal.}.
-    
+
     \paragraph{}
     Le catalogue définit le nombre d'emplacements réservés pour chaque table. Ils serviront à la création des enregistrements "vides"\footnote{Un enregistrement n'est jamais totalement vide puisqu'il a au minimum un type (ou préfixe).} en base de données, à la fois les enregistrements des tables et des index (un index portant sur la table \emph{person} doit avoir le même nombre d'emplacements réservés que cette table). Il définit où enregistrer les fichiers créés et où trouver les fichiers d'import.
 
@@ -262,12 +262,12 @@ dans la base.
     Les index numériques sont exploités par la fonction de recherche implémentée dans \emph{num\_index\_search.c}. Cette fonction trouve la première occurrence correspondant à la recherche dans l'index et retourne la liste de résultats constituée à partir de cette première occurence.
 
     \paragraph{}
-    Les recherches par index numérique affichées en console sont implémentées par une fonction générique dans le fichier \emph{display\_num\_index\_search.c} qui permet de chercher des personnes par identifiant de compagnie. L'identifiant est demandé à l'utilisateur est la liste est affichée par la fonction de pagination. Elle est triée par ordre alphabétique sur le nom de famille des personnes et est affichée à l'endroit ou à l'envers selon le choix de l'utilisateur.
+    Les recherches par index numérique affichées en console sont implémentées par une fonction générique dans le fichier \emph{display\_num\_index\_search.c} qui permet de chercher des personnes par identifiant de compagnie. L'identifiant est demandé à l'utilisateur et la liste est affichée par la fonction de pagination. Elle est triée par ordre alphabétique sur le nom de famille des personnes et est affichée à l'endroit ou à l'envers selon le choix de l'utilisateur.
 
     \paragraph{}
     Les rapports utilisent également la recherche numérique:
     \begin{itemize}[label=$\bullet$]
-        \item Le rapport de compagnies par identifiant de groupe companies utilise l'index \emph{company by group id}
+        \item Le rapport de compagnies par identifiant de groupe utilise l'index \emph{company by group id}
         \item Le rapport des employés d'un groupe classés par compagnie utilise l'index \emph{company by group id} pour trouver la liste des compagnies du groupe et l'index \emph{person by company id} pour trouver la liste des employés de chaque compagnie
         \item Le rapport du compte des employés d'un groupe utilise les mêmes index pour trouver les employés du groupe
         \item Le rapport sur les valeurs des actions détenues par les employés d'un groupe utilise les mêmes index pour trouver les employés du groupe
@@ -275,7 +275,7 @@ dans la base.
 
     \paragraph{}
     Dans tous les cas, les listes de personnes sont triées par ordre alphabétique sur le nom de famille. Le programme n'intègre toutefois pas le tri dans la recherche par index numérique car une autre utilisation pourrait ne pas vouloir trier la liste ou la trier selon un autre champ.
-    
+
 
     \subsection{Recherche via index alphanumérique}
     \paragraph{}
@@ -283,7 +283,7 @@ dans la base.
 
     \paragraph{}
     Cette recherche est utilisée dans \emph{display\_alpha\_index\_search.c} pour afficher la liste de personnes par début de nom. La liste n'est pas triée puisque l'index alphanumérique trie déjà les personnes par nom de famille. Ce tri est donc conservé à l'affichage et peut être inversé selon le choix de l'utilisateur.
-    
+
 
     \subsection{Liste doublement chaînée}
     Le programme implémente une structure générique de liste doublement chaînée dont la structure est définie dans \emph{linked\_list.h}. Cette liste contient une donnée : un pointeur de \emph{void} qui peut donc correspondre à n'importe quel pointeur de donnée ou de structure. Elle contient le pointeur de l'élément suivant et de l'élément précédent.
@@ -302,7 +302,7 @@ dans la base.
     \section{Structure de fichiers}
     \paragraph{}
     En résumé de la description du programme, voici la structure de fichiers de mon programme. Le dossier \emph{src} n'est pas développé pour ne pas répéter la structure de fichiers déjà détaillée dans le dossier \emph{include}. Seuls certains fichiers sont uniquement des headers et ne contiennent pas de prototype de fonction à implémenter dans les sources.
- 
+
     \begin{verbatimtab}
     - data_clients (dossier créé par le programme)
         db_clients.dat (fichier de données binaires)
@@ -349,7 +349,7 @@ dans la base.
                 compagnies d'un groupe (par id) groupées par pays (rapport de détail)
             people_by_group.h
                 employés d'un groupe (par id) groupés par compagnie (rapport de détail)
-            people_count_by_group.h 
+            people_count_by_group.h
                 pourcentage d'employés connus d'un groupe par id (rapport agrégé)
             people_shares_sum.h
                 somme d'actions détenues par les employés d'un groupe présentant
@@ -423,18 +423,18 @@ dans la base.
 
     \paragraph{}
     L'intégrité des données est vérifiée par comparaison avec les fichiers exportés. Les fichiers exportés sont légèrement plus petits que les fichiers d'import. En effet, les fichiers d'import contiennent un retour charriot qui a dû être supprimé pour le bon fonctionnement des affichages sous une distribution Linux.
-    
+
     \paragraph{}
-    La commande \texttt{diff --strip-trailing-cr import data} (où \texttt{import} et \texttt{export} sont remplacés par les noms des fichiers à tester) permet de vérifier que la présence ou non des retours charriots est bien la seule différence. Le fichier d'import des compagnies présente une différence supplémentaire : la présence d'espaces dans le champ \emph{am\_val}. L'ajout de l'argument \texttt{-w} à la commande \texttt{diff} permet de confirmer que c'est bien la seule différence.
+    La commande \texttt{diff --strip-trailing-cr import export} (où \texttt{import} et \texttt{export} sont remplacés par les noms des fichiers à tester) permet de vérifier que la présence ou non des retours charriots est bien la seule différence. Le fichier d'import des compagnies présente une différence supplémentaire : la présence d'espaces dans le champ \emph{am\_val}. L'ajout de l'argument \texttt{-w} à la commande \texttt{diff} permet de confirmer que c'est bien la seule différence.
 
 
     \subsection{Interface utilisateur}
     \paragraph{}
     Tous les éléments d'interface en console ont été testés en lançant le programme et en vérifiant que tout se déroulait correctement : menus, affichage des résultats, des listes, etc.
-    
+
     \paragraph{}
     La navigation dans le menu a été testée en vérifiant évidemment que le menu affiché correspondait bien au menu choisi par l'utilisateur mais aussi en entrant des entrées non valides. Le menu tout comme les entrées de menu qui attendent un entier positif ne prennent en compte que le premier entier valide entré\footnote{Cette fonctionnalité est implémentée par la méthode \texttt{get\_uns\_input} du fichier \emph{ui\_utils.c}}. Le buffer de l'entrée standard est ensuite vidé pour ne pas tenir compte de tous les caractères suivants.
-    
+
     \paragraph{}
     Le programme pourrait être amélioré en répétant cette opération avant la lecture d'une entrée utilisateur : dans l'état actuel du programme, il est possible d'entrer une donnée à un moment où elle n'est pas attendue et elle sera prise en compte par la prochaine fonction attendant une entrée. Si cette entrée n'est pas valide, elle sera ignorée avec affichage du message d'erreur. Sinon, elle est prise en compte et le programme effectue une action qui n'a pas forcément été demandée.
 
@@ -463,7 +463,7 @@ dans la base.
     Les recherches dichotomiques sont testées par le fichier \emph{test\_binary\_search.c} lancé par la commande \texttt{make run\_test/integrations/test\_binary\_search}. Il permet de tester que l'offset retourné correspond bien à celui de l'entité cherchée si l'identifiant existe ou de l'entité dont l'identifiant est le plus proche de celui cherché. Il vérifie également que si l'identifiant cherché est plus petit que le plus petit identifiant existant, c'est bien l'offset du premier enregistrement qui est renvoyé, et s'il est plus grand, c'est l'offset du dernier enregistrement qui est renvoyé.
 
     \paragraph{}
-    L'affichage correct des trois résultats les plus proches a été testé manuellement en lançant l'application. En cas de valeurs limites, l'offset est ajusté correctement pour afficher trois entités valides. Si un identifiant plus petit que le plus petit identifiant enregistré dans le fichier de données est cherché, les trois premiers enregistrements de la base de données sont affichés (e.g. \texttt{1} est cherché dans le menu \texttt{[6] Search company by id}). Si un identifiant plus grand que le dernier identifiant enregistré est cherché, les trois derniers enregistrements sont affiché (e.g. \texttt{690000} est cherché dans le menu \texttt{[6] Search company by id}).
+    L'affichage correct des trois résultats les plus proches a été testé manuellement en lançant l'application. En cas de valeurs limites, l'offset est ajusté correctement pour afficher trois entités valides. Si un identifiant plus petit que le plus petit identifiant enregistré dans le fichier de données est cherché, les trois premiers enregistrements de la base de données sont affichés (e.g. \texttt{1} est cherché dans le menu \texttt{[6] Search company by id}). Si un identifiant plus grand que le dernier identifiant enregistré est cherché, les trois derniers enregistrements sont affichés (e.g. \texttt{690000} est cherché dans le menu \texttt{[6] Search company by id}).
 
 
     \subsection{Test des recherches par index}
@@ -503,26 +503,26 @@ dans la base.
     \paragraph{}
     L'espace alloué à la liste de tri temporaire de la fonction \texttt{sort\_linked\_list} du fichier \emph{search\_resul.c} n'avait pas été libéré. J'avais également oublié de libérée une liste chaînée dans la création du rapport sur les actions détenues par les employés d'un groupe.
 
-    
+
 
     \newpage
     \section{Problèmes rencontrés}
 
     \subsection{Compatibilité entre Windows et Linux}
     \paragraph{}
-    Durant le développement de l'application, j'ai été confrontée à de nombreux bugs dont certain ont été plus difficiles à trouver que d'autres. Dans la plupart des cas, les messages d'erreurs étaient assez clairs. Un des problèmes les plus difficiles à debugger auxquels j'ai été confrontée était un problème d'affichage : lors de l'affichage des listes de résultats, certains caractères et parfois certaines lignes entières étaient effacées alors que les données semblaient correctes.
+    Durant le développement de l'application, j'ai été confrontée à de nombreux bugs dont certains ont été plus difficiles à trouver que d'autres. Dans la plupart des cas, les messages d'erreurs étaient assez clairs. Un des problèmes les plus difficiles à debugger auxquels j'ai été confrontée était un problème d'affichage : lors de l'affichage des listes de résultats, certains caractères et parfois certaines lignes entières étaient effacées alors que les données semblaient correctes.
 
     \paragraph{}
     Le problème était en fait un problème de compatibilité entre Windows et Linux : le retour à la ligne se fait sous Windows avec un retour charriot supplémentaire. J'ai réglé se problème dans les fonctions d'import des tables en testant la présence d'un \texttt{\textbackslash r} à la fin du dernier champ et en le remplaçant par un \texttt{0} si nécessaire.
 
     \paragraph{}
-    J'ai essayé de rendre mon programme le plus compatible possible avec une distribution Windows. Les fonctions propres au système d'exploitations ont été évitées au maximum. Quand elles étaient nécessaires, elles ont été implémentées dans un \texttt{ifdef} qui teste l'OS. Celui-ci est également testé au lancement du programme pour empêcher le programme d'être lancé sous une distribution pour laquelle le programme n'a pas été conçu et pour laquelle il n'a donc pas été testé. Malgré cela, le programme a été testé uniquement sous une distribution Linux et pourrait donc présenter des bugs sous Windows.
+    J'ai essayé de rendre mon programme le plus compatible possible avec une distribution Windows. Les fonctions propres au système d'exploitation ont été évitées au maximum. Quand elles étaient nécessaires, elles ont été implémentées dans un \texttt{ifdef} qui teste l'OS. Celui-ci est également testé au lancement du programme pour empêcher le programme d'être lancé sous une distribution pour laquelle le programme n'a pas été conçu et pour laquelle il n'a donc pas été testé. Malgré cela, le programme a été testé uniquement sous une distribution Linux et pourrait donc présenter des bugs sous Windows.
 
 
     \subsection{Inclusions circulaires}
     \paragraph{}
     Certaines difficultés rencontrées sont liées à la taille du projet demandé. C'est la cas des inclusions circulaires : un premier fichier inclut un second qui lui-même inclut le premier. Cette difficulté a pu être contournée la plupart du temps par une modification de l'architecture du programme.
-    
+
     \paragraph{}
     Le seul endroit où j'ai résolu ce problème différemment est dans les fichiers \emph{catalog.h} et \emph{database.h} qui s'incluent mutuellement. J'ai supprimé l'inclusion de \emph{database.h} dans \emph{catalog.h} en faisant une déclaration avancée de la structure \texttt{db}, à la manière de la déclaration d'un prototype de fonction avant son implémentation.
 
