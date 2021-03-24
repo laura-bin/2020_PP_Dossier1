@@ -9,13 +9,12 @@
 
 #include "search/binary_search.h"
 
-unsigned binary_search(struct db *db, unsigned searched, unsigned start,
-                            unsigned stop, enum table table_type) {
+unsigned binary_search(struct db *db, int searched, int start, int stop, enum table table_type) {
     int found;
     const struct table_metadata *table_info = &tables_metadata[table_type];
 
-    unsigned middle = start + (stop - start) / 2;
-    unsigned offset = db->header.offset_table[table_type] + middle * table_info->size;
+    int middle = (start+stop) / 2;
+    unsigned offset = db->header.offset_table[table_type] + (unsigned)middle * table_info->size;
 
     found = (*table_info->compare_id)(db, offset, searched);
     if (found == INT_MAX) {

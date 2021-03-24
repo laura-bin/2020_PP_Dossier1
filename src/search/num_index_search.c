@@ -32,10 +32,10 @@
  *      the offset of the first matched numeric index
  *      UINTMAX if no result has been found
  */
-unsigned find_first_num_index(struct db *db, unsigned searched, unsigned start,
-                            unsigned stop, unsigned found, enum num_index type) {
+unsigned find_first_num_index(struct db *db, unsigned searched, int start,
+                            int stop, unsigned found, enum num_index type) {
     struct num_entity index;
-    unsigned middle = start + (stop - start) / 2;
+    unsigned middle = (start+stop) / 2;
     unsigned offset = db->header.offset_num_index[type] + middle * sizeof(struct num_entity);
 
     // read the index
@@ -44,7 +44,7 @@ unsigned find_first_num_index(struct db *db, unsigned searched, unsigned start,
     fread(&index, sizeof(struct num_entity), 1, db->dat_file);
 
     // stop condition
-    if (start == middle) {
+    if (start > stop) {
         if (searched == index.value || found) {
             if (!found) {
                 return offset;

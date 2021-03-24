@@ -26,5 +26,5 @@
  *      the offset of the record found or of the nearest result
  *      UINTMAX if an error occured
  */
-unsigned binary_search(struct db *db, unsigned searched, unsigned start,
-                            unsigned stop, enum table table_type);
+unsigned binary_search(struct db *db, int searched, int start, int stop,
+                            enum table table_type);

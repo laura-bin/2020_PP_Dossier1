@@ -49,8 +49,9 @@ int display_search_by_id(struct db *db, enum table table_type) {
     result_offset = binary_search(db, searched, 0, db->header.n_rec_table[table_type]-1, table_type);
 
     if (result_offset == UINT_MAX) {
-        log_info(db, "Search by id", strerror(errno));
-        printf("\nAn error occured: %s\n", strerror(errno));
+        log_info(db, "Search by id", "Error on binary search");
+        puts("\nAn error occured");
+        return -1;
     }
 
     // if the result doesn't match, adjust the offset and set the number of results to 3
@@ -60,7 +61,7 @@ int display_search_by_id(struct db *db, enum table table_type) {
 
         // adjust the first offset
         if (result_offset != first_offset) {
-            if (result_offset == last_offset) {
+            if (result_offset >= last_offset - table_info->size) {
                 result_offset = last_offset - 2*table_info->size;
             } else {
                 result_offset -= table_info->size;

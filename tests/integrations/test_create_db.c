@@ -2,8 +2,7 @@
  * Dossier 1 : Analyse de donnees clients
  * ======================================
  *
- * Database creation test:
- *  - import and export data
+ * Database creation test
  *
  * PP 2020-2021 - Laura Binacchi - Fedora 32
  ****************************************************************************************/
@@ -21,18 +20,13 @@ int main(void) {
 
     // open the log file & exit the program if it fails
     make_sub_dir(DAT_DIR);
-    if ((db.log_file = fopen(DAT_DIR DIR_SEP"db_clients.log", "a")) == NULL) {
-        perror("Opening log file");
-        return 1;
-    }
-
-    log_info(&db, "Test db creation", "Start");
+    db.log_file = fopen(DAT_DIR DIR_SEP"test_create_db.log", "a");
     
     // set the application mode
     db.app_mode = ADMIN;
 
+    db.dat_file = NULL;
     strcpy(db.dat_file_path, DAT_DIR DIR_SEP"db_clients.dat");
-    open_db(&db, READ);
 
     // create the empty database file
     create_db(&db);

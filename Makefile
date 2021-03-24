@@ -22,14 +22,26 @@ objects = out/ui/menus.o out/ui/ui_utils.o \
 		out/utils/logger.o out/utils/system.o out/utils/linked_list.o \
 		out/utils/string_utils.o out/utils/sort.o
 
-integration_tests = out/tests/integrations/main_test_create_db
+integration_tests = \
+	out/tests/integrations/test_create_db \
+	out/tests/integrations/test_sequential_search \
+	out/tests/integrations/test_binary_searcy \
+	out/tests/integrations/test_num_index_search \
+	out/tests/integrations/test_alpha_index_search
 
-unit_tests = out/tests/units/string_utils out/tests/units/sort
+unit_tests = \
+	out/tests/units/sort \
+	out/tests/units/linked_list \
+	out/tests/units/string_utils__contain_icase \
+	out/tests/units/string_utils__lower_str \
+	out/tests/units/string_utils__start_with_icase \
+	out/tests/units/string_utils__string_replace
 
-directories = out/db_file out/table out/search out/utils out/ui out/display_search out/report out/tests/units out/tests/integrations
+directories = out/db_file out/table out/search out/utils out/ui \
+	out/display_search out/report out/tests/units out/tests/integrations
 
 .PRECIOUS: $(integration_tests) $(unit_tests)
-.PHONY: all clean tests 
+.PHONY: all clean tests run_integration_tests run_unit_tests
 
 all: out clients
 
@@ -53,7 +65,6 @@ out/%.o: src/%.c include/%.h
 	gcc $(CFLAGS) -c -o $@ $<
 
 out: $(directories)
-	mkdir -p $@
 
 out/%:
 	mkdir -p $@

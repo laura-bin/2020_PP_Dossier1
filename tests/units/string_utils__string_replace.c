@@ -1,4 +1,12 @@
-#include <assert.h>
+/** *************************************************************************************
+ * Dossier 1 : Analyse de donnees clients
+ * ======================================
+ *
+ * Test string replace function
+ *
+ * PP 2020-2021 - Laura Binacchi - Fedora 32
+ ****************************************************************************************/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

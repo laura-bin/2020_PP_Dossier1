@@ -131,20 +131,20 @@ dans la base.
     Le catalogue définit le nombre d'emplacements réservés pour chaque table. Ils serviront à la création des enregistrements "vides"\footnote{Un enregistrement n'est jamais totalement vide puisqu'il a au minimum un type (ou préfixe).} en base de données, à la fois les enregistrements des tables et des index (un index portant sur la table \emph{person} doit avoir le même nombre d'emplacements réservés que cette table). Il définit où enregistrer les fichiers créés et où trouver les fichiers d'import.
 
     \paragraph{}
-    Le catalogue définit enfin les structures de métadonnées sur les tables et les index dont les valeurs sont assignées dans le fichier \emph{catalog.c}. Ces métadonnées regroupe les informations spécifiques à chaque table comme le nom ou le préfixe à enregistrer en base de données et permettent la généricité de certaines fonctions. Par exemple, chaque table a une fonction d'import qui est appelée dans un boucle plutôt que de dupliquer le code d'import. Cette généricité rendra aussi plus facile l'ajout d'une nouvelle table.
+    Le catalogue définit enfin les structures de métadonnées sur les tables et les index dont les valeurs sont assignées dans le fichier \emph{catalog.c}. Ces métadonnées regroupent les informations spécifiques à chaque table comme le nom ou le préfixe à enregistrer en base de données et permettent la généricité de certaines fonctions. Par exemple, chaque table a une fonction d'import qui est appelée dans une boucle plutôt que de dupliquer le code d'import. Cette généricité rendra aussi plus facile l'ajout d'une nouvelle table.
 
 
     \subsection{Informations sur la base de données}
     \paragraph{}
     Certaines informations sur le fichier de base de données sont chargées en mémoire RAM. Elles sont regroupées dans la structure \emph{db} définie dans le fichier \emph{database.h}. Cette structure permet de passer un seul paramètre, son pointeur, aux différentes fonctions du programme pour accéder :
     \begin{itemize}[label=$\bullet$]
-        \item au header de la base de données : ce header est enregistré au début du fichier de base de donnée et reprend les informations essentielles à l'exploitation du fichier (taille, nombre d'emplacements réservés et d'enregistrements dans chaque table, offsets des tables et des index);
+        \item au header de la base de données : ce header est enregistré au début du fichier de base de données et reprend les informations essentielles à l'exploitation du fichier (taille, nombre d'emplacements réservés et d'enregistrements dans chaque table, offsets des tables et des index);
         \item aux pointeurs de fichiers : fichier de base de données, de logs et fichier csv si un fichier d'import est ouvert;
         \item aux tables de codes chargées en mémoire : elles permettent un accès direct aux enregistrements (par identifiant) ou à toute la table plus rapidement que par une lecture dans le fichier de base de données.
     \end{itemize}
 
     \paragraph{}
-    Le header et les tables de codes sont chargée en mémoire par la fonction d'ouverture de fichier implémentée dans \emph{open\_close.c} à chaque fois que le fichier est ouvert en mode \emph{read} ou \emph{append}. En mode \emph{write}, ce sont les informations du header en mémoire RAM qui sont écrites dans le fichier de données.
+    Le header et les tables de codes sont chargés en mémoire par la fonction d'ouverture de fichier implémentée dans \emph{open\_close.c}. Ils sont chargés à chaque fois que le fichier est ouvert en mode \emph{read} ou \emph{append}. En mode \emph{write}, ce sont les informations du header en mémoire RAM qui sont écrites dans le fichier de données.
 
 
     \subsection{Menus}
@@ -155,7 +155,7 @@ dans la base.
     Les menus sont divisés en deux catégories: ceux du mode utilisateur et ceux du mode d'administration. Le mode utilisateur regroupe les fonctionnalités d'exploitation de la base de données qui ne nécessitent qu'un accès \emph{read-only} au fichier. Le mode d'administration regroupe les fonctionnalités nécessitant un accès en écriture au fichier. Le mode d'accès au programme est défini par un argument passé au lancement de l'exécutable\footnote{Si le premier argument passé au main est la chaîne de caractères "admin", le programme est lancé en mode administrateur. Dans tous les autres cas, le programme est lancé en mode utilisateur.}.
 
     \paragraph{}
-    Le fichier \emph{menu.h} définit la structure d'une entrée de menu avec le nom du menu et le pointeur de la fonction à appeler correspondant à ce menu. Un menu est composé d'une liste de ces entrée, du nombre d'entrées composant le menu et d'un titre. Les différents menus sont rassemblés dans un tableau. Le fichier \emph{menu.c} assigne des valeurs à ce tableau et implémente la fonction qui affiche le menu et appelle la fonction associée à l'entrée choisie par l'utilisateur.
+    Le fichier \emph{menu.h} définit la structure d'une entrée de menu avec le nom du menu et le pointeur de la fonction à appeler correspondant à ce menu. Un menu est composé d'une liste de ces entrées, du nombre d'entrées composant le menu et d'un titre. Les différents menus sont rassemblés dans un tableau. Le fichier \emph{menu.c} assigne des valeurs à ce tableau et implémente la fonction qui affiche le menu et appelle la fonction associée à l'entrée choisie par l'utilisateur.
 
 
     \subsection{Administration du fichier de base de données}
@@ -166,15 +166,15 @@ dans la base.
     Ce fichier implémente aussi les fonctions d'import et d'export de données. Pour chaque table, l'import ouvre le fichier \emph{csv} d'import et écrit les données lues dans le fichier de données à partir de l'offset approprié. Le nom de ces fichiers et leur emplacement est défini par le catalogue dans les métadonnées des tables. L'import lance automatiquement la génération des index car ils sont nécessaires au fonctionnement de certaines fonctions d'exploitation de la base de données. Le fonctionnement des index est décrit au point suivant.
 
     \paragraph{}
-    La fonction d'export recrée les fichiers \emph{csv} à partir du fichier de base de données. Il est essentiellement utilisé pour vérifier la validité des données importées (les fichiers d'import et d'export doivent être identiques).
+    La fonction d'export recrée les fichiers \emph{csv} à partir du fichier de base de données. Il est essentiellement utilisé pour vérifier la validité des données importées (les fichiers d'import et d'export sont théoriquement identiques).
 
     \paragraph{}
     Le fichier \emph{admin.c} implémente enfin une fonction d'affichage des métadonnées de la base de données, i.e. des informations contenues dans le header. Cette entrée de menu est la seule qui soit partagée entre le mode d'administration et le mode d'exploitation de la base de données.
 
 
-    \subsection{Index numériques, alphanumériques et arbre binaire}
+    \subsection{Index numérique, alphanumérique et arbre binaire}
     \paragraph{}
-    Tous les index sont créés de la même manière que les tables à partir d'un tableau de métadonnées défini dans le catalogue. La création des index numériques est dissociée de celle des index alphanumériques car leurs structures sont différentes et l'index alphanumérique nécessite la création d'un arbre binaire. Elles sont respectivement implémentées dans les fichiers \emph{num\_index.c} et \emph{alpha\_index.c}.
+    Tous les index sont créés de la même manière que les tables à partir d'un tableau de métadonnées défini dans le catalogue. La création des index numériques est dissociée de celle des index alphanumériques car leurs structures sont différentes et surtout car l'index alphanumérique nécessite la création d'un arbre binaire. Les créations d'index sont respectivement implémentées dans les fichiers \emph{num\_index.c} et \emph{alpha\_index.c}.
 
     \paragraph{}
     Le mécanisme de création de l'index est commun aux deux types. Les fonctions de création d'index constituent ceux-ci à partir de la valeur sur laquelle porte l'index (identifiant de groupe ou de compagnie pour les index numériques et nom de famille des personnes pour l'index alphanumérique). Cette valeur est lue par la fonction de lecture définie dans les métadonnées : e.g. la lecture de \emph{id\_group} pour la constitutions de l'index \emph{company by group id}.
@@ -183,7 +183,7 @@ dans la base.
     Après avoir constitué la liste de valeurs de l'index, cette liste va être triée par une fonction de tri \emph{quick sort} détaillée au point suivant. Cette liste triée est écrite dans le fichier de données.
 
     \paragraph{}
-    Les index numériques crées de cette façon sont directement exploitables par une fonction de recherche dichotomique. Les index alphanumériques doivent quant à eux être représentés sous forme d'un arbre binaire équilibré dont la fonction de création est implémentée dans le fichier \emph{alpha\_index.c} selon l'algorithme récursif vu au cours. Chaque tuple de l'index enregistre l'offset des n\oe uds gauche et droit. L'offset du tuple racine de l'arbre est écrit dans le header du fichier de données et gardé en mémoire RAM. Il constitue le point d'entrée des recherches utilisant l'index alphanumérique.
+    Les index numériques créés de cette façon sont directement exploitables par une fonction de recherche dichotomique. Les index alphanumériques doivent quant à eux être représentés sous forme d'un arbre binaire équilibré dont la fonction de création est implémentée dans le fichier \emph{alpha\_index.c} selon l'algorithme récursif vu au cours. Chaque tuple de l'index enregistre l'offset des n\oe uds gauche et droit. L'offset du tuple racine de l'arbre est écrit dans le header du fichier de données et gardé en mémoire RAM. Il constitue le point d'entrée des recherches utilisant l'index alphanumérique.
 
 
     \subsection{Tri \emph{quick sort}}
@@ -196,23 +196,23 @@ dans la base.
     \paragraph{}
     Les fonctions utilitaires privées sont appelées par l'intermédiaire de macros pour pouvoir être appelées sans leur passer des arguments qui sont toujours les mêmes. Par exemple, la fonction qui retourne un élément du tableau à un index donnée est définie comme suit :
     \begin{verbatimtab}
-        #define QSORT_ELEM(__i)         _elem(ptr, element_size, __i)
+        #define QSORT_ELEM(__i) _elem(ptr, element_size, __i)
     \end{verbatimtab}
-    Elle sera appelée uniquement dans la fonction privée \texttt{\_quick\_sort} ou \texttt{ptr} (le pointeur du tableau à trier) et \texttt{element\_size} sont connus et ne changent pas. L'index \texttt{\_\_i} qui lui est différent à chaque appel est passé en paramètre à la macro.
+    Elle sera appelée uniquement dans la fonction privée \texttt{\_quick\_sort} où \texttt{ptr} (le pointeur du tableau à trier) et \texttt{element\_size} sont connus et ne changent pas. L'index \texttt{\_\_i} qui lui est différent à chaque appel est passé en paramètre à la macro.
 
     \paragraph{}
     Enfin, les éléments du tableau sont comparés par la fonction de comparaison passée en paramètre au \emph{quick sort}. Si besoin, ils sont intervertis par la fonction \texttt{\_swap}.
 
 
-    \subsection{Fonctions de recherches}
+    \subsection{Fonctions de recherche}
     \paragraph{}
-    Les fonctions de recherches sont des fonctions d'exploitation de la base de données. Elles sont donc accessibles uniquement via le mode utilisateurs.
+    Les fonctions de recherche sont des fonctions d'exploitation de la base de données. Elles sont donc accessibles uniquement via le mode utilisateur.
 
     \paragraph{}
-    Les fonctions de recherches à proprement parler (séquentielle, dichotomique et par index) sont séparées des fonctions qui les exploitent, que ce soit pour l'affichage en console ou la génération de rapport. Ces fonctions de recherches sont implémentées dans le dossier \emph{search}, les affichages en console dans le dossier \emph{display\_search} et les rapports dans le dossier \emph{report}.
+    Les fonctions de recherches à proprement parler (séquentielle, dichotomique et par index) sont séparées des fonctions qui les exploitent, que ce soit pour l'affichage en console ou la génération de rapport. Ces fonctions de recherche sont implémentées dans le dossier \emph{search}, les affichages en console dans le dossier \emph{display\_search} et les rapports dans le dossier \emph{report}.
 
     \paragraph{}
-    Les fonctions de recherches génériques du dossier \emph{search} revoient des listes chainées de structures de type \texttt{search\_result} définie dans le fichier \emph{search\_result.h}. L'implémentation des listes chaînées est détaillée plus loin dans ce travail.
+    Les fonctions de recherche génériques du dossier \emph{search} renvoient des listes chainées de structures de type \texttt{search\_result} définie dans le fichier \emph{search\_result.h}. L'implémentation des listes chaînées est détaillée plus loin dans ce travail.
 
     \paragraph{}
     Il est enfin possible de trier les listes de résultats grâce à la fonction de tri implémentée dans le fichier \emph{search\_result.c}. Cette fonction générique prend en paramètres une liste de résultats et une fonction de comparaison. Elle utilise l'algorithme \emph{quick sort} après transformation de la liste chaînée en tableau.
@@ -223,12 +223,12 @@ dans la base.
     Les recherches par accès direct ne sont pas utilisées directement dans les menus de recherches mais par l'intermédiaire d'autres recherches. Par exemple, la génération du rapport des compagnies par groupe fait une recherche directe de groupe par l'identifiant cherché par l'utilisateur. La recherche directe est alors une recherche dans le buffer chargé en mémoire RAM.
 
     \paragraph{}
-    L'implémentation d'une fonction de recherche directe ne nécessite pas d'implémentation particulière. En effet, il suffit d'accéder directement au tuple cherché par un appel classique dans le buffer de type \texttt{buffer[id-1]}. Pour une recherche directe dans le fichier de données, il aurait fallu implémenter une lecture dans le fichier de données sur base d'un offset calculé à partir de l'id recherché, de l'offset de la table et de la taille du tuple.
+    L'implémentation d'une fonction de recherche directe ne nécessite pas d'implémentation particulière. En effet, il suffit d'accéder directement au tuple cherché par un appel classique dans le buffer de type \texttt{buffer[id-1]}. Pour une recherche directe dans le fichier de données, il aurait fallu implémenter une lecture dans le fichier de données sur base d'un offset calculé à partir de l'idendifiant recherché, de l'offset de la table et de la taille du tuple.
 
 
     \subsection{Recherche séquentielle}
     \paragraph{}
-    Une fonction générique de recherche séquentielle est implémentée dans le fichier \emph{sequential\_search.c}. Elle constitue la liste de résultats à partir de la fonction de comparaison définies dans les métadonnées des tables.
+    Une fonction générique de recherche séquentielle est implémentée dans le fichier \emph{sequential\_search.c}. Elle constitue la liste de résultats à partir de la fonction de comparaison définie dans les métadonnées des tables.
 
     \paragraph{}
     Elle est exploitée par les recherches implémentées dans \emph{display\_sequential\_search.c} : recherches de pays, de job, d'industrie et de groupe par début de chaîne de caractère. Ces recherches demandent à l'utilisateur la chaîne de caractère cherchée pour rechercher :
@@ -243,7 +243,7 @@ dans la base.
     Toutes ces recherches sont insensibles à la casse.
 
     \paragraph{}
-    La liste de résultats trouvée est affichée par une fonction générique de pagination implémentée dans \emph{ui\_utils.c}. Elle est triée par identifiant puisque les tuples sont parcourus séquentiellement et que les base de données sont triées sur base des identifiants. Elle est affichée à l'endroit ou à l'envers selon le choix de l'utilisateur (à l'endroit par défaut).
+    La liste de résultats trouvés est affichée par une fonction générique de pagination implémentée dans \emph{ui\_utils.c}. Elle est triée par identifiant puisque les tuples sont parcourus séquentiellement et que les données sont triées sur base des identifiants. Elle est affichée à l'endroit ou à l'envers selon le choix de l'utilisateur (à l'endroit par défaut).
 
 
     \subsection{Recherche dichotomique}
@@ -251,7 +251,7 @@ dans la base.
     Le fichier \emph{binary\_search.c} implémente la fonction générique de recherche dichotomique selon l'algorithme récursif vu au cours. Cet algorithme est utilisé pour les recherches par identifiant. Puisqu'il est unique, un seul résultat est retourné : l'offset du tuple trouvé ou celui du tuple le plus proche.
 
     \paragraph{}
-    La recherche dichotomique est utilisée par la fonction générique \texttt{display\_search\_by\_id} du fichier \emph{display\_binary\_search.c}. Un identifiant est demandé à l'utilisateur et passé en paramètre à la recherche dichotomique. Si l'utilisateur entre \texttt{0}, le programme revient au menu principal n'effectue pas la recherche et l'utilisateur peut revenir au menu principal. Sinon, il affiche le tuple trouvé ou les identifiants des trois tuples les plus proches de celui cherché.
+    La recherche dichotomique est utilisée par la fonction générique \texttt{display\_search\_by\_id} du fichier \emph{display\_binary\_search.c}. Un identifiant est demandé à l'utilisateur et passé en paramètre à la recherche dichotomique. Si l'utilisateur entre \texttt{0}, le programme revient au menu principal n'effectue pas la recherche et l'utilisateur peut revenir au menu principal. Sinon, il affiche le tuple trouvé ou les trois tuples dont les identifiants sont les plus proches de celui cherché.
 
     \paragraph{}
     Il est à noter que la recherche de groupe par identifiant aurait plutôt pu être implémentée par un accès direct dans le buffer de groupes.
@@ -259,7 +259,7 @@ dans la base.
 
     \subsection{Recherche via index numérique}
     \paragraph{}
-    Les index numériques sont exploités par la fonction de recherche implémentée dans \emph{num\_index\_search.c}. Cette fonction trouve la première occurrence correspondant à la recherche dans l'index et retourne la liste de résultats à partir de celle-ci.
+    Les index numériques sont exploités par la fonction de recherche implémentée dans \emph{num\_index\_search.c}. Cette fonction trouve la première occurrence correspondant à la recherche dans l'index et retourne la liste de résultats constituée à partir de cette première occurence.
 
     \paragraph{}
     Les recherches par index numérique affichées en console sont implémentées par une fonction générique dans le fichier \emph{display\_num\_index\_search.c} qui permet de chercher des personnes par identifiant de compagnie. L'identifiant est demandé à l'utilisateur est la liste est affichée par la fonction de pagination. Elle est triée par ordre alphabétique sur le nom de famille des personnes et est affichée à l'endroit ou à l'envers selon le choix de l'utilisateur.
@@ -274,7 +274,7 @@ dans la base.
     \end{itemize}
 
     \paragraph{}
-    Dans tous les cas, les listes de personnes sont triées par ordre alphabétique par nom de famille. Le programme n'intègre toutefois pas le tri dans la recherche par index numérique car une autre utilisation pourrait ne pas vouloir trier la liste ou la trier selon un autre champ.
+    Dans tous les cas, les listes de personnes sont triées par ordre alphabétique sur le nom de famille. Le programme n'intègre toutefois pas le tri dans la recherche par index numérique car une autre utilisation pourrait ne pas vouloir trier la liste ou la trier selon un autre champ.
     
 
     \subsection{Recherche via index alphanumérique}
@@ -286,7 +286,7 @@ dans la base.
     
 
     \subsection{Liste doublement chaînée}
-    Le programme implémente une structure générique de liste doublement chaînée dont la structure est définie dans \emph{linked\_list.h}. Cette liste est composée d'une donnée : un pointeur de \emph{void} qui peut donc correspondre à n'importe quel type de donnée ou de structure. Elle contient le pointeur de l'élément suivant et de l'élément précédent.
+    Le programme implémente une structure générique de liste doublement chaînée dont la structure est définie dans \emph{linked\_list.h}. Cette liste contient une donnée : un pointeur de \emph{void} qui peut donc correspondre à n'importe quel pointeur de donnée ou de structure. Elle contient le pointeur de l'élément suivant et de l'élément précédent.
 
     \paragraph{}
     Le fichier \emph{linked\_list.c} implémente les fonctions d'ajout d'un nouvel élément à la liste et de suppression de la liste, avec ou non une libération de la mémoire des données contenues dans la liste.
@@ -294,7 +294,7 @@ dans la base.
 
     \subsection{Logger}
     \paragraph{}
-    Toutes les fonctions d'exploitation de la base de données écrivent des informations dans un fichier de log. Ce logger est implémenté dans le fichier \emph{logger.c} : il permet d'afficher un message d'erreur à la façon de \texttt{perror} en exploitant la valeur de \texttt{errno} ou d'afficher toute autre information précédée de l'endroit d'où provient le log.
+    Toutes les fonctions d'exploitation de la base de données écrivent des informations dans un fichier de log. Ce logger est implémenté dans le fichier \emph{logger.c} : il permet d'afficher un message d'erreur à la façon de \texttt{perror} en exploitant la valeur de \texttt{errno} ou d'afficher toute autre information précédée de l'endroit d'où provient le log. Les logs sont préfixés par la date et l'heure de l'écriture du log.
 
 
 
@@ -331,7 +331,7 @@ dans la base.
             header.h (création du header pour une base de données vide)
             num_index.h (création d'un index numérique)
             open_close.h (fonctions d'ouverture et de fermeture du fichier de données)
-        - display_search (recherches dont les résultats sont listés en console)
+        - display_search (recherches dont les résultats sont affichés en console)
             display_alpha_index_search.h
                 recherche de personnes par nom de famille (tri par nom de famille)
             display_binary_search.h
@@ -377,7 +377,7 @@ dans la base.
                     le plus proche), pause du programme
         - utils
             linked_list.h (gestion de liste doublement chaînée générique)
-            logger.h (log d'information dans le fichier db_clients.log)
+            logger  .h (log d'information dans le fichier db_clients.log)
             preprocess_string.h (macro de transformation d'un nombre en string)
             sort.h (algorithme de tri quick sort)
             string_utils.h (fonctions utilitaires sur les chaînes de caractères :
@@ -416,7 +416,7 @@ dans la base.
 
     \subsection{Import des données}
     \paragraph{}
-    Le processus complet de la création du fichier de données est testé par le fichier \emph{test\_create\_db.c} (test d'intégration) : création du fichier de données vide, import des données à partir des \emph{csv}, export, affichage des métadonnées et log des informations dans \emph{db\_client.log}.
+    Le processus complet de la création du fichier de données est testé par le fichier \emph{test\_create\_db.c} : création du fichier de données vide, import des données à partir des \emph{csv}, export, affichage des métadonnées et log des informations dans \emph{db\_client.log}. Ce test d'intégration est lancé par la commande \texttt{make run\_test/integrations/test\_create\_db}.
 
     \paragraph{}
     Comparer la taille réelle du fichier avec la taille calculée par le programme m'a permis de trouver une erreur au niveau de la création des index vides. Après correction, le fichier de données fait bien la taille calculée par le programme. Les offsets des différentes tables correspondent bien aux offset théoriques.
@@ -447,17 +447,61 @@ dans la base.
     Le fichiers de logs est un bon outil pour vérifier le bon fonctionnement du programme. L'écriture des logs appropriés a été testé tout au long de l'écriture du programme, si possible en provoquant volontairement les erreurs, sinon en modifiant les fonctions.
 
 
+    \subsection{Test des recherches séquentielles}
     \paragraph{}
+    Les recherches séquentielles sont testées par un test d'intégration qui est lancé par la commande \texttt{make run\_test/integrations/test\_sequential\_search}. Ce fichier teste  les recherches séquentielles détaillées dans la description du programme : recherche par début de chaîne de caractère de pays, job, industrie ou groupe.
+
+    \paragraph{}
+    Le test compare les résultats de la fonction \texttt{sequential\_search} avec les résultats normalement attendus. Les résultats attendus ont été déterminés par la commande \texttt{grep}\footnote{Toutes les commandes utilisées sont documentées dans le code du test.}.
+
+    \paragraph{}
+    Le test vérifie la conformité des données trouvées avec les données dans le cas normal d'utilisation mais aussi dans le cas ou aucun enregistrment correspondant n'est trouvé et le cas où tous les éléments sont retournés (lorsqu'une chaîne de caractère vide est cherchée comme préfixe).
 
 
+    \subsection{Test des recherches dichotomiques}
+    \paragraph{}
+    Les recherches dichotomiques sont testées par le fichier \emph{test\_binary\_search.c} lancé par la commande \texttt{make run\_test/integrations/test\_binary\_search}. Il permet de tester que l'offset retourné correspond bien à celui de l'entité cherchée si l'identifiant existe ou de l'entité dont l'identifiant est le plus proche de celui cherché. Il vérifie également que si l'identifiant cherché est plus petit que le plus petit identifiant existant, c'est bien l'offset du premier enregistrement qui est renvoyé, et s'il est plus grand, c'est l'offset du dernier enregistrement qui est renvoyé.
 
+    \paragraph{}
+    L'affichage correct des trois résultats les plus proches a été testé manuellement en lançant l'application. En cas de valeurs limites, l'offset est ajusté correctement pour afficher trois entités valides. Si un identifiant plus petit que le plus petit identifiant enregistré dans le fichier de données est cherché, les trois premiers enregistrements de la base de données sont affichés (e.g. \texttt{1} est cherché dans le menu \texttt{[6] Search company by id}). Si un identifiant plus grand que le dernier identifiant enregistré est cherché, les trois derniers enregistrements sont affiché (e.g. \texttt{690000} est cherché dans le menu \texttt{[6] Search company by id}).
+
+
+    \subsection{Test des recherches par index}
+    \paragraph{}
+    Les recherches par index numériques sont testées par le fichier \emph{test\_num\_index\_search.c} lancé par la commande \texttt{make run\_test/integrations/test\_num\_index\_search}. Il teste les recherches utilisant l'index de personne par identifiant de compagnie.
+
+    \paragraph{}
+    Il vérifie que les résultats trouvés correspondent bien aux résultats attendus, que la compagnie ait des employés enregistrés dans la base de données ou non. Les données attendues sont déterminées par la commande \texttt{grep} documentée dans le test. Le test vérifie également qu'aucun résultat n'est renvoyé si l'identifiant est invalide.
+
+    \paragraph{}
+    Les recherches par index alphanumériques sont testées par le fichier \emph{test\_alpha\_index\_search.c} lancé par la commande \texttt{make run\_test/integrations/test\_alpha\_index\_search}. Il teste les recherches utilisant l'index de personne par nom de famille de la même manière que le test de recherche par index numérique.
 
 
     \subsection{Tests unitaires}
+    \paragraph{}
+    Des tests unitaires permettent de tester les méthodes utilitaires suivantes :
+    \begin{itemize}[label=$\bullet$]
+        \item le tri \emph{quick sort}
+        \item la création des listes chaînées et le tri des listes de résultats de recherches
+        \item la fonction qui permet de déterminer si une chaîne de caractère contient une sous-chaîne recherchée (insensible à la casse)
+        \item la fonction qui permet de déterminer si une chaîne de caractères commence par un préfixe donné
+        \item le remplacement d'un caractère par un autre dasn une chaîne de caractère (utilisée pour la génération des noms de rapports)
+        \item la mise en minuscules d'une chaîne de caractères
+    \end{itemize}
 
-    \subsection{Fichier de logs}
+    \paragraph{}
+    Ces tests peuvent être lancés individuellement avec les commandes \texttt{make run\_test/units/test\_name}.
 
-    \subsection{}
+
+    \subsection{Valgrind}
+    \paragraph{}
+    Le programme a enfin été testé avec Valgrind afin de vérifier que tous les esapces de mémoire alloués lors de l'exécution du programme sont bien libérés. Pour effectuer ce test, j'ai lancé les commandes \texttt{valgrind --leak-check=full -s ./clients admin}\footnote{\texttt{leak-check=full} pour avoir des détails sur les fuites mémoires et \texttt{-s} pour avoir des détails sur les erreurs} et \texttt{valgrind --leak-check=full -s ./clients} et j'ai parcouru les fonctionalités du programme. J'aurais pu aussi lancer valgrind sur les tests d'intégrations.
+
+    \paragraph{}
+    Ce test a permis de mettre en évidence une erreur dans le main lorsde l'appel à la fonction d'ouverture du fichier de base de données. L'ouverture de la base de données dans n'importe quel mode ferme d'abord le pointeur de fichier. Cette opération ne pose pas de problème si le pointeur passé à \texttt{fclose} est nul mais lors du premier appel, le pointeur n'avais pas été initialisé. J'ai donc rajouté une initalisation du pointeur de fichier de données à \emph{NULL} dans le main.
+
+    \paragraph{}
+    L'espace alloué à la liste de tri temporaire de la fonction \texttt{sort\_linked\_list} du fichier \emph{search\_resul.c} n'avait pas été libéré. J'avais également oublié de libérée une liste chaînée dans la création du rapport sur les actions détenues par les employés d'un groupe.
 
     
 

@@ -102,6 +102,7 @@ int main(int argc, char *argv[]) {
     // - in admin mode, the program continues
     //      and the terminal header shows that no database is opened
     strcpy(db.dat_file_path, DAT_DIR DIR_SEP"db_clients.dat");
+    db.dat_file = NULL;
     if (open_db(&db, READ) && db.app_mode == USER) {
         puts("No database file available: please contact an administrator");
         log_info(&db, "Main program", "Program stopped (no database opened in user mode)");

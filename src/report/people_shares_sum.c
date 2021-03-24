@@ -172,6 +172,8 @@ int report_people_shares_sum_group_by_job_level_group_by_gender(struct db *db) {
             
             report_node = report_node->next;
         }
+
+        free_list(report_head, 1);
     } else {
         fprintf(report, "\nNo company registered in the database\n");
     }

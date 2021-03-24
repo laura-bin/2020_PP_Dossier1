@@ -42,6 +42,7 @@ void sort_linked_list(struct search_result *results, int (*compare)(const void *
         if (results->head == NULL) results->head = results->tail;
     }
 
-    // free the old linked list
+    // free the old linked list and the temporary array
     free_list(head, 0);
+    free(sorted_array);
 }
